@@ -16,10 +16,11 @@ class CommunityViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
         
         communityTableView.delegate = self
         communityTableView.dataSource = self
-
+        
         // Do any additional setup after loading the view.
     }
 

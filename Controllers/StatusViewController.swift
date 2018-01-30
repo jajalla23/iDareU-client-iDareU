@@ -20,6 +20,7 @@ class StatusViewController: MeParentViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
         
         let center = completionStatusView.center
         let trackLayer = CAShapeLayer()

@@ -45,7 +45,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="NFH-Hz-Hjj" kind="show" id="M3Z-fS-ufj"/>
+                                    <segue destination="NFH-Hz-Hjj" kind="show" animates="NO" id="M3Z-fS-ufj"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="inb-rh-QlL">
@@ -64,7 +64,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="xHZ-EN-gyH" kind="showDetail" action="showViewController:sender:" id="En3-yy-UOh"/>
+                                    <segue destination="xHZ-EN-gyH" kind="showDetail" animates="NO" action="showViewController:sender:" id="En3-yy-UOh"/>
                                 </connections>
                             </button>
                         </subviews>

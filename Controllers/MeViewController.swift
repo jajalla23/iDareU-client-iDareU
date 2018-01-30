@@ -27,6 +27,7 @@ class MeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
 
         //pending challenges minimized
         //self.isPendingChallengesExpanded = false

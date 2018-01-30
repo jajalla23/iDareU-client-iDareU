@@ -17,7 +17,8 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.isNavigationBarHidden = true
+
         friendFeedTableView.delegate = self
         friendFeedTableView.dataSource = self
         

@@ -15,6 +15,7 @@ class MeContainerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
         self.scrollView.contentSize = CGSize(width: containerView.frame.size.width, height: containerView.frame.size.height)
 
         // Do any additional setup after loading the view.
