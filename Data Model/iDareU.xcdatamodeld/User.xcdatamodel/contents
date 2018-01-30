@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17D47" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Challenge" representedClassName=".Challenge" syncable="YES">
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="reward" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="media" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Media" inverseName="challenge" inverseEntity="Media" syncable="YES"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="challengesOwned" inverseEntity="User" syncable="YES"/>
+        <relationship name="takers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="challengesTaken" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Jan" representedClassName=".Jan" syncable="YES">
+        <attribute name="available" optional="YES" attributeType="Decimal" defaultValueString="99" syncable="YES"/>
+        <attribute name="committed" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="total" optional="YES" attributeType="Decimal" defaultValueString="99" syncable="YES"/>
+        <relationship name="ownedBy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="jans" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Media" representedClassName=".Media" syncable="YES">
+        <attribute name="challengeImagePreviewURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="challengeVideoURL" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="challenge" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Challenge" inverseName="media" inverseEntity="Challenge" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName=".User" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="challengesOwned" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Challenge" inverseName="owner" inverseEntity="Challenge" syncable="YES"/>
+        <relationship name="challengesTaken" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Challenge" inverseName="takers" inverseEntity="Challenge" syncable="YES"/>
+        <relationship name="friends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="friends" inverseEntity="User" syncable="YES"/>
+        <relationship name="jans" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Jan" inverseName="ownedBy" inverseEntity="Jan" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Challenge" positionX="-9" positionY="-153" width="128" height="150"/>
+        <element name="Jan" positionX="-479" positionY="92" width="128" height="105"/>
+        <element name="Media" positionX="16" positionY="99" width="128" height="90"/>
+        <element name="User" positionX="-297" positionY="-117" width="128" height="165"/>
+    </elements>
+</model>
