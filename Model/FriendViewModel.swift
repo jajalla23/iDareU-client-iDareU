@@ -8,20 +8,6 @@
 
 import Foundation
 
-public class FriendFeed2 {
-    let friendA : String
-    let friendB : String
-    let challenge : String
-    let type : String
-    
-    init (friendA : String, friendB : String, challenge : String, type : String) {
-        self.friendA = friendA
-        self.friendB = friendB
-        self.challenge = challenge
-        self.type = type
-    }
-}
-
 public struct FriendFeed {
     let challenge: ChallengeFriendFeed
     

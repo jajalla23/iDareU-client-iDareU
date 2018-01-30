@@ -11,17 +11,33 @@ import UIKit
 class MeViewController: UIViewController {
     var user: User? = nil
     
-    var isMyStatusExpanded: Bool = true
+    private var isMyStatusExpanded: Bool = true
     @IBOutlet weak var myStatusHeightConstr: NSLayoutConstraint!
     @IBOutlet weak var myStatusView: UIView!
     
-    var isPendingChallengesExpanded: Bool = true
+    private var isPendingChallengesExpanded: Bool = false
+    private var pendingChallengeRowHeight: Int = 80
     @IBOutlet weak var pendingChallengesHeightConstr: NSLayoutConstraint!
     @IBOutlet weak var pendingChallengesView: UIView!
+    
+    private var isCreatedChallengesExpanded: Bool = false
+    private var createdChallengeRowHeight: Int = 80
+    @IBOutlet weak var createdChallengesHeightConstr: NSLayoutConstraint!
+    @IBOutlet weak var createdChallengesView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //pending challenges minimized
+        //self.isPendingChallengesExpanded = false
+        self.pendingChallengesHeightConstr.constant = 0
+        self.pendingChallengesView.isHidden = true
+        
+        //created challenges minimized
+        //self.isPendingChallengesExpanded = false
+        self.createdChallengesHeightConstr.constant = 0
+        self.createdChallengesView.isHidden = true
+        
         // Do any additional setup after loading the view.
     }
 
@@ -33,15 +49,6 @@ class MeViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let meViewController = segue.destination as? MeParentViewController
         meViewController?.user = self.user
-        
-        /*
-        if (segue.identifier == "meToPendingSegue") {
-            let viewController = segue.destination as? PendingChallengesViewController
-            viewController?.tableView.frame.size.height = CGFloat(80 * (self.user?.challengesPending?.count ?? 0))
-
-        }
-        */
-        
     }
     
     @IBAction func myStatusBtnToggled(_ sender: Any) {
@@ -70,9 +77,14 @@ class MeViewController: UIViewController {
                 self.view.layoutIfNeeded()
             })
         } else {
-            print("pendin challenge view height: " + self.pendingChallengesView.frame.size.height.description)
             UIView.animate(withDuration: 1.0, animations: {
-                self.pendingChallengesHeightConstr.constant = CGFloat(80 * (self.user?.challengesPending?.count ?? 0))
+                var height: CGFloat = CGFloat(self.pendingChallengeRowHeight * (self.user?.challengesPending?.count ?? 0))
+                
+                if (height > PendingChallengesViewController.scrollViewMaxHeight) {
+                    height = PendingChallengesViewController.scrollViewMaxHeight
+                }
+                
+                self.pendingChallengesHeightConstr.constant = height
                 self.pendingChallengesView.isHidden = !self.pendingChallengesView.isHidden
                 self.view.layoutIfNeeded()
             })
@@ -81,9 +93,31 @@ class MeViewController: UIViewController {
         isPendingChallengesExpanded = !isPendingChallengesExpanded
     }
     
+    @IBAction func createdChallBtnToggled(_ sender: Any) {
+        if (isCreatedChallengesExpanded) {
+            UIView.animate(withDuration: 1.0, animations: {
+                self.createdChallengesHeightConstr.constant = 0
+                self.createdChallengesView.isHidden = !self.createdChallengesView.isHidden
+                self.view.layoutIfNeeded()
+            })
+        } else {
+            UIView.animate(withDuration: 1.0, animations: {
+                var height: CGFloat = CGFloat(self.createdChallengeRowHeight * (self.user?.challengesSponsored?.count ?? 0))
+                
+                if (height > MyCreatedChallengesViewController.scrollViewMaxHeight) {
+                    height = MyCreatedChallengesViewController.scrollViewMaxHeight
+                }
+                
+                self.createdChallengesHeightConstr.constant = height
+                self.createdChallengesView.isHidden = !self.createdChallengesView.isHidden
+                self.view.layoutIfNeeded()
+            })
+        }
+        
+        isCreatedChallengesExpanded = !isCreatedChallengesExpanded
+    }
     
     
-
     /*
     // MARK: - Navigation
 

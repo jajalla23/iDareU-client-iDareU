@@ -10,16 +10,17 @@ import Foundation
 
 public class Challenge: Codable {
     public var id: String?
-    public var ownerId: String
+    public var sponsor: Sponsor
     public var title: String
     public var description: String?
-    public var reward: Decimal
+    private(set) var reward: Decimal
     public var media: Media?
-    public var takers: [Taker]?
+    private(set) var takers: [Taker]?
     public var location: String?
+    private(set) var coSponsors: [Sponsor]?
     
-    init(ownerId: String, title: String, description: String?, reward: Decimal) {
-        self.ownerId = ownerId
+    init(sponsorId: String, title: String, description: String?, reward: Decimal) {
+        self.sponsor = Sponsor.init(sponsorId: sponsorId, reward: reward)
         self.title = title
         self.description = description
         self.reward = reward
@@ -35,6 +36,26 @@ public class Challenge: Codable {
         self.takers?.append(taker)
     }
     
+    public func addCosponsor(user: User, reward: Decimal) {
+        let newCosponsor: Sponsor = Sponsor.init(sponsorId: user.id!, reward: reward)
+        
+        // if condition ? true : else
+        if (self.coSponsors == nil) {
+            self.coSponsors = []
+        }
+        
+        self.coSponsors?.append(newCosponsor)
+        self.reward += reward
+    }
+    
+    public func removeCosponsor(sponsorId: String) -> Bool {
+        if let i = self.coSponsors!.index(where: { $0.id == sponsorId }) {
+            self.coSponsors?.remove(at: i)
+            return true
+        }
+    
+        return false
+    }
 }
 
 public class Taker: Codable {
@@ -48,6 +69,16 @@ public class Taker: Codable {
         self.user = user
         self.isCompleted = false
         self.responseAccepted = false
+    }
+}
+
+public class Sponsor: Codable {
+    public var id: String
+    public var reward: Decimal
+    
+    init(sponsorId: String, reward: Decimal) {
+        self.id = sponsorId
+        self.reward = reward
     }
 }
 

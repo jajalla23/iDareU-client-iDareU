@@ -1,5 +1,5 @@
 //
-//  MeContainerViewController.swift
+//  DoubleDownViewController.swift
 //  iDareU
 //
 //  Created by Jan Jajalla on 1/30/18.
@@ -8,20 +8,12 @@
 
 import UIKit
 
-class MeContainerViewController: UIViewController {
+class DoubleDownViewController: UIViewController {
 
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var containerView: UIView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.scrollView.contentSize = CGSize(width: containerView.frame.size.width, height: containerView.frame.size.height)
 
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewDidLayoutSubviews() {
-        self.scrollView.isScrollEnabled = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,13 +21,17 @@ class MeContainerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let routerController: RouterTabBarController = self.tabBarController as! RouterTabBarController
-        let meViewController = segue.destination as? MeViewController
-        meViewController?.user = routerController.user
+    @IBAction func closeView(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
-
+    @IBAction func submitBtnPressed(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     /*
     // MARK: - Navigation
 

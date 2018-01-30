@@ -63,14 +63,13 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView,
-                   leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
-    {
+                   leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let closeAction = UIContextualAction(style: .normal, title:  "Close", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             self.friendFeeds.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
             success(true)
         })
-        closeAction.image = UIImage(named: "second")
+        //closeAction.image = UIImage(named: "second")
         closeAction.backgroundColor = .red
         
         return UISwipeActionsConfiguration(actions: [closeAction])
@@ -78,13 +77,13 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView,
-                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
-    {
-        let modifyAction = UIContextualAction(style: .normal, title:  "Double Down", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-            print("Update action ...")
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let modifyAction = UIContextualAction(style: .normal, title:  "Double Down!", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+            print("Double Down")
+            self.performSegue(withIdentifier: "doubleDownSegue", sender: ac)
             success(true)
         })
-        modifyAction.image = UIImage(named: "first")
+        //modifyAction.image = UIImage(named: "doubledown")
         modifyAction.backgroundColor = .blue
         
         return UISwipeActionsConfiguration(actions: [modifyAction])

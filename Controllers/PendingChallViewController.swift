@@ -10,14 +10,18 @@ import UIKit
 
 class PendingChallengesViewController: MeParentViewController, UITableViewDataSource, UITableViewDelegate  {
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tableView: UITableView!
+    
+    public static let scrollViewMaxHeight: CGFloat = CGFloat(80 * 5) //row height x number of cells
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
-        self.tableView.frame.size.height = CGFloat(80 * (self.user?.challengesPending?.count ?? 0))
+        
+        self.adjustHeight()
 
         // Do any additional setup after loading the view.
     }
@@ -52,6 +56,48 @@ class PendingChallengesViewController: MeParentViewController, UITableViewDataSo
         let challenge: Challenge = (self.user?.challengesPending![indexPath.row])!
         print(challenge.id ?? "unknown")
         performSegue(withIdentifier: "pendingToWatchSegue", sender: self)
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let closeAction = UIContextualAction(style: .normal, title:  "Reject", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+            self.user?.challengesPending!.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+            self.adjustHeight()
+            success(true)
+        })
+        //closeAction.image = UIImage(named: "second")
+        closeAction.backgroundColor = .red
+        
+        return UISwipeActionsConfiguration(actions: [closeAction])
+        
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let modifyAction = UIContextualAction(style: .normal, title:  "Accept", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+            print("Challenge Accepted")
+            success(true)
+        })
+        //modifyAction.image = UIImage(named: "Play")
+        modifyAction.backgroundColor = .blue
+        
+        return UISwipeActionsConfiguration(actions: [modifyAction])
+    }
+    
+    private func adjustHeight() {
+        let tableViewHeight: CGFloat = CGFloat(80 * (self.user?.challengesPending?.count ?? 0))
+        self.tableView.frame.size.height = tableViewHeight
+        
+        self.scrollView.contentSize = CGSize(width: self.tableView.frame.size.width, height: tableViewHeight)
+        
+        if (tableViewHeight > PendingChallengesViewController.scrollViewMaxHeight) {
+            self.scrollView.frame.size.height = PendingChallengesViewController.scrollViewMaxHeight
+        } else {
+            self.scrollView.frame.size.height = tableViewHeight
+        }
+        
+        self.view.layoutIfNeeded()
     }
     
 

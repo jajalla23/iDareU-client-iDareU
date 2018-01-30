@@ -28,9 +28,10 @@ public class User: Codable {
     public var email: String? = ""
     public var jans: Jan?
     public var friends: [User]?
-    public var challengesOwned: [Challenge]?
+    public var challengesSponsored: [Challenge]?
     public var challengesCompleted: [Challenge]?
     public var challengesPending: [Challenge]?
+    public var challengesCosponsored: [Challenge]?
     
     init(username: String, password: String, email: String) {
         self.username = username
@@ -39,9 +40,10 @@ public class User: Codable {
         
         self.jans = Jan()
         self.friends = []
-        self.challengesOwned = []
+        self.challengesSponsored = []
         self.challengesCompleted = []
         self.challengesPending = []
+        self.challengesCosponsored = []
     }
     
     public func addFriends(friends: [User]) {
@@ -52,12 +54,12 @@ public class User: Codable {
         self.friends?.append(friend)
     }
     
-    public func addToChallengesOwned(challenges: [Challenge]) {
-        self.challengesOwned?.append(contentsOf: challenges)
+    public func addToChallengesSponsored(challenges: [Challenge]) {
+        self.challengesSponsored?.append(contentsOf: challenges)
     }
     
-    public func addToChallengesOwned(challenge: Challenge) {
-        self.challengesOwned?.append(challenge)
+    public func addToChallengesSponsored(challenge: Challenge) {
+        self.challengesSponsored?.append(challenge)
     }
     
     public func addToChallengesCompleted(challenges: [Challenge]) {

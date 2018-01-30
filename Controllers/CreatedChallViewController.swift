@@ -10,14 +10,20 @@ import UIKit
 
 class MyCreatedChallengesViewController: MeParentViewController, UITableViewDataSource, UITableViewDelegate {
        
-    @IBOutlet weak var createdChallengeTableView: UITableView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var tableView: UITableView!
+    
+    public static let scrollViewMaxHeight: CGFloat = CGFloat(80 * 5) //row height x number of cells
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //myChallengeTableView.delegate = self
-        //myChallengeTableView.dataSource = self
+        tableView.delegate = self
+        tableView.dataSource = self
         
-        //myChallengeTableView.sectionHeaderHeight = 1.0
+        self.adjustHeight()
+        
         // Do any additional setup after loading the view.
     }
 
@@ -27,47 +33,53 @@ class MyCreatedChallengesViewController: MeParentViewController, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return user!.challengesOwned!.count
+        return user?.challengesSponsored?.count ?? 0
     }
-    /*
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        //return 50
-        return UITableViewAutomaticDimension
+        return 80
     }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        //return 5.0
-        return 0.01
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return UIView()
-    }
-    */
-    /*
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let header = view as! UITableViewHeaderFooterView
-        header.textLabel?.text = user?.challengesOwned![section].title
-    }*/
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = createdChallengeTableView.dequeueReusableCell(withIdentifier: "createdChallengeCell") as! CollapsibleTableViewCell
-        /*cell.myChallTitleLbl.text = user?.challengesOwned![indexPath.row].title
-        cell.myChallDescLbl.text = user?.challengesOwned![indexPath.row].description
-        cell.myChallRewardLbl.text = "J \(user?.challengesOwned![indexPath.row].reward.description ?? "0")"
-        cell.myChallPrevImg.image = UIImage(named: "Play")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "createdChallengeCell") as! CreatedChallengeTableViewCell
         
-        cell.layer.cornerRadius = cell.frame.height / 2*/
+        let currChallenge = user?.challengesSponsored![indexPath.row]
+        
+        cell.challangePrevImage.image = UIImage(named: "Play")
+        cell.challengeTitleLbl.text = currChallenge?.title
+        cell.challengeDescLbl.text = currChallenge?.description ?? ""
+        cell.challengeRewardLbl.text = "J \(currChallenge?.reward.description ?? "0")"
         
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let challenge: Challenge = (self.user?.challengesSponsored![indexPath.row])!
+        print(challenge.id ?? "unknown")
+        performSegue(withIdentifier: "createdToWatchSegue", sender: self)
+    }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastitem = user!.challengesOwned!.count - 1
+        let lastitem = user!.challengesSponsored!.count - 1
         
         if (indexPath.row == lastitem) {
             //loadMoreChallenges()
         }
+    }
+    
+    private func adjustHeight() {
+        let tableViewHeight: CGFloat = CGFloat(80 * (self.user?.challengesSponsored?.count ?? 0))
+        self.tableView.frame.size.height = tableViewHeight
+        
+        self.scrollView.contentSize = CGSize(width: self.tableView.frame.size.width, height: tableViewHeight)
+        
+        if (tableViewHeight > MyCreatedChallengesViewController.scrollViewMaxHeight) {
+            self.scrollView.frame.size.height = MyCreatedChallengesViewController.scrollViewMaxHeight
+        } else {
+            self.scrollView.frame.size.height = tableViewHeight
+        }
+        
+        self.view.layoutIfNeeded()
     }
     
 
