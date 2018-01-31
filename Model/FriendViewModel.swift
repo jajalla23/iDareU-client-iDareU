@@ -19,7 +19,7 @@ public struct ChallengeFriendFeed {
     let id: String
     let title: String
     let description : String
-    let reward: Decimal
+    let reward: Int
     let url: String?
     let imagePreviewURL: String?
     let isCompleted: Bool

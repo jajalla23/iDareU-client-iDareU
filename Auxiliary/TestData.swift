@@ -12,7 +12,7 @@ class TestData {
     public static func generateUser() -> User {
         let user: User = User.init(username: "test", password: "test", email: "dummy@email.com")
         user.id = "00000"
-        user.jans?.available = 1000
+        user.jans?.available = 99
         
         let challenge1: Challenge = Challenge.init(sponsorId: user.id!, title: "Challenge1", description: "Completed Challenge", reward: 10)
         let challenge2: Challenge = Challenge.init(sponsorId: user.id!, title: "Challenge2", description: "Pending Challenge", reward: 20)
@@ -41,6 +41,20 @@ class TestData {
         user.addFriends(friends: [friend1, friend2, friend3])
         
         return user
+    }
+    
+    public static func getFriendFeed() -> [FriendFeed] {
+        let challenge1: ChallengeFriendFeed = ChallengeFriendFeed(id: "11111", title: "Challenge 1", description: "Challenge 1", reward: 100, url: "", imagePreviewURL: "Play", isCompleted: true)
+        let challenge2: ChallengeFriendFeed = ChallengeFriendFeed(id: "22222", title: "Challenge 2", description: "Challenge 2", reward: 50, url: "", imagePreviewURL: "Play", isCompleted: false)
+        
+        let friendFeed1: FriendFeed = FriendFeed(challenge: challenge1, ownerUsername: "friendA", friendUsername: "friendB")
+        let friendFeed2: FriendFeed = FriendFeed(challenge: challenge2, ownerUsername: "friendB", friendUsername: "friendA")
+        let friendFeed3: FriendFeed = FriendFeed(challenge: challenge1, ownerUsername: "friendB", friendUsername: "friendA")
+        let friendFeed4: FriendFeed = FriendFeed(challenge: challenge2, ownerUsername: "friendA", friendUsername: "friendB")
+        
+        let friendFeeds: [FriendFeed] = [friendFeed1, friendFeed2, friendFeed3, friendFeed4]
+        
+        return friendFeeds
     }
 }
 

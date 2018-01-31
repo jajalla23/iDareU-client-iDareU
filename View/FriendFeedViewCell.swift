@@ -14,7 +14,8 @@ class FriendFeedViewCell: UITableViewCell {
     @IBOutlet weak var friendsActivityLbl: UILabel!
     @IBOutlet weak var challengeImgPreview: UIImageView!
     
-
+    var friendFeed: FriendFeed? = nil
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

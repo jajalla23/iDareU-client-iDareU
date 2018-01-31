@@ -13,13 +13,13 @@ public class Challenge: Codable {
     public var sponsor: Sponsor
     public var title: String
     public var description: String?
-    private(set) var reward: Decimal
+    private(set) var reward: Int
     public var media: Media?
     private(set) var takers: [Taker]?
     public var location: String?
     private(set) var coSponsors: [Sponsor]?
     
-    init(sponsorId: String, title: String, description: String?, reward: Decimal) {
+    init(sponsorId: String, title: String, description: String?, reward: Int) {
         self.sponsor = Sponsor.init(sponsorId: sponsorId, reward: reward)
         self.title = title
         self.description = description
@@ -36,7 +36,7 @@ public class Challenge: Codable {
         self.takers?.append(taker)
     }
     
-    public func addCosponsor(user: User, reward: Decimal) {
+    public func addCosponsor(user: User, reward: Int) {
         let newCosponsor: Sponsor = Sponsor.init(sponsorId: user.id!, reward: reward)
         
         // if condition ? true : else
@@ -74,9 +74,9 @@ public class Taker: Codable {
 
 public class Sponsor: Codable {
     public var id: String
-    public var reward: Decimal
+    public var reward: Int
     
-    init(sponsorId: String, reward: Decimal) {
+    init(sponsorId: String, reward: Int) {
         self.id = sponsorId
         self.reward = reward
     }

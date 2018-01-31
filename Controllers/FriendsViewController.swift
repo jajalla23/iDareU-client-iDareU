@@ -56,6 +56,8 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.challengeImgPreview.image = UIImage(named: currFriendFeed.challenge.imagePreviewURL ?? "Play")
         cell.challengeRewardLbl.text = "J \(currFriendFeed.challenge.reward.description)"
         cell.friendsActivityLbl.attributedText = friendActivityText
+        
+        cell.friendFeed = currFriendFeed
         return cell
     }
     
@@ -81,7 +83,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let modifyAction = UIContextualAction(style: .normal, title:  "Double Down!", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             print("Double Down")
-            self.performSegue(withIdentifier: "doubleDownSegue", sender: ac)
+            self.performSegue(withIdentifier: "doubleDownSegue", sender: self.friendFeeds[indexPath.row])
             success(true)
         })
         //modifyAction.image = UIImage(named: "doubledown")
@@ -95,6 +97,16 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         print(selectedFriendFeed.challenge.title)
         
         performSegue(withIdentifier: "friendToWatchSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "doubleDownSegue") {
+            //let selectedIndex = self.friendFeedTableView.indexPath(for: sender as! UITableViewCell)
+            let friendFeed = sender as! FriendFeed
+            let controller = segue.destination as? DoubleDownViewController
+            controller?.user = self.user
+            controller?.challenge = friendFeed.challenge
+        }
     }
 
     /*

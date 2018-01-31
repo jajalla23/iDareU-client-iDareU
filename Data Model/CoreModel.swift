@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 public class Jan: Codable {
-    public var total: Decimal
-    public var available: Decimal
-    public var committed: Decimal
+    public var total: Int
+    public var available: Int
+    public var committed: Int
     
     init() {
         self.total = 99
