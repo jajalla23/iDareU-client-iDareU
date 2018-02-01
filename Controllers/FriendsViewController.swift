@@ -8,22 +8,23 @@
 
 import UIKit
 
-class FriendsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class FriendsViewController: GenericUIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var friendFeedTableView: UITableView!
     
-    var user: User? = nil
+    //var user: User? = nil
     var friendFeeds: [FriendFeed] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = true
+        //self.navigationController?.isNavigationBarHidden = true
 
         friendFeedTableView.delegate = self
         friendFeedTableView.dataSource = self
         
-        let routerController: RouterTabBarController = self.tabBarController as! RouterTabBarController
-        self.user = routerController.user
+        //let routerController: RouterTabBarController = self.tabBarController as! RouterTabBarController
+        //self.user = routerController.user
+        print(NSStringFromClass(self.classForCoder) + " : " + (self.user?.id ?? "user not set"))
 
         friendFeeds = Server.getFriendFeedData(userId: self.user!.id!)
 
@@ -106,6 +107,9 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
             let controller = segue.destination as? DoubleDownViewController
             controller?.user = self.user
             controller?.challenge = friendFeed.challenge
+        } else {
+            let controller = segue.destination as? GenericUIViewController
+            controller?.user = self.user
         }
     }
 

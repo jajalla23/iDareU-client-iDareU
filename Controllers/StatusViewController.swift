@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StatusViewController: MeParentViewController {
+class StatusViewController: MeGenericViewController {
     
     @IBOutlet weak var jansView: UIView!
     @IBOutlet weak var jansValueLbl: EFCountingLabel!
@@ -44,11 +44,11 @@ class StatusViewController: MeParentViewController {
         shapeLayer.strokeEnd = 0
         view.layer.addSublayer(shapeLayer)
         
-        let temp = (user?.jans?.available ?? 100) as NSNumber
+        let temp = (self.user?.jans?.available ?? 100) as NSNumber
         let jansAvail: Double = Double(truncating: temp)
 
-        let challengesPending = Double(user?.challengesPending?.count ?? 1)
-        let challengesCompleted = Double(user?.challengesCompleted?.count ?? 0)
+        let challengesPending = Double(self.user?.challengesPending?.count ?? 1)
+        let challengesCompleted = Double(self.user?.challengesCompleted?.count ?? 0)
         let pctCompleted = (challengesCompleted/(challengesPending + challengesCompleted))
 
         animate(jansAvail: jansAvail, pctComplete: pctCompleted)

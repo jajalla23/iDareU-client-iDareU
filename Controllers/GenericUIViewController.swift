@@ -1,5 +1,5 @@
 //
-//  RouterTabBarController.swift
+//  MeParentViewController.swift
 //  iDareU
 //
 //  Created by Jan Jajalla on 1/28/18.
@@ -8,13 +8,15 @@
 
 import UIKit
 
-class RouterTabBarController: UITabBarController {
-    var user: User? = nil
-
+class GenericUIViewController: UIViewController {
+    
+    public var user: User? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(NSStringFromClass(self.classForCoder) + " : " + (user?.id ?? "user not set"))
-
+        
+        let routerController: RouterTabBarController = self.tabBarController as! RouterTabBarController
+        self.user = routerController.user
         // Do any additional setup after loading the view.
     }
 
@@ -24,11 +26,10 @@ class RouterTabBarController: UITabBarController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("router segue")
-        let controller = segue.destination as! GenericUIViewController
-        controller.user = self.user
+        let controller = segue.destination as? GenericUIViewController
+        controller?.user = self.user
     }
-
+    
 
     /*
     // MARK: - Navigation

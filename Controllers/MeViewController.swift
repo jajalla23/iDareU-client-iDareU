@@ -8,9 +8,7 @@
 
 import UIKit
 
-class MeViewController: UIViewController {
-    var user: User? = nil
-    
+class MeViewController: MeGenericViewController {
     private var isMyStatusExpanded: Bool = true
     @IBOutlet weak var myStatusHeightConstr: NSLayoutConstraint!
     @IBOutlet weak var myStatusView: UIView!
@@ -27,7 +25,7 @@ class MeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = true
+        //self.navigationController?.isNavigationBarHidden = true
 
         //pending challenges minimized
         //self.isPendingChallengesExpanded = false
@@ -48,8 +46,8 @@ class MeViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let meViewController = segue.destination as? MeParentViewController
-        meViewController?.user = self.user
+        let controller = segue.destination as? MeGenericViewController
+        controller?.user = self.user
     }
     
     @IBAction func myStatusBtnToggled(_ sender: Any) {

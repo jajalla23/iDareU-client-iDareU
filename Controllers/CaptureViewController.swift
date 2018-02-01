@@ -2,216 +2,121 @@
 //  CaptureViewController.swift
 //  iDareU
 //
-//  Created by Jan Jajalla on 1/6/18.
+//  Created by Jan Jajalla on 1/30/18.
 //  Copyright © 2018 Jan Jajalla. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import AVFoundation
-import AVKit
 
-class CaptureViewController: UIViewController, AVCaptureFileOutputRecordingDelegate {
+class CaptureViewController: UIViewController {
+
+    private var capturePhotoOutput: AVCapturePhotoOutput?
+    private var capturedImage: UIImage?
     
-    var user: User? = nil
-    @IBOutlet weak var recordButton: UIButton!
-    
-    let captureSession = AVCaptureSession()
-    var backCamera: AVCaptureDevice?
-    var frontCamera: AVCaptureDevice?
-    var currentDevice: AVCaptureDevice?
-    var videoFileOutput:AVCaptureMovieFileOutput?
-    var cameraPreviewLayer:AVCaptureVideoPreviewLayer?
-    
-    var isRecording = false
-    var toggleCameraGestureRecognizer = UISwipeGestureRecognizer()
-    
-    var zoomInGestureRecognizer = UISwipeGestureRecognizer()
-    var zoomOutGestureRecognizer = UISwipeGestureRecognizer()
+    @IBOutlet weak var previewView: UIView!
+    @IBOutlet weak var captureBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //let defaults = UserDefaults.standard
+        // Do any additional setup after loading the view.
 
-        let routerController: RouterTabBarController = self.tabBarController as! RouterTabBarController
-        self.user = routerController.user
-        /*
-        let decoded  = defaults.object(forKey: "user") as! Data
-        let user: User = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! User
-        print(user.username)*/
-        
-        /*setupCaptureSession()
-        setupDevice()
-        setupInputOutput()
-        setupPreviewLayer()
-        startRunningCaptureSession()
-        
-        
-        toggleCameraGestureRecognizer.direction = .up
-        toggleCameraGestureRecognizer.addTarget(self, action: #selector(self.switchCamera))
-        view.addGestureRecognizer(toggleCameraGestureRecognizer)
-        
-        // Zoom In recognizer
-        zoomInGestureRecognizer.direction = .right
-        zoomInGestureRecognizer.addTarget(self, action: #selector(zoomIn))
-        view.addGestureRecognizer(zoomInGestureRecognizer)
-        
-        // Zoom Out recognizer
-        zoomOutGestureRecognizer.direction = .left
-        zoomOutGestureRecognizer.addTarget(self, action: #selector(zoomOut))
-        view.addGestureRecognizer(zoomOutGestureRecognizer)*/
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated);
         self.navigationController?.isNavigationBarHidden = true
-    }
-    
-    func setupCaptureSession() {
-        captureSession.sessionPreset = AVCaptureSession.Preset.high
-    }
-    
-    func setupDevice() {
-        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
-        let devices = deviceDiscoverySession.devices
         
-        for device in devices {
-            if device.position == AVCaptureDevice.Position.back {
-                backCamera = device
-            } else if device.position == AVCaptureDevice.Position.front {
-                frontCamera = device
-            }
-        }
-        currentDevice = backCamera
+        var captureSession: AVCaptureSession?
+        var videoPreviewLayer: AVCaptureVideoPreviewLayer?
         
-    }
-    
-    func setupInputOutput() {
+        let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
+        var input: AVCaptureDeviceInput? = nil
         do {
-            let captureDeviceInput = try AVCaptureDeviceInput(device: currentDevice!)
-            captureSession.addInput(captureDeviceInput)
-            videoFileOutput = AVCaptureMovieFileOutput()
-            captureSession.addOutput(videoFileOutput!)
+            input = try AVCaptureDeviceInput(device: captureDevice!)
         } catch {
             print(error)
+            return
         }
-    }
-    
-    func setupPreviewLayer() {
-        cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        cameraPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        cameraPreviewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
-        cameraPreviewLayer?.frame = self.view.frame
-        self.view.layer.insertSublayer(cameraPreviewLayer!, at: 0)
-    }
-    
-    func startRunningCaptureSession() {
-        captureSession.startRunning()
-    }
-    // MARK: - Action methods
-    
-    @IBAction func unwindToCamera(segue:UIStoryboardSegue) {
         
+        captureSession = AVCaptureSession()
+        captureSession?.addInput(input!)
+        
+        videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
+        videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        videoPreviewLayer?.frame = view.layer.bounds
+
+        self.previewView.layer.addSublayer(videoPreviewLayer!)
+
+        captureSession?.startRunning()
+
+        capturePhotoOutput = AVCapturePhotoOutput()
+        capturePhotoOutput?.isHighResolutionCaptureEnabled = true
+
+        captureSession?.addOutput(capturePhotoOutput!)
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func onCaptureBtnTapped(_ sender: Any) {
+        guard let capturePhotoOutput = self.capturePhotoOutput else { return }
+
+        let photoSettings = AVCapturePhotoSettings()
+        photoSettings.isAutoStillImageStabilizationEnabled = true
+        photoSettings.isHighResolutionPhotoEnabled = true
+        photoSettings.flashMode = .auto
+
+        capturePhotoOutput.capturePhoto(with: photoSettings, delegate: self as AVCapturePhotoCaptureDelegate)
+    }
+    
+    func prepare(completionHandler: @escaping (Error?) -> Void) { }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "previewSegue") {
+            guard let controller = segue.destination as? PreviewViewController else {
+                return
+            }
+            controller.image = self.capturedImage
+        }
     }
     
     /*
-    @IBAction func capture(sender: UIButton) {
-        if !isRecording {
-            isRecording = true
-            
-            UIView.animate(withDuration: 0.5, delay: 0.0, options: [.repeat, .autoreverse, .allowUserInteraction], animations: { () -> Void in
-                self.recordButton.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-            }, completion: nil)
-            
-            let outputPath = NSTemporaryDirectory() + "output.mov"
-            let outputFileURL = URL(fileURLWithPath: outputPath)
-            videoFileOutput?.startRecording(to: outputFileURL, recordingDelegate: self)
-        } else {
-            isRecording = false
-            
-            UIView.animate(withDuration: 0.5, delay: 1.0, options: [], animations: { () -> Void in
-                self.recordButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            }, completion: nil)
-            recordButton.layer.removeAllAnimations()
-            videoFileOutput?.stopRecording()
-        }
-    }*/
-    
-    
-    // MARK: - AVCaptureFileOutputRecordingDelegate methods
-    func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
-        if error != nil {
-            print(error ?? "error")
-            return
-        }
-        
-        performSegue(withIdentifier: "playVideo", sender: outputFileURL)
-    }
-    
-    
-    
-    @objc func switchCamera() {
-        captureSession.beginConfiguration()
-        
-        // Change the device based on the current camera
-        let newDevice = (currentDevice?.position == AVCaptureDevice.Position.back) ? frontCamera : backCamera
-        
-        // Remove all inputs from the session
-        for input in captureSession.inputs {
-            captureSession.removeInput(input as! AVCaptureDeviceInput)
-        }
-        
-        // Change to the new input
-        let cameraInput:AVCaptureDeviceInput
-        do {
-            cameraInput = try AVCaptureDeviceInput(device: newDevice!)
-        } catch {
-            print(error)
-            return
-        }
-        
-        if captureSession.canAddInput(cameraInput) {
-            captureSession.addInput(cameraInput)
-        }
-        
-        currentDevice = newDevice
-        captureSession.commitConfiguration()
-    }
-    
-    @objc func zoomIn() {
-        if let zoomFactor = currentDevice?.videoZoomFactor {
-            if zoomFactor < 5.0 {
-                let newZoomFactor = min(zoomFactor + 1.0, 5.0)
-                do {
-                    try currentDevice?.lockForConfiguration()
-                    currentDevice?.ramp(toVideoZoomFactor: newZoomFactor, withRate: 1.0)
-                    currentDevice?.unlockForConfiguration()
-                } catch {
-                    print(error)
-                }
-            }
-        }
-    }
-    
-    @objc func zoomOut() {
-        if let zoomFactor = currentDevice?.videoZoomFactor {
-            if zoomFactor > 1.0 {
-                let newZoomFactor = max(zoomFactor - 1.0, 1.0)
-                do {
-                    try currentDevice?.lockForConfiguration()
-                    currentDevice?.ramp(toVideoZoomFactor: newZoomFactor, withRate: 1.0)
-                    currentDevice?.unlockForConfiguration()
-                } catch {
-                    print(error)
-                }
-            }
-        }
-    }
-    
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "playVideo" {
-            let videoPlayerViewController = segue.destination as! AVPlayerViewController
-            let videoFileURL = sender as! URL
-            videoPlayerViewController.player = AVPlayer(url: videoFileURL)
-        }
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
+
+extension CaptureViewController: AVCapturePhotoCaptureDelegate {
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        print("photo output")
+        let imageData = photo.fileDataRepresentation()
+        self.capturedImage = UIImage.init(data: imageData! , scale: 1.0)
+        self.performSegue(withIdentifier: "previewSegue", sender: self)
     }
 }
+
+
+/*
+ func photoOutput(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+ 
+ guard error == nil, let photoSampleBuffer = photoSampleBuffer else {
+ print("Error capturing photo: \(String(describing: error))")
+ return
+ }
+ 
+ guard let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer, previewPhotoSampleBuffer: previewPhotoSampleBuffer) else {
+ return
+ }
+ 
+ let capturedImage = UIImage.init(data: imageData , scale: 1.0)
+ if let image = capturedImage {
+ UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+ }
+ }
+ */

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyCreatedChallengesViewController: MeParentViewController, UITableViewDataSource, UITableViewDelegate {
+class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDataSource, UITableViewDelegate {
        
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tableView: UITableView!
@@ -63,7 +63,7 @@ class MyCreatedChallengesViewController: MeParentViewController, UITableViewData
         let lastitem = user!.challengesSponsored!.count - 1
         
         if (indexPath.row == lastitem) {
-            //loadMoreChallenges()
+            //TODO: loadMoreChallenges()
         }
     }
     

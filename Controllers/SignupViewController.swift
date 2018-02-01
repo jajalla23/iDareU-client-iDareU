@@ -47,8 +47,8 @@ class SignupViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "signupToRouterSegue") {
-            let captureController = segue.destination as! CaptureViewController
-            captureController.user = self.user
+            let routerController = segue.destination as! RouterTabBarController
+            routerController.user = self.user
         }
     }
 

@@ -1,19 +1,22 @@
 //
-//  MeParentViewController.swift
+//  PreviewViewController.swift
 //  iDareU
 //
-//  Created by Jan Jajalla on 1/28/18.
+//  Created by Jan Jajalla on 1/31/18.
 //  Copyright © 2018 Jan Jajalla. All rights reserved.
 //
 
 import UIKit
 
-class MeParentViewController: UIViewController {
+class PreviewViewController: UIViewController {
     
-    var user: User? = nil
+    public var image: UIImage?
+    @IBOutlet weak var previewImg: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.previewImg.image = self.image
 
         // Do any additional setup after loading the view.
     }
@@ -23,6 +26,10 @@ class MeParentViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func closeView(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation

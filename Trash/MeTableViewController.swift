@@ -50,11 +50,13 @@ class MeTableViewController: UITableViewController {
     */
     
     
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let routerController: RouterTabBarController = self.tabBarController as! RouterTabBarController
         let meViewController = segue.destination as? MeParentViewController
         meViewController?.user = routerController.user
     }
+    */
 
     /*
     // Override to support conditional editing of the table view.

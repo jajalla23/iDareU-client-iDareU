@@ -195,11 +195,11 @@ public class Server {
     }
     
     static func getFriendFeedData(userId: String) -> [FriendFeed] {
-        if (true) {
+        if ("a" == "a") {
             return TestData.getFriendFeed()
         } else {
             let respData = invokeHTTP_Sync(action: "friends/" + userId + "/feed", httpMethod: "GET", data: nil)
-            
+            print(respData!)
             let friendFeeds: [FriendFeed] = []
             return friendFeeds
         }

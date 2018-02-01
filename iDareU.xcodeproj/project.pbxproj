@@ -15,16 +15,19 @@
 		762296F7200A930A00D09D12 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762296F6200A930A00D09D12 /* FriendsViewController.swift */; };
 		762296F9200A961900D09D12 /* FriendFeedViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762296F8200A961900D09D12 /* FriendFeedViewCell.swift */; };
 		762418FE2002829B00063983 /* MeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762418FD2002829B00063983 /* MeTableViewController.swift */; };
+		7630D9F72022C39B00C5603B /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7630D9F62022C39B00C5603B /* PreviewViewController.swift */; };
+		7630D9F92022C4CC00C5603B /* Segue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7630D9F82022C4CC00C5603B /* Segue.swift */; };
 		763688C12003036C00129279 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763688C02003036C00129279 /* StatusViewController.swift */; };
 		763688C5200311B200129279 /* MeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763688C4200311B200129279 /* MeViewModel.swift */; };
 		76376136202064CB006BE727 /* PendingChallTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76376135202064CB006BE727 /* PendingChallTVCell.swift */; };
+		763B13F220217D97006DC47E /* SegueAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B13F120217D97006DC47E /* SegueAnimation.swift */; };
 		7645385720012CFC004A96F7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7645385620012CFC004A96F7 /* MainViewController.swift */; };
 		7645385920012DB5004A96F7 /* Capture.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7645385820012DB5004A96F7 /* Capture.storyboard */; };
 		7645385E2001421C004A96F7 /* CollapsibleTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7645385A2001421B004A96F7 /* CollapsibleTableViewHeader.swift */; };
 		7645385F2001421C004A96F7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7645385B2001421B004A96F7 /* Extensions.swift */; };
 		764538602001421C004A96F7 /* CollapsibleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7645385C2001421C004A96F7 /* CollapsibleTableViewCell.swift */; };
 		7650EA14200095080011125B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7650EA13200095080011125B /* AppDelegate.swift */; };
-		7650EA16200095080011125B /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7650EA15200095080011125B /* CaptureViewController.swift */; };
+		7650EA16200095080011125B /* CaptureVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7650EA15200095080011125B /* CaptureVideoViewController.swift */; };
 		7650EA1B200095080011125B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7650EA19200095080011125B /* Main.storyboard */; };
 		7650EA20200095080011125B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7650EA1E200095080011125B /* LaunchScreen.storyboard */; };
 		7650EA2B200095080011125B /* iDareUTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7650EA2A200095080011125B /* iDareUTests.swift */; };
@@ -36,7 +39,7 @@
 		765EF5682002EB33006B36B0 /* FriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765EF5672002EB33006B36B0 /* FriendViewModel.swift */; };
 		76682213201E5C6800F52659 /* RouterTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76682212201E5C6800F52659 /* RouterTabBarController.swift */; };
 		7675178E2009746400481464 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7675178D2009746400481464 /* Friends.storyboard */; };
-		76789C9920205D9300024019 /* MeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76789C9820205D9300024019 /* MeContainerViewController.swift */; };
+		76789C9920205D9300024019 /* MeInitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76789C9820205D9300024019 /* MeInitialViewController.swift */; };
 		767A64C1201AF54A00EF0F84 /* CoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767A64C0201AF54A00EF0F84 /* CoreModel.swift */; };
 		7696C998201698560074717E /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7696C997201698560074717E /* Server.swift */; };
 		76A918EA20095A7B00BE27A1 /* CommunityViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A918E920095A7B00BE27A1 /* CommunityViewCell.swift */; };
@@ -49,6 +52,8 @@
 		76B1FBAE2000A07100402173 /* Community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76B1FBAD2000A07100402173 /* Community.storyboard */; };
 		76B1FBB02000A0C700402173 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B1FBAF2000A0C700402173 /* CommunityViewController.swift */; };
 		76CDF83720200EF90098948C /* MyStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDF83620200EF90098948C /* MyStatusView.swift */; };
+		76CF47152021A0E700E7E5BF /* MeGenericViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CF47142021A0E700E7E5BF /* MeGenericViewController.swift */; };
+		76CF47172021AC3300E7E5BF /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CF47162021AC3300E7E5BF /* CaptureViewController.swift */; };
 		76DDEEAB201929CD002CBE52 /* iDareU.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76DDEEA9201929CD002CBE52 /* iDareU.xcdatamodeld */; };
 		76EA6B6A20211B9000AC40CA /* CreatedChallTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EA6B6920211B9000AC40CA /* CreatedChallTVCell.swift */; };
 		76EA6B6C202127ED00AC40CA /* DoubleDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EA6B6B202127ED00AC40CA /* DoubleDownViewController.swift */; };
@@ -59,7 +64,7 @@
 		76EC1469201686DE00C73DFC /* SignupValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EC1468201686DE00C73DFC /* SignupValidationManager.swift */; };
 		76FB05B32016EE49006E3406 /* Tester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FB05B22016EE49006E3406 /* Tester.swift */; };
 		76FC08E9201ECBAB008F9902 /* CreatedChallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FC08E8201ECBAB008F9902 /* CreatedChallViewController.swift */; };
-		76FC08ED201ED323008F9902 /* MeParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FC08EC201ED323008F9902 /* MeParentViewController.swift */; };
+		76FC08ED201ED323008F9902 /* GenericUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FC08EC201ED323008F9902 /* GenericUIViewController.swift */; };
 		76FE633C20019EC600C8F8D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76FE633B20019EC600C8F8D5 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -89,9 +94,12 @@
 		762296F6200A930A00D09D12 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		762296F8200A961900D09D12 /* FriendFeedViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendFeedViewCell.swift; sourceTree = "<group>"; };
 		762418FD2002829B00063983 /* MeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeTableViewController.swift; sourceTree = "<group>"; };
+		7630D9F62022C39B00C5603B /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
+		7630D9F82022C4CC00C5603B /* Segue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segue.swift; sourceTree = "<group>"; };
 		763688C02003036C00129279 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		763688C4200311B200129279 /* MeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewModel.swift; sourceTree = "<group>"; };
 		76376135202064CB006BE727 /* PendingChallTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingChallTVCell.swift; sourceTree = "<group>"; };
+		763B13F120217D97006DC47E /* SegueAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueAnimation.swift; sourceTree = "<group>"; };
 		7645385620012CFC004A96F7 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		7645385820012DB5004A96F7 /* Capture.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Capture.storyboard; sourceTree = "<group>"; };
 		7645385A2001421B004A96F7 /* CollapsibleTableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewHeader.swift; sourceTree = "<group>"; };
@@ -99,7 +107,7 @@
 		7645385C2001421C004A96F7 /* CollapsibleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewCell.swift; sourceTree = "<group>"; };
 		7650EA10200095080011125B /* iDareU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDareU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7650EA13200095080011125B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7650EA15200095080011125B /* CaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
+		7650EA15200095080011125B /* CaptureVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVideoViewController.swift; sourceTree = "<group>"; };
 		7650EA1A200095080011125B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7650EA1F200095080011125B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7650EA21200095080011125B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -116,7 +124,7 @@
 		765EF5672002EB33006B36B0 /* FriendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewModel.swift; sourceTree = "<group>"; };
 		76682212201E5C6800F52659 /* RouterTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTabBarController.swift; sourceTree = "<group>"; };
 		7675178D2009746400481464 /* Friends.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
-		76789C9820205D9300024019 /* MeContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeContainerViewController.swift; sourceTree = "<group>"; };
+		76789C9820205D9300024019 /* MeInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeInitialViewController.swift; sourceTree = "<group>"; };
 		767A64C0201AF54A00EF0F84 /* CoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreModel.swift; sourceTree = "<group>"; };
 		7696C997201698560074717E /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		76A918E920095A7B00BE27A1 /* CommunityViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewCell.swift; sourceTree = "<group>"; };
@@ -129,6 +137,8 @@
 		76B1FBAD2000A07100402173 /* Community.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Community.storyboard; sourceTree = "<group>"; };
 		76B1FBAF2000A0C700402173 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		76CDF83620200EF90098948C /* MyStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStatusView.swift; sourceTree = "<group>"; };
+		76CF47142021A0E700E7E5BF /* MeGenericViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeGenericViewController.swift; sourceTree = "<group>"; };
+		76CF47162021AC3300E7E5BF /* CaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
 		76DDEEAA201929CD002CBE52 /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
 		76EA6B6920211B9000AC40CA /* CreatedChallTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedChallTVCell.swift; sourceTree = "<group>"; };
 		76EA6B6B202127ED00AC40CA /* DoubleDownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleDownViewController.swift; sourceTree = "<group>"; };
@@ -139,7 +149,7 @@
 		76EC1468201686DE00C73DFC /* SignupValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupValidationManager.swift; sourceTree = "<group>"; };
 		76FB05B22016EE49006E3406 /* Tester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tester.swift; sourceTree = "<group>"; };
 		76FC08E8201ECBAB008F9902 /* CreatedChallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedChallViewController.swift; sourceTree = "<group>"; };
-		76FC08EC201ED323008F9902 /* MeParentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeParentViewController.swift; sourceTree = "<group>"; };
+		76FC08EC201ED323008F9902 /* GenericUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericUIViewController.swift; sourceTree = "<group>"; };
 		76FE633B20019EC600C8F8D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,6 +188,15 @@
 			path = Validation;
 			sourceTree = "<group>";
 		};
+		763B13F020217D7D006DC47E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				763B13F120217D97006DC47E /* SegueAnimation.swift */,
+				7630D9F82022C4CC00C5603B /* Segue.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		7645386320014464004A96F7 /* Auxiliary */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +218,7 @@
 				76DE769A2001CB8000F790D8 /* View */,
 				76DE769B2001CB8400F790D8 /* Controllers */,
 				76290906201AA66D00C1FA1F /* Validation */,
+				763B13F020217D7D006DC47E /* Extensions */,
 				7645386320014464004A96F7 /* Auxiliary */,
 				7650EA29200095080011125B /* iDareUTests */,
 				7650EA34200095080011125B /* iDareUUITests */,
@@ -277,13 +297,13 @@
 				76EA6B6920211B9000AC40CA /* CreatedChallTVCell.swift */,
 				7650EA1E200095080011125B /* LaunchScreen.storyboard */,
 				7650EA19200095080011125B /* Main.storyboard */,
+				76EC146020167B1600C73DFC /* Signup.storyboard */,
+				765A09DE2017BF0C0004A67D /* Login.storyboard */,
+				765A09DC2017BE950004A67D /* Router.storyboard */,
 				7645385820012DB5004A96F7 /* Capture.storyboard */,
 				76B1FBAD2000A07100402173 /* Community.storyboard */,
-				76B1FBAB20009E9D00402173 /* Me.storyboard */,
 				7675178D2009746400481464 /* Friends.storyboard */,
-				76EC146020167B1600C73DFC /* Signup.storyboard */,
-				765A09DC2017BE950004A67D /* Router.storyboard */,
-				765A09DE2017BF0C0004A67D /* Login.storyboard */,
+				76B1FBAB20009E9D00402173 /* Me.storyboard */,
 				760531C4201FE87C009F9B05 /* WatchChallenge.storyboard */,
 			);
 			path = View;
@@ -292,17 +312,19 @@
 		76DE769B2001CB8400F790D8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				76FC08EC201ED323008F9902 /* GenericUIViewController.swift */,
+				76CF47142021A0E700E7E5BF /* MeGenericViewController.swift */,
 				7645385620012CFC004A96F7 /* MainViewController.swift */,
 				76EC146220167E5B00C73DFC /* SignupViewController.swift */,
 				765A09D72017BB5D0004A67D /* LoginViewController.swift */,
 				76682212201E5C6800F52659 /* RouterTabBarController.swift */,
-				7650EA15200095080011125B /* CaptureViewController.swift */,
+				76CF47162021AC3300E7E5BF /* CaptureViewController.swift */,
+				7630D9F62022C39B00C5603B /* PreviewViewController.swift */,
 				76B1FBAF2000A0C700402173 /* CommunityViewController.swift */,
 				762296F6200A930A00D09D12 /* FriendsViewController.swift */,
 				76EA6B6B202127ED00AC40CA /* DoubleDownViewController.swift */,
-				76789C9820205D9300024019 /* MeContainerViewController.swift */,
+				76789C9820205D9300024019 /* MeInitialViewController.swift */,
 				76AA3F3220204BAB0038DAD9 /* MeViewController.swift */,
-				76FC08EC201ED323008F9902 /* MeParentViewController.swift */,
 				763688C02003036C00129279 /* StatusViewController.swift */,
 				76AA3F362020583E0038DAD9 /* PendingChallViewController.swift */,
 				76FC08E8201ECBAB008F9902 /* CreatedChallViewController.swift */,
@@ -314,6 +336,7 @@
 		76DE769C2001CC5800F790D8 /* Trash */ = {
 			isa = PBXGroup;
 			children = (
+				7650EA15200095080011125B /* CaptureVideoViewController.swift */,
 				7645385C2001421C004A96F7 /* CollapsibleTableViewCell.swift */,
 				7645385A2001421B004A96F7 /* CollapsibleTableViewHeader.swift */,
 				762418FD2002829B00063983 /* MeTableViewController.swift */,
@@ -469,9 +492,11 @@
 				76AA3F3320204BAB0038DAD9 /* MeViewController.swift in Sources */,
 				76EA6B6A20211B9000AC40CA /* CreatedChallTVCell.swift in Sources */,
 				760D91B2201EE1C000628725 /* ErrorModel.swift in Sources */,
+				7630D9F92022C4CC00C5603B /* Segue.swift in Sources */,
 				767A64C1201AF54A00EF0F84 /* CoreModel.swift in Sources */,
 				76EC1469201686DE00C73DFC /* SignupValidationManager.swift in Sources */,
 				762296F7200A930A00D09D12 /* FriendsViewController.swift in Sources */,
+				76CF47172021AC3300E7E5BF /* CaptureViewController.swift in Sources */,
 				763688C5200311B200129279 /* MeViewModel.swift in Sources */,
 				760531D2201FECCC009F9B05 /* Local.swift in Sources */,
 				76EA6B6C202127ED00AC40CA /* DoubleDownViewController.swift in Sources */,
@@ -480,13 +505,15 @@
 				765EF5662002CBEB006B36B0 /* EFCountingLabel.swift in Sources */,
 				7696C998201698560074717E /* Server.swift in Sources */,
 				7645385F2001421C004A96F7 /* Extensions.swift in Sources */,
+				7630D9F72022C39B00C5603B /* PreviewViewController.swift in Sources */,
 				76FC08E9201ECBAB008F9902 /* CreatedChallViewController.swift in Sources */,
 				76CDF83720200EF90098948C /* MyStatusView.swift in Sources */,
-				76789C9920205D9300024019 /* MeContainerViewController.swift in Sources */,
+				76789C9920205D9300024019 /* MeInitialViewController.swift in Sources */,
 				76AA3F39202058B90038DAD9 /* CompletedChallViewController.swift in Sources */,
 				765EF5682002EB33006B36B0 /* FriendViewModel.swift in Sources */,
 				764538602001421C004A96F7 /* CollapsibleTableViewCell.swift in Sources */,
 				76EC146320167E5B00C73DFC /* SignupViewController.swift in Sources */,
+				763B13F220217D97006DC47E /* SegueAnimation.swift in Sources */,
 				765A09D82017BB5D0004A67D /* LoginViewController.swift in Sources */,
 				76B1FBB02000A0C700402173 /* CommunityViewController.swift in Sources */,
 				7645385E2001421C004A96F7 /* CollapsibleTableViewHeader.swift in Sources */,
@@ -496,10 +523,11 @@
 				76A918EA20095A7B00BE27A1 /* CommunityViewCell.swift in Sources */,
 				762418FE2002829B00063983 /* MeTableViewController.swift in Sources */,
 				763688C12003036C00129279 /* StatusViewController.swift in Sources */,
+				76CF47152021A0E700E7E5BF /* MeGenericViewController.swift in Sources */,
 				76EC14652016861E00C73DFC /* SignupFormValidationModel.swift in Sources */,
-				7650EA16200095080011125B /* CaptureViewController.swift in Sources */,
+				7650EA16200095080011125B /* CaptureVideoViewController.swift in Sources */,
 				762296F9200A961900D09D12 /* FriendFeedViewCell.swift in Sources */,
-				76FC08ED201ED323008F9902 /* MeParentViewController.swift in Sources */,
+				76FC08ED201ED323008F9902 /* GenericUIViewController.swift in Sources */,
 				76376136202064CB006BE727 /* PendingChallTVCell.swift in Sources */,
 				76DDEEAB201929CD002CBE52 /* iDareU.xcdatamodeld in Sources */,
 				760531DB201FFD00009F9B05 /* Session.xcdatamodeld in Sources */,

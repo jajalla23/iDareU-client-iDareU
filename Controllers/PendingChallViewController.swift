@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PendingChallengesViewController: MeParentViewController, UITableViewDataSource, UITableViewDelegate  {
+class PendingChallengesViewController: MeGenericViewController, UITableViewDataSource, UITableViewDelegate  {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tableView: UITableView!

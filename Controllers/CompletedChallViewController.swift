@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CompletedChallengesViewController: UIViewController {
+class CompletedChallengesViewController: MeGenericViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

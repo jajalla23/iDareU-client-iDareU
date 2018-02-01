@@ -10,14 +10,18 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Capture-->
+        <!--Capture Video-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="CaptureViewController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Capture Video" id="9pv-A4-QxB" customClass="CaptureViewController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yRd-h7-GVY">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lkU-4U-owI">
                                 <rect key="frame" x="157" y="649" width="60" height="60"/>
                                 <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -31,36 +35,70 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="HPH-RR-O5M" kind="presentation" id="F49-tv-qdj"/>
+                                    <action selector="onCaptureBtnTapped:" destination="9pv-A4-QxB" eventType="touchUpInside" id="B9q-zf-DNE"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="Vd7-12-Zpq" firstAttribute="bottom" secondItem="lkU-4U-owI" secondAttribute="bottom" constant="20" id="T0z-8d-0rx"/>
-                            <constraint firstItem="lkU-4U-owI" firstAttribute="centerX" secondItem="Vd7-12-Zpq" secondAttribute="centerX" id="Tu6-OR-Hvm"/>
+                            <constraint firstItem="yRd-h7-GVY" firstAttribute="bottom" secondItem="Vd7-12-Zpq" secondAttribute="bottom" id="NO4-dU-npG"/>
+                            <constraint firstItem="yRd-h7-GVY" firstAttribute="leading" secondItem="Vd7-12-Zpq" secondAttribute="leading" id="QAE-Yz-b7E"/>
+                            <constraint firstItem="Vd7-12-Zpq" firstAttribute="bottom" secondItem="lkU-4U-owI" secondAttribute="bottom" constant="20" id="VFN-qJ-QCw"/>
+                            <constraint firstItem="yRd-h7-GVY" firstAttribute="trailing" secondItem="Vd7-12-Zpq" secondAttribute="trailing" id="cje-lI-n8K"/>
+                            <constraint firstItem="lkU-4U-owI" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="jCf-I6-T5H"/>
+                            <constraint firstItem="yRd-h7-GVY" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" id="s2Q-Lk-9qi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Vd7-12-Zpq"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Capture" image="first" id="bdh-Py-HIc"/>
+                    <tabBarItem key="tabBarItem" title="Capture" image="first" id="XmG-kN-omI"/>
+                    <navigationItem key="navigationItem" id="M3M-Di-YMg"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="recordButton" destination="lkU-4U-owI" id="aGS-xY-orR"/>
+                        <outlet property="captureBtn" destination="lkU-4U-owI" id="bX6-F2-Lfy"/>
+                        <outlet property="previewView" destination="yRd-h7-GVY" id="2zb-FX-oOC"/>
+                        <segue destination="y9z-31-yVc" kind="presentation" identifier="previewSegue" id="0pS-WA-iki"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="cKP-Zi-157"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="wVh-6R-kcG">
+                    <rectEdge key="edges" right="YES"/>
+                </screenEdgePanGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-566" y="610"/>
+            <point key="canvasLocation" x="536.79999999999995" y="-98.275862068965523"/>
         </scene>
-        <!--AV Player View Controller-->
-        <scene sceneID="Glf-0t-8oT">
+        <!--Preview View Controller-->
+        <scene sceneID="IOu-Nh-SmJ">
             <objects>
-                <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="HPH-RR-O5M" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zDT-VJ-oaL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="y9z-31-yVc" customClass="PreviewViewController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6ND-D2-xL7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aSd-xJ-ybZ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iZa-lU-EOk">
+                                <rect key="frame" x="33" y="31" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Close"/>
+                                <connections>
+                                    <action selector="closeView:" destination="y9z-31-yVc" eventType="touchUpInside" id="imc-dc-bdN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Hb0-jh-KCT"/>
+                    </view>
+                    <connections>
+                        <outlet property="previewImg" destination="aSd-xJ-ybZ" id="efP-Ne-npE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8ax-JF-eLz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="402" y="611"/>
+            <point key="canvasLocation" x="1581.5999999999999" y="-98.275862068965523"/>
         </scene>
     </scenes>
     <resources>

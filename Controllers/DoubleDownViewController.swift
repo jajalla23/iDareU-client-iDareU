@@ -24,8 +24,6 @@ class DoubleDownViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         
-        print(self.challenge?.id)
-
         self.challengeRewardLbl.text = "J \(self.challenge?.reward.description ?? "0")"
         self.userBalanceAvailLbl.text = "J \(self.user?.jans?.available.description ?? "0")"
         
