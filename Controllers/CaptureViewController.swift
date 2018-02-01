@@ -15,6 +15,8 @@ class CaptureViewController: UIViewController {
     private var capturePhotoOutput: AVCapturePhotoOutput?
     private var capturedImage: UIImage?
     
+    private var isCaptureVideo: Bool = false
+    
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var captureBtn: UIButton!
     

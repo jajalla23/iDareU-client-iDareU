@@ -57,7 +57,7 @@
                     <connections>
                         <outlet property="captureBtn" destination="lkU-4U-owI" id="bX6-F2-Lfy"/>
                         <outlet property="previewView" destination="yRd-h7-GVY" id="2zb-FX-oOC"/>
-                        <segue destination="y9z-31-yVc" kind="presentation" identifier="previewSegue" id="0pS-WA-iki"/>
+                        <segue destination="y9z-31-yVc" kind="presentation" identifier="previewSegue" id="cQS-lu-d3x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -92,13 +92,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Hb0-jh-KCT"/>
                     </view>
+                    <navigationItem key="navigationItem" id="f8y-cp-geC"/>
                     <connections>
                         <outlet property="previewImg" destination="aSd-xJ-ybZ" id="efP-Ne-npE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ax-JF-eLz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1581.5999999999999" y="-98.275862068965523"/>
+            <point key="canvasLocation" x="1767" y="-98"/>
         </scene>
     </scenes>
     <resources>

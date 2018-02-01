@@ -16,7 +16,6 @@
 		762296F9200A961900D09D12 /* FriendFeedViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762296F8200A961900D09D12 /* FriendFeedViewCell.swift */; };
 		762418FE2002829B00063983 /* MeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762418FD2002829B00063983 /* MeTableViewController.swift */; };
 		7630D9F72022C39B00C5603B /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7630D9F62022C39B00C5603B /* PreviewViewController.swift */; };
-		7630D9F92022C4CC00C5603B /* Segue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7630D9F82022C4CC00C5603B /* Segue.swift */; };
 		763688C12003036C00129279 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763688C02003036C00129279 /* StatusViewController.swift */; };
 		763688C5200311B200129279 /* MeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763688C4200311B200129279 /* MeViewModel.swift */; };
 		76376136202064CB006BE727 /* PendingChallTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76376135202064CB006BE727 /* PendingChallTVCell.swift */; };
@@ -95,7 +94,6 @@
 		762296F8200A961900D09D12 /* FriendFeedViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendFeedViewCell.swift; sourceTree = "<group>"; };
 		762418FD2002829B00063983 /* MeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeTableViewController.swift; sourceTree = "<group>"; };
 		7630D9F62022C39B00C5603B /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
-		7630D9F82022C4CC00C5603B /* Segue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segue.swift; sourceTree = "<group>"; };
 		763688C02003036C00129279 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		763688C4200311B200129279 /* MeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewModel.swift; sourceTree = "<group>"; };
 		76376135202064CB006BE727 /* PendingChallTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingChallTVCell.swift; sourceTree = "<group>"; };
@@ -192,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				763B13F120217D97006DC47E /* SegueAnimation.swift */,
-				7630D9F82022C4CC00C5603B /* Segue.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -492,7 +489,6 @@
 				76AA3F3320204BAB0038DAD9 /* MeViewController.swift in Sources */,
 				76EA6B6A20211B9000AC40CA /* CreatedChallTVCell.swift in Sources */,
 				760D91B2201EE1C000628725 /* ErrorModel.swift in Sources */,
-				7630D9F92022C4CC00C5603B /* Segue.swift in Sources */,
 				767A64C1201AF54A00EF0F84 /* CoreModel.swift in Sources */,
 				76EC1469201686DE00C73DFC /* SignupValidationManager.swift in Sources */,
 				762296F7200A930A00D09D12 /* FriendsViewController.swift in Sources */,
