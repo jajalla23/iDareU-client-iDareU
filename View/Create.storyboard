@@ -14,7 +14,7 @@
         <!--Capture Video-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController title="Capture Video" id="9pv-A4-QxB" customClass="CaptureViewController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Capture Video" id="9pv-A4-QxB" customClass="CreateViewController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,6 +22,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yRd-h7-GVY">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="qsX-zd-CWC" appends="YES" id="Zsa-bI-d10"/>
+                                </connections>
                             </view>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lkU-4U-owI">
                                 <rect key="frame" x="157" y="649" width="60" height="60"/>
@@ -52,13 +56,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Vd7-12-Zpq"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Capture" image="first" id="XmG-kN-omI"/>
+                    <tabBarItem key="tabBarItem" title="Create" image="first" id="XmG-kN-omI"/>
                     <navigationItem key="navigationItem" id="M3M-Di-YMg"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="captureBtn" destination="lkU-4U-owI" id="bX6-F2-Lfy"/>
                         <outlet property="previewView" destination="yRd-h7-GVY" id="2zb-FX-oOC"/>
-                        <segue destination="y9z-31-yVc" kind="presentation" identifier="previewSegue" id="cQS-lu-d3x"/>
+                        <segue destination="y9z-31-yVc" kind="show" identifier="previewSegue" id="cQS-lu-d3x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -66,6 +70,7 @@
                 <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="wVh-6R-kcG">
                     <rectEdge key="edges" right="YES"/>
                 </screenEdgePanGestureRecognizer>
+                <pinchGestureRecognizer id="qsX-zd-CWC"/>
             </objects>
             <point key="canvasLocation" x="536.79999999999995" y="-98.275862068965523"/>
         </scene>
@@ -105,10 +110,12 @@
                     <navigationItem key="navigationItem" id="f8y-cp-geC"/>
                     <connections>
                         <outlet property="previewImg" destination="aSd-xJ-ybZ" id="efP-Ne-npE"/>
-                        <segue destination="Ktn-0P-csg" kind="presentation" identifier="sendChallengeSegue" id="d7Q-Mo-zlh"/>
+                        <segue destination="Ktn-0P-csg" kind="show" identifier="sendChallengeSegue" id="d7Q-Mo-zlh"/>
+                        <segue destination="xn2-yr-jll" kind="unwind" identifier="previewUnwindSegue" unwindAction="unwindToCreateWithSegue:" id="azi-9a-z67"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ax-JF-eLz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="xn2-yr-jll" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1765.5999999999999" y="-98.275862068965523"/>
         </scene>
@@ -189,9 +196,11 @@
                     </tableView>
                     <connections>
                         <segue destination="56O-9D-qA3" kind="show" identifier="sendChallToRouterSegue" id="x0y-R7-LVq"/>
+                        <segue destination="G4b-Bn-Io4" kind="unwind" identifier="sendUnwindSegue" unwindAction="unwindToCreateWithSegue:" id="S1I-UQ-Fag"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Sg-NY-wi4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="G4b-Bn-Io4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2901.5999999999999" y="-98.275862068965523"/>
         </scene>

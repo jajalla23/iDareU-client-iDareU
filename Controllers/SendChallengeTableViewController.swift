@@ -109,7 +109,9 @@ class SendChallengeTableViewController: UITableViewController {
     
     @IBAction func sendTapped(_ sender: Any) {
         print(self.checkedFriends?.count ?? "no friends checked")
-        performSegue(withIdentifier: "sendChallToRouterSegue", sender: sender)
+        //performSegue(withIdentifier: "sendChallToRouterSegue", sender: sender)
+        performSegue(withIdentifier: "sendUnwindSegue", sender: sender)
+
     }
     
     @IBAction func cancelTapped(_ sender: Any) {
@@ -139,6 +141,8 @@ class SendChallengeTableViewController: UITableViewController {
             let routerController = segue.destination as! RouterTabBarController
             routerController.user = self.user
         }
+        //navigationController?.popViewController(animated: true)
+        //self.dismiss(animated: true, completion: nil)
     }
 
 }

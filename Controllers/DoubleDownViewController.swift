@@ -56,8 +56,8 @@ class DoubleDownViewController: UIViewController {
         print("new challenge reward: " + newChallengeReward.description)
         print("new user available reward: " + newUserAvailable.description)
         
-        navigationController?.popViewController(animated: true)
-        dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func rewardSliderChanged(_ sender: UISlider) {

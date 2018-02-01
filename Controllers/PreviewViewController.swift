@@ -35,8 +35,9 @@ class PreviewViewController: UIViewController {
     }
     
     @IBAction func closeView(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-        dismiss(animated: true, completion: nil)
+        //navigationController?.popViewController(animated: true)
+        //dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "previewUnwindSegue", sender: sender)
     }
     
     @IBAction func sendChallengeTapped(_ sender: Any) {

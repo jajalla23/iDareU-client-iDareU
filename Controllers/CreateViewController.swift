@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 import AVFoundation
 
-class CaptureViewController: UIViewController {
+class CreateViewController: GenericUIViewController {
     
-    private var user: User?
+    //private var user: User?
 
     private var capturePhotoOutput: AVCapturePhotoOutput?
     private var capturedImage: UIImage?
@@ -95,9 +95,12 @@ class CaptureViewController: UIViewController {
             controller.user = self.user
         }
     }
+    
+    @IBAction func unwindToCreate(segue: UIStoryboardSegue) {}
+
 }
 
-extension CaptureViewController: AVCapturePhotoCaptureDelegate {
+extension CreateViewController: AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         let imageData = photo.fileDataRepresentation()
         self.capturedImage = UIImage.init(data: imageData! , scale: 1.0)
