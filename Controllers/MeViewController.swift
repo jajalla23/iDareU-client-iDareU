@@ -51,6 +51,42 @@ class MeViewController: MeGenericViewController {
     }
     
     @IBAction func myStatusBtnToggled(_ sender: Any) {
+        self.toggleStatusView()
+        
+        if self.isCreatedChallengesExpanded {
+            self.toggleCreatedChallengesView()
+        }
+        
+        //TODO: toggle completed challenges
+    }
+    
+    @IBAction func pendingChallBtnToggled(_ sender: Any) {
+        self.togglePendingChallengesView()
+        
+        //TODO: toggle completed challenges
+    }
+    
+    @IBAction func createdChallBtnToggled(_ sender: Any) {
+        self.toggleCreatedChallengesView()
+        
+        if self.isMyStatusExpanded {
+            self.toggleStatusView()
+        }
+    }
+    
+    @IBAction func completedChallBtnToggled(_ sender: Any) {
+        self.toggleCompletedChallengesView()
+        
+        if self.isMyStatusExpanded {
+            self.toggleStatusView()
+        }
+        
+        if self.isPendingChallengesExpanded {
+            self.togglePendingChallengesView()
+        }
+    }
+    
+    private func toggleStatusView() {
         if (isMyStatusExpanded) {
             UIView.animate(withDuration: 1.0, animations: {
                 self.myStatusHeightConstr.constant = 0
@@ -68,7 +104,7 @@ class MeViewController: MeGenericViewController {
         isMyStatusExpanded = !isMyStatusExpanded
     }
     
-    @IBAction func pendingChallBtnToggled(_ sender: Any) {
+    private func togglePendingChallengesView() {
         if (isPendingChallengesExpanded) {
             UIView.animate(withDuration: 1.0, animations: {
                 self.pendingChallengesHeightConstr.constant = 0
@@ -92,7 +128,7 @@ class MeViewController: MeGenericViewController {
         isPendingChallengesExpanded = !isPendingChallengesExpanded
     }
     
-    @IBAction func createdChallBtnToggled(_ sender: Any) {
+    private func toggleCreatedChallengesView() {
         if (isCreatedChallengesExpanded) {
             UIView.animate(withDuration: 1.0, animations: {
                 self.createdChallengesHeightConstr.constant = 0
@@ -116,6 +152,9 @@ class MeViewController: MeGenericViewController {
         isCreatedChallengesExpanded = !isCreatedChallengesExpanded
     }
     
+    private func toggleCompletedChallengesView() {
+        
+    }
     
     /*
     // MARK: - Navigation

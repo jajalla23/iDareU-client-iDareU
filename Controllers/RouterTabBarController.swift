@@ -13,7 +13,6 @@ class RouterTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(NSStringFromClass(self.classForCoder) + " : " + (user?.id ?? "user not set"))
 
         // Do any additional setup after loading the view.
     }

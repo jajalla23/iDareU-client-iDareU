@@ -20,7 +20,9 @@
 		763688C5200311B200129279 /* MeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763688C4200311B200129279 /* MeViewModel.swift */; };
 		76376136202064CB006BE727 /* PendingChallTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76376135202064CB006BE727 /* PendingChallTVCell.swift */; };
 		763B13F220217D97006DC47E /* SegueAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B13F120217D97006DC47E /* SegueAnimation.swift */; };
-		7645385720012CFC004A96F7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7645385620012CFC004A96F7 /* MainViewController.swift */; };
+		763BC54A2022D04D00F57BD4 /* SendChallengeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BC5492022D04D00F57BD4 /* SendChallengeTableViewController.swift */; };
+		763BC54C2022D5D100F57BD4 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BC54B2022D5D100F57BD4 /* Button.swift */; };
+		763BC54E2022D8F000F57BD4 /* SendChallengeTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BC54D2022D8F000F57BD4 /* SendChallengeTVCell.swift */; };
 		7645385920012DB5004A96F7 /* Capture.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7645385820012DB5004A96F7 /* Capture.storyboard */; };
 		7645385E2001421C004A96F7 /* CollapsibleTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7645385A2001421B004A96F7 /* CollapsibleTableViewHeader.swift */; };
 		7645385F2001421C004A96F7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7645385B2001421B004A96F7 /* Extensions.swift */; };
@@ -98,7 +100,9 @@
 		763688C4200311B200129279 /* MeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewModel.swift; sourceTree = "<group>"; };
 		76376135202064CB006BE727 /* PendingChallTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingChallTVCell.swift; sourceTree = "<group>"; };
 		763B13F120217D97006DC47E /* SegueAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueAnimation.swift; sourceTree = "<group>"; };
-		7645385620012CFC004A96F7 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		763BC5492022D04D00F57BD4 /* SendChallengeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendChallengeTableViewController.swift; sourceTree = "<group>"; };
+		763BC54B2022D5D100F57BD4 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		763BC54D2022D8F000F57BD4 /* SendChallengeTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendChallengeTVCell.swift; sourceTree = "<group>"; };
 		7645385820012DB5004A96F7 /* Capture.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Capture.storyboard; sourceTree = "<group>"; };
 		7645385A2001421B004A96F7 /* CollapsibleTableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewHeader.swift; sourceTree = "<group>"; };
 		7645385B2001421B004A96F7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -190,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				763B13F120217D97006DC47E /* SegueAnimation.swift */,
+				763BC54B2022D5D100F57BD4 /* Button.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -292,6 +297,7 @@
 				76CDF83620200EF90098948C /* MyStatusView.swift */,
 				76376135202064CB006BE727 /* PendingChallTVCell.swift */,
 				76EA6B6920211B9000AC40CA /* CreatedChallTVCell.swift */,
+				763BC54D2022D8F000F57BD4 /* SendChallengeTVCell.swift */,
 				7650EA1E200095080011125B /* LaunchScreen.storyboard */,
 				7650EA19200095080011125B /* Main.storyboard */,
 				76EC146020167B1600C73DFC /* Signup.storyboard */,
@@ -311,12 +317,12 @@
 			children = (
 				76FC08EC201ED323008F9902 /* GenericUIViewController.swift */,
 				76CF47142021A0E700E7E5BF /* MeGenericViewController.swift */,
-				7645385620012CFC004A96F7 /* MainViewController.swift */,
 				76EC146220167E5B00C73DFC /* SignupViewController.swift */,
 				765A09D72017BB5D0004A67D /* LoginViewController.swift */,
 				76682212201E5C6800F52659 /* RouterTabBarController.swift */,
 				76CF47162021AC3300E7E5BF /* CaptureViewController.swift */,
 				7630D9F62022C39B00C5603B /* PreviewViewController.swift */,
+				763BC5492022D04D00F57BD4 /* SendChallengeTableViewController.swift */,
 				76B1FBAF2000A0C700402173 /* CommunityViewController.swift */,
 				762296F6200A930A00D09D12 /* FriendsViewController.swift */,
 				76EA6B6B202127ED00AC40CA /* DoubleDownViewController.swift */,
@@ -491,13 +497,13 @@
 				760D91B2201EE1C000628725 /* ErrorModel.swift in Sources */,
 				767A64C1201AF54A00EF0F84 /* CoreModel.swift in Sources */,
 				76EC1469201686DE00C73DFC /* SignupValidationManager.swift in Sources */,
+				763BC54A2022D04D00F57BD4 /* SendChallengeTableViewController.swift in Sources */,
 				762296F7200A930A00D09D12 /* FriendsViewController.swift in Sources */,
 				76CF47172021AC3300E7E5BF /* CaptureViewController.swift in Sources */,
 				763688C5200311B200129279 /* MeViewModel.swift in Sources */,
 				760531D2201FECCC009F9B05 /* Local.swift in Sources */,
 				76EA6B6C202127ED00AC40CA /* DoubleDownViewController.swift in Sources */,
 				76EC14672016864500C73DFC /* ValidationError.swift in Sources */,
-				7645385720012CFC004A96F7 /* MainViewController.swift in Sources */,
 				765EF5662002CBEB006B36B0 /* EFCountingLabel.swift in Sources */,
 				7696C998201698560074717E /* Server.swift in Sources */,
 				7645385F2001421C004A96F7 /* Extensions.swift in Sources */,
@@ -510,6 +516,7 @@
 				764538602001421C004A96F7 /* CollapsibleTableViewCell.swift in Sources */,
 				76EC146320167E5B00C73DFC /* SignupViewController.swift in Sources */,
 				763B13F220217D97006DC47E /* SegueAnimation.swift in Sources */,
+				763BC54C2022D5D100F57BD4 /* Button.swift in Sources */,
 				765A09D82017BB5D0004A67D /* LoginViewController.swift in Sources */,
 				76B1FBB02000A0C700402173 /* CommunityViewController.swift in Sources */,
 				7645385E2001421C004A96F7 /* CollapsibleTableViewHeader.swift in Sources */,
@@ -525,6 +532,7 @@
 				762296F9200A961900D09D12 /* FriendFeedViewCell.swift in Sources */,
 				76FC08ED201ED323008F9902 /* GenericUIViewController.swift in Sources */,
 				76376136202064CB006BE727 /* PendingChallTVCell.swift in Sources */,
+				763BC54E2022D8F000F57BD4 /* SendChallengeTVCell.swift in Sources */,
 				76DDEEAB201929CD002CBE52 /* iDareU.xcdatamodeld in Sources */,
 				760531DB201FFD00009F9B05 /* Session.xcdatamodeld in Sources */,
 				76AA3F372020583E0038DAD9 /* PendingChallViewController.swift in Sources */,
@@ -637,6 +645,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[sdk=iphonesimulator*]" = SIMULATOR;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;

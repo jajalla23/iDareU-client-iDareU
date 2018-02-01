@@ -11,6 +11,8 @@ import UIKit
 import AVFoundation
 
 class CaptureViewController: UIViewController {
+    
+    private var user: User?
 
     private var capturePhotoOutput: AVCapturePhotoOutput?
     private var capturedImage: UIImage?
@@ -25,7 +27,23 @@ class CaptureViewController: UIViewController {
         // Do any additional setup after loading the view.
 
         self.navigationController?.isNavigationBarHidden = true
+        let tabController = self.tabBarController as! RouterTabBarController
+        self.user = tabController.user
         
+        print(self.user?.id ?? "no user id")
+        
+        #if !SIMULATOR
+            self.setupCamera()
+        #endif
+
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    private func setupCamera() {
         var captureSession: AVCaptureSession?
         var videoPreviewLayer: AVCaptureVideoPreviewLayer?
         
@@ -44,20 +62,15 @@ class CaptureViewController: UIViewController {
         videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
         videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         videoPreviewLayer?.frame = view.layer.bounds
-
+        
         self.previewView.layer.addSublayer(videoPreviewLayer!)
-
+        
         captureSession?.startRunning()
-
+        
         capturePhotoOutput = AVCapturePhotoOutput()
         capturePhotoOutput?.isHighResolutionCaptureEnabled = true
-
+        
         captureSession?.addOutput(capturePhotoOutput!)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func onCaptureBtnTapped(_ sender: Any) {
@@ -79,24 +92,13 @@ class CaptureViewController: UIViewController {
                 return
             }
             controller.image = self.capturedImage
+            controller.user = self.user
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension CaptureViewController: AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        print("photo output")
         let imageData = photo.fileDataRepresentation()
         self.capturedImage = UIImage.init(data: imageData! , scale: 1.0)
         self.performSegue(withIdentifier: "previewSegue", sender: self)

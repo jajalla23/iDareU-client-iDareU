@@ -32,7 +32,6 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func loginBtnPressed(_ sender: Any) {
-        print("login pressed...")
         do {
             self.user = try Server.login(username: username_input.text!, password: password_input.text!)
             
