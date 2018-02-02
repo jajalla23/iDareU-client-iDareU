@@ -33,7 +33,7 @@ class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return user?.challengesSponsored?.count ?? 0
+        return user?.challenges?.sponsored?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -43,7 +43,7 @@ class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "createdChallengeCell") as! CreatedChallengeTableViewCell
         
-        let currChallenge = user?.challengesSponsored![indexPath.row]
+        let currChallenge = user?.challenges?.sponsored![indexPath.row]
         
         cell.challangePrevImage.image = UIImage(named: "Play")
         cell.challengeTitleLbl.text = currChallenge?.title
@@ -54,13 +54,13 @@ class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let challenge: Challenge = (self.user?.challengesSponsored![indexPath.row])!
-        print(challenge.id ?? "unknown")
+        let challenge: ChallengeDetails = (self.user?.challenges?.sponsored![indexPath.row])!
+        print(challenge._id ?? "unknown")
         performSegue(withIdentifier: "createdToWatchSegue", sender: self)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastitem = user!.challengesSponsored!.count - 1
+        let lastitem = (user!.challenges?.sponsored!.count)! - 1
         
         if (indexPath.row == lastitem) {
             //TODO: loadMoreChallenges()
@@ -68,7 +68,7 @@ class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDat
     }
     
     private func adjustHeight() {
-        let tableViewHeight: CGFloat = CGFloat(80 * (self.user?.challengesSponsored?.count ?? 0))
+        let tableViewHeight: CGFloat = CGFloat(80 * (self.user?.challenges?.sponsored?.count ?? 0))
         self.tableView.frame.size.height = tableViewHeight
         
         self.scrollView.contentSize = CGSize(width: self.tableView.frame.size.width, height: tableViewHeight)

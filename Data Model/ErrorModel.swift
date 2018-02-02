@@ -11,13 +11,19 @@ import Foundation
 class CustomError: Codable, Error {
     var code: String
     var description: String
-    var severity: String?
+    var severity: Severity?
     var location: String?
     
-    init(code: String, description: String, severity: String, location: String) {
+    init(code: String, description: String, severity: Severity, location: String) {
         self.code = code
         self.description = description
         self.severity = severity
         self.location = location
     }
+}
+
+enum Severity: String, Codable {
+    case HIGH
+    case MEDIUM
+    case LOW
 }

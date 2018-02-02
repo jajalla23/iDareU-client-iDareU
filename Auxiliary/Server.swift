@@ -32,7 +32,8 @@ extension URLSession {
 }
 
 public class Server {
-    static private let server: String = "http://192.168.0.105:3000/"
+    static private var error_location = "/Auxiliary/Server.swift"
+    static private let server: String = "http://192.168.0.101:3000/"
     
     private static func invokeHTTP (action: String, httpMethod: String, parameters: Dictionary<String, String>) {
         print("calling server...")
@@ -57,7 +58,7 @@ public class Server {
         print(task)
     }
     
-    private static func invokeHTTP_Sync (action: String, httpMethod: String, data: Data?) -> Data? {
+    private static func invokeHTTP_Sync (action: String, httpMethod: String, data: Data?) throws -> Data? {
         print("calling server sync...")
 
         let url = URL(string: self.server + action)!
@@ -73,7 +74,7 @@ public class Server {
         return task.0
     }
     
-    private static func invokeHTTP_Async (action: String, httpMethod: String, data: Data?) {
+    private static func invokeHTTP_Async (action: String, httpMethod: String, data: Data?) throws {
         print("calling server async...")
         
         let url = URL(string: self.server + action)!
@@ -126,15 +127,19 @@ public class Server {
             print(error.localizedDescription)
         }
         
+        guard let respData = try invokeHTTP_Sync(action: "login", httpMethod: "POST", data: data)
+            else {
+                let cError: CustomError = CustomError.init(code: "002", description: "Unable to call server", severity: Severity.HIGH, location: error_location)
+                throw cError
+        }
         
-        let respData = invokeHTTP_Sync(action: "login", httpMethod: "POST", data: data)
         
         do {
-            if let json = try JSONSerialization.jsonObject(with: respData!, options: .mutableContainers) as? [String: Any] {
+            if let json = try JSONSerialization.jsonObject(with: respData, options: .mutableContainers) as? [String: Any] {
                 let status = json["status"] as? NSDictionary
-                if (status!["code"] as? String == "002") {
+                if (status!["code"] as? String != "001") {
                     print("error post response")
-                    let error: CustomError = CustomError.init(code: status!["code"] as! String, description: status!["description"] as! String, severity: "HIGH", location: "/Auxiliary/Server.swift")
+                    let error: CustomError = CustomError.init(code: status!["code"] as! String, description: status!["description"] as! String, severity: Severity.HIGH, location: self.error_location)
                     
                     throw error
                 }
@@ -160,7 +165,7 @@ public class Server {
             throw customError
         } catch let error {
             print(error.localizedDescription)
-            let customerError: CustomError = CustomError.init(code: "003", description: error.localizedDescription, severity: "HIGH", location: "/Auxiliary/Server.swift")
+            let customerError: CustomError = CustomError.init(code: "003", description: error.localizedDescription, severity: Severity.HIGH, location: self.error_location)
             
             throw customerError
         }
@@ -168,38 +173,59 @@ public class Server {
         return userResp
     }
     
-    static func createNewUser(userInfo: User) -> User {
+    static func createNewUser(userInfo: User) throws -> User {
         let encoder = JSONEncoder()
         let data = try! encoder.encode(userInfo)
         
-        let respData = invokeHTTP_Sync(action: "user/create", httpMethod: "POST", data: data)
+        guard let respData = try invokeHTTP_Sync(action: "user/create", httpMethod: "POST", data: data)
+            else {
+                let cError: CustomError = CustomError.init(code: "002", description: "Unable to call server", severity: Severity.HIGH, location: error_location)
+                throw cError
+        }
+        
         do {
-            if let json = try JSONSerialization.jsonObject(with: respData!, options: .mutableContainers) as? [String: Any] {
+            if let json = try JSONSerialization.jsonObject(with: respData, options: .mutableContainers) as? [String: Any] {
+                let status = json["status"] as? NSDictionary
+                if (status!["code"] as? String != "001") {
+                    print("error post response")
+                    let error: CustomError = CustomError.init(code: status!["code"] as! String, description: status!["description"] as! String, severity: Severity.HIGH, location: self.error_location)
+                    
+                    throw error
+                }
+                
                 if let data_block = json["data"] as? NSDictionary {
                     if let session_data = data_block["session"] as? String {
                         let defaults = UserDefaults.standard
                         defaults.set(session_data, forKey: "session_id")
                         
-                        let user = data_block["userInfo"] as? NSDictionary
-                        let user_id = user!["id"] as? String
-                        userInfo.id = user_id
+                        let user = data_block["user"] as? NSDictionary
+                        userInfo._id = user!["_id"] as? String
                     }
                 }
-                
             }
+        } catch let customError as CustomError {
+            throw customError
         } catch let error {
             print(error.localizedDescription)
+            let customerError: CustomError = CustomError.init(code: "003", description: error.localizedDescription, severity: Severity.HIGH, location: self.error_location)
+            
+            throw customerError
         }
         
         return userInfo
     }
     
-    static func getFriendFeedData(userId: String) -> [FriendFeed] {
+    static func getFriendFeedData(userId: String) throws -> [FriendFeed] {
         if ("a" == "a") {
             return TestData.getFriendFeed()
         } else {
-            let respData = invokeHTTP_Sync(action: "friends/" + userId + "/feed", httpMethod: "GET", data: nil)
-            print(respData!)
+            guard let respData = try invokeHTTP_Sync(action: "friends/" + userId + "/feed", httpMethod: "GET", data: nil)
+                else {
+                    let cError: CustomError = CustomError.init(code: "002", description: "Unable to call server", severity: Severity.HIGH, location: error_location)
+                    throw cError
+            }
+            
+            print(respData)
             let friendFeeds: [FriendFeed] = []
             return friendFeeds
         }

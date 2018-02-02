@@ -113,7 +113,7 @@ class MeViewController: MeGenericViewController {
             })
         } else {
             UIView.animate(withDuration: 1.0, animations: {
-                var height: CGFloat = CGFloat(self.pendingChallengeRowHeight * (self.user?.challengesPending?.count ?? 0))
+                var height: CGFloat = CGFloat(self.pendingChallengeRowHeight * (self.user?.challenges?.pending?.count ?? 0))
                 
                 if (height > PendingChallengesViewController.scrollViewMaxHeight) {
                     height = PendingChallengesViewController.scrollViewMaxHeight
@@ -137,7 +137,7 @@ class MeViewController: MeGenericViewController {
             })
         } else {
             UIView.animate(withDuration: 1.0, animations: {
-                var height: CGFloat = CGFloat(self.createdChallengeRowHeight * (self.user?.challengesSponsored?.count ?? 0))
+                var height: CGFloat = CGFloat(self.createdChallengeRowHeight * (self.user?.challenges?.sponsored?.count ?? 0))
                 
                 if (height > MyCreatedChallengesViewController.scrollViewMaxHeight) {
                     height = MyCreatedChallengesViewController.scrollViewMaxHeight

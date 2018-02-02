@@ -47,8 +47,8 @@ class StatusViewController: MeGenericViewController {
         let temp = (self.user?.jans?.available ?? 100) as NSNumber
         let jansAvail: Double = Double(truncating: temp)
 
-        let challengesPending = Double(self.user?.challengesPending?.count ?? 1)
-        let challengesCompleted = Double(self.user?.challengesCompleted?.count ?? 0)
+        let challengesPending = Double(self.user?.challenges?.pending?.count ?? 1)
+        let challengesCompleted = Double(self.user?.challenges?.completed?.count ?? 0)
         let pctCompleted = (challengesCompleted/(challengesPending + challengesCompleted))
 
         animate(jansAvail: jansAvail, pctComplete: pctCompleted)
@@ -63,8 +63,8 @@ class StatusViewController: MeGenericViewController {
         let temp = (user?.jans?.available ?? 100) as NSNumber
         let jansAvail: Double = Double(truncating: temp)
         
-        let challengesPending = Double(user?.challengesPending?.count ?? 1)
-        let challengesCompleted = Double(user?.challengesCompleted?.count ?? 0)
+        let challengesPending = Double(user?.challenges?.pending?.count ?? 1)
+        let challengesCompleted = Double(user?.challenges?.completed?.count ?? 0)
         let pctCompleted = (challengesCompleted/(challengesPending + challengesCompleted))
         
         animate(jansAvail: jansAvail, pctComplete: pctCompleted)

@@ -17,6 +17,8 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var password2TxtFld: UITextField!
     @IBOutlet weak var emailTxtFld: UITextField!
     
+    @IBOutlet weak var signUpStatusLbl: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,19 +31,33 @@ class SignupViewController: UIViewController {
     }
     
     @IBAction func submitBtnPressed(_ sender: Any) {
-        print("submit")
-        //TODO: validate
-
-        var newUser: User = User(username: userNameTxtFld.text!, password: password1TxtFld.text!, email: emailTxtFld.text!)
-        newUser = Server.createNewUser(userInfo: newUser)
-        if newUser.id?.count != 0 {
-            let defaults = UserDefaults.standard
-            defaults.set(newUser.id, forKey: "user_id")
+        signUpStatusLbl.isHidden = true
+        do {
+            //TODO: validate
+            if (password1TxtFld.text! != password2TxtFld.text) {
+                let error: CustomError = CustomError.init(code: "002", description: "Paswords do not match!", severity: Severity.LOW, location: "/Controllers/SignupViewController.swift")
+                
+                throw error
+            }
             
-            //let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: newUser)
-            //defaults.set(encodedData, forKey: "user")
-            self.user = newUser
-            self.performSegue(withIdentifier: "signupToRouterSegue", sender: self)
+            var newUser: User = User(username: userNameTxtFld.text!, password: password1TxtFld.text!, email: emailTxtFld.text!)
+            newUser = try Server.createNewUser(userInfo: newUser)
+            if newUser._id != nil {
+                let defaults = UserDefaults.standard
+                defaults.set(newUser._id, forKey: "user_id")
+                
+                //let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: newUser)
+                //defaults.set(encodedData, forKey: "user")
+                self.user = newUser
+                self.performSegue(withIdentifier: "signupToRouterSegue", sender: sender)
+            }
+            
+        } catch let error as CustomError {
+            signUpStatusLbl.isHidden = false
+            signUpStatusLbl.text = error.description
+        } catch {
+            signUpStatusLbl.isHidden = false
+            signUpStatusLbl.text = "Unknown Error"
         }
     }
     

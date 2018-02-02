@@ -32,13 +32,13 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.user?.challengesPending?.count ?? 0
+        return self.user?.challenges?.pending?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pendingChallengeCell") as! PendingChallengeTableViewCell
         
-        let currChallenge = user?.challengesPending![indexPath.row]
+        let currChallenge = user?.challenges?.pending![indexPath.row]
         
         cell.challangePrevImage.image = UIImage(named: "Play")
         cell.challengeTitleLbl.text = currChallenge?.title
@@ -53,15 +53,15 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let challenge: Challenge = (self.user?.challengesPending![indexPath.row])!
-        print(challenge.id ?? "unknown")
+        let challenge: ChallengeDetails = (self.user?.challenges?.pending![indexPath.row])!
+        print(challenge._id ?? "unknown")
         performSegue(withIdentifier: "pendingToWatchSegue", sender: self)
     }
     
     func tableView(_ tableView: UITableView,
                    leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let closeAction = UIContextualAction(style: .normal, title:  "Reject", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-            self.user?.challengesPending!.remove(at: indexPath.row)
+            self.user?.challenges?.pending!.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
             self.adjustHeight()
             success(true)
@@ -86,7 +86,7 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
     }
     
     private func adjustHeight() {
-        let tableViewHeight: CGFloat = CGFloat(80 * (self.user?.challengesPending?.count ?? 0))
+        let tableViewHeight: CGFloat = CGFloat(80 * (self.user?.challenges?.pending?.count ?? 0))
         self.tableView.frame.size.height = tableViewHeight
         
         self.scrollView.contentSize = CGSize(width: self.tableView.frame.size.width, height: tableViewHeight)

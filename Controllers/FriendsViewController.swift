@@ -24,9 +24,13 @@ class FriendsViewController: GenericUIViewController, UITableViewDataSource, UIT
         
         //let routerController: RouterTabBarController = self.tabBarController as! RouterTabBarController
         //self.user = routerController.user
-        print(NSStringFromClass(self.classForCoder) + " : " + (self.user?.id ?? "user not set"))
-
-        friendFeeds = Server.getFriendFeedData(userId: self.user!.id!)
+        print(NSStringFromClass(self.classForCoder) + " : " + (self.user?._id ?? "user not set"))
+        
+        do {
+            try friendFeeds = Server.getFriendFeedData(userId: self.user!._id!)
+        } catch let error {
+            //TODO: catch error
+        }
 
         // Do any additional setup after loading the view.
     }

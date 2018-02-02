@@ -9,7 +9,70 @@
 import Foundation
 
 public class Challenge: Codable {
-    public var id: String?
+    public var sponsored: [ChallengeDetails]?
+    public var pending: [ChallengeDetails]?
+    public var completed: [ChallengeDetails]?
+    public var cosponsored: [ChallengeDetails]?
+    
+    public func addSponsoredChallenge(challengeDetail: ChallengeDetails) {
+        if (self.sponsored == nil) {
+            self.sponsored = []
+        }
+        self.sponsored?.append(challengeDetail)
+    }
+    
+    public func addSponsoredChallenge(challengesDetail: [ChallengeDetails]) {
+        if (self.sponsored == nil) {
+            self.sponsored = []
+        }
+        self.sponsored?.append(contentsOf: challengesDetail)
+    }
+    
+    public func addPendingChallenge(challengeDetail: ChallengeDetails) {
+        if (self.pending == nil) {
+            self.pending = []
+        }
+        self.pending?.append(challengeDetail)
+    }
+    
+    public func addPendingChallenge(challengesDetail: [ChallengeDetails]) {
+        if (self.pending == nil) {
+            self.pending = []
+        }
+        self.pending?.append(contentsOf: challengesDetail)
+    }
+    
+    public func addCompletedChallenge(challengeDetail: ChallengeDetails) {
+        if (self.completed == nil) {
+            self.completed = []
+        }
+        self.completed?.append(challengeDetail)
+    }
+    
+    public func addCompletedChallenge(challengesDetail: [ChallengeDetails]) {
+        if (self.completed == nil) {
+            self.completed = []
+        }
+        self.completed?.append(contentsOf: challengesDetail)
+    }
+    
+    public func addCosponsoredChallenge(challengeDetail: ChallengeDetails) {
+        if (self.cosponsored == nil) {
+            self.cosponsored = []
+        }
+        self.cosponsored?.append(challengeDetail)
+    }
+    
+    public func addCosponsoredChallenge(challengesDetail: [ChallengeDetails]) {
+        if (self.cosponsored == nil) {
+            self.cosponsored = []
+        }
+        self.cosponsored?.append(contentsOf: challengesDetail)
+    }
+}
+
+public class ChallengeDetails: Codable {
+    public var _id: String?
     public var sponsor: Sponsor
     public var title: String
     public var description: String?
@@ -37,7 +100,7 @@ public class Challenge: Codable {
     }
     
     public func addCosponsor(user: User, reward: Int) {
-        let newCosponsor: Sponsor = Sponsor.init(sponsorId: user.id!, reward: reward)
+        let newCosponsor: Sponsor = Sponsor.init(sponsorId: user._id!, reward: reward)
         
         // if condition ? true : else
         if (self.coSponsors == nil) {

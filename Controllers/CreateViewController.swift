@@ -12,8 +12,6 @@ import AVFoundation
 
 class CreateViewController: GenericUIViewController {
     
-    //private var user: User?
-
     private var capturePhotoOutput: AVCapturePhotoOutput?
     private var capturedImage: UIImage?
     
@@ -30,7 +28,7 @@ class CreateViewController: GenericUIViewController {
         let tabController = self.tabBarController as! RouterTabBarController
         self.user = tabController.user
         
-        print(self.user?.id ?? "no user id")
+        print(self.user?._id ?? "no user id")
         
         #if !SIMULATOR
             self.setupCamera()

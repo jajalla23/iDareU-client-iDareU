@@ -17,7 +17,7 @@ class CommunityViewController: GenericUIViewController, UITableViewDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.navigationController?.isNavigationBarHidden = true
-        print(NSStringFromClass(self.classForCoder) + " : " + (self.user?.id ?? "user not set"))
+        print(NSStringFromClass(self.classForCoder) + " : " + (self.user?._id ?? "user not set"))
 
         communityTableView.delegate = self
         communityTableView.dataSource = self
@@ -61,7 +61,7 @@ class CommunityViewController: GenericUIViewController, UITableViewDataSource, U
     private func loadMoreChallenges() {
         for _i in 1 ..< 5 {
             //let lastitem = data.last!
-            if _i == _i { print() }
+            if _i == _i {  }
             let newItem : [String] = ["ACT LIKE A G", "Lorem ipsum dolor sit amet, ex alia mediocritatem usu. In laudem propriae duo, doctus aliquid praesent ad pro, detraxit sapientem et vis.", "Play"]
             data.append(newItem)
         }

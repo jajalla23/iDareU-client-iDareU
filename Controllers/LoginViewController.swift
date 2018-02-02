@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginStatusLbl.text = ""
+
         // Do any additional setup after loading the view.
     }
 
@@ -37,14 +37,16 @@ class LoginViewController: UIViewController {
             
             if (self.user != nil) {
                 let defaults = UserDefaults.standard
-                defaults.set(user?.id, forKey: "user_id")
+                defaults.set(user?._id, forKey: "user_id")
                 
                 self.loginDone()
             }
             
         } catch let error as CustomError {
+            loginStatusLbl.isHidden = false
             loginStatusLbl.text = error.description
         } catch {
+            loginStatusLbl.isHidden = false
             loginStatusLbl.text = "Unknown Error"
         }
     }

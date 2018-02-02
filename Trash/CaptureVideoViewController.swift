@@ -34,7 +34,7 @@ class CaptureVideoViewController: GenericUIViewController, AVCaptureFileOutputRe
 
 
         self.navigationController?.isNavigationBarHidden = true
-        print(NSStringFromClass(self.classForCoder) + " : " + (self.user?.id ?? "user not set"))
+        print(NSStringFromClass(self.classForCoder) + " : " + (self.user?._id ?? "user not set"))
         /*
         let decoded  = defaults.object(forKey: "user") as! Data
         let user: User = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! User

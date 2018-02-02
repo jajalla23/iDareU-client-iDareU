@@ -11,26 +11,26 @@ import Foundation
 class TestData {
     public static func generateUser() -> User {
         let user: User = User.init(username: "test", password: "test", email: "dummy@email.com")
-        user.id = "00000"
+        user._id = "00000"
         user.jans?.available = 99
         
-        let challenge1: Challenge = Challenge.init(sponsorId: user.id!, title: "Challenge1", description: "Completed Challenge", reward: 10)
-        let challenge2: Challenge = Challenge.init(sponsorId: user.id!, title: "Challenge2", description: "Pending Challenge", reward: 20)
-        let challenge3: Challenge = Challenge.init(sponsorId: user.id!, title: "Challenge3", description: "Owned Challenge", reward: 30)
-        let challenge4: Challenge = Challenge.init(sponsorId: user.id!, title: "Challenge4", description: "Pending Challenge", reward: 20)
+        let challenge1: ChallengeDetails = ChallengeDetails.init(sponsorId: user._id!, title: "Challenge1", description: "Completed Challenge", reward: 10)
+        let challenge2: ChallengeDetails = ChallengeDetails.init(sponsorId: user._id!, title: "Challenge2", description: "Pending Challenge", reward: 20)
+        let challenge3: ChallengeDetails = ChallengeDetails.init(sponsorId: user._id!, title: "Challenge3", description: "Owned Challenge", reward: 30)
+        let challenge4: ChallengeDetails = ChallengeDetails.init(sponsorId: user._id!, title: "Challenge4", description: "Pending Challenge", reward: 20)
         
         challenge3.description = "Lorem ipsum dolor sit amet, ex alia mediocritatem usu. In laudem propriae duo, doctus aliquid praesent ad pro, detraxit sapientem et vis."
         
-        user.addToChallengesCompleted(challenge: challenge1)
-        user.addToChallengesPending(challenge: challenge2)
-        user.addToChallengesSponsored(challenge: challenge3)
-        user.addToChallengesPending(challenge: challenge4)
-        user.addToChallengesSponsored(challenge: challenge3)
+        user.addCompletedChallenges(challengeDetail: challenge1)
+        user.addPendingChallenges(challengeDetail: challenge2)
+        user.addSponsoredChallenges(challengeDetail: challenge3)
+        user.addPendingChallenges(challengeDetail: challenge4)
+        user.addSponsoredChallenges(challengeDetail: challenge3)
         
-        user.addToChallengesPending(challenge: challenge1)
-        user.addToChallengesPending(challenge: challenge2)
-        user.addToChallengesPending(challenge: challenge3)
-        user.addToChallengesPending(challenge: challenge4)
+        user.addPendingChallenges(challengeDetail: challenge1)
+        user.addPendingChallenges(challengeDetail: challenge2)
+        user.addPendingChallenges(challengeDetail: challenge3)
+        user.addPendingChallenges(challengeDetail: challenge4)
 
 
 
