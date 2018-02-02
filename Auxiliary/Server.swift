@@ -33,7 +33,7 @@ extension URLSession {
 
 public class Server {
     static private var error_location = "/Auxiliary/Server.swift"
-    static private let server: String = "http://192.168.0.101:3000/"
+    static private let server: String = "http://34.208.110.84:3000/" //34.208.110.84 //192.168.0.101
     
     private static func invokeHTTP (action: String, httpMethod: String, parameters: Dictionary<String, String>) {
         print("calling server...")
