@@ -13,9 +13,12 @@ class PreviewViewController: UIViewController {
     public var user: User?
     public var image: UIImage?
     @IBOutlet weak var previewImg: UIImageView!
+    @IBOutlet weak var setupChallengeView: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
 
         /*
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -23,10 +26,7 @@ class PreviewViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
         */
-        
         self.previewImg.image = self.image
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,34 +34,28 @@ class PreviewViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func showTxtBtnTapped(_ sender: Any) {
+        self.setupChallengeView.isHidden = !self.setupChallengeView.isHidden
+    }
+    
     @IBAction func closeView(_ sender: Any) {
-        //navigationController?.popViewController(animated: true)
-        //dismiss(animated: true, completion: nil)
         performSegue(withIdentifier: "previewUnwindSegue", sender: sender)
     }
     
     @IBAction func sendChallengeTapped(_ sender: Any) {
         performSegue(withIdentifier: "sendChallengeSegue", sender: sender)
     }
-    
-    
+
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "sendChallengeSegue") {
-            guard let controller = segue.destination as? SendChallengeTableViewController else {
+        if (segue.identifier == "setupEmbedSegue") {
+            guard let controller = segue.destination as? SetupChallengeViewController else {
                 return
             }
             controller.user = self.user
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

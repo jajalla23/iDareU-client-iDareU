@@ -8,14 +8,15 @@
 
 import UIKit
 
-class SendChallengeTableViewController: UITableViewController {
-    var user: User?
+class SelectTakerTableViewController: UITableViewController {
+    var allFriends: [User]?
+    private var selectedFriends: [String: User]?
     private var isCommunityChecked: Bool = false
-    private var checkedFriends: Array<User>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.checkedFriends = []
+        self.selectedFriends = [String: User]()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -39,8 +40,9 @@ class SendChallengeTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         if (section == 0) {
             return 1
+        } else {
+            return self.allFriends?.count ?? 0
         }
-        return self.user?.friends?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -48,15 +50,17 @@ class SendChallengeTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "friendsCell", for: indexPath) as! SendChallengeTVCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "friendsCell", for: indexPath) as! SelectTakerTVCell
+        cell.cellCheckbox.addTarget(self, action: #selector(self.cellBoxChanged(_:)), for: .touchDown);
 
         if (indexPath.section == 0) {
             cell.cellCheckbox.isCommunity = true
-            cell.friendUsernameLbl.text = "Community"
+            cell.friendUsernameLbl.text = "Anyone"
+            cell.cellCheckbox.isChecked = false
         } else {
-            cell.cellCheckbox.friend = self.user?.friends![indexPath.row]
-            cell.cellCheckbox.friendNumber = indexPath.row
-            cell.friendUsernameLbl.text = (self.user?.friends![indexPath.row].username ?? "")
+            cell.cellCheckbox.friend = self.allFriends![indexPath.row]
+            cell.cellCheckbox.isChecked = false
+            cell.friendUsernameLbl.text = (self.allFriends![indexPath.row].username ?? "")
         }
         return cell
 
@@ -107,11 +111,8 @@ class SendChallengeTableViewController: UITableViewController {
     }
     */
     
-    @IBAction func sendTapped(_ sender: Any) {
-        print(self.checkedFriends?.count ?? "no friends checked")
-        //performSegue(withIdentifier: "sendChallToRouterSegue", sender: sender)
-        performSegue(withIdentifier: "sendUnwindSegue", sender: sender)
-
+    @IBAction func doneTapped(_ sender: Any) {
+        performSegue(withIdentifier: "setupUnwindSegue", sender: sender)
     }
     
     @IBAction func cancelTapped(_ sender: Any) {
@@ -119,30 +120,43 @@ class SendChallengeTableViewController: UITableViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    
-    @IBAction func cellBoxChecked(_ sender: SendChallengeCheckBox) {
-        if (sender.isChecked) {
+    @objc func cellBoxChanged(_ sender: SelectTakerCheckBox) {
+        let friend: User? = sender.friend
+        
+        //button checking happens after this function
+        if (!sender.isChecked) {
             if (sender.isCommunity) {
                 self.isCommunityChecked = true
             } else {
-                self.checkedFriends![sender.friendNumber!] = sender.friend!
+                self.selectedFriends![friend!._id!] = sender.friend!
             }
         } else {
             if (sender.isCommunity) {
                 self.isCommunityChecked = false
             } else {
-                self.checkedFriends?.remove(at: sender.friendNumber!)
+                self.selectedFriends!.removeValue(forKey: friend!._id!)
             }
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "sendChallToRouterSegue") {
-            let routerController = segue.destination as! RouterTabBarController
-            routerController.user = self.user
+        switch (segue.identifier!) {
+        case "setupUnwindSegue":
+            let controller = segue.destination as! SetupChallengeViewController
+            for friend in self.selectedFriends!.values {
+                controller.challenge?.addTaker(user: friend)
+            }
+            
+            if (self.isCommunityChecked) {
+                controller.takerBtn.setTitle("anyone", for: UIControlState.normal)
+            } else if (self.selectedFriends!.count == 1) {
+                let friend: User = self.selectedFriends!.first!.value
+                controller.takerBtn.setTitle(friend.username, for: UIControlState.normal)
+            } else {
+                controller.takerBtn.setTitle("people", for: UIControlState.normal)
+            }
+        default:
+            return
         }
-        //navigationController?.popViewController(animated: true)
-        //self.dismiss(animated: true, completion: nil)
     }
-
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 class MeGenericViewController: UIViewController {
-    public var user: User? = nil
+    public var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()

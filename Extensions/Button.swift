@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-class SendChallengeCheckBox: UIButton {
+class SelectTakerCheckBox: UIButton {
     var isCommunity: Bool = false
     var friend: User?
-    var friendNumber: Int?
+
     // Images
     let checkedImage = UIImage(named: "checked")! as UIImage
     let uncheckedImage = UIImage(named: "unchecked")! as UIImage

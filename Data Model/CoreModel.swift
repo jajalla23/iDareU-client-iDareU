@@ -15,7 +15,7 @@ public class User: Codable {
     public var password: String?
     public var email: String?
     public var jans: Jan?
-    private(set) var friends: [User]?
+    private(set) var friends: [String: User]?
     private(set) var challenges: Challenge?
     
     init(username: String, password: String, email: String) {
@@ -24,16 +24,19 @@ public class User: Codable {
         self.email = email
         
         self.jans = Jan()
-        self.friends = []
+        self.friends = [String: User]()
         self.challenges = Challenge()
     }
     
     public func addFriends(friends: [User]) {
-        self.friends?.append(contentsOf: friends)
+        //self.friends?.append(contentsOf: friends)
+        for friend in friends {
+            self.addFriend(friend: friend)
+        }
     }
     
     public func addFriend(friend: User) {
-        self.friends?.append(friend)
+        self.friends![friend._id!] = friend
     }
     
     public func addSponsoredChallenges(challengesDetail: [ChallengeDetails]) {

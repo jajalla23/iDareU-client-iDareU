@@ -459,7 +459,7 @@
                                             <constraint firstAttribute="height" constant="125" id="dGa-Yd-sAn"/>
                                         </constraints>
                                         <connections>
-                                            <segue destination="ZLq-Zj-Ifk" kind="embed" identifier="meToCreatedSegue" id="LR1-BW-AMT"/>
+                                            <segue destination="ZLq-Zj-Ifk" kind="embed" identifier="meToSponsoredSegue" id="LR1-BW-AMT"/>
                                         </connections>
                                     </containerView>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KMh-0k-Yft">

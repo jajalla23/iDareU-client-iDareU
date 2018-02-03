@@ -72,6 +72,10 @@ class CreateViewController: GenericUIViewController {
     }
     
     @IBAction func onCaptureBtnTapped(_ sender: Any) {
+        #if SIMULATOR
+            self.performSegue(withIdentifier: "previewSegue", sender: self)
+        #endif
+        
         guard let capturePhotoOutput = self.capturePhotoOutput else { return }
 
         let photoSettings = AVCapturePhotoSettings()
@@ -81,8 +85,6 @@ class CreateViewController: GenericUIViewController {
 
         capturePhotoOutput.capturePhoto(with: photoSettings, delegate: self as AVCapturePhotoCaptureDelegate)
     }
-    
-    func prepare(completionHandler: @escaping (Error?) -> Void) { }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "previewSegue") {
@@ -95,6 +97,8 @@ class CreateViewController: GenericUIViewController {
     }
     
     @IBAction func unwindToCreate(segue: UIStoryboardSegue) {}
+    
+    func prepare(completionHandler: @escaping (Error?) -> Void) { }
 
 }
 
@@ -105,23 +109,3 @@ extension CreateViewController: AVCapturePhotoCaptureDelegate {
         self.performSegue(withIdentifier: "previewSegue", sender: self)
     }
 }
-
-
-/*
- func photoOutput(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
- 
- guard error == nil, let photoSampleBuffer = photoSampleBuffer else {
- print("Error capturing photo: \(String(describing: error))")
- return
- }
- 
- guard let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer, previewPhotoSampleBuffer: previewPhotoSampleBuffer) else {
- return
- }
- 
- let capturedImage = UIImage.init(data: imageData , scale: 1.0)
- if let image = capturedImage {
- UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
- }
- }
- */

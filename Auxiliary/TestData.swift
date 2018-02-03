@@ -37,7 +37,10 @@ class TestData {
         let friend1: User = User.init(username: "friend1", password: "pass", email: "friend1@email.com")
         let friend2: User = User.init(username: "friend2", password: "pass", email: "friend1@email.com")
         let friend3: User = User.init(username: "friend3", password: "pass", email: "friend1@email.com")
-
+        friend1._id = "11111"
+        friend2._id = "22222"
+        friend3._id = "33333"
+        
         user.addFriends(friends: [friend1, friend2, friend3])
         
         return user

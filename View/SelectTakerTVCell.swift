@@ -1,5 +1,5 @@
 //
-//  SendChallengeCell.swift
+//  SelectTakerTVCell.swift
 //  iDareU
 //
 //  Created by Jan Jajalla on 1/31/18.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-class SendChallengeTVCell: UITableViewCell {
+class SelectTakerTVCell: UITableViewCell {
     
     @IBOutlet weak var friendUsernameLbl: UILabel!
-    @IBOutlet weak var cellCheckbox: SendChallengeCheckBox!
+    @IBOutlet weak var cellCheckbox: SelectTakerCheckBox!
     
     override func awakeFromNib() {
         super.awakeFromNib()

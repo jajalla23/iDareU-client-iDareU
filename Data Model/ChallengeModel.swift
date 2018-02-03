@@ -99,6 +99,10 @@ public class ChallengeDetails: Codable {
         self.takers?.append(taker)
     }
     
+    public func removeAllTakers() {
+        self.takers?.removeAll()
+    }
+    
     public func addCosponsor(user: User, reward: Int) {
         let newCosponsor: Sponsor = Sponsor.init(sponsorId: user._id!, reward: reward)
         
