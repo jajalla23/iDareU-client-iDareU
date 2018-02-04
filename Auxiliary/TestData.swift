@@ -22,15 +22,15 @@ class TestData {
         challenge3.description = "Lorem ipsum dolor sit amet, ex alia mediocritatem usu. In laudem propriae duo, doctus aliquid praesent ad pro, detraxit sapientem et vis."
         
         user.addCompletedChallenges(challengeDetail: challenge1)
-        //user.addPendingChallenges(challengeDetail: challenge2)
-        //user.addSponsoredChallenges(challengeDetail: challenge3)
-        //user.addPendingChallenges(challengeDetail: challenge4)
-        //user.addSponsoredChallenges(challengeDetail: challenge3)
+        user.addPendingChallenges(challengeDetail: challenge2)
+        user.addSponsoredChallenges(challengeDetail: challenge3)
+        user.addPendingChallenges(challengeDetail: challenge4)
+        user.addSponsoredChallenges(challengeDetail: challenge3)
         
-        //user.addPendingChallenges(challengeDetail: challenge1)
-        //user.addPendingChallenges(challengeDetail: challenge2)
-        //user.addPendingChallenges(challengeDetail: challenge3)
-        //user.addPendingChallenges(challengeDetail: challenge4)
+        user.addPendingChallenges(challengeDetail: challenge1)
+        user.addPendingChallenges(challengeDetail: challenge2)
+        user.addPendingChallenges(challengeDetail: challenge3)
+        user.addPendingChallenges(challengeDetail: challenge4)
 
 
 

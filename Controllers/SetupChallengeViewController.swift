@@ -72,6 +72,12 @@ class SetupChallengeViewController: UIViewController, UIPopoverControllerDelegat
             //Update server to add pending challenge
         }
         
+        //update screens
+        DispatchQueue.main.async{
+            //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPendingChallengeView"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshAllViewsOnMe"), object: nil)
+        }
+        
         performSegue(withIdentifier: "setupToCreateUnwind", sender: sender)
     }
     
@@ -117,6 +123,7 @@ class SetupChallengeViewController: UIViewController, UIPopoverControllerDelegat
             
             let tabController = controller.tabBarController as! RouterTabBarController
             tabController.user = self.user
+            
             //NSStringFromClass(self.classForCoder)
             
         case "sendChallengeSegue":
@@ -125,6 +132,7 @@ class SetupChallengeViewController: UIViewController, UIPopoverControllerDelegat
             }
             
             controller.user = self.user
+            
             self.navigationController?.popViewController(animated: false)
             self.dismiss(animated: false, completion: nil)
             

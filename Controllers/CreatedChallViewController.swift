@@ -32,6 +32,14 @@ class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDat
         // Dispose of any resources that can be recreated.
     }
     
+    public func reloadTableData(){
+        self.tableView.reloadData()
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
+        self.adjustHeight()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return user?.challenges?.sponsored?.count ?? 0
     }

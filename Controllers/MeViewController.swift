@@ -9,15 +9,18 @@
 import UIKit
 
 class MeViewController: MeGenericViewController {
+    public var statusViewController: StatusViewController!
     private var isMyStatusExpanded: Bool = true
     @IBOutlet weak var myStatusHeightConstr: NSLayoutConstraint!
     @IBOutlet weak var myStatusView: UIView!
     
+    public var pendingViewController: PendingChallengesViewController!
     private var isPendingChallengesExpanded: Bool = false
     private var pendingChallengeRowHeight: Int = 80
     @IBOutlet weak var pendingChallengesHeightConstr: NSLayoutConstraint!
     @IBOutlet weak var pendingChallengesView: UIView!
     
+    public var createdChallengeViewController: MyCreatedChallengesViewController!
     private var isCreatedChallengesExpanded: Bool = false
     private var createdChallengeRowHeight: Int = 80
     @IBOutlet weak var createdChallengesHeightConstr: NSLayoutConstraint!
@@ -25,19 +28,23 @@ class MeViewController: MeGenericViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
+
         //self.navigationController?.isNavigationBarHidden = true
+        self.statusViewController = self.childViewControllers[0] as! StatusViewController
 
         //pending challenges minimized
         //self.isPendingChallengesExpanded = false
         self.pendingChallengesHeightConstr.constant = 0
         self.pendingChallengesView.isHidden = true
+        self.pendingViewController = self.childViewControllers[1] as! PendingChallengesViewController
         
         //created challenges minimized
-        //self.isPendingChallengesExpanded = false
         self.createdChallengesHeightConstr.constant = 0
         self.createdChallengesView.isHidden = true
+        self.createdChallengeViewController = self.childViewControllers[2] as! MyCreatedChallengesViewController
         
-        // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(self.refreshAllViews), name: NSNotification.Name(rawValue: "refreshAllViewsOnMe"), object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,9 +54,19 @@ class MeViewController: MeGenericViewController {
     
     /*
     override func viewWillAppear(_ animated: Bool) {
-        var controller : PendingChallengesViewController = self.childViewControllers[1] as! PendingChallengesViewController
-        controller.reloadTableView()
-        controller.viewWillAppear(true)
+        print("pending rows")
+        DispatchQueue.main.async{
+            self.pendingViewController.tableView.reloadData()
+            print("dispatch done")
+        }
+        print(self.pendingViewController.tableView.numberOfRows(inSection: 0))
+        
+        let cell = self.pendingViewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0))
+        if (cell != nil) {
+            print("pending cell")
+            let pendingCell = cell as! PendingChallengeTableViewCell
+            print(pendingCell.challengeTitleLbl.text)
+        }
     }
     */
     
@@ -162,6 +179,25 @@ class MeViewController: MeGenericViewController {
     
     private func toggleCompletedChallengesView() {
         
+    }
+    
+    @objc func refreshAllViews(){
+        self.myStatusHeightConstr.constant = 500
+        self.myStatusView.isHidden = false
+        self.isMyStatusExpanded = true
+        self.statusViewController.needsRefresh = true
+        
+        self.pendingViewController.reloadTableData()
+        self.pendingChallengesHeightConstr.constant = 0
+        self.pendingChallengesView.isHidden = true
+        self.isPendingChallengesExpanded = false
+        
+        self.createdChallengeViewController.reloadTableData()
+        self.createdChallengesHeightConstr.constant = 0
+        self.createdChallengesView.isHidden = true
+        self.isCreatedChallengesExpanded = false
+        
+        self.view.layoutIfNeeded()
     }
     
     /*

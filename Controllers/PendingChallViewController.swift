@@ -14,24 +14,28 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
     @IBOutlet weak var tableView: UITableView!
     
     public static let scrollViewMaxHeight: CGFloat = CGFloat(80 * 5) //row height x number of cells
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // Do any additional setup after loading the view.
+
         tableView.delegate = self
         tableView.dataSource = self
+
+        self.adjustHeight()
+        self.scrollView.setNeedsDisplay()
+
+        //NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: NSNotification.Name(rawValue: "reloadPendingChallengeView"), object: nil)
+    }
+    
+    public func reloadTableData(){
+        self.tableView.reloadData()
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         
         self.adjustHeight()
-        // Do any additional setup after loading the view.
     }
-    
-    /*
-    override func viewWillAppear(_ animated: Bool) {
-        //print(self.user?.challenges?.pending?.count ?? "no challenges")
-        //self.tableView.reloadData()
-    }
-    */
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
