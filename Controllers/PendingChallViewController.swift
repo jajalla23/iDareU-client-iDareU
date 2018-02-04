@@ -22,10 +22,16 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
         tableView.dataSource = self
         
         self.adjustHeight()
-
         // Do any additional setup after loading the view.
     }
-
+    
+    /*
+    override func viewWillAppear(_ animated: Bool) {
+        //print(self.user?.challenges?.pending?.count ?? "no challenges")
+        //self.tableView.reloadData()
+    }
+    */
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -99,7 +105,6 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
         
         self.view.layoutIfNeeded()
     }
-    
 
     /*
     // MARK: - Navigation

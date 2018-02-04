@@ -19,6 +19,8 @@ class MeInitialViewController: GenericUIViewController {
         self.scrollView.contentSize = CGSize(width: containerView.frame.size.width, height: containerView.frame.size.height)
         print(NSStringFromClass(self.classForCoder) + " : " + (self.user?._id ?? "user not set"))
 
+        self.view.layoutIfNeeded()
+
         // Do any additional setup after loading the view.
     }
     

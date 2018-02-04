@@ -103,16 +103,6 @@
                                     <action selector="closeView:" destination="y9z-31-yVc" eventType="touchUpInside" id="imc-dc-bdN"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QRP-DI-zpg">
-                                <rect key="frame" x="309" y="44" width="50" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                <state key="normal" title="OK"/>
-                                <connections>
-                                    <action selector="showTxtBtnTapped:" destination="y9z-31-yVc" eventType="touchUpInside" id="gKa-xq-fmc"/>
-                                </connections>
-                            </button>
                             <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pA4-Zl-Qsz">
                                 <rect key="frame" x="0.0" y="392" width="375" height="420"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -120,6 +110,15 @@
                                     <segue destination="uT0-md-7N5" kind="embed" identifier="setupEmbedSegue" id="a1V-1P-wQy"/>
                                 </connections>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QRP-DI-zpg">
+                                <rect key="frame" x="309" y="41" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <state key="normal" title="OK" image="checked"/>
+                                <connections>
+                                    <action selector="setupBtnTapped:" destination="y9z-31-yVc" eventType="touchUpInside" id="nDh-Ts-gOT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Hb0-jh-KCT"/>
@@ -177,7 +176,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="69.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fhb-wO-hIq" customClass="SelectTakerCheckBox" customModule="iDareU" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fhb-wO-hIq" customClass="SelectUserCheckBox" customModule="iDareU" customModuleProvider="target">
                                             <rect key="frame" x="16" y="13" width="42" height="42"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="42" id="2ZX-eR-NWf"/>
@@ -324,14 +323,20 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4UJ-X2-n9o">
-                                <rect key="frame" x="165" y="368" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Done"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4UJ-X2-n9o">
+                                <rect key="frame" x="159" y="328.66666666666669" width="57" height="42"/>
+                                <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Send"/>
+                                <connections>
+                                    <action selector="sendBtnTapped:" destination="uT0-md-7N5" eventType="touchUpInside" id="YNd-gu-rPd"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="4UJ-X2-n9o" firstAttribute="centerX" secondItem="835-Hx-KiI" secondAttribute="centerX" id="4ND-hk-Bbm"/>
+                            <constraint firstItem="4UJ-X2-n9o" firstAttribute="top" secondItem="Q0H-Qs-j2M" secondAttribute="bottom" constant="25" id="I88-Qk-KKI"/>
                             <constraint firstItem="Q0H-Qs-j2M" firstAttribute="centerX" secondItem="835-Hx-KiI" secondAttribute="centerX" id="Q29-3A-blD"/>
                             <constraint firstItem="MH5-lv-cem" firstAttribute="centerX" secondItem="835-Hx-KiI" secondAttribute="centerX" id="byz-Y8-92A"/>
                             <constraint firstItem="Q0H-Qs-j2M" firstAttribute="top" secondItem="DbI-ZC-yYl" secondAttribute="bottom" constant="12" id="ix2-gA-VLQ"/>
@@ -348,11 +353,22 @@
                         <outlet property="takerBtn" destination="XVs-YZ-FoG" id="adR-9j-Pl9"/>
                         <segue destination="Ktn-0P-csg" kind="presentation" identifier="selectTakerSegue" modalTransitionStyle="coverVertical" id="8az-dn-kDN"/>
                         <segue destination="ebU-DW-1wd" kind="presentation" identifier="selectSponsorSegue" modalTransitionStyle="coverVertical" id="6mL-iW-He0"/>
+                        <segue destination="AFY-xZ-eCH" kind="unwind" identifier="setupToCreateUnwind" unwindAction="unwindToCreateWithSegue:" id="ptQ-oh-KyK"/>
+                        <segue destination="mNL-aY-ZYt" kind="show" identifier="sendChallengeSegue" id="MTC-00-hfT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2kP-pP-SyP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="AFY-xZ-eCH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2893.5999999999999" y="-98.275862068965523"/>
+        </scene>
+        <!--Router-->
+        <scene sceneID="pH1-O4-Kc8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Router" id="mNL-aY-ZYt" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eTe-kx-bbc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2894" y="222"/>
         </scene>
         <!--Select Taker Table View Controller-->
         <scene sceneID="cln-hS-gxp">
@@ -399,7 +415,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWs-7G-92H" customClass="SelectTakerCheckBox" customModule="iDareU" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWs-7G-92H" customClass="SelectUserCheckBox" customModule="iDareU" customModuleProvider="target">
                                             <rect key="frame" x="27" y="14" width="42" height="42"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="42" id="8mV-Gf-WHs"/>

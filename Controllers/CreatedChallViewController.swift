@@ -23,7 +23,7 @@ class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDat
         tableView.dataSource = self
         
         self.adjustHeight()
-        
+
         // Do any additional setup after loading the view.
     }
 

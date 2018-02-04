@@ -73,14 +73,19 @@ public class Challenge: Codable {
 
 public class ChallengeDetails: Codable {
     public var _id: String?
-    public var sponsor: Sponsor
+    private(set) var sponsor: Sponsor
     public var title: String
     public var description: String?
     private(set) var reward: Int
+    public var isPrivate: Bool = false
+
     public var media: Media?
+    public var expiration: Date?
     private(set) var takers: [Taker]?
+    private(set) var coSponsors: [String: Sponsor]?
+    
+    public var isForCommunity: Bool = false
     public var location: String?
-    private(set) var coSponsors: [Sponsor]?
     
     init(sponsorId: String, title: String, description: String?, reward: Int) {
         self.sponsor = Sponsor.init(sponsorId: sponsorId, reward: reward)
@@ -89,12 +94,21 @@ public class ChallengeDetails: Codable {
         self.reward = reward
     }
     
+    public func addSponsor(user: User, reward: Int) {
+        self.sponsor = Sponsor.init(sponsorId: user._id!, reward: reward)
+        self.reward += reward
+    }
+    
     public func addMedia(challengeVideoURL: String, imagePrevURL: String?) {
         self.media?.challengeVideoURL = challengeVideoURL
         self.media?.challengeImagePreviewURL = imagePrevURL
     }
     
     public func addTaker(user: User) {
+        if (self.takers == nil) {
+            self.takers = []
+        }
+        
         let taker: Taker = Taker.init(user: user)
         self.takers?.append(taker)
     }
@@ -108,20 +122,15 @@ public class ChallengeDetails: Codable {
         
         // if condition ? true : else
         if (self.coSponsors == nil) {
-            self.coSponsors = []
+            self.coSponsors = [String: Sponsor]()
         }
         
-        self.coSponsors?.append(newCosponsor)
+        self.coSponsors?[newCosponsor.id] = newCosponsor
         self.reward += reward
     }
     
     public func removeCosponsor(sponsorId: String) -> Bool {
-        if let i = self.coSponsors!.index(where: { $0.id == sponsorId }) {
-            self.coSponsors?.remove(at: i)
-            return true
-        }
-    
-        return false
+        return self.coSponsors!.removeValue(forKey: sponsorId) != nil
     }
 }
 

@@ -11,7 +11,7 @@ import UIKit
 class SelectTakerTVCell: UITableViewCell {
     
     @IBOutlet weak var friendUsernameLbl: UILabel!
-    @IBOutlet weak var cellCheckbox: SelectTakerCheckBox!
+    @IBOutlet weak var cellCheckbox: SelectUserCheckBox!
     
     override func awakeFromNib() {
         super.awakeFromNib()

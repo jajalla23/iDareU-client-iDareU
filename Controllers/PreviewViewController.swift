@@ -34,7 +34,7 @@ class PreviewViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func showTxtBtnTapped(_ sender: Any) {
+    @IBAction func setupBtnTapped(_ sender: Any) {
         self.setupChallengeView.isHidden = !self.setupChallengeView.isHidden
     }
     
@@ -55,6 +55,7 @@ class PreviewViewController: UIViewController {
                 return
             }
             controller.user = self.user
+            controller.image = self.image
         }
     }
 

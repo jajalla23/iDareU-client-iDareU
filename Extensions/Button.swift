@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SelectTakerCheckBox: UIButton {
+class SelectUserCheckBox: UIButton {
     var isCommunity: Bool = false
     var friend: User?
 

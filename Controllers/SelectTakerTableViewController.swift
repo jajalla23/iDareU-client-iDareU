@@ -10,12 +10,15 @@ import UIKit
 
 class SelectTakerTableViewController: UITableViewController {
     var allFriends: [User]?
-    private var selectedFriends: [String: User]?
-    private var isCommunityChecked: Bool = false
+    var selectedFriends: [String: User]?
+    var isCommunityChecked: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.selectedFriends = [String: User]()
+        
+        if (self.selectedFriends == nil) {
+            self.selectedFriends = [String: User]()
+        }
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -56,11 +59,25 @@ class SelectTakerTableViewController: UITableViewController {
         if (indexPath.section == 0) {
             cell.cellCheckbox.isCommunity = true
             cell.friendUsernameLbl.text = "Anyone"
-            cell.cellCheckbox.isChecked = false
+            
+            if (self.isCommunityChecked) {
+                cell.cellCheckbox.isChecked = true
+            } else {
+                cell.cellCheckbox.isChecked = false
+            }
+            
         } else {
-            cell.cellCheckbox.friend = self.allFriends![indexPath.row]
-            cell.cellCheckbox.isChecked = false
-            cell.friendUsernameLbl.text = (self.allFriends![indexPath.row].username ?? "")
+            let current_friend = self.allFriends![indexPath.row]
+            let selected_friend = self.selectedFriends![current_friend._id!] ?? nil
+            
+            cell.cellCheckbox.friend = current_friend
+            cell.friendUsernameLbl.text = (current_friend.username ?? "")
+            
+            if (selected_friend?._id != current_friend._id) {
+                cell.cellCheckbox.isChecked = false
+            } else {
+                cell.cellCheckbox.isChecked = true
+            }
         }
         return cell
 
@@ -120,7 +137,7 @@ class SelectTakerTableViewController: UITableViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @objc func cellBoxChanged(_ sender: SelectTakerCheckBox) {
+    @objc func cellBoxChanged(_ sender: SelectUserCheckBox) {
         let friend: User? = sender.friend
         
         //button checking happens after this function
@@ -143,17 +160,20 @@ class SelectTakerTableViewController: UITableViewController {
         switch (segue.identifier!) {
         case "setupUnwindSegue":
             let controller = segue.destination as! SetupChallengeViewController
+            
             for friend in self.selectedFriends!.values {
                 controller.challenge?.addTaker(user: friend)
             }
             
             if (self.isCommunityChecked) {
                 controller.takerBtn.setTitle("anyone", for: UIControlState.normal)
+                controller.challenge?.isForCommunity = true
             } else if (self.selectedFriends!.count == 1) {
                 let friend: User = self.selectedFriends!.first!.value
-                controller.takerBtn.setTitle(friend.username, for: UIControlState.normal)
+                controller.takerBtn.setTitle(friend.username, for: UIControlState.normal)                
             } else {
                 controller.takerBtn.setTitle("people", for: UIControlState.normal)
+                
             }
         default:
             return

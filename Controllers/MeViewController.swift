@@ -45,6 +45,14 @@ class MeViewController: MeGenericViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    /*
+    override func viewWillAppear(_ animated: Bool) {
+        var controller : PendingChallengesViewController = self.childViewControllers[1] as! PendingChallengesViewController
+        controller.reloadTableView()
+        controller.viewWillAppear(true)
+    }
+    */
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let controller = segue.destination as? MeGenericViewController
         controller?.user = self.user

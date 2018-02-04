@@ -9,14 +9,22 @@
 import UIKit
 
 class SelectSponsorTableViewController: UITableViewController {
+    
+    var user: User?
     var allFriends: [User]?
-    private var selectedFriends: [String: User]?
-    private var isMeChecked: Bool = true
+    var challengeToBeSetup: ChallengeDetails?
+    
+    var selectedFriends: [String: User]?
+    private var checkBoxes: [SelectUserCheckBox] = []
+    private var meCheckbox: SelectUserCheckBox?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.selectedFriends = [String: User]()
+        if (self.selectedFriends == nil) {
+            self.selectedFriends = [String: User]()
+        }
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -50,16 +58,30 @@ class SelectSponsorTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ownerCell", for: indexPath) as! SelectTakerTVCell
         cell.cellCheckbox.addTarget(self, action: #selector(self.cellBoxChanged(_:)), for: .touchDown);
-
+        
         if (indexPath.section == 0) {
             cell.friendUsernameLbl.text = "I"
             cell.cellCheckbox.isCommunity = true
-            cell.cellCheckbox.isChecked = true
+            self.meCheckbox = cell.cellCheckbox
+            
+            if (self.selectedFriends?.count == 0) {
+                cell.cellCheckbox.isChecked = true
+            }
         } else {
-            cell.cellCheckbox.friend = self.allFriends![indexPath.row]
+            let current_friend = self.allFriends![indexPath.row]
+            let selected_friend = self.selectedFriends![current_friend._id!] ?? nil
+            
+            cell.cellCheckbox.friend = current_friend
             cell.cellCheckbox.isCommunity = false
-            cell.cellCheckbox.isChecked = false
-            cell.friendUsernameLbl.text = (self.allFriends![indexPath.row].username ?? "")
+            cell.friendUsernameLbl.text = (current_friend.username ?? "")
+
+            if (selected_friend?._id != current_friend._id) {
+                cell.cellCheckbox.isChecked = false
+            } else {
+                cell.cellCheckbox.isChecked = true
+            }
+
+            self.checkBoxes.append(cell.cellCheckbox)
         }
 
         return cell
@@ -76,21 +98,29 @@ class SelectSponsorTableViewController: UITableViewController {
         dismiss(animated: true, completion: nil)
     }
 
-    @objc func cellBoxChanged(_ sender: SelectTakerCheckBox) {
+    @objc func cellBoxChanged(_ sender: SelectUserCheckBox) {
         let friend: User? = sender.friend
         
-        //button checking happens after this function
-        if (!sender.isChecked) {
+        //button checking happens after cellboxchanged completes
+        if (!sender.isChecked) {    //checkbox is checked
             if (sender.isCommunity) {
-                self.isMeChecked = true
+                //self.isMeChecked is true
+                
+                for checkbox in self.checkBoxes {
+                    checkbox.isChecked = false
+                }
+                
             } else {
                 self.selectedFriends![friend!._id!] = sender.friend!
+                self.meCheckbox?.isChecked = false
             }
         } else {
-            if (sender.isCommunity) {
-                self.isMeChecked = false
-            } else {
+            if (!sender.isCommunity) {
                 self.selectedFriends!.removeValue(forKey: friend!._id!)
+            }
+            
+            if (self.selectedFriends!.count == 0) {
+                self.meCheckbox?.isChecked = true
             }
         }
     }
@@ -137,19 +167,26 @@ class SelectSponsorTableViewController: UITableViewController {
         if (segue.identifier == "unwindToSetupFromSponsor") {
             let controller = segue.destination as! SetupChallengeViewController
 
-            if (self.isMeChecked) {
+            if (self.meCheckbox!.isChecked || self.selectedFriends?.count == 0) {
                 controller.sponsorBtn.setTitle("I", for: UIControlState.normal)
                 
                 controller.takerBtn.isEnabled = true
                 controller.takerBtn.setTitle("YOU", for: UIControlState.normal)
                 controller.takerBtn.setTitleColor(UIColor.red, for: UIControlState.normal)
+                
+                controller.challenge?.addSponsor(user: self.user!, reward: self.challengeToBeSetup!.reward)
+                controller.sponsors?.removeAll()
             }
             else {
+                //sponsor is not user
                 controller.challenge?.removeAllTakers()
                 controller.takerBtn.setTitle("ME", for: UIControlState.normal)
                 controller.takerBtn.setTitleColor(UIColor.black, for: UIControlState.normal)
                 controller.takerBtn.isEnabled = false
                 controller.sponsorBtn.setTitle("Others", for: UIControlState.normal)
+                
+                controller.sponsors = Array(self.selectedFriends!.values)
+                
             }
 
         }
