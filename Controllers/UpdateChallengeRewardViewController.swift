@@ -8,24 +8,39 @@
 
 import UIKit
 
-class DoubleDownViewController: UIViewController {
-    var challenge: ChallengeFriendFeed? = nil
-    var user: User? = nil
+class UpdateChallengeRewardController: UIViewController {
+    var source: String?
+    var user: User?
+    var challenge_id: String?
+    var challenge_reward: Int?
+    var challenge_title: String?
     
+    var viewTitle: String?
+    var viewAction: String?
+    
+    @IBOutlet weak var viewTitleLbl: UILabel!
+    @IBOutlet weak var viewActionLbl: UILabel!
     @IBOutlet weak var addToRewardTxtFld: UITextField!
     @IBOutlet weak var challengeRewardLbl: UILabel!
     @IBOutlet weak var userBalanceAvailLbl: UILabel!
     
     @IBOutlet weak var addRewardSlider: UISlider!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         
-        self.challengeRewardLbl.text = "J \(self.challenge?.reward.description ?? "0")"
-        self.userBalanceAvailLbl.text = "J \(self.user?.jans?.available.description ?? "0")"
+        self.viewTitleLbl.text = (self.viewTitle ?? "")
+        self.viewActionLbl.text = (self.viewAction ?? "")
+        
+        self.challengeRewardLbl.text = "J \(self.challenge_reward?.description ?? "0")"
+        
+        var temp_avail = self.user?.jans?.available
+        if (self.source == "SETUP") {
+            temp_avail = temp_avail! - challenge_reward!
+        }
+        self.userBalanceAvailLbl.text = "J \(temp_avail?.description ?? "0")"
         
         let half = (self.user?.jans?.available ?? 0)/2
         
@@ -50,11 +65,19 @@ class DoubleDownViewController: UIViewController {
     
     @IBAction func submitBtnPressed(_ sender: Any) {
         let sliderVal = Int(self.addRewardSlider.value)
-        let newChallengeReward = (self.challenge?.reward ?? 0) + sliderVal
+        var newChallengeReward = (self.challenge_reward ?? 0) + sliderVal
         let newUserAvailable = (self.user?.jans?.available)! - sliderVal
+        
+        if (self.source == "SETUP") {
+            newChallengeReward = sliderVal
+        }
         //TODO: change committed
         print("new challenge reward: " + newChallengeReward.description)
         print("new user available reward: " + newUserAvailable.description)
+        
+        if (self.source == "SETUP") {
+            self.performSegue(withIdentifier: "setupRewardUnwind", sender: self)
+        }
         
         self.navigationController?.popViewController(animated: true)
         self.dismiss(animated: true, completion: nil)
@@ -62,8 +85,12 @@ class DoubleDownViewController: UIViewController {
     
     @IBAction func rewardSliderChanged(_ sender: UISlider) {
         let sliderVal = Int(sender.value)
-        let challengeRewardVal = "J \(sliderVal + (self.challenge?.reward ?? 0))"
+        var challengeRewardVal = "J \(sliderVal + self.challenge_reward!)"
         let userBalanceVal = "J \(self.user!.jans!.available - sliderVal)"
+        
+        if (self.source == "SETUP") {
+            challengeRewardVal = "J \(sliderVal)"
+        }
        
         UIView.animate(withDuration: 0.3, animations: {
             self.addToRewardTxtFld.text = String(describing: Int(sliderVal))
@@ -82,15 +109,18 @@ class DoubleDownViewController: UIViewController {
         }
     }
     
-    
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "setupRewardUnwind") {
+            let controller = segue.destination as! SetupChallengeViewController
+            if (controller.challenge?.sponsor == nil) {
+                controller.challenge!.addSponsor(user: self.user!, reward: Int(self.addRewardSlider.value))
+            } else {
+                controller.challenge?.sponsor.reward = Int(self.addRewardSlider.value)
+            }
+            controller.challengeRewardBtn.setTitle(self.challengeRewardLbl.text!, for: UIControlState.normal)
+        }
     }
-    */
-
 }

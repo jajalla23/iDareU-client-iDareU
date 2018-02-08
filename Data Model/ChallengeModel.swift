@@ -93,7 +93,7 @@ public class ChallengeDetails: Codable {
         self.description = description
         self.reward = reward
     }
-    
+       
     public func addSponsor(user: User, reward: Int) {
         self.sponsor = Sponsor.init(sponsorId: user._id!, reward: reward)
         self.reward += reward

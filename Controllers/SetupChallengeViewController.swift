@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SetupChallengeViewController: UIViewController, UIPopoverControllerDelegate {
+class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
     
     public var user: User?
     public var image: UIImage?
@@ -20,7 +20,8 @@ class SetupChallengeViewController: UIViewController, UIPopoverControllerDelegat
     
     @IBOutlet weak var sponsorBtn: UIButton!
     @IBOutlet weak var takerBtn: UIButton!
-    @IBOutlet weak var challengeBtn: UIButton!
+    @IBOutlet weak var challengeTitleTxtField: UITextField!
+    @IBOutlet weak var challengeRewardBtn: UIButton!
     @IBOutlet weak var expirationBtn: UIButton!
     
     override func viewDidLoad() {
@@ -29,9 +30,12 @@ class SetupChallengeViewController: UIViewController, UIPopoverControllerDelegat
         // Do any additional setup after loading the view.
         //view.backgroundColor = UIColor.clear
         //view.isOpaque = false
+        
+        self.challengeTitleTxtField.delegate = self;
 
         if (challenge == nil) {
-            challenge = ChallengeDetails.init(sponsorId: self.user?._id ?? "00000", title: "New Challenge", description: "", reward: 0)
+            challenge = ChallengeDetails.init(sponsorId: self.user?._id ?? "00000", title: "Untitled Challenge", description: "", reward: 0)
+            challenge?.addSponsor(user: self.user!, reward: 1)
             self.sponsors = []
         }
     }
@@ -49,10 +53,33 @@ class SetupChallengeViewController: UIViewController, UIPopoverControllerDelegat
         performSegue(withIdentifier: "selectTakerSegue", sender: sender)
     }
     
+    @IBAction func challengeEditEnded(_ sender: Any) {
+        if (self.challengeTitleTxtField!.text!.count == 0) {
+            self.challengeTitleTxtField.textColor = UIColor.red
+            self.challengeTitleTxtField.text = "CHALLENGE"
+            self.challenge?.title = "Untitled Challenge"
+            
+            return
+        }
+        
+        self.challenge?.title = self.challengeTitleTxtField!.text!
+        if (self.challengeTitleTxtField!.text!.count > 10) {
+            var temp = String(self.challengeTitleTxtField!.text!.prefix(8))
+            temp += "..."
+            self.challengeTitleTxtField!.text = temp
+        }
+    }
+    
+    @IBAction func rewardBtnTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "setupRewardSegue", sender: sender)
+    }
+    
     @IBAction func expirationBtnTapped(_ sender: Any) {
     }
     
     @IBAction func sendBtnTapped(_ sender: Any) {
+        self.challenge?.title = self.challengeTitleTxtField.text!
+        
         if (self.sponsors!.count == 0) {
             self.user?.challenges?.addSponsoredChallenge(challengeDetail: self.challenge!)
             //update server to add to sponsored challenge
@@ -116,6 +143,18 @@ class SetupChallengeViewController: UIViewController, UIPopoverControllerDelegat
                     controller.selectedFriends![sponsor._id!] = sponsor
                 }
             }
+        case "setupRewardSegue":
+            guard let controller = segue.destination as? UpdateChallengeRewardController else {
+                return
+            }
+            controller.source = "SETUP"
+            controller.user = self.user
+            controller.challenge_reward = (self.user?.jans?.available ?? 0)/2
+            controller.challenge_title = self.challengeTitleTxtField.text
+             
+            controller.viewTitle = "Set Reward"
+            controller.viewAction = ""
+            
         case "setupToCreateUnwind":
             guard let controller = segue.destination as? GenericUIViewController else {
                 return
@@ -142,5 +181,10 @@ class SetupChallengeViewController: UIViewController, UIPopoverControllerDelegat
     }
     
     @IBAction func unwindToSetupChallenge(segue: UIStoryboardSegue) {}
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
     
 }

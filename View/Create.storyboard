@@ -227,7 +227,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="MH5-lv-cem" userLabel="Line 1 View">
-                                <rect key="frame" x="74.666666666666671" y="116.33333333333331" width="226.33333333333331" height="55"/>
+                                <rect key="frame" x="74.666666666666671" y="120" width="226.33333333333331" height="55"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7k-rs-dgF">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="55"/>
@@ -261,30 +261,29 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="DbI-ZC-yYl" userLabel="Line 2 View">
-                                <rect key="frame" x="46.666666666666657" y="182.66666666666666" width="282.66666666666674" height="55"/>
+                                <rect key="frame" x="45.666666666666657" y="186.33333333333334" width="283.66666666666674" height="48"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" TO " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rnk-Sj-Tha">
-                                        <rect key="frame" x="0.0" y="3.6666666666666856" width="69.666666666666671" height="48"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="69.666666666666671" height="48"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wE-wT-hIv">
-                                        <rect key="frame" x="69.666666666666657" y="0.0" width="212.99999999999997" height="55"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="CHALLENGE" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="35" translatesAutoresizingMaskIntoConstraints="NO" id="TlY-o8-DWg">
+                                        <rect key="frame" x="69.666666666666657" y="2.6666666666666572" width="213.99999999999997" height="43"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
-                                        <state key="normal" title="CHALLENGE">
-                                            <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
+                                        <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <action selector="expirationBtnTapped:" destination="uT0-md-7N5" eventType="touchDown" id="Vwl-Qa-4FK"/>
+                                            <action selector="challengeEditEnded:" destination="uT0-md-7N5" eventType="editingDidEnd" id="obZ-hY-uOE"/>
                                         </connections>
-                                    </button>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Q0H-Qs-j2M" userLabel="Line 3 View">
-                                <rect key="frame" x="18.666666666666657" y="249.66666666666663" width="338.66666666666674" height="54"/>
+                                <rect key="frame" x="18.666666666666657" y="246.33333333333337" width="338.66666666666674" height="54"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" FOR " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJH-Ts-FQF">
                                         <rect key="frame" x="0.0" y="6.6666666666666572" width="80.666666666666671" height="40.666666666666664"/>
@@ -300,7 +299,7 @@
                                             <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="expirationBtnTapped:" destination="uT0-md-7N5" eventType="touchDown" id="Um7-Yp-1V1"/>
+                                            <action selector="rewardBtnTapped:" destination="uT0-md-7N5" eventType="touchUpInside" id="tAZ-tr-E8q"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" BY " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6l-iJ-nCt">
@@ -324,7 +323,7 @@
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4UJ-X2-n9o">
-                                <rect key="frame" x="159" y="328.66666666666669" width="57" height="42"/>
+                                <rect key="frame" x="159" y="325.33333333333331" width="57" height="42"/>
                                 <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Send"/>
@@ -347,7 +346,8 @@
                         <viewLayoutGuide key="safeArea" id="nh1-Ff-Qw3"/>
                     </view>
                     <connections>
-                        <outlet property="challengeBtn" destination="6wE-wT-hIv" id="EGR-SL-iVl"/>
+                        <outlet property="challengeRewardBtn" destination="77w-j4-Ijb" id="jON-Ut-B8T"/>
+                        <outlet property="challengeTitleTxtField" destination="TlY-o8-DWg" id="6wr-ip-Vay"/>
                         <outlet property="expirationBtn" destination="RS1-5g-V7e" id="0Wt-3y-Uut"/>
                         <outlet property="sponsorBtn" destination="b7k-rs-dgF" id="sNr-1Q-cXR"/>
                         <outlet property="takerBtn" destination="XVs-YZ-FoG" id="adR-9j-Pl9"/>
@@ -355,6 +355,7 @@
                         <segue destination="ebU-DW-1wd" kind="presentation" identifier="selectSponsorSegue" modalTransitionStyle="coverVertical" id="6mL-iW-He0"/>
                         <segue destination="AFY-xZ-eCH" kind="unwind" identifier="setupToCreateUnwind" unwindAction="unwindToCreateWithSegue:" id="ptQ-oh-KyK"/>
                         <segue destination="mNL-aY-ZYt" kind="show" identifier="sendChallengeSegue" id="MTC-00-hfT"/>
+                        <segue destination="Omi-nj-OFU" kind="presentation" identifier="setupRewardSegue" id="p2K-te-8gM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2kP-pP-SyP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -368,7 +369,15 @@
                 <viewControllerPlaceholder storyboardName="Router" id="mNL-aY-ZYt" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eTe-kx-bbc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2894" y="222"/>
+            <point key="canvasLocation" x="2894" y="192"/>
+        </scene>
+        <!--ChallengeReward-->
+        <scene sceneID="36G-fq-pt9">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ChallengeReward" id="Omi-nj-OFU" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X1Q-oj-H9p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3917" y="192"/>
         </scene>
         <!--Select Taker Table View Controller-->
         <scene sceneID="cln-hS-gxp">
@@ -443,7 +452,6 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="G4b-Bn-Io4" kind="unwind" identifier="sendUnwindSegue" unwindAction="unwindToCreateWithSegue:" id="S1I-UQ-Fag"/>
                         <segue destination="G4b-Bn-Io4" kind="unwind" identifier="setupUnwindSegue" unwindAction="unwindToSetupChallengeWithSegue:" id="eMZ-2c-SYk"/>
                     </connections>
                 </tableViewController>

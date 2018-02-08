@@ -30,6 +30,7 @@ class FriendsViewController: GenericUIViewController, UITableViewDataSource, UIT
             try friendFeeds = Server.getFriendFeedData(userId: self.user!._id!)
         } catch let error {
             //TODO: catch error
+            print(error)
         }
 
         // Do any additional setup after loading the view.
@@ -108,9 +109,16 @@ class FriendsViewController: GenericUIViewController, UITableViewDataSource, UIT
         if (segue.identifier == "doubleDownSegue") {
             //let selectedIndex = self.friendFeedTableView.indexPath(for: sender as! UITableViewCell)
             let friendFeed = sender as! FriendFeed
-            let controller = segue.destination as? DoubleDownViewController
+            let controller = segue.destination as? UpdateChallengeRewardController
             controller?.user = self.user
-            controller?.challenge = friendFeed.challenge
+            //controller?.challenge = friendFeed.challenge
+            controller?.challenge_id = friendFeed.challenge.id
+            controller?.challenge_reward = friendFeed.challenge.reward
+            controller?.challenge_title = friendFeed.challenge.title
+            
+            controller?.viewTitle = "Double Down!"
+            controller?.viewAction = "Add how much?"
+            
         } else {
             let controller = segue.destination as? GenericUIViewController
             controller?.user = self.user
