@@ -45,28 +45,12 @@ class StatusViewController: MeGenericViewController {
         shapeLayer.strokeEnd = 0
         view.layer.addSublayer(shapeLayer)
         
-        let temp = (self.user?.jans?.available ?? 100) as NSNumber
-        let jansAvail: Double = Double(truncating: temp)
-
-        let challengesPending = Double(self.user?.challenges?.pending?.count ?? 0)
-        let challengesCompleted = Double(self.user?.challenges?.completed?.count ?? 0)
-        
-        let pctCompleted = (challengesCompleted/(challengesPending + challengesCompleted))
-        
-        animate(jansAvail: jansAvail, pctComplete: pctCompleted)
+        animate(jansAvail: self.getJansAvailable(), pctComplete: self.calculatePctCompleted())
     }
     
     override func viewWillAppear(_ animated: Bool) {
         if (self.needsRefresh) {
-            let temp = (self.user?.jans?.available ?? 100) as NSNumber
-            let jansAvail: Double = Double(truncating: temp)
-            
-            let challengesPending = Double(self.user?.challenges?.pending?.count ?? 0)
-            let challengesCompleted = Double(self.user?.challenges?.completed?.count ?? 0)
-            
-            let pctCompleted = (challengesCompleted/(challengesPending + challengesCompleted))
-            
-            self.animate(jansAvail: jansAvail, pctComplete: pctCompleted)
+            self.animate(jansAvail: self.getJansAvailable(), pctComplete: self.calculatePctCompleted())
             self.needsRefresh = false
         }
     }
@@ -77,16 +61,8 @@ class StatusViewController: MeGenericViewController {
     }
     
     @IBAction func statusViewTapped(_ sender: UITapGestureRecognizer) {
-        let temp = (user?.jans?.available ?? 100) as NSNumber
-        let jansAvail: Double = Double(truncating: temp)
-        
-        let challengesPending = Double(user?.challenges?.pending?.count ?? 1)
-        let challengesCompleted = Double(user?.challenges?.completed?.count ?? 0)
-        let pctCompleted = (challengesCompleted/(challengesPending + challengesCompleted))
-        
-        animate(jansAvail: jansAvail, pctComplete: pctCompleted)
+        self.animate(jansAvail: self.getJansAvailable(), pctComplete: self.calculatePctCompleted())
     }
-    
     
     /*
     // MARK: - Navigation
@@ -97,6 +73,23 @@ class StatusViewController: MeGenericViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    private func calculatePctCompleted() -> Double {
+        let challengesPending = Double(self.user?.challenges?.pending?.count ?? 0)
+        let challengesCompleted = Double(self.user?.challenges?.completed?.count ?? 0)
+        
+        var pctCompleted = 0.0
+        if ((challengesPending + challengesCompleted) > 0) {
+            pctCompleted = (challengesCompleted/(challengesPending + challengesCompleted))
+        }
+        
+        return pctCompleted
+    }
+    
+    private func getJansAvailable() -> Double {
+        let temp = (self.user?.jans?.available ?? 100) as NSNumber
+        return Double(truncating: temp)
+    }
     
     @objc public func animate(jansAvail: Double, pctComplete: Double) {
         jansValueLbl.format = "J %.02f"
