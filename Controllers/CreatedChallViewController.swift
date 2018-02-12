@@ -20,13 +20,13 @@ class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
 
         tableView.delegate = self
         tableView.dataSource = self
         
         self.adjustHeight()
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

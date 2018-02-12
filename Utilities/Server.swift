@@ -33,9 +33,9 @@ extension URLSession {
 
 public class Server {
     static private var error_location = "/Auxiliary/Server.swift"
-    //static private let server: String = "http://34.208.110.84:3000/"
+    static private let server: String = "http://34.208.110.84:3000/"
     //static private let server: String = "http://localhost:3000/"
-    static private let server: String = "http://192.168.1.109:3000/"
+    //static private let server: String = "http://192.168.1.109:3000/"
     
     private static func invokeHTTP (action: String, httpMethod: String, parameters: Dictionary<String, String>) {
         print("calling server...")
@@ -204,6 +204,7 @@ extension Server {
     }
     
     static func createNewUser(userInfo: User) throws -> User {
+        var newUser = userInfo
         let encoder = JSONEncoder()
         let data = try! encoder.encode(userInfo)
         
@@ -228,9 +229,14 @@ extension Server {
                         let defaults = UserDefaults.standard
                         defaults.set(session_data, forKey: "session_id")
                         
-                        let user = data_block["user"] as? NSDictionary
-                        userInfo._id = user!["_id"] as? String
-                        userInfo.identification?.password = nil
+                        //let user = data_block["user"] as? NSDictionary
+                        //userInfo._id = user!["_id"] as? String
+                        let jsonData = try JSONSerialization.data(withJSONObject: data_block["user"]!, options: .prettyPrinted)
+
+                        let decoder = JSONDecoder()
+                        newUser = try decoder.decode(User.self, from: jsonData)
+                        newUser.identification?.password = nil
+
                     }
                 }
             }
@@ -243,7 +249,7 @@ extension Server {
             throw customerError
         }
         
-        return userInfo
+        return newUser
     }
     
     static func getFriendFeedData(userId: String) throws -> [FriendFeed] {

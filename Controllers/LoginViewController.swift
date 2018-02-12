@@ -103,11 +103,10 @@ class LoginViewController: UIViewController {
     private func createGetUser(newUser: User) {
         do {
             self.user = try Server.createNewUser(userInfo: newUser)
-            if newUser._id != nil {
+            if self.user!._id != nil {
                 let defaults = UserDefaults.standard
                 defaults.set(newUser._id, forKey: "user_id")
                 
-                self.user = newUser
                 self.loginDone()
             }
             

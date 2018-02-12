@@ -38,6 +38,10 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
             challenge?.addSponsor(user: self.user!, reward: 1)
             self.sponsors = []
         }
+        
+        #if SIMULATOR
+            self.image = UIImage(named: "Play")
+        #endif
     }
 
     override func didReceiveMemoryWarning() {

@@ -26,6 +26,7 @@ class PreviewViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
         */
+
         self.previewImg.image = self.image
     }
 
