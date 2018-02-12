@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		760531C5201FE87C009F9B05 /* WatchChallenge.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 760531C4201FE87C009F9B05 /* WatchChallenge.storyboard */; };
+		0C2E348FA57052526124D323 /* Pods_iDareU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D62FC6370E402E2B247D1E3 /* Pods_iDareU.framework */; };
+		5364D80FFBFE5BC91C9E9BA0 /* Pods_iDareUTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F2807EFF87015E7BB37834 /* Pods_iDareUTests.framework */; };
+		760531C5201FE87C009F9B05 /* ViewChallenge.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 760531C4201FE87C009F9B05 /* ViewChallenge.storyboard */; };
 		760531D2201FECCC009F9B05 /* Local.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760531D1201FECCC009F9B05 /* Local.swift */; };
 		760531DB201FFD00009F9B05 /* Session.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 760531CA201FEAC6009F9B05 /* Session.xcdatamodeld */; };
 		760D91B2201EE1C000628725 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760D91B1201EE1C000628725 /* ErrorModel.swift */; };
-		760F7F89201E7D86001A38BF /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760F7F88201E7D86001A38BF /* TestData.swift */; };
 		7622385D202CDB3F00291AB6 /* ChallengeReward.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7622385C202CDB3F00291AB6 /* ChallengeReward.storyboard */; };
 		762296F7200A930A00D09D12 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762296F6200A930A00D09D12 /* FriendsViewController.swift */; };
 		762296F9200A961900D09D12 /* FriendFeedViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762296F8200A961900D09D12 /* FriendFeedViewCell.swift */; };
@@ -23,6 +24,9 @@
 		763BC54A2022D04D00F57BD4 /* SelectTakerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BC5492022D04D00F57BD4 /* SelectTakerTableViewController.swift */; };
 		763BC54C2022D5D100F57BD4 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BC54B2022D5D100F57BD4 /* Button.swift */; };
 		763BC54E2022D8F000F57BD4 /* SelectTakerTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BC54D2022D8F000F57BD4 /* SelectTakerTVCell.swift */; };
+		763FA6592031155500D7A46B /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763FA6582031155500D7A46B /* Data+Gzip.swift */; };
+		763FA65B2031156E00D7A46B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 763FA65A2031156E00D7A46B /* Assets.xcassets */; };
+		763FA65D2031291500D7A46B /* ViewChallengeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763FA65C2031291500D7A46B /* ViewChallengeNavigationController.swift */; };
 		7645385920012DB5004A96F7 /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7645385820012DB5004A96F7 /* Create.storyboard */; };
 		7645385E2001421C004A96F7 /* CollapsibleTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7645385A2001421B004A96F7 /* CollapsibleTableViewHeader.swift */; };
 		7645385F2001421C004A96F7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7645385B2001421B004A96F7 /* Extensions.swift */; };
@@ -40,6 +44,7 @@
 		765EF5682002EB33006B36B0 /* FriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765EF5672002EB33006B36B0 /* FriendViewModel.swift */; };
 		76682213201E5C6800F52659 /* RouterTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76682212201E5C6800F52659 /* RouterTabBarController.swift */; };
 		7675178E2009746400481464 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7675178D2009746400481464 /* Friends.storyboard */; };
+		767637C1202E567F0038D9E2 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 767637C0202E567F0038D9E2 /* awsconfiguration.json */; };
 		76789C9920205D9300024019 /* MeInitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76789C9820205D9300024019 /* MeInitialViewController.swift */; };
 		767A64C1201AF54A00EF0F84 /* CoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767A64C0201AF54A00EF0F84 /* CoreModel.swift */; };
 		767D1EA920250E6A0098DF47 /* SetupChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1EA820250E6A0098DF47 /* SetupChallengeViewController.swift */; };
@@ -50,13 +55,19 @@
 		76AA3F39202058B90038DAD9 /* CompletedChallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA3F38202058B90038DAD9 /* CompletedChallViewController.swift */; };
 		76AC733B20258BCD0072C7BF /* SelectSponsorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AC733A20258BCD0072C7BF /* SelectSponsorTableViewController.swift */; };
 		76AEB2DC201FC87B00953919 /* ChallengeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AEB2DB201FC87B00953919 /* ChallengeModel.swift */; };
+		76B1F131202E66B100AF6BE6 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76B1F132202E66B100AF6BE6 /* FBSDKCoreKit.framework */; };
+		76B1F134202E66BF00AF6BE6 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76B1F136202E66BF00AF6BE6 /* FBSDKLoginKit.framework */; };
 		76B1FBAC20009E9D00402173 /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76B1FBAB20009E9D00402173 /* Me.storyboard */; };
 		76B1FBAE2000A07100402173 /* Community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76B1FBAD2000A07100402173 /* Community.storyboard */; };
 		76B1FBB02000A0C700402173 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B1FBAF2000A0C700402173 /* CommunityViewController.swift */; };
+		76BD233F20302A4C00C360CA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BD233E20302A4C00C360CA /* MainViewController.swift */; };
+		76C555F42030BD240045603F /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C555F32030BD240045603F /* Media.swift */; };
 		76CDF83720200EF90098948C /* MyStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDF83620200EF90098948C /* MyStatusView.swift */; };
 		76CF47152021A0E700E7E5BF /* MeGenericViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CF47142021A0E700E7E5BF /* MeGenericViewController.swift */; };
 		76CF47172021AC3300E7E5BF /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CF47162021AC3300E7E5BF /* CreateViewController.swift */; };
 		76DDEEAB201929CD002CBE52 /* iDareU.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76DDEEA9201929CD002CBE52 /* iDareU.xcdatamodeld */; };
+		76E7396C202FE5CE00A2EDBC /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760F7F88201E7D86001A38BF /* TestData.swift */; };
+		76E7396E202FEA4400A2EDBC /* ViewChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7396D202FEA4400A2EDBC /* ViewChallengeViewController.swift */; };
 		76EA6B6A20211B9000AC40CA /* CreatedChallTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EA6B6920211B9000AC40CA /* CreatedChallTVCell.swift */; };
 		76EA6B6C202127ED00AC40CA /* UpdateChallengeRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EA6B6B202127ED00AC40CA /* UpdateChallengeRewardViewController.swift */; };
 		76EC146120167B1600C73DFC /* Signup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76EC146020167B1600C73DFC /* Signup.storyboard */; };
@@ -67,7 +78,7 @@
 		76FB05B32016EE49006E3406 /* Tester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FB05B22016EE49006E3406 /* Tester.swift */; };
 		76FC08E9201ECBAB008F9902 /* CreatedChallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FC08E8201ECBAB008F9902 /* CreatedChallViewController.swift */; };
 		76FC08ED201ED323008F9902 /* GenericUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FC08EC201ED323008F9902 /* GenericUIViewController.swift */; };
-		76FE633C20019EC600C8F8D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76FE633B20019EC600C8F8D5 /* Assets.xcassets */; };
+		A06E1B3B1473376B89A77E8F /* Pods_iDareUUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 443EDD39B49ECE36A9574972 /* Pods_iDareUUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,7 +99,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		760531C4201FE87C009F9B05 /* WatchChallenge.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WatchChallenge.storyboard; sourceTree = "<group>"; };
+		091510FF7439CBE66A7BCC03 /* Pods-iDareUUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iDareUUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iDareUUITests/Pods-iDareUUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		443EDD39B49ECE36A9574972 /* Pods_iDareUUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iDareUUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		760531C4201FE87C009F9B05 /* ViewChallenge.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ViewChallenge.storyboard; sourceTree = "<group>"; };
 		760531CB201FEAC6009F9B05 /* SessionTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SessionTracker.xcdatamodel; sourceTree = "<group>"; };
 		760531D1201FECCC009F9B05 /* Local.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Local.swift; sourceTree = "<group>"; };
 		760D91B1201EE1C000628725 /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
@@ -104,6 +117,10 @@
 		763BC5492022D04D00F57BD4 /* SelectTakerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTakerTableViewController.swift; sourceTree = "<group>"; };
 		763BC54B2022D5D100F57BD4 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		763BC54D2022D8F000F57BD4 /* SelectTakerTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTakerTVCell.swift; sourceTree = "<group>"; };
+		763E2D8C202FE347003B5E2D /* AWSS3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSS3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		763FA6582031155500D7A46B /* Data+Gzip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Gzip.swift"; sourceTree = "<group>"; };
+		763FA65A2031156E00D7A46B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		763FA65C2031291500D7A46B /* ViewChallengeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewChallengeNavigationController.swift; sourceTree = "<group>"; };
 		7645385820012DB5004A96F7 /* Create.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Create.storyboard; sourceTree = "<group>"; };
 		7645385A2001421B004A96F7 /* CollapsibleTableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewHeader.swift; sourceTree = "<group>"; };
 		7645385B2001421B004A96F7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -127,6 +144,7 @@
 		765EF5672002EB33006B36B0 /* FriendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewModel.swift; sourceTree = "<group>"; };
 		76682212201E5C6800F52659 /* RouterTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTabBarController.swift; sourceTree = "<group>"; };
 		7675178D2009746400481464 /* Friends.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
+		767637C0202E567F0038D9E2 /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		76789C9820205D9300024019 /* MeInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeInitialViewController.swift; sourceTree = "<group>"; };
 		767A64C0201AF54A00EF0F84 /* CoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreModel.swift; sourceTree = "<group>"; };
 		767D1EA820250E6A0098DF47 /* SetupChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupChallengeViewController.swift; sourceTree = "<group>"; };
@@ -137,13 +155,25 @@
 		76AA3F38202058B90038DAD9 /* CompletedChallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedChallViewController.swift; sourceTree = "<group>"; };
 		76AC733A20258BCD0072C7BF /* SelectSponsorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSponsorTableViewController.swift; sourceTree = "<group>"; };
 		76AEB2DB201FC87B00953919 /* ChallengeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeModel.swift; sourceTree = "<group>"; };
+		76B1F12A202E630300AF6BE6 /* AWSAuthUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAuthUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		76B1F12E202E652C00AF6BE6 /* AWSFacebookSignIn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSFacebookSignIn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		76B1F132202E66B100AF6BE6 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		76B1F135202E66BF00AF6BE6 /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		76B1F136202E66BF00AF6BE6 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76B1FBAB20009E9D00402173 /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
 		76B1FBAD2000A07100402173 /* Community.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Community.storyboard; sourceTree = "<group>"; };
 		76B1FBAF2000A0C700402173 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
+		76BD233E20302A4C00C360CA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		76C555F32030BD240045603F /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		76C633B7202E5E040075E144 /* AWSAuthCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAuthCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		76C633B8202E5E040075E144 /* AWSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		76C633B9202E5E040075E144 /* AWSMobileClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSMobileClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76CDF83620200EF90098948C /* MyStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStatusView.swift; sourceTree = "<group>"; };
 		76CF47142021A0E700E7E5BF /* MeGenericViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeGenericViewController.swift; sourceTree = "<group>"; };
 		76CF47162021AC3300E7E5BF /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		76DDEEAA201929CD002CBE52 /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
+		76E7396D202FEA4400A2EDBC /* ViewChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewChallengeViewController.swift; sourceTree = "<group>"; };
+		76E73970202FEB7800A2EDBC /* AWSMobileClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSMobileClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76EA6B6920211B9000AC40CA /* CreatedChallTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedChallTVCell.swift; sourceTree = "<group>"; };
 		76EA6B6B202127ED00AC40CA /* UpdateChallengeRewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChallengeRewardViewController.swift; sourceTree = "<group>"; };
 		76EC146020167B1600C73DFC /* Signup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Signup.storyboard; sourceTree = "<group>"; };
@@ -154,7 +184,13 @@
 		76FB05B22016EE49006E3406 /* Tester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tester.swift; sourceTree = "<group>"; };
 		76FC08E8201ECBAB008F9902 /* CreatedChallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedChallViewController.swift; sourceTree = "<group>"; };
 		76FC08EC201ED323008F9902 /* GenericUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericUIViewController.swift; sourceTree = "<group>"; };
-		76FE633B20019EC600C8F8D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		85E0C3B4FC3408BB20E98669 /* Pods-iDareUTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iDareUTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iDareUTests/Pods-iDareUTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8D5D6B41A30A06EB1C072362 /* Pods-iDareUUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iDareUUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iDareUUITests/Pods-iDareUUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9D62FC6370E402E2B247D1E3 /* Pods_iDareU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iDareU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A179DF3598A969CED8A9863C /* Pods-iDareU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iDareU.release.xcconfig"; path = "Pods/Target Support Files/Pods-iDareU/Pods-iDareU.release.xcconfig"; sourceTree = "<group>"; };
+		E51B7905295995FF456EDA94 /* Pods-iDareUTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iDareUTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iDareUTests/Pods-iDareUTests.release.xcconfig"; sourceTree = "<group>"; };
+		E7F2807EFF87015E7BB37834 /* Pods_iDareUTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iDareUTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA00F53771B5B3DB7592A64D /* Pods-iDareU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iDareU.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iDareU/Pods-iDareU.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +198,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76B1F134202E66BF00AF6BE6 /* FBSDKLoginKit.framework in Frameworks */,
+				76B1F131202E66B100AF6BE6 /* FBSDKCoreKit.framework in Frameworks */,
+				0C2E348FA57052526124D323 /* Pods_iDareU.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5364D80FFBFE5BC91C9E9BA0 /* Pods_iDareUTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,12 +216,46 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A06E1B3B1473376B89A77E8F /* Pods_iDareUUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32EFA1063A0D96A6CC41C6D8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				76E73970202FEB7800A2EDBC /* AWSMobileClient.framework */,
+				763E2D8C202FE347003B5E2D /* AWSS3.framework */,
+				76B1F135202E66BF00AF6BE6 /* Bolts.framework */,
+				76B1F136202E66BF00AF6BE6 /* FBSDKLoginKit.framework */,
+				76B1F132202E66B100AF6BE6 /* FBSDKCoreKit.framework */,
+				76B1F12E202E652C00AF6BE6 /* AWSFacebookSignIn.framework */,
+				76B1F12A202E630300AF6BE6 /* AWSAuthUI.framework */,
+				76C633B7202E5E040075E144 /* AWSAuthCore.framework */,
+				76C633B8202E5E040075E144 /* AWSCore.framework */,
+				76C633B9202E5E040075E144 /* AWSMobileClient.framework */,
+				9D62FC6370E402E2B247D1E3 /* Pods_iDareU.framework */,
+				E7F2807EFF87015E7BB37834 /* Pods_iDareUTests.framework */,
+				443EDD39B49ECE36A9574972 /* Pods_iDareUUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6487D62ACDD49B78B6B73349 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EA00F53771B5B3DB7592A64D /* Pods-iDareU.debug.xcconfig */,
+				A179DF3598A969CED8A9863C /* Pods-iDareU.release.xcconfig */,
+				85E0C3B4FC3408BB20E98669 /* Pods-iDareUTests.debug.xcconfig */,
+				E51B7905295995FF456EDA94 /* Pods-iDareUTests.release.xcconfig */,
+				091510FF7439CBE66A7BCC03 /* Pods-iDareUUITests.debug.xcconfig */,
+				8D5D6B41A30A06EB1C072362 /* Pods-iDareUUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		76290906201AA66D00C1FA1F /* Validation */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,16 +275,18 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		7645386320014464004A96F7 /* Auxiliary */ = {
+		7645386320014464004A96F7 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				763FA6582031155500D7A46B /* Data+Gzip.swift */,
 				765EF5652002CBEB006B36B0 /* EFCountingLabel.swift */,
 				7645385B2001421B004A96F7 /* Extensions.swift */,
+				76C555F32030BD240045603F /* Media.swift */,
 				760531D1201FECCC009F9B05 /* Local.swift */,
 				7696C997201698560074717E /* Server.swift */,
 				760F7F88201E7D86001A38BF /* TestData.swift */,
 			);
-			path = Auxiliary;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		7650EA07200095070011125B = {
@@ -223,11 +299,13 @@
 				76DE769B2001CB8400F790D8 /* Controllers */,
 				76290906201AA66D00C1FA1F /* Validation */,
 				763B13F020217D7D006DC47E /* Extensions */,
-				7645386320014464004A96F7 /* Auxiliary */,
+				7645386320014464004A96F7 /* Utilities */,
 				7650EA29200095080011125B /* iDareUTests */,
 				7650EA34200095080011125B /* iDareUUITests */,
 				7650EA11200095080011125B /* Products */,
 				76DE769C2001CC5800F790D8 /* Trash */,
+				6487D62ACDD49B78B6B73349 /* Pods */,
+				32EFA1063A0D96A6CC41C6D8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -244,7 +322,8 @@
 		7650EA12200095080011125B /* iDareU */ = {
 			isa = PBXGroup;
 			children = (
-				76FE633B20019EC600C8F8D5 /* Assets.xcassets */,
+				763FA65A2031156E00D7A46B /* Assets.xcassets */,
+				767637C0202E567F0038D9E2 /* awsconfiguration.json */,
 				7650EA13200095080011125B /* AppDelegate.swift */,
 				7650EA21200095080011125B /* Info.plist */,
 			);
@@ -310,7 +389,7 @@
 				7675178D2009746400481464 /* Friends.storyboard */,
 				7622385C202CDB3F00291AB6 /* ChallengeReward.storyboard */,
 				76B1FBAB20009E9D00402173 /* Me.storyboard */,
-				760531C4201FE87C009F9B05 /* WatchChallenge.storyboard */,
+				760531C4201FE87C009F9B05 /* ViewChallenge.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -318,6 +397,7 @@
 		76DE769B2001CB8400F790D8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				76BD233E20302A4C00C360CA /* MainViewController.swift */,
 				76FC08EC201ED323008F9902 /* GenericUIViewController.swift */,
 				76CF47142021A0E700E7E5BF /* MeGenericViewController.swift */,
 				76EC146220167E5B00C73DFC /* SignupViewController.swift */,
@@ -337,6 +417,8 @@
 				76AA3F362020583E0038DAD9 /* PendingChallViewController.swift */,
 				76FC08E8201ECBAB008F9902 /* CreatedChallViewController.swift */,
 				76AA3F38202058B90038DAD9 /* CompletedChallViewController.swift */,
+				763FA65C2031291500D7A46B /* ViewChallengeNavigationController.swift */,
+				76E7396D202FEA4400A2EDBC /* ViewChallengeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -358,9 +440,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7650EA3A200095080011125B /* Build configuration list for PBXNativeTarget "iDareU" */;
 			buildPhases = (
+				729E275B47375A86EC49C9E9 /* [CP] Check Pods Manifest.lock */,
 				7650EA0C200095080011125B /* Sources */,
 				7650EA0D200095080011125B /* Frameworks */,
 				7650EA0E200095080011125B /* Resources */,
+				E5DF65061D29B74C562CF7D2 /* [CP] Embed Pods Frameworks */,
+				A192858C246B23033244EEA8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -375,9 +460,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7650EA3D200095080011125B /* Build configuration list for PBXNativeTarget "iDareUTests" */;
 			buildPhases = (
+				B85EC1889F4A84E65BE36B96 /* [CP] Check Pods Manifest.lock */,
 				7650EA22200095080011125B /* Sources */,
 				7650EA23200095080011125B /* Frameworks */,
 				7650EA24200095080011125B /* Resources */,
+				BB5BA2CE378061D624874687 /* [CP] Embed Pods Frameworks */,
+				7C06060BED8D7E8E548AC0F5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -393,9 +481,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7650EA40200095080011125B /* Build configuration list for PBXNativeTarget "iDareUUITests" */;
 			buildPhases = (
+				CE29C98709D62B1AB1CBF114 /* [CP] Check Pods Manifest.lock */,
 				7650EA2D200095080011125B /* Sources */,
 				7650EA2E200095080011125B /* Frameworks */,
 				7650EA2F200095080011125B /* Resources */,
+				98645BD2C8F2A5478F627981 /* [CP] Embed Pods Frameworks */,
+				DCCFD7DB4428DD919E7A2457 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -461,12 +552,13 @@
 			files = (
 				7650EA20200095080011125B /* LaunchScreen.storyboard in Resources */,
 				7675178E2009746400481464 /* Friends.storyboard in Resources */,
+				767637C1202E567F0038D9E2 /* awsconfiguration.json in Resources */,
 				76B1FBAC20009E9D00402173 /* Me.storyboard in Resources */,
-				760531C5201FE87C009F9B05 /* WatchChallenge.storyboard in Resources */,
+				763FA65B2031156E00D7A46B /* Assets.xcassets in Resources */,
+				760531C5201FE87C009F9B05 /* ViewChallenge.storyboard in Resources */,
 				76B1FBAE2000A07100402173 /* Community.storyboard in Resources */,
 				7622385D202CDB3F00291AB6 /* ChallengeReward.storyboard in Resources */,
 				7650EA1B200095080011125B /* Main.storyboard in Resources */,
-				76FE633C20019EC600C8F8D5 /* Assets.xcassets in Resources */,
 				76EC146120167B1600C73DFC /* Signup.storyboard in Resources */,
 				765A09DD2017BE950004A67D /* Router.storyboard in Resources */,
 				765A09DF2017BF0C0004A67D /* Login.storyboard in Resources */,
@@ -490,6 +582,178 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		729E275B47375A86EC49C9E9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iDareU-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7C06060BED8D7E8E548AC0F5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iDareUTests/Pods-iDareUTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		98645BD2C8F2A5478F627981 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iDareUUITests/Pods-iDareUUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A192858C246B23033244EEA8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iDareU/Pods-iDareU-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B85EC1889F4A84E65BE36B96 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iDareUTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB5BA2CE378061D624874687 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iDareUTests/Pods-iDareUTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE29C98709D62B1AB1CBF114 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iDareUUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DCCFD7DB4428DD919E7A2457 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iDareUUITests/Pods-iDareUUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5DF65061D29B74C562CF7D2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-iDareU/Pods-iDareU-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AWSAuthCore/AWSAuthCore.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSAuthUI/AWSAuthUI.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProvider/AWSCognitoIdentityProvider.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProviderASF/AWSCognitoIdentityProviderASF.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSFacebookSignIn/AWSFacebookSignIn.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSMobileClient/AWSMobileClient.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSS3/AWSS3.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSUserPoolsSignIn/AWSUserPoolsSignIn.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSAuthCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSAuthUI.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProvider.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProviderASF.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSFacebookSignIn.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSMobileClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSS3.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSUserPoolsSignIn.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iDareU/Pods-iDareU-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7650EA0C200095080011125B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -498,6 +762,8 @@
 				76AA3F3320204BAB0038DAD9 /* MeViewController.swift in Sources */,
 				76EA6B6A20211B9000AC40CA /* CreatedChallTVCell.swift in Sources */,
 				760D91B2201EE1C000628725 /* ErrorModel.swift in Sources */,
+				76E7396C202FE5CE00A2EDBC /* TestData.swift in Sources */,
+				76C555F42030BD240045603F /* Media.swift in Sources */,
 				767A64C1201AF54A00EF0F84 /* CoreModel.swift in Sources */,
 				76EC1469201686DE00C73DFC /* SignupValidationManager.swift in Sources */,
 				763BC54A2022D04D00F57BD4 /* SelectTakerTableViewController.swift in Sources */,
@@ -524,22 +790,25 @@
 				763BC54C2022D5D100F57BD4 /* Button.swift in Sources */,
 				765A09D82017BB5D0004A67D /* LoginViewController.swift in Sources */,
 				76B1FBB02000A0C700402173 /* CommunityViewController.swift in Sources */,
+				763FA65D2031291500D7A46B /* ViewChallengeNavigationController.swift in Sources */,
 				7645385E2001421C004A96F7 /* CollapsibleTableViewHeader.swift in Sources */,
 				7650EA14200095080011125B /* AppDelegate.swift in Sources */,
 				76AEB2DC201FC87B00953919 /* ChallengeModel.swift in Sources */,
-				760F7F89201E7D86001A38BF /* TestData.swift in Sources */,
 				76A918EA20095A7B00BE27A1 /* CommunityViewCell.swift in Sources */,
 				763688C12003036C00129279 /* StatusViewController.swift in Sources */,
 				76CF47152021A0E700E7E5BF /* MeGenericViewController.swift in Sources */,
 				76EC14652016861E00C73DFC /* SignupFormValidationModel.swift in Sources */,
+				763FA6592031155500D7A46B /* Data+Gzip.swift in Sources */,
 				7650EA16200095080011125B /* CaptureVideoViewController.swift in Sources */,
 				762296F9200A961900D09D12 /* FriendFeedViewCell.swift in Sources */,
 				76FC08ED201ED323008F9902 /* GenericUIViewController.swift in Sources */,
 				76376136202064CB006BE727 /* PendingChallTVCell.swift in Sources */,
+				76BD233F20302A4C00C360CA /* MainViewController.swift in Sources */,
 				763BC54E2022D8F000F57BD4 /* SelectTakerTVCell.swift in Sources */,
 				76DDEEAB201929CD002CBE52 /* iDareU.xcdatamodeld in Sources */,
 				760531DB201FFD00009F9B05 /* Session.xcdatamodeld in Sources */,
 				76AA3F372020583E0038DAD9 /* PendingChallViewController.swift in Sources */,
+				76E7396E202FEA4400A2EDBC /* ViewChallengeViewController.swift in Sources */,
 				76682213201E5C6800F52659 /* RouterTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -706,6 +975,7 @@
 		};
 		7650EA3B200095080011125B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA00F53771B5B3DB7592A64D /* Pods-iDareU.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "idu-AppIcon";
 				CLANG_ENABLE_MODULES = YES;
@@ -726,6 +996,7 @@
 		};
 		7650EA3C200095080011125B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A179DF3598A969CED8A9863C /* Pods-iDareU.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "idu-AppIcon";
 				CLANG_ENABLE_MODULES = YES;
@@ -745,6 +1016,7 @@
 		};
 		7650EA3E200095080011125B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 85E0C3B4FC3408BB20E98669 /* Pods-iDareUTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -761,6 +1033,7 @@
 		};
 		7650EA3F200095080011125B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E51B7905295995FF456EDA94 /* Pods-iDareUTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -777,6 +1050,7 @@
 		};
 		7650EA41200095080011125B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 091510FF7439CBE66A7BCC03 /* Pods-iDareUUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -792,6 +1066,7 @@
 		};
 		7650EA42200095080011125B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D5D6B41A30A06EB1C072362 /* Pods-iDareUUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -118,7 +118,7 @@ class UpdateChallengeRewardController: UIViewController {
             if (controller.challenge?.sponsor == nil) {
                 controller.challenge!.addSponsor(user: self.user!, reward: Int(self.addRewardSlider.value))
             } else {
-                controller.challenge?.sponsor.reward = Int(self.addRewardSlider.value)
+                controller.challenge?.updateSponsorReward(reward: Int(self.addRewardSlider.value))
             }
             controller.challengeRewardBtn.setTitle(self.challengeRewardLbl.text!, for: UIControlState.normal)
         }

@@ -73,7 +73,7 @@ class SelectSponsorTableViewController: UITableViewController {
             
             cell.cellCheckbox.friend = current_friend
             cell.cellCheckbox.isCommunity = false
-            cell.friendUsernameLbl.text = (current_friend.username ?? "")
+            cell.friendUsernameLbl.text = (current_friend.identification?.username ?? "")
 
             if (selected_friend?._id != current_friend._id) {
                 cell.cellCheckbox.isChecked = false

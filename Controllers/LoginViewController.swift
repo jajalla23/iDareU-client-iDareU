@@ -7,10 +7,17 @@
 //
 
 import UIKit
+import FBSDKLoginKit
+import FBSDKCoreKit
 
 class LoginViewController: UIViewController {
     
-    var user: User? = nil;
+    var user: User?
+    
+    private let facebookReadPermissions = ["public_profile", "email", "user_friends"]
+    private var fbLoginManager: FBSDKLoginManager?
+    private var loginSuccessful: Bool = false
+    
     @IBOutlet weak var username_input: UITextField!
     @IBOutlet weak var password_input: UITextField!
     @IBOutlet weak var loginStatusLbl: UILabel!
@@ -19,6 +26,12 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if (FBSDKAccessToken.current() != nil && self.loginSuccessful == true) {
+            self.fbloginSuccess()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,16 +51,74 @@ class LoginViewController: UIViewController {
             if (self.user != nil) {
                 let defaults = UserDefaults.standard
                 defaults.set(user?._id, forKey: "user_id")
-                
+             
                 self.loginDone()
             }
-            
         } catch let error as CustomError {
             loginStatusLbl.isHidden = false
             loginStatusLbl.text = error.description
         } catch {
             loginStatusLbl.isHidden = false
             loginStatusLbl.text = "Unknown Error"
+        }
+    }
+    
+    @IBAction func fbBtnTapped(_ sender: Any) {
+        fbLoginManager = FBSDKLoginManager()
+        fbLoginManager!.logIn(withReadPermissions: self.facebookReadPermissions, from: self, handler: { (result, error) -> Void in
+            if (error == nil) {
+                let fbloginresult : FBSDKLoginManagerLoginResult = result!
+                
+                if(fbloginresult.isCancelled) {
+                    //Show Cancel alert
+                } else if(fbloginresult.grantedPermissions.contains("email")) {
+                    self.loginSuccessful = true
+                    //fbLoginManager.logOut()
+                }
+            } else {
+                self.loginStatusLbl.isHidden = false
+                self.loginStatusLbl.text = error?.localizedDescription
+            }
+        })
+    }
+    
+    private func fbloginSuccess() {
+        if((FBSDKAccessToken.current()) != nil){
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: { (connection, result, error) -> Void in
+                if (error == nil){
+                    let result_dict = result as! NSDictionary
+                    print("results")
+                    print(result_dict)
+                    let email = result_dict["email"] as! String
+                    let fb_id = result_dict["id"] as! String
+                    
+                    let temp = User.init(facebook_id: fb_id, email: email)
+                    
+                    self.createGetUser(newUser: temp)
+                }
+            })
+        }
+    }
+    
+    private func createGetUser(newUser: User) {
+        do {
+            self.user = try Server.createNewUser(userInfo: newUser)
+            if newUser._id != nil {
+                let defaults = UserDefaults.standard
+                defaults.set(newUser._id, forKey: "user_id")
+                
+                self.user = newUser
+                self.loginDone()
+            }
+            
+        } catch let error as CustomError {
+            loginStatusLbl.isHidden = false
+            loginStatusLbl.text = error.description
+            self.fbLoginManager!.logOut()
+        } catch {
+            loginStatusLbl.isHidden = false
+            loginStatusLbl.text = "Unknown Error"
+            self.fbLoginManager!.logOut()
         }
     }
     

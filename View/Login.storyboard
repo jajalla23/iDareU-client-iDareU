@@ -60,17 +60,30 @@
                                 <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cr-nB-1qZ" userLabel="Facebook Button">
+                                <rect key="frame" x="0.0" y="474" width="375" height="117"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="117" id="lnY-PX-Eu9"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="fb_login"/>
+                                <connections>
+                                    <action selector="fbBtnTapped:" destination="TiX-Ol-tU4" eventType="touchUpInside" id="6ok-BW-j7r"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="0.33350278249999998" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ajD-Qe-z2Q" firstAttribute="leading" secondItem="X01-XU-amC" secondAttribute="leading" constant="85" id="16j-iY-PJL"/>
                             <constraint firstItem="43I-ER-mCK" firstAttribute="top" secondItem="ajD-Qe-z2Q" secondAttribute="bottom" constant="28" id="1bU-UL-0sC"/>
+                            <constraint firstItem="9cr-nB-1qZ" firstAttribute="trailing" secondItem="X01-XU-amC" secondAttribute="trailing" id="4ar-rK-dMy"/>
                             <constraint firstItem="ajD-Qe-z2Q" firstAttribute="top" secondItem="aPO-1J-uIQ" secondAttribute="bottom" constant="17" id="4by-BT-U8p"/>
+                            <constraint firstItem="9cr-nB-1qZ" firstAttribute="leading" secondItem="X01-XU-amC" secondAttribute="leading" id="4e6-wp-yp8"/>
                             <constraint firstItem="aPO-1J-uIQ" firstAttribute="leading" secondItem="X01-XU-amC" secondAttribute="leading" constant="85" id="CQq-uA-J2z"/>
                             <constraint firstItem="aPO-1J-uIQ" firstAttribute="top" secondItem="gyr-fv-eCa" secondAttribute="bottom" constant="32" id="FJh-TI-cKe"/>
                             <constraint firstItem="X01-XU-amC" firstAttribute="trailing" secondItem="aPO-1J-uIQ" secondAttribute="trailing" constant="85" id="Jrn-bP-ilJ"/>
                             <constraint firstItem="RMH-qG-kdz" firstAttribute="top" secondItem="43I-ER-mCK" secondAttribute="bottom" constant="8" id="SyU-qD-gwj"/>
                             <constraint firstItem="X01-XU-amC" firstAttribute="trailing" secondItem="ajD-Qe-z2Q" secondAttribute="trailing" constant="85" id="UNu-cM-iwT"/>
+                            <constraint firstItem="9cr-nB-1qZ" firstAttribute="top" secondItem="RMH-qG-kdz" secondAttribute="bottom" constant="15" id="Uac-qe-Jiy"/>
                             <constraint firstItem="aPO-1J-uIQ" firstAttribute="centerX" secondItem="HMB-uN-l5z" secondAttribute="centerX" id="bMZ-7x-Tpm"/>
                             <constraint firstItem="gyr-fv-eCa" firstAttribute="centerX" secondItem="HMB-uN-l5z" secondAttribute="centerX" id="bfv-Aa-vvP"/>
                             <constraint firstItem="43I-ER-mCK" firstAttribute="centerX" secondItem="HMB-uN-l5z" secondAttribute="centerX" id="dYS-K6-EWJ"/>
@@ -107,4 +120,7 @@
             <point key="canvasLocation" x="710" y="-873"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="fb_login" width="350" height="117"/>
+    </resources>
 </document>

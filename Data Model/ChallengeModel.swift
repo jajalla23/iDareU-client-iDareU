@@ -99,8 +99,19 @@ public class ChallengeDetails: Codable {
         self.reward += reward
     }
     
-    public func addMedia(challengeVideoURL: String, imagePrevURL: String?) {
-        self.media?.challengeVideoURL = challengeVideoURL
+    public func updateSponsorReward(reward: Int) {
+        let new_reward = (self.reward - self.sponsor.reward) + reward
+        self.sponsor.reward = reward
+        self.reward = new_reward
+    }
+    
+    public func addMedia(fileName: String, type: String, imagePrevURL: String?) {
+        if (self.media == nil) {
+            self.media = Media.init(fileName: fileName, type: type)
+        } else {
+            self.media?.fileName = fileName
+        }
+        
         self.media?.challengeImagePreviewURL = imagePrevURL
     }
     
@@ -160,9 +171,12 @@ public class Sponsor: Codable {
 
 public class Media: Codable {
     public var challengeImagePreviewURL: String?
-    public var challengeVideoURL: String
+    //public var challengeVideoURL: String
+    public var fileName: String
+    public var type: String
     
-    init(challengeVideoURL: String) {
-        self.challengeVideoURL = challengeVideoURL
+    init(fileName: String, type: String) {
+        self.fileName = fileName
+        self.type = type
     }
 }

@@ -74,10 +74,10 @@
             </objects>
             <point key="canvasLocation" x="664.79999999999995" y="-171.42857142857144"/>
         </scene>
-        <!--WatchChallenge-->
+        <!--ViewChallenge-->
         <scene sceneID="Ox7-PY-c2Q">
             <objects>
-                <viewControllerPlaceholder storyboardName="WatchChallenge" id="Nkz-2D-03o" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="ViewChallenge" id="Nkz-2D-03o" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ygs-1D-zEJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1362" y="-304"/>

@@ -79,10 +79,40 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func sendBtnTapped(_ sender: Any) {
         self.challenge?.title = self.challengeTitleTxtField.text!
+        let uuid = UUID.init()
         
         if (self.sponsors!.count == 0) {
-            self.user?.challenges?.addSponsoredChallenge(challengeDetail: self.challenge!)
+            var response = [self.challenge!]
             //update server to add to sponsored challenge
+            
+            let dispatchGroup = DispatchGroup()
+            self.challenge?.addMedia(fileName: uuid.uuidString, type: "image/jpg", imagePrevURL: nil)
+            
+            do {
+                dispatchGroup.enter()
+                //try Server.uploadMedia(media: UIImageJPEGRepresentation(self.image!, 1)!, uuid: uuid)
+                try Server.uploadMedia(media: self.image!.compressJPEGImage(), uuid: uuid)
+            } catch let c_error as CustomError {
+                print(c_error)
+                dispatchGroup.leave()
+            } catch let error {
+                print(error)
+                dispatchGroup.leave()
+            }
+            
+            do {
+                response = try Server.createChallenge(challenges: response)
+            } catch let c_error as CustomError {
+                print(c_error)
+            } catch let error {
+                print(error)
+            }
+            
+            dispatchGroup.wait(timeout: DispatchTime.now() + 10)
+            DispatchQueue.main.async {
+                self.user?.challenges?.addSponsoredChallenge(challengeDetail: response[0])
+            }
+            
             
         } else {
             let split_reward = self.challenge!.reward/self.sponsors!.count
@@ -180,7 +210,9 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction func unwindToSetupChallenge(segue: UIStoryboardSegue) {}
+    @IBAction func unwindToSetupChallenge(segue: UIStoryboardSegue) {
+        //print("reward: " + (self.challenge?.reward.description)!)
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)

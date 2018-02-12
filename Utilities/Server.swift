@@ -33,7 +33,9 @@ extension URLSession {
 
 public class Server {
     static private var error_location = "/Auxiliary/Server.swift"
-    static private let server: String = "http://34.208.110.84:3000/" //34.208.110.84 //192.168.0.101
+    //static private let server: String = "http://34.208.110.84:3000/"
+    //static private let server: String = "http://localhost:3000/"
+    static private let server: String = "http://192.168.1.109:3000/"
     
     private static func invokeHTTP (action: String, httpMethod: String, parameters: Dictionary<String, String>) {
         print("calling server...")
@@ -58,7 +60,7 @@ public class Server {
         print(task)
     }
     
-    private static func invokeHTTP_Sync (action: String, httpMethod: String, data: Data?) throws -> Data? {
+    private static func invokeHTTP(action: String, httpMethod: String, data: Data?, sync: Bool = true) throws -> Data? {
         print("calling server sync...")
 
         let url = URL(string: self.server + action)!
@@ -74,14 +76,14 @@ public class Server {
         return task.0
     }
     
-    private static func invokeHTTP_Async (action: String, httpMethod: String, data: Data?) throws {
+    private static func invokeHTTP(action: String, httpMethod: String, data: Data?, async: Bool = true) throws {
         print("calling server async...")
         
         let url = URL(string: self.server + action)!
         let session = URLSession.shared
         
         var request = URLRequest(url: url)
-        request.httpMethod = httpMethod //set http method as POST
+        request.httpMethod = httpMethod
         request.httpBody = data
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -108,13 +110,40 @@ public class Server {
         task.resume()
     }
     
+    public static func invokeHTTP(action: String, httpMethod: String, data: Data, filename: String, uuid: UUID, sendfile: Bool?) throws -> Data? {
+        print("calling server send file...")
+        
+        let url = URL(string: self.server + action)!
+        let session = URLSession.shared
+        
+        let boundary = "Boundary-\(uuid.uuidString)"
+        
+        let optimizedData: Data = try! data.gzipped(level: .bestCompression)
+        print(data.count)
+        print(optimizedData.count)
+        let fullData = MediaUtilities.photoDataToFormData(data: optimizedData, boundary: boundary, fileName: filename)
+
+        var request = URLRequest(url: url)
+        request.httpMethod = httpMethod
+        request.httpBody = fullData
+        
+        request.addValue(String(data.count), forHTTPHeaderField: "Content-Length")
+        request.addValue("multipart/form-data; boundary=" + boundary, forHTTPHeaderField: "Content-Type")
+        request.addValue("gzip, deflate", forHTTPHeaderField: "Accept-Encoding")
+
+        let task = session.synchronousDataTask(with: request as URLRequest)
+        return task.0
+    }
+}
+
+extension Server {
     static func login(username: String, password: String) throws -> User? {
         let userResp: User? = nil
         
         if (username == "test") {
             return TestData.generateUser()
         }
-
+        
         let credentials: NSDictionary = NSMutableDictionary()
         
         credentials.setValue(username, forKey: "username")
@@ -127,7 +156,7 @@ public class Server {
             print(error.localizedDescription)
         }
         
-        guard let respData = try invokeHTTP_Sync(action: "login", httpMethod: "POST", data: data)
+        guard let respData = try invokeHTTP(action: "login", httpMethod: "POST", data: data, sync: true)
             else {
                 let cError: CustomError = CustomError.init(code: "002", description: "Unable to call server", severity: Severity.HIGH, location: error_location)
                 throw cError
@@ -156,6 +185,7 @@ public class Server {
                         let userObj = try decoder.decode(User.self, from: jsonData) as User
                         
                         print("return here")
+                        userObj.identification?.password = nil
                         return userObj
                     }
                 }
@@ -177,7 +207,7 @@ public class Server {
         let encoder = JSONEncoder()
         let data = try! encoder.encode(userInfo)
         
-        guard let respData = try invokeHTTP_Sync(action: "user/create", httpMethod: "POST", data: data)
+        guard let respData = try invokeHTTP(action: "users/create", httpMethod: "POST", data: data, sync: true)
             else {
                 let cError: CustomError = CustomError.init(code: "002", description: "Unable to call server", severity: Severity.HIGH, location: error_location)
                 throw cError
@@ -200,6 +230,7 @@ public class Server {
                         
                         let user = data_block["user"] as? NSDictionary
                         userInfo._id = user!["_id"] as? String
+                        userInfo.identification?.password = nil
                     }
                 }
             }
@@ -219,7 +250,7 @@ public class Server {
         if ("a" == "a") {
             return TestData.getFriendFeed()
         } else {
-            guard let respData = try invokeHTTP_Sync(action: "friends/" + userId + "/feed", httpMethod: "GET", data: nil)
+            guard let respData = try invokeHTTP(action: "friends/" + userId + "/feed", httpMethod: "GET", data: nil, sync: true)
                 else {
                     let cError: CustomError = CustomError.init(code: "002", description: "Unable to call server", severity: Severity.HIGH, location: error_location)
                     throw cError
@@ -229,6 +260,86 @@ public class Server {
             let friendFeeds: [FriendFeed] = []
             return friendFeeds
         }
+    }
+    
+    static func createChallenge(challenges: [ChallengeDetails]) throws -> [ChallengeDetails] {
+        let encoder = JSONEncoder()
+        let data = try! encoder.encode(challenges)
+        guard let respData = try invokeHTTP(action: "challenges/create", httpMethod: "POST", data: data, sync: true)
+            else {
+                let cError: CustomError = CustomError.init(code: "002", description: "Unable to call server", severity: Severity.HIGH, location: error_location)
+                throw cError
+        }
         
+        do {
+            if let json = try JSONSerialization.jsonObject(with: respData, options: .mutableContainers) as? [String: Any] {
+                let status = json["status"] as? NSDictionary
+                if (status!["code"] as? String != "001") {
+                    print("error post response")
+                    let error: CustomError = CustomError.init(code: status!["code"] as! String, description: status!["description"] as! String, severity: Severity.HIGH, location: self.error_location)
+                    
+                    throw error
+                }
+                
+                if let data_block = json["data"] as? NSDictionary {
+                    //for each
+                    if let session_data = data_block["session"] as? String {
+                        let defaults = UserDefaults.standard
+                        defaults.set(session_data, forKey: "session_id")
+                        
+                        let user = data_block["user"] as? NSDictionary
+                        challenges[0]._id = user!["_id"] as? String
+                    }
+                }
+            }
+        } catch let customError as CustomError {
+            throw customError
+        } catch let error {
+            print(error.localizedDescription)
+            let customerError: CustomError = CustomError.init(code: "003", description: error.localizedDescription, severity: Severity.HIGH, location: self.error_location)
+            
+            throw customerError
+        }
+        
+        return challenges
+    }
+    
+    static func uploadMedia(media: Data, uuid: UUID) throws -> Void {
+        guard let respData = try invokeHTTP(action: "media/upload", httpMethod: "POST", data: media, filename: uuid.uuidString, uuid: uuid, sendfile: true)
+            else {
+                let cError: CustomError = CustomError.init(code: "002", description: "Unable to call server", severity: Severity.HIGH, location: error_location)
+                throw cError
+        }
+        
+        do {
+            if let json = try JSONSerialization.jsonObject(with: respData, options: .mutableContainers) as? [String: Any] {
+                let status = json["status"] as? NSDictionary
+                if (status!["code"] as? String != "001") {
+                    print("error post response")
+                    let error: CustomError = CustomError.init(code: status!["code"] as! String, description: status!["description"] as! String, severity: Severity.HIGH, location: self.error_location)
+                    
+                    throw error
+                }
+            }
+        } catch let customError as CustomError {
+            throw customError
+        } catch let error {
+            print(error.localizedDescription)
+            let customerError: CustomError = CustomError.init(code: "003", description: error.localizedDescription, severity: Severity.HIGH, location: self.error_location)
+            
+            throw customerError
+        }
+    }
+    
+    static func fetchMedia(mediaName: String, mediaType: String) throws -> Data? {
+        print("calling fetch media")
+
+        let session = URLSession(configuration: .default)
+        let type = ((mediaType == "image/jpg" || mediaType == "image/jpeg" || mediaType == "image/png") ? "media/image/" : "media/video/")
+        let url = URL(string: self.server + type + mediaName)!
+        
+        let request = URLRequest(url: url)
+        let task = session.synchronousDataTask(with: request)
+        return task.0        
     }
 }

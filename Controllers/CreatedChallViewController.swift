@@ -9,7 +9,9 @@
 import UIKit
 
 class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDataSource, UITableViewDelegate {
-       
+    
+    private var selectedChallenge: ChallengeDetails?
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tableView: UITableView!
     
@@ -62,8 +64,7 @@ class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let challenge: ChallengeDetails = (self.user?.challenges?.sponsored![indexPath.row])!
-        print(challenge._id ?? "unknown")
+        self.selectedChallenge = (self.user?.challenges?.sponsored![indexPath.row])!
         performSegue(withIdentifier: "createdToWatchSegue", sender: self)
     }
     
@@ -91,14 +92,17 @@ class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDat
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "createdToWatchSegue") {
+            let controller = segue.destination as! ViewChallengeNavigationController
+            controller.challenge = self.selectedChallenge
+            controller.navigationItem.hidesBackButton = false
+        }
     }
-    */
+    
 
 }

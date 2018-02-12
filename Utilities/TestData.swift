@@ -20,6 +20,8 @@ class TestData {
         let challenge4: ChallengeDetails = ChallengeDetails.init(sponsorId: user._id!, title: "Challenge4", description: "Pending Challenge", reward: 20)
         
         challenge3.description = "Lorem ipsum dolor sit amet, ex alia mediocritatem usu. In laudem propriae duo, doctus aliquid praesent ad pro, detraxit sapientem et vis."
+        challenge3.addMedia(fileName: "AD4A76BE-9BC5-4299-804B-6FB317B7D3D1", type: "image/jpg", imagePrevURL: "")
+        challenge3._id = "00003"
         
         user.addCompletedChallenges(challengeDetail: challenge1)
         user.addPendingChallenges(challengeDetail: challenge2)

@@ -139,7 +139,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="734" y="1007"/>
+            <point key="canvasLocation" x="2649" y="262"/>
         </scene>
         <!--Pending Challenges View Controller-->
         <scene sceneID="lS4-r5-QVw">
@@ -217,20 +217,20 @@
                     <connections>
                         <outlet property="scrollView" destination="HZK-0w-4Ty" id="02m-eB-9C7"/>
                         <outlet property="tableView" destination="k4w-lS-12n" id="g2y-zt-Ex8"/>
-                        <segue destination="Bvo-KR-9yX" kind="presentation" identifier="pendingToWatchSegue" id="r30-MZ-NKO"/>
+                        <segue destination="Bvo-KR-9yX" kind="show" identifier="pendingToWatchSegue" id="q5A-QS-J6t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vHh-af-1dX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1444" y="866"/>
+            <point key="canvasLocation" x="698" y="1008"/>
         </scene>
-        <!--WatchChallenge-->
+        <!--ViewChallenge-->
         <scene sceneID="ndZ-C7-ffZ">
             <objects>
-                <viewControllerPlaceholder storyboardName="WatchChallenge" id="Bvo-KR-9yX" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="ViewChallenge" id="Bvo-KR-9yX" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ihy-EG-mlL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2153" y="1083"/>
+            <point key="canvasLocation" x="1501" y="1391"/>
         </scene>
         <!--My Created Challenges View Controller-->
         <scene sceneID="gn4-Ca-1f0">
@@ -295,7 +295,6 @@
                                                     <outlet property="challengeDescLbl" destination="W3T-Xx-drI" id="lqX-VH-4WO"/>
                                                     <outlet property="challengeRewardLbl" destination="bcp-Tl-eEg" id="xFF-oU-t8q"/>
                                                     <outlet property="challengeTitleLbl" destination="cej-ka-srW" id="LDv-zY-06d"/>
-                                                    <segue destination="Bvo-KR-9yX" kind="presentation" identifier="createdToWatchSegue" id="BAx-Yb-Fc7"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -309,11 +308,12 @@
                     <connections>
                         <outlet property="scrollView" destination="z8C-JG-Dpx" id="cpw-gc-G4K"/>
                         <outlet property="tableView" destination="huo-zx-tTX" id="ioW-OX-qr0"/>
+                        <segue destination="Bvo-KR-9yX" kind="presentation" identifier="createdToWatchSegue" id="njK-Bs-Jco"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xrk-0R-SbA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2152.8000000000002" y="867.48768472906409"/>
+            <point key="canvasLocation" x="1502" y="1008"/>
         </scene>
         <!--Completed Challenges View Controller-->
         <scene sceneID="17f-Au-A81">
@@ -351,7 +351,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LQw-fn-sWT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2833" y="867"/>
+            <point key="canvasLocation" x="2366" y="1008"/>
         </scene>
         <!--Me View Controller-->
         <scene sceneID="fBp-Iv-dog">
@@ -519,6 +519,6 @@
         <image name="first" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="r30-MZ-NKO"/>
+        <segue reference="njK-Bs-Jco"/>
     </inferredMetricsTieBreakers>
 </document>

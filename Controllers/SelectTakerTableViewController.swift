@@ -71,7 +71,7 @@ class SelectTakerTableViewController: UITableViewController {
             let selected_friend = self.selectedFriends![current_friend._id!] ?? nil
             
             cell.cellCheckbox.friend = current_friend
-            cell.friendUsernameLbl.text = (current_friend.username ?? "")
+            cell.friendUsernameLbl.text = (current_friend.identification?.username ?? "")
             
             if (selected_friend?._id != current_friend._id) {
                 cell.cellCheckbox.isChecked = false
@@ -170,7 +170,7 @@ class SelectTakerTableViewController: UITableViewController {
                 controller.challenge?.isForCommunity = true
             } else if (self.selectedFriends!.count == 1) {
                 let friend: User = self.selectedFriends!.first!.value
-                controller.takerBtn.setTitle(friend.username, for: UIControlState.normal)                
+                controller.takerBtn.setTitle(friend.identification?.username, for: UIControlState.normal)                
             } else {
                 controller.takerBtn.setTitle("people", for: UIControlState.normal)
                 
