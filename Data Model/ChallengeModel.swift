@@ -14,6 +14,13 @@ public class Challenge: Codable {
     public var completed: [ChallengeDetails]?
     public var cosponsored: [ChallengeDetails]?
     
+    init() {
+        self.sponsored = []
+        self.pending = []
+        self.completed = []
+        self.cosponsored = []
+    }
+    
     public func addSponsoredChallenge(challengeDetail: ChallengeDetails) {
         if (self.sponsored == nil) {
             self.sponsored = []
@@ -73,7 +80,7 @@ public class Challenge: Codable {
 
 public class ChallengeDetails: Codable {
     public var _id: String?
-    private(set) var sponsor: Sponsor
+    private(set) var sponsor: Sponsor?
     public var title: String
     public var description: String?
     private(set) var reward: Int
@@ -100,8 +107,8 @@ public class ChallengeDetails: Codable {
     }
     
     public func updateSponsorReward(reward: Int) {
-        let new_reward = (self.reward - self.sponsor.reward) + reward
-        self.sponsor.reward = reward
+        let new_reward = (self.reward - self.sponsor!.reward) + reward
+        self.sponsor!.reward = reward
         self.reward = new_reward
     }
     
@@ -136,7 +143,7 @@ public class ChallengeDetails: Codable {
             self.coSponsors = [String: Sponsor]()
         }
         
-        self.coSponsors?[newCosponsor.id] = newCosponsor
+        self.coSponsors?[newCosponsor._id] = newCosponsor
         self.reward += reward
     }
     
@@ -160,11 +167,11 @@ public class Taker: Codable {
 }
 
 public class Sponsor: Codable {
-    public var id: String
+    public var _id: String
     public var reward: Int
     
     init(sponsorId: String, reward: Int) {
-        self.id = sponsorId
+        self._id = sponsorId
         self.reward = reward
     }
 }

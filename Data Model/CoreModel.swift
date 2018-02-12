@@ -32,7 +32,7 @@ public class User: Codable {
         
         self.jans = Jan()
         self.friends = [String: User]()
-        self.challenges = Challenge()
+        self.challenges = Challenge.init()
     }
     
     init(username: String, password: String, email: String) {
@@ -43,7 +43,7 @@ public class User: Codable {
         
         self.jans = Jan()
         self.friends = [String: User]()
-        self.challenges = Challenge()
+        self.challenges = Challenge.init()
     }
     
     public func addFriends(friends: [User]) {
