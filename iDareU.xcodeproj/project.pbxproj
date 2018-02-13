@@ -42,6 +42,7 @@
 		765EF5662002CBEB006B36B0 /* EFCountingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765EF5652002CBEB006B36B0 /* EFCountingLabel.swift */; };
 		765EF5682002EB33006B36B0 /* FriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765EF5672002EB33006B36B0 /* FriendViewModel.swift */; };
 		76682213201E5C6800F52659 /* RouterTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76682212201E5C6800F52659 /* RouterTabBarController.swift */; };
+		766DF7B4203394B000585052 /* CameraToolsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766DF7B3203394B000585052 /* CameraToolsTableViewController.swift */; };
 		7675178E2009746400481464 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7675178D2009746400481464 /* Friends.storyboard */; };
 		767637C1202E567F0038D9E2 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 767637C0202E567F0038D9E2 /* awsconfiguration.json */; };
 		76789C9920205D9300024019 /* MeInitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76789C9820205D9300024019 /* MeInitialViewController.swift */; };
@@ -145,6 +146,7 @@
 		765EF5652002CBEB006B36B0 /* EFCountingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFCountingLabel.swift; sourceTree = "<group>"; };
 		765EF5672002EB33006B36B0 /* FriendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewModel.swift; sourceTree = "<group>"; };
 		76682212201E5C6800F52659 /* RouterTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTabBarController.swift; sourceTree = "<group>"; };
+		766DF7B3203394B000585052 /* CameraToolsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraToolsTableViewController.swift; sourceTree = "<group>"; };
 		7675178D2009746400481464 /* Friends.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
 		767637C0202E567F0038D9E2 /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		76789C9820205D9300024019 /* MeInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeInitialViewController.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 				765A09D72017BB5D0004A67D /* LoginViewController.swift */,
 				76682212201E5C6800F52659 /* RouterTabBarController.swift */,
 				76CF47162021AC3300E7E5BF /* CreateViewController.swift */,
+				766DF7B3203394B000585052 /* CameraToolsTableViewController.swift */,
 				7630D9F62022C39B00C5603B /* PreviewViewController.swift */,
 				767D1EA820250E6A0098DF47 /* SetupChallengeViewController.swift */,
 				76AC733A20258BCD0072C7BF /* SelectSponsorTableViewController.swift */,
@@ -751,6 +754,7 @@
 				76C555F42030BD240045603F /* Media.swift in Sources */,
 				767A64C1201AF54A00EF0F84 /* CoreModel.swift in Sources */,
 				76EC1469201686DE00C73DFC /* SignupValidationManager.swift in Sources */,
+				766DF7B4203394B000585052 /* CameraToolsTableViewController.swift in Sources */,
 				763BC54A2022D04D00F57BD4 /* SelectTakerTableViewController.swift in Sources */,
 				762296F7200A930A00D09D12 /* FriendsViewController.swift in Sources */,
 				76CF47172021AC3300E7E5BF /* CreateViewController.swift in Sources */,

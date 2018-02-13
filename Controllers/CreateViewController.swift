@@ -10,15 +10,18 @@ import Foundation
 import UIKit
 import AVFoundation
 
-class CreateViewController: GenericUIViewController {
+class CreateViewController: GenericUIViewController, CameraToolsControllerDelegate {
     
     private var capturePhotoOutput: AVCapturePhotoOutput?
     private var capturedImage: UIImage?
     
     private var isCaptureVideo: Bool = false
+    private var captureDevice: AVCaptureDevice?
+    private var capturePosition: AVCaptureDevice.Position?
+    private var flashMode: AVCaptureDevice.FlashMode?
     
     @IBOutlet weak var previewView: UIView!
-    @IBOutlet weak var captureBtn: UIButton!
+    @IBOutlet weak var captureBtn: UIButton!    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +34,7 @@ class CreateViewController: GenericUIViewController {
         print(self.user?._id ?? "no user id")
         
         #if !SIMULATOR
+            self.setupCaptureDevice()
             self.setupCamera()
         #endif
 
@@ -41,23 +45,27 @@ class CreateViewController: GenericUIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    private func setupCaptureDevice() {
+        self.flashMode = AVCaptureDevice.FlashMode.auto
+        if let dualCameraDevice = AVCaptureDevice.default(.builtInDualCamera, for: AVMediaType.video, position: .back) {
+            self.captureDevice = dualCameraDevice
+            self.capturePosition = AVCaptureDevice.Position.back
+        }
+            
+        else if let backCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .back) {
+            self.captureDevice = backCameraDevice
+            self.capturePosition = AVCaptureDevice.Position.back
+        }
+            
+        else if let frontCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .front) {
+            self.captureDevice = frontCameraDevice
+            self.capturePosition = AVCaptureDevice.Position.front
+        }
+    }
+    
     private func setupCamera() {
-        //TODO: selfie camera
         var captureSession: AVCaptureSession?
         var videoPreviewLayer: AVCaptureVideoPreviewLayer?
-        
-        let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
-        
-        //flash off
-        do {
-            let abv = try captureDevice?.lockForConfiguration()
-        } catch {
-            print("aaaa")
-        }
-        captureDevice?.torchMode = AVCaptureDevice.TorchMode.off
-        captureDevice?.unlockForConfiguration()
-
-        //flash off end
         
         var input: AVCaptureDeviceInput? = nil
         do {
@@ -84,6 +92,51 @@ class CreateViewController: GenericUIViewController {
         captureSession?.addOutput(capturePhotoOutput!)
     }
     
+    func cameraFlashBtnTapped(cameraToolsController: CameraToolsTableViewController) {
+        do {
+            try captureDevice?.lockForConfiguration()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        if (self.flashMode == AVCaptureDevice.FlashMode.off) {
+            //captureDevice?.torchMode = AVCaptureDevice.TorchMode.auto
+            self.flashMode = AVCaptureDevice.FlashMode.auto
+            cameraToolsController.cameraFlashBtn.setBackgroundImage(UIImage(named: "second"), for: .normal)
+        } else if (self.flashMode == AVCaptureDevice.FlashMode.auto) {
+            //captureDevice?.torchMode = AVCaptureDevice.TorchMode.on
+            self.flashMode = AVCaptureDevice.FlashMode.on
+            cameraToolsController.cameraFlashBtn.setBackgroundImage(UIImage(named: "camera_flash"), for: .normal)
+        } else {
+            //captureDevice?.torchMode = AVCaptureDevice.TorchMode.off
+            self.flashMode = AVCaptureDevice.FlashMode.off
+            cameraToolsController.cameraFlashBtn.setBackgroundImage(UIImage(named: "first"), for: .normal)
+        }
+        
+        captureDevice?.unlockForConfiguration()
+    }
+    
+    func cameraRotateBtnTapped(cameraToolsController: CameraToolsTableViewController) {
+        if (self.capturePosition == AVCaptureDevice.Position.front) {
+            if let dualCameraDevice = AVCaptureDevice.default(.builtInDualCamera, for: AVMediaType.video, position: .back) {
+                self.captureDevice = dualCameraDevice
+            } else if let backCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .back) {
+                self.captureDevice = backCameraDevice
+            }
+            
+            self.capturePosition = AVCaptureDevice.Position.back
+            //cameraToolsController.cameraFlashBtn.isHidden = false
+
+        } else {
+            if let frontCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .front) {
+                self.captureDevice = frontCameraDevice
+                self.capturePosition = AVCaptureDevice.Position.front
+                //cameraToolsController.cameraFlashBtn.isHidden = true
+            }
+        }
+        setupCamera()
+    }
+    
     @IBAction func onCaptureBtnTapped(_ sender: Any) {
         #if SIMULATOR
             self.performSegue(withIdentifier: "previewSegue", sender: self)
@@ -94,7 +147,8 @@ class CreateViewController: GenericUIViewController {
         let photoSettings = AVCapturePhotoSettings()
         photoSettings.isAutoStillImageStabilizationEnabled = true
         photoSettings.isHighResolutionPhotoEnabled = true
-        photoSettings.flashMode = .auto
+        //photoSettings.flashMode = .auto
+        photoSettings.flashMode = self.flashMode!
 
         capturePhotoOutput.capturePhoto(with: photoSettings, delegate: self as AVCapturePhotoCaptureDelegate)
     }
@@ -106,6 +160,11 @@ class CreateViewController: GenericUIViewController {
             }
             controller.image = self.capturedImage
             controller.user = self.user
+        } else if (segue.identifier == "cameraToolsSegue") {
+            guard let controller = segue.destination as? CameraToolsTableViewController else {
+                return
+            }
+            controller.delegate = self
         }
     }
     
