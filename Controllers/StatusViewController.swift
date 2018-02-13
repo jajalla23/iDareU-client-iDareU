@@ -93,10 +93,10 @@ class StatusViewController: MeGenericViewController {
     
     @objc public func animate(jansAvail: Double, pctComplete: Double) {
         jansValueLbl.format = "J %.02f"
-        jansValueLbl.countFrom(0, to: CGFloat(jansAvail), withDuration: 2.0)
+        jansValueLbl.countFrom(0, to: CGFloat(jansAvail), withDuration: 1.7)
         
         pctComLbl.format = "%d%%"
-        pctComLbl.countFrom(0, to: CGFloat(pctComplete * 100), withDuration: 1.5)
+        pctComLbl.countFrom(0, to: CGFloat(pctComplete * 100), withDuration: 1.3)
         
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         basicAnimation.toValue = pctComplete - 0.1

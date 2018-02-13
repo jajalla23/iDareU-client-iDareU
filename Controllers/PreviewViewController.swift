@@ -12,9 +12,13 @@ class PreviewViewController: UIViewController {
     
     public var user: User?
     public var image: UIImage?
+    
+    private var isSetupShown: Bool = false
+    private var setupViewOrigHeight: CGFloat?
+    
     @IBOutlet weak var previewImg: UIImageView!
     @IBOutlet weak var setupChallengeView: UIView!
-    
+    @IBOutlet weak var toggleSetupBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +30,7 @@ class PreviewViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
         */
-
+        self.setupViewOrigHeight = self.setupChallengeView.frame.height
         self.previewImg.image = self.image
     }
 
@@ -36,7 +40,20 @@ class PreviewViewController: UIViewController {
     }
     
     @IBAction func setupBtnTapped(_ sender: Any) {
+        if (isSetupShown) {
+            self.toggleSetupBtn.transform = CGAffineTransform(rotationAngle: CGFloat(0.0))
+            self.toggleSetupBtn.frame.origin.y += self.setupViewOrigHeight!
+            
+            self.setupChallengeView.frame =  CGRect(x: self.setupChallengeView.frame.origin.x, y: self.setupChallengeView.frame.origin.y, width: self.setupChallengeView.frame.width, height: 0.0)
+        } else {
+            self.toggleSetupBtn.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+            self.toggleSetupBtn.frame.origin.y -= self.setupViewOrigHeight!
+            
+            self.setupChallengeView.frame =  CGRect(x: self.setupChallengeView.frame.origin.x, y: self.setupChallengeView.frame.origin.y, width: self.setupChallengeView.frame.width, height: self.setupViewOrigHeight!)
+        }
+        
         self.setupChallengeView.isHidden = !self.setupChallengeView.isHidden
+        self.isSetupShown = !self.isSetupShown
     }
     
     @IBAction func closeView(_ sender: Any) {
