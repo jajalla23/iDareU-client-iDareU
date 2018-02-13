@@ -30,12 +30,7 @@ class ViewChallengeViewController: UIViewController {
         do {
             let imageData = try Server.fetchMedia(mediaName: self.challenge!.media!.fileName, mediaType: self.challenge!.media!.type)
             
-            if (imageData?.isGzipped)! {
-                let unzippedData = try imageData?.gunzipped()
-                self.imageView.image = UIImage(data: unzippedData!, scale: 1.0)
-            } else {
-                self.imageView.image = UIImage(data: imageData!, scale: 1.0)
-            }
+            self.imageView.image = UIImage(data: imageData!, scale: 1.0)
             self.imageView.contentMode = .scaleAspectFit
 
         } catch let error {

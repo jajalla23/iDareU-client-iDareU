@@ -11,24 +11,18 @@ import UIKit
 
 public class User: Codable {
     public var _id: String?
-    public var email: String?
-
-    //public var username: String?
-    //public var password: String?
-    //public var facebook_id: String?
-    //public var google_id: String?
-    
     public var identification: Identification?
+    public var personalDetails: PersonalDetails?
     
     public var jans: Jan?
     private(set) var friends: [String: User]?
     private(set) var challenges: Challenge?
     
-    init(facebook_id: String, email: String) {
-        self.email = email
+    init(facebook_id: String, email: String, firstName: String, lastName: String?) {
+        self.identification = Identification.init(email: email)
+        self.identification!.facebook_id = facebook_id
         
-        self.identification = Identification()
-        self.identification?.facebook_id = facebook_id
+        self.personalDetails = PersonalDetails.init(firstName: firstName, lastName: lastName)
         
         self.jans = Jan()
         self.friends = [String: User]()
@@ -36,11 +30,10 @@ public class User: Codable {
     }
     
     init(username: String, password: String, email: String) {
-        self.email = email
-        self.identification = Identification()
+        self.identification = Identification(email: email)
         self.identification!.username = username
         self.identification!.password = password
-        
+
         self.jans = Jan()
         self.friends = [String: User]()
         self.challenges = Challenge.init()
@@ -107,4 +100,24 @@ public class Identification: Codable {
     public var password: String?
     public var facebook_id: String?
     public var google_id: String?
+    public var email: String
+    
+    public init(email: String) {
+        self.email = email
+    }
+}
+
+public class PersonalDetails: Codable {
+    public var name: Name?
+    
+    init(firstName: String, lastName: String?) {
+        self.name = Name.init()
+        self.name?.first = firstName
+        self.name?.last = lastName
+    }
+}
+
+public class Name: Codable {
+    public var first: String?
+    public var last: String?
 }

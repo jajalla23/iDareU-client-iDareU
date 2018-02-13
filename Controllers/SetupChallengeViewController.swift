@@ -18,6 +18,7 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
     public var challenge: ChallengeDetails?
     public var sponsors: [User]?
     
+    @IBOutlet weak var dareLbl: UILabel!
     @IBOutlet weak var sponsorBtn: UIButton!
     @IBOutlet weak var takerBtn: UIButton!
     @IBOutlet weak var challengeTitleTxtField: UITextField!
@@ -94,12 +95,11 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
             //update server to add to sponsored challenge
             
             let dispatchGroup = DispatchGroup()
-            self.challenge?.addMedia(fileName: uuid.uuidString, type: "image/jpg", imagePrevURL: nil)
+            self.challenge?.addMedia(fileName: uuid.uuidString, type: "image/jpg", imagePrevURL: nil)//TODO: mediatype
             
             do {
                 dispatchGroup.enter()
-                //try Server.uploadMedia(media: UIImageJPEGRepresentation(self.image!, 1)!, uuid: uuid)
-                try Server.uploadMedia(media: self.image!.compressJPEGImage(), uuid: uuid)
+                try Server.uploadMedia(media: self.image!.compressJPEGImage(), type: (self.challenge?.media?.type ?? "image/jpg"), uuid: uuid)
                 dispatchGroup.leave()
             } catch let c_error as CustomError {
                 print(c_error)
@@ -183,10 +183,7 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
             controller.allFriends = Array(self.user!.friends!.values)
             
             if ((self.sponsors?.count ?? 0) > 0) {
-                controller.selectedFriends = [String: User]()
-                for sponsor in self.sponsors! {
-                    controller.selectedFriends![sponsor._id!] = sponsor
-                }
+                controller.selectedFriend = self.sponsors?[0]
             }
         case "setupRewardSegue":
             guard let controller = segue.destination as? UpdateChallengeRewardController else {

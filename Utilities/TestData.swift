@@ -39,11 +39,13 @@ class TestData {
         let friend1: User = User.init(username: "friend1", password: "pass", email: "friend1@email.com")
         let friend2: User = User.init(username: "friend2", password: "pass", email: "friend1@email.com")
         let friend3: User = User.init(username: "friend3", password: "pass", email: "friend1@email.com")
+        let friend4: User = User.init(facebook_id: "12345", email: "facebook@email.com", firstName: "friend4", lastName: nil)
         friend1._id = "11111"
         friend2._id = "22222"
         friend3._id = "33333"
+        friend4._id = "44444"
         
-        user.addFriends(friends: [friend1, friend2, friend3])
+        user.addFriends(friends: [friend1, friend2, friend3, friend4])
         
         return user
     }

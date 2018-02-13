@@ -8,34 +8,11 @@
 
 import Foundation
 
-extension URLSession {
-    func synchronousDataTask(with url: URLRequest) -> (Data?, URLResponse?, Error?) {
-        var data: Data?
-        var response: URLResponse?
-        var error: Error?
-        
-        let semaphore = DispatchSemaphore(value: 0)
-        
-        let dataTask = self.dataTask(with: url) {
-            data = $0
-            response = $1
-            error = $2
-            
-            semaphore.signal()
-        }
-        dataTask.resume()
-        
-        _ = semaphore.wait(timeout: .distantFuture)
-        
-        return (data, response, error)
-    }
-}
-
 public class Server {
     static private var error_location = "/Auxiliary/Server.swift"
-    static private let server: String = "http://34.208.110.84:3000/"
+    //static private let server: String = "http://34.208.110.84:3000/"
     //static private let server: String = "http://localhost:3000/"
-    //static private let server: String = "http://192.168.1.109:3000/"
+    static private let server: String = "http://192.168.1.109:3000/"
     
     private static func invokeHTTP (action: String, httpMethod: String, parameters: Dictionary<String, String>) {
         print("calling server...")
@@ -110,26 +87,19 @@ public class Server {
         task.resume()
     }
     
-    public static func invokeHTTP(action: String, httpMethod: String, data: Data, filename: String, uuid: UUID, sendfile: Bool?) throws -> Data? {
+    public static func invokeHTTP(action: String, httpMethod: String, data: Data, type: String, filename: String, uuid: UUID, sendfile: Bool?) throws -> Data? {
         print("calling server send file...")
         
         let url = URL(string: self.server + action)!
         let session = URLSession.shared
         
-        let boundary = "Boundary-\(uuid.uuidString)"
-        
-        let optimizedData: Data = try! data.gzipped(level: .bestCompression)
-        print(data.count)
-        print(optimizedData.count)
-        let fullData = MediaUtilities.photoDataToFormData(data: optimizedData, boundary: boundary, fileName: filename)
-
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod
-        request.httpBody = fullData
+        request.httpBody = data
         
         request.addValue(String(data.count), forHTTPHeaderField: "Content-Length")
-        request.addValue("multipart/form-data; boundary=" + boundary, forHTTPHeaderField: "Content-Type")
-        request.addValue("gzip, deflate", forHTTPHeaderField: "Accept-Encoding")
+        request.addValue("image/jpeg", forHTTPHeaderField: "Content-Type")
+        request.addValue(uuid.uuidString, forHTTPHeaderField: "originalfilename")
 
         let task = session.synchronousDataTask(with: request as URLRequest)
         return task.0
@@ -310,8 +280,8 @@ extension Server {
         return challenges
     }
     
-    static func uploadMedia(media: Data, uuid: UUID) throws -> Void {
-        guard let respData = try invokeHTTP(action: "media/upload", httpMethod: "POST", data: media, filename: uuid.uuidString, uuid: uuid, sendfile: true)
+    static func uploadMedia(media: Data, type: String, uuid: UUID) throws -> Void {
+        guard let respData = try invokeHTTP(action: "media/upload", httpMethod: "POST", data: media, type: type, filename: uuid.uuidString, uuid: uuid, sendfile: true)
             else {
                 let cError: CustomError = CustomError.init(code: "002", description: "Unable to call server", severity: Severity.HIGH, location: error_location)
                 throw cError

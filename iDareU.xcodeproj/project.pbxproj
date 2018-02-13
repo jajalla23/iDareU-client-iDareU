@@ -24,7 +24,6 @@
 		763BC54A2022D04D00F57BD4 /* SelectTakerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BC5492022D04D00F57BD4 /* SelectTakerTableViewController.swift */; };
 		763BC54C2022D5D100F57BD4 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BC54B2022D5D100F57BD4 /* Button.swift */; };
 		763BC54E2022D8F000F57BD4 /* SelectTakerTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BC54D2022D8F000F57BD4 /* SelectTakerTVCell.swift */; };
-		763FA6592031155500D7A46B /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763FA6582031155500D7A46B /* Data+Gzip.swift */; };
 		763FA65B2031156E00D7A46B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 763FA65A2031156E00D7A46B /* Assets.xcassets */; };
 		763FA65D2031291500D7A46B /* ViewChallengeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763FA65C2031291500D7A46B /* ViewChallengeNavigationController.swift */; };
 		7645385920012DB5004A96F7 /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7645385820012DB5004A96F7 /* Create.storyboard */; };
@@ -122,7 +121,6 @@
 		763BC54B2022D5D100F57BD4 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		763BC54D2022D8F000F57BD4 /* SelectTakerTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTakerTVCell.swift; sourceTree = "<group>"; };
 		763E2D8C202FE347003B5E2D /* AWSS3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSS3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		763FA6582031155500D7A46B /* Data+Gzip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Gzip.swift"; sourceTree = "<group>"; };
 		763FA65A2031156E00D7A46B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		763FA65C2031291500D7A46B /* ViewChallengeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewChallengeNavigationController.swift; sourceTree = "<group>"; };
 		7645385820012DB5004A96F7 /* Create.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Create.storyboard; sourceTree = "<group>"; };
@@ -278,7 +276,6 @@
 		7645386320014464004A96F7 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				763FA6582031155500D7A46B /* Data+Gzip.swift */,
 				765EF5652002CBEB006B36B0 /* EFCountingLabel.swift */,
 				7645385B2001421B004A96F7 /* Extensions.swift */,
 				76C555F32030BD240045603F /* Media.swift */,
@@ -786,7 +783,6 @@
 				763688C12003036C00129279 /* StatusViewController.swift in Sources */,
 				76CF47152021A0E700E7E5BF /* MeGenericViewController.swift in Sources */,
 				76EC14652016861E00C73DFC /* SignupFormValidationModel.swift in Sources */,
-				763FA6592031155500D7A46B /* Data+Gzip.swift in Sources */,
 				7650EA16200095080011125B /* CaptureVideoViewController.swift in Sources */,
 				762296F9200A961900D09D12 /* FriendFeedViewCell.swift in Sources */,
 				76FC08ED201ED323008F9902 /* GenericUIViewController.swift in Sources */,

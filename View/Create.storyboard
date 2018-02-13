@@ -356,6 +356,7 @@
                     <connections>
                         <outlet property="challengeRewardBtn" destination="77w-j4-Ijb" id="jON-Ut-B8T"/>
                         <outlet property="challengeTitleTxtField" destination="TlY-o8-DWg" id="6wr-ip-Vay"/>
+                        <outlet property="dareLbl" destination="lO1-J5-GFM" id="1aR-Em-TO0"/>
                         <outlet property="expirationBtn" destination="RS1-5g-V7e" id="0Wt-3y-Uut"/>
                         <outlet property="sponsorBtn" destination="b7k-rs-dgF" id="sNr-1Q-cXR"/>
                         <outlet property="takerBtn" destination="XVs-YZ-FoG" id="adR-9j-Pl9"/>

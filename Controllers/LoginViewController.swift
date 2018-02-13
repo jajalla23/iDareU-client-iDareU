@@ -91,8 +91,10 @@ class LoginViewController: UIViewController {
                     //print(result_dict)
                     let email = result_dict["email"] as! String
                     let fb_id = result_dict["id"] as! String
+                    let first_name = result_dict["first_name"] as! String
+                    let last_name = result_dict["last_name"] as! String
                     
-                    let temp = User.init(facebook_id: fb_id, email: email)
+                    let temp = User.init(facebook_id: fb_id, email: email, firstName: first_name, lastName: last_name)
                     
                     self.createGetUser(newUser: temp)
                 }
