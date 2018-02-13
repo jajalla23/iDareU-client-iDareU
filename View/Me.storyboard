@@ -36,9 +36,9 @@
                         <viewLayoutGuide key="safeArea" id="5wm-6i-Hc0"/>
                     </view>
                     <navigationItem key="navigationItem" id="5EL-gR-Gch">
-                        <barButtonItem key="leftBarButtonItem" image="first" id="N0w-d8-a3K">
+                        <barButtonItem key="leftBarButtonItem" image="first" id="03l-aA-yz1">
                             <connections>
-                                <action selector="leftBarBtnTapped:" destination="GHN-pL-xEb" id="t0p-FB-d3A"/>
+                                <action selector="leftBarBtnTapped:" destination="GHN-pL-xEb" id="HRI-vj-fHx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

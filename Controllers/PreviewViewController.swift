@@ -15,6 +15,7 @@ class PreviewViewController: UIViewController {
     
     private var isSetupShown: Bool = false
     private var setupViewOrigHeight: CGFloat?
+    private var setupViewOriginY: CGFloat?
     
     @IBOutlet weak var previewImg: UIImageView!
     @IBOutlet weak var setupChallengeView: UIView!
@@ -32,6 +33,7 @@ class PreviewViewController: UIViewController {
         self.navigationController?.view.backgroundColor = .clear
         */
         self.setupViewOrigHeight = self.setupChallengeView.frame.height
+        self.setupViewOriginY = self.setupChallengeView.frame.origin.y
         self.previewImg.image = self.image
     }
 
@@ -42,21 +44,25 @@ class PreviewViewController: UIViewController {
     
     @IBAction func setupBtnTapped(_ sender: Any) {
         if (isSetupShown) {
-            UIView.animate(withDuration: 0.7, animations: {
-                self.toggleSetupBtn.frame.origin.y += self.setupViewOrigHeight!
+            //hide
+            /*UIView.animate(withDuration: 0.7, animations: {
+                self.setupChallengeView.frame.origin.y = 0.0
                 
-                self.setupChallengeView.frame =  CGRect(x: self.setupChallengeView.frame.origin.x, y: self.setupChallengeView.frame.origin.y, width: self.setupChallengeView.frame.width, height: 0.0)
+                //self.setupChallengeView.frame =  CGRect(x: self.setupChallengeView.frame.origin.x, y: 0.0, width: self.setupChallengeView.frame.width, height: 0.0)
                 self.view.layoutIfNeeded()
-            })
+            })*/
+            self.toggleSetupBtn.frame.origin.y += self.setupViewOrigHeight!
             self.toggleSetupBtn.transform = CGAffineTransform(rotationAngle: CGFloat(0.0))
 
         } else {
-            UIView.animate(withDuration: 0.7, animations: {
-                self.toggleSetupBtn.frame.origin.y -= self.setupViewOrigHeight!
-                
-                self.setupChallengeView.frame =  CGRect(x: self.setupChallengeView.frame.origin.x, y: self.setupChallengeView.frame.origin.y, width: self.setupChallengeView.frame.width, height: self.setupViewOrigHeight!)
+            //show
+            /*UIView.animate(withDuration: 0.7, animations: {
+                self.setupChallengeView.frame.origin.y = self.setupViewOriginY!
+
+                //self.setupChallengeView.frame =  CGRect(x: self.setupChallengeView.frame.origin.x, y: self.setupViewOriginY!, width: self.setupChallengeView.frame.width, height: self.setupViewOrigHeight!)
                 self.view.layoutIfNeeded()
-            })
+            })*/
+            self.toggleSetupBtn.frame.origin.y -= self.setupViewOrigHeight!
             self.toggleSetupBtn.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
         }
         
