@@ -100,6 +100,7 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
                 dispatchGroup.enter()
                 //try Server.uploadMedia(media: UIImageJPEGRepresentation(self.image!, 1)!, uuid: uuid)
                 try Server.uploadMedia(media: self.image!.compressJPEGImage(), uuid: uuid)
+                dispatchGroup.leave()
             } catch let c_error as CustomError {
                 print(c_error)
                 dispatchGroup.leave()
