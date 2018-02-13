@@ -46,6 +46,18 @@ class CreateViewController: GenericUIViewController {
         var videoPreviewLayer: AVCaptureVideoPreviewLayer?
         
         let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
+        
+        //flash off
+        do {
+            let abv = try captureDevice?.lockForConfiguration()
+        } catch {
+            print("aaaa")
+        }
+        captureDevice?.torchMode = AVCaptureDevice.TorchMode.off
+        captureDevice?.unlockForConfiguration()
+
+        //flash off end
+        
         var input: AVCaptureDeviceInput? = nil
         do {
             input = try AVCaptureDeviceInput(device: captureDevice!)

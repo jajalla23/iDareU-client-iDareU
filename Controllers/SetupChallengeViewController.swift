@@ -12,10 +12,10 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
     
     public var user: User?
     public var image: UIImage?
+    private var orig_setUpframeYaxis: CGFloat?
     
     //challengeinfo
     public var challenge: ChallengeDetails?
-    
     public var sponsors: [User]?
     
     @IBOutlet weak var sponsorBtn: UIButton!
@@ -30,7 +30,8 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         //view.backgroundColor = UIColor.clear
         //view.isOpaque = false
-        
+        self.orig_setUpframeYaxis = self.view.frame.origin.y
+
         self.challengeTitleTxtField.delegate = self;
 
         if (challenge == nil) {
@@ -38,6 +39,9 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
             challenge?.addSponsor(user: self.user!, reward: 1)
             self.sponsors = []
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         #if SIMULATOR
             self.image = UIImage(named: "Play")
@@ -115,6 +119,10 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
             dispatchGroup.wait(timeout: DispatchTime.now() + 10)
             DispatchQueue.main.async {
                 self.user?.challenges?.addSponsoredChallenge(challengeDetail: response[0])
+                let reward = response[0].reward
+                
+                self.user?.jans?.available -= reward
+                self.user?.jans?.committed += reward
             }
             
             
@@ -221,6 +229,18 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        self.view.frame.origin.y = self.orig_setUpframeYaxis!
     }
     
 }
