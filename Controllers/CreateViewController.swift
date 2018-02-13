@@ -42,6 +42,7 @@ class CreateViewController: GenericUIViewController {
     }
     
     private func setupCamera() {
+        //TODO: selfie camera
         var captureSession: AVCaptureSession?
         var videoPreviewLayer: AVCaptureVideoPreviewLayer?
         

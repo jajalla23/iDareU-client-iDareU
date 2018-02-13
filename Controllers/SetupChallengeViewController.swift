@@ -117,13 +117,15 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
                 print(error)
             }
             
-            dispatchGroup.wait(timeout: DispatchTime.now() + 10)
-            DispatchQueue.main.async {
-                self.user?.challenges?.addSponsoredChallenge(challengeDetail: response[0])
-                let reward = response[0].reward
-                
-                self.user?.jans?.available -= reward
-                self.user?.jans?.committed += reward
+            let timeoutResult = dispatchGroup.wait(timeout: DispatchTime.now() + 10)
+            if (timeoutResult == .success) {
+                DispatchQueue.main.async {
+                    self.user?.challenges?.addSponsoredChallenge(challengeDetail: response[0])
+                    let reward = response[0].reward
+                    
+                    self.user?.jans?.available -= reward
+                    self.user?.jans?.committed += reward
+                }
             }
             
             

@@ -13,10 +13,13 @@ class ViewChallengeViewController: UIViewController {
     var challenge: ChallengeDetails?
 
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var challengeInfoView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        challengeInfoView.backgroundColor = UIColor.white.withAlphaComponent(0.7)
 
         let controller = self.navigationController as! ViewChallengeNavigationController
         self.challenge = controller.challenge
@@ -33,7 +36,8 @@ class ViewChallengeViewController: UIViewController {
             } else {
                 self.imageView.image = UIImage(data: imageData!, scale: 1.0)
             }
-            
+            self.imageView.contentMode = .scaleAspectFit
+
         } catch let error {
             print(error.localizedDescription)
         }
@@ -59,6 +63,14 @@ class ViewChallengeViewController: UIViewController {
     @IBAction func backBtnTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func screenTapped(_ sender: UITapGestureRecognizer) {
+        challengeInfoView.isHidden = !challengeInfoView.isHidden
+    }
+    
+    @IBAction func rightBarItemTapped(_ sender: Any) {
+        print("tapped")
     }
     
 

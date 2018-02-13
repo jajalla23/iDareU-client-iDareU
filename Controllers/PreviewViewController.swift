@@ -19,6 +19,7 @@ class PreviewViewController: UIViewController {
     @IBOutlet weak var previewImg: UIImageView!
     @IBOutlet weak var setupChallengeView: UIView!
     @IBOutlet weak var toggleSetupBtn: UIButton!
+    @IBOutlet weak var challengeDescTxtView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,15 +42,22 @@ class PreviewViewController: UIViewController {
     
     @IBAction func setupBtnTapped(_ sender: Any) {
         if (isSetupShown) {
+            UIView.animate(withDuration: 0.7, animations: {
+                self.toggleSetupBtn.frame.origin.y += self.setupViewOrigHeight!
+                
+                self.setupChallengeView.frame =  CGRect(x: self.setupChallengeView.frame.origin.x, y: self.setupChallengeView.frame.origin.y, width: self.setupChallengeView.frame.width, height: 0.0)
+                self.view.layoutIfNeeded()
+            })
             self.toggleSetupBtn.transform = CGAffineTransform(rotationAngle: CGFloat(0.0))
-            self.toggleSetupBtn.frame.origin.y += self.setupViewOrigHeight!
-            
-            self.setupChallengeView.frame =  CGRect(x: self.setupChallengeView.frame.origin.x, y: self.setupChallengeView.frame.origin.y, width: self.setupChallengeView.frame.width, height: 0.0)
+
         } else {
+            UIView.animate(withDuration: 0.7, animations: {
+                self.toggleSetupBtn.frame.origin.y -= self.setupViewOrigHeight!
+                
+                self.setupChallengeView.frame =  CGRect(x: self.setupChallengeView.frame.origin.x, y: self.setupChallengeView.frame.origin.y, width: self.setupChallengeView.frame.width, height: self.setupViewOrigHeight!)
+                self.view.layoutIfNeeded()
+            })
             self.toggleSetupBtn.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
-            self.toggleSetupBtn.frame.origin.y -= self.setupViewOrigHeight!
-            
-            self.setupChallengeView.frame =  CGRect(x: self.setupChallengeView.frame.origin.x, y: self.setupChallengeView.frame.origin.y, width: self.setupChallengeView.frame.width, height: self.setupViewOrigHeight!)
         }
         
         self.setupChallengeView.isHidden = !self.setupChallengeView.isHidden
@@ -76,5 +84,4 @@ class PreviewViewController: UIViewController {
             controller.image = self.image
         }
     }
-
 }

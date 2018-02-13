@@ -43,6 +43,7 @@ class MeInitialViewController: GenericUIViewController {
     }
     
     @objc func refresh(sender: AnyObject) {
+        //TODO: refresh me-info
         self.refreshControl?.endRefreshing()
         print("initial view refresh done")
     }
@@ -55,4 +56,9 @@ class MeInitialViewController: GenericUIViewController {
         let meViewController = segue.destination as? MeGenericViewController
         meViewController?.user = routerController.user
     }
+    
+    @IBAction func leftBarBtnTapped(_ sender: UIBarButtonItem) {
+        //TODO: profile settings
+    }
+    
 }

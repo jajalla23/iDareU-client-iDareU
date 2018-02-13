@@ -21,33 +21,56 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NgO-oo-adn">
                                 <rect key="frame" x="0.0" y="88" width="375" height="724"/>
                             </imageView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kps-9U-6QP">
+                                <rect key="frame" x="0.0" y="194" width="375" height="425"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="425" id="DjX-xg-hlk"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="E1U-KG-BlK" kind="embed" id="8Yq-tc-YT4"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="kps-9U-6QP" firstAttribute="leading" secondItem="OLY-Bh-cCG" secondAttribute="leading" id="0yo-a5-nKo"/>
                             <constraint firstItem="NgO-oo-adn" firstAttribute="leading" secondItem="OLY-Bh-cCG" secondAttribute="leading" id="FzK-LI-ieA"/>
+                            <constraint firstItem="kps-9U-6QP" firstAttribute="trailing" secondItem="OLY-Bh-cCG" secondAttribute="trailing" id="H6F-Fp-lEW"/>
+                            <constraint firstItem="kps-9U-6QP" firstAttribute="centerY" secondItem="web-cz-bkk" secondAttribute="centerY" id="K9j-Av-qGx"/>
                             <constraint firstItem="NgO-oo-adn" firstAttribute="trailing" secondItem="OLY-Bh-cCG" secondAttribute="trailing" id="KjV-Nj-wy8"/>
                             <constraint firstAttribute="bottom" secondItem="NgO-oo-adn" secondAttribute="bottom" id="Wzp-hG-Gad"/>
                             <constraint firstItem="NgO-oo-adn" firstAttribute="top" secondItem="OLY-Bh-cCG" secondAttribute="top" id="mMN-zI-xZb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OLY-Bh-cCG"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="wGz-4D-cJo" appends="YES" id="ZBx-hd-l3P"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="vCf-VD-fDK">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="oN2-Qe-qOW">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WTI-mu-hkC">
-                                <rect key="frame" x="16" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="&lt; Back"/>
-                                <connections>
-                                    <action selector="backBtnTapped:" destination="XIF-Ks-bQz" eventType="touchDown" id="YEI-I5-KSw"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="zVI-3h-hrQ">
+                            <connections>
+                                <action selector="backBtnTapped:" destination="XIF-Ks-bQz" id="k28-Le-WlW"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="second" id="ZES-C1-hoC">
+                            <connections>
+                                <action selector="rightBarItemTapped:" destination="lwc-BA-WMM" id="P3Z-dx-XVh"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="challengeInfoView" destination="kps-9U-6QP" id="sDC-7m-d7X"/>
                         <outlet property="imageView" destination="NgO-oo-adn" id="KMq-NH-VRe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YYE-Xp-aWp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="lwc-BA-WMM" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="wGz-4D-cJo">
+                    <connections>
+                        <action selector="screenTapped:" destination="XIF-Ks-bQz" id="yWm-hL-KOu"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="668" y="56.157635467980299"/>
         </scene>
@@ -69,5 +92,54 @@
             </objects>
             <point key="canvasLocation" x="-284" y="56"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="KHD-Nz-U1g">
+            <objects>
+                <viewController id="E1U-KG-BlK" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FKa-hm-EJ7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="425"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="J 100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="okQ-uI-cnZ" userLabel="Reward Value">
+                                <rect key="frame" x="0.0" y="5" width="375" height="71.666666666666671"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="60"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I DARE YOU TO CHALLENGE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNq-wA-yTl" userLabel="Challenge Info">
+                                <rect key="frame" x="0.0" y="121.66666666666666" width="375" height="107.66666666666666"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="45"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xy-1v-MYj" userLabel="Challenge Desc">
+                                <rect key="frame" x="0.0" y="269.33333333333331" width="375" height="149.33333333333331"/>
+                                <string key="text">Lorem ipsum dolor sit amet, ex alia mediocritatem usu. In laudem propriae duo, doctus aliquid praesent ad pro, detraxit sapientem et vis</string>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="okQ-uI-cnZ" firstAttribute="leading" secondItem="FKa-hm-EJ7" secondAttribute="leading" id="16C-XW-1bM"/>
+                            <constraint firstAttribute="trailing" secondItem="XNq-wA-yTl" secondAttribute="trailing" id="1xa-Sq-T7x"/>
+                            <constraint firstItem="okQ-uI-cnZ" firstAttribute="top" secondItem="FKa-hm-EJ7" secondAttribute="top" constant="5" id="2NR-pK-rTM" userLabel="Reward Value.top = top + 15"/>
+                            <constraint firstItem="XNq-wA-yTl" firstAttribute="leading" secondItem="FKa-hm-EJ7" secondAttribute="leading" id="H9a-uO-vYz"/>
+                            <constraint firstAttribute="trailing" secondItem="8xy-1v-MYj" secondAttribute="trailing" id="V3V-Yu-KhC"/>
+                            <constraint firstAttribute="trailing" secondItem="okQ-uI-cnZ" secondAttribute="trailing" id="fZd-1H-ftE"/>
+                            <constraint firstItem="8xy-1v-MYj" firstAttribute="leading" secondItem="FKa-hm-EJ7" secondAttribute="leading" id="gMb-Na-rHg"/>
+                            <constraint firstItem="8xy-1v-MYj" firstAttribute="top" secondItem="XNq-wA-yTl" secondAttribute="bottom" constant="40" id="oCA-jz-poS"/>
+                            <constraint firstItem="XNq-wA-yTl" firstAttribute="top" secondItem="okQ-uI-cnZ" secondAttribute="bottom" constant="45" id="spn-r0-ZL7" userLabel="Challenge Info.top = Reward Value.bottom + 40"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2xA-Vo-Nh7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1572" y="56.527093596059117"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="second" width="30" height="30"/>
+    </resources>
 </document>

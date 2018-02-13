@@ -6,11 +6,10 @@ target 'iDareU' do
   use_frameworks!
 
   # Pods for iDareU
-  pod 'AWSUserPoolsSignIn', '~> 2.6.6'
-  pod 'AWSAuthUI', '~> 2.6.6'
-  pod 'AWSMobileClient', '~> 2.6.6'
-  pod 'AWSFacebookSignIn', '~> 2.6.6'
-  pod 'AWSS3'
+  #pod 'AWSUserPoolsSignIn', '~> 2.6.6', :inhibit_warnings => true
+  #pod 'AWSAuthUI', '~> 2.6.6', :inhibit_warnings => true
+  #pod 'AWSMobileClient', '~> 2.6.6', :inhibit_warnings => true
+  pod 'AWSFacebookSignIn', '~> 2.6.6', :inhibit_warnings => true
 
   target 'iDareUTests' do
     inherit! :search_paths
@@ -23,3 +22,6 @@ target 'iDareU' do
   end
 
 end
+
+# ignore all warnings from all pods
+inhibit_all_warnings!

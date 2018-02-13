@@ -35,7 +35,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="5wm-6i-Hc0"/>
                     </view>
-                    <navigationItem key="navigationItem" id="5EL-gR-Gch"/>
+                    <navigationItem key="navigationItem" id="5EL-gR-Gch">
+                        <barButtonItem key="leftBarButtonItem" image="first" id="N0w-d8-a3K">
+                            <connections>
+                                <action selector="leftBarBtnTapped:" destination="GHN-pL-xEb" id="t0p-FB-d3A"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="containerView" destination="pnN-dM-iyJ" id="tIE-4B-TQm"/>
                         <outlet property="myStatusHeightConstr" destination="Fki-8r-Akh" id="RMl-Q4-GE1"/>
