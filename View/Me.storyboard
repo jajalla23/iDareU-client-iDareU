@@ -10,6 +10,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Profile-->
+        <scene sceneID="9T4-iD-tJc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" id="GUo-TN-XTL" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GNy-9l-ukO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="603" y="683"/>
+        </scene>
         <!--Me Initial View Controller-->
         <scene sceneID="ZOl-LB-Nc9">
             <objects>
@@ -36,9 +44,10 @@
                         <viewLayoutGuide key="safeArea" id="5wm-6i-Hc0"/>
                     </view>
                     <navigationItem key="navigationItem" id="5EL-gR-Gch">
-                        <barButtonItem key="leftBarButtonItem" image="first" id="03l-aA-yz1">
+                        <barButtonItem key="leftBarButtonItem" image="profile" id="03l-aA-yz1">
                             <connections>
                                 <action selector="leftBarBtnTapped:" destination="GHN-pL-xEb" id="HRI-vj-fHx"/>
+                                <segue destination="GUo-TN-XTL" kind="show" identifier="profileSegue" id="YLh-Lw-2S5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -71,7 +80,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vyi-oP-zWR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-172" y="262"/>
+            <point key="canvasLocation" x="-420" y="262"/>
         </scene>
         <!--Status View Controller-->
         <scene sceneID="aeE-2R-CDw">
@@ -145,7 +154,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2649" y="262"/>
+            <point key="canvasLocation" x="2550" y="262"/>
         </scene>
         <!--Pending Challenges View Controller-->
         <scene sceneID="lS4-r5-QVw">
@@ -267,7 +276,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cej-ka-srW">
-                                                            <rect key="frame" x="80" y="25" width="215" height="21"/>
+                                                            <rect key="frame" x="76" y="25" width="215" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
                                                             <nil key="textColor"/>
@@ -507,6 +516,7 @@
     <resources>
         <image name="Play" width="321" height="321"/>
         <image name="first" width="30" height="30"/>
+        <image name="profile" width="22" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="njK-Bs-Jco"/>

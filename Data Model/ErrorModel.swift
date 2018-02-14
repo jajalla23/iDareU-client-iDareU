@@ -20,6 +20,21 @@ class CustomError: Codable, Error {
         self.severity = severity
         self.location = location
     }
+    
+    enum CodingKeys : String, CodingKey {
+        case code = "code"
+        case description = "description"
+        case severity = "severity"
+        case location = "location"
+    }
+    
+    required public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        code = try container.decode(String.self, forKey: .code)
+        description = try container.decode(String.self, forKey: .description)
+        severity = try container.decode(Severity.self, forKey: .severity)
+        location = try container.decode(String.self, forKey: .location)
+    }
 }
 
 enum Severity: String, Codable {

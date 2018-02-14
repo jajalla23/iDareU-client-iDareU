@@ -18,7 +18,6 @@
 		762296F9200A961900D09D12 /* FriendFeedViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762296F8200A961900D09D12 /* FriendFeedViewCell.swift */; };
 		7630D9F72022C39B00C5603B /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7630D9F62022C39B00C5603B /* PreviewViewController.swift */; };
 		763688C12003036C00129279 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763688C02003036C00129279 /* StatusViewController.swift */; };
-		763688C5200311B200129279 /* MeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763688C4200311B200129279 /* MeViewModel.swift */; };
 		76376136202064CB006BE727 /* PendingChallTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76376135202064CB006BE727 /* PendingChallTVCell.swift */; };
 		763B13F220217D97006DC47E /* SegueAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B13F120217D97006DC47E /* SegueAnimation.swift */; };
 		763BC54A2022D04D00F57BD4 /* SelectTakerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BC5492022D04D00F57BD4 /* SelectTakerTableViewController.swift */; };
@@ -26,10 +25,9 @@
 		763BC54E2022D8F000F57BD4 /* SelectTakerTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763BC54D2022D8F000F57BD4 /* SelectTakerTVCell.swift */; };
 		763FA65B2031156E00D7A46B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 763FA65A2031156E00D7A46B /* Assets.xcassets */; };
 		763FA65D2031291500D7A46B /* ViewChallengeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763FA65C2031291500D7A46B /* ViewChallengeNavigationController.swift */; };
+		76407EB32034161700163545 /* ServerResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76407EB22034161700163545 /* ServerResponseModel.swift */; };
 		7645385920012DB5004A96F7 /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7645385820012DB5004A96F7 /* Create.storyboard */; };
-		7645385E2001421C004A96F7 /* CollapsibleTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7645385A2001421B004A96F7 /* CollapsibleTableViewHeader.swift */; };
 		7645385F2001421C004A96F7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7645385B2001421B004A96F7 /* Extensions.swift */; };
-		764538602001421C004A96F7 /* CollapsibleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7645385C2001421C004A96F7 /* CollapsibleTableViewCell.swift */; };
 		7650EA14200095080011125B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7650EA13200095080011125B /* AppDelegate.swift */; };
 		7650EA16200095080011125B /* CaptureVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7650EA15200095080011125B /* CaptureVideoViewController.swift */; };
 		7650EA1B200095080011125B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7650EA19200095080011125B /* Main.storyboard */; };
@@ -49,6 +47,10 @@
 		767A64C1201AF54A00EF0F84 /* CoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767A64C0201AF54A00EF0F84 /* CoreModel.swift */; };
 		767D1EA920250E6A0098DF47 /* SetupChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1EA820250E6A0098DF47 /* SetupChallengeViewController.swift */; };
 		768206EC2033A9E2004E049C /* ViewChallengeLabelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768206EB2033A9E2004E049C /* ViewChallengeLabelController.swift */; };
+		7692CE6A2033EA87001FFFBC /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7692CE692033EA87001FFFBC /* Profile.storyboard */; };
+		7692CE6E2033EE4D001FFFBC /* AddFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692CE6D2033EE4D001FFFBC /* AddFriendsTableViewController.swift */; };
+		7692CE702033F610001FFFBC /* MyFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692CE6F2033F610001FFFBC /* MyFriendsTableViewController.swift */; };
+		7692CE732033F97B001FFFBC /* FriendsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692CE722033F97B001FFFBC /* FriendsTVCell.swift */; };
 		7696C998201698560074717E /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7696C997201698560074717E /* Server.swift */; };
 		76A918EA20095A7B00BE27A1 /* CommunityViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A918E920095A7B00BE27A1 /* CommunityViewCell.swift */; };
 		76AA3F3320204BAB0038DAD9 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA3F3220204BAB0038DAD9 /* MeViewController.swift */; };
@@ -61,6 +63,7 @@
 		76B1FBAC20009E9D00402173 /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76B1FBAB20009E9D00402173 /* Me.storyboard */; };
 		76B1FBAE2000A07100402173 /* Community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76B1FBAD2000A07100402173 /* Community.storyboard */; };
 		76B1FBB02000A0C700402173 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B1FBAF2000A0C700402173 /* CommunityViewController.swift */; };
+		76B20006203400270040934B /* ProfileNaviController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B20005203400270040934B /* ProfileNaviController.swift */; };
 		76BD233F20302A4C00C360CA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BD233E20302A4C00C360CA /* MainViewController.swift */; };
 		76C555F42030BD240045603F /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C555F32030BD240045603F /* Media.swift */; };
 		76CDF83720200EF90098948C /* MyStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDF83620200EF90098948C /* MyStatusView.swift */; };
@@ -116,7 +119,6 @@
 		762296F8200A961900D09D12 /* FriendFeedViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendFeedViewCell.swift; sourceTree = "<group>"; };
 		7630D9F62022C39B00C5603B /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		763688C02003036C00129279 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
-		763688C4200311B200129279 /* MeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewModel.swift; sourceTree = "<group>"; };
 		76376135202064CB006BE727 /* PendingChallTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingChallTVCell.swift; sourceTree = "<group>"; };
 		763B13F120217D97006DC47E /* SegueAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueAnimation.swift; sourceTree = "<group>"; };
 		763BC5492022D04D00F57BD4 /* SelectTakerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTakerTableViewController.swift; sourceTree = "<group>"; };
@@ -125,10 +127,9 @@
 		763E2D8C202FE347003B5E2D /* AWSS3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSS3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		763FA65A2031156E00D7A46B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		763FA65C2031291500D7A46B /* ViewChallengeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewChallengeNavigationController.swift; sourceTree = "<group>"; };
+		76407EB22034161700163545 /* ServerResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerResponseModel.swift; sourceTree = "<group>"; };
 		7645385820012DB5004A96F7 /* Create.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Create.storyboard; sourceTree = "<group>"; };
-		7645385A2001421B004A96F7 /* CollapsibleTableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewHeader.swift; sourceTree = "<group>"; };
 		7645385B2001421B004A96F7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		7645385C2001421C004A96F7 /* CollapsibleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewCell.swift; sourceTree = "<group>"; };
 		7650EA10200095080011125B /* iDareU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iDareU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7650EA13200095080011125B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7650EA15200095080011125B /* CaptureVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVideoViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +155,10 @@
 		767A64C0201AF54A00EF0F84 /* CoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreModel.swift; sourceTree = "<group>"; };
 		767D1EA820250E6A0098DF47 /* SetupChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupChallengeViewController.swift; sourceTree = "<group>"; };
 		768206EB2033A9E2004E049C /* ViewChallengeLabelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewChallengeLabelController.swift; sourceTree = "<group>"; };
+		7692CE692033EA87001FFFBC /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		7692CE6D2033EE4D001FFFBC /* AddFriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsTableViewController.swift; sourceTree = "<group>"; };
+		7692CE6F2033F610001FFFBC /* MyFriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsTableViewController.swift; sourceTree = "<group>"; };
+		7692CE722033F97B001FFFBC /* FriendsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTVCell.swift; sourceTree = "<group>"; };
 		7696C997201698560074717E /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		76A918E920095A7B00BE27A1 /* CommunityViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewCell.swift; sourceTree = "<group>"; };
 		76AA3F3220204BAB0038DAD9 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +174,7 @@
 		76B1FBAB20009E9D00402173 /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
 		76B1FBAD2000A07100402173 /* Community.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Community.storyboard; sourceTree = "<group>"; };
 		76B1FBAF2000A0C700402173 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
+		76B20005203400270040934B /* ProfileNaviController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNaviController.swift; sourceTree = "<group>"; };
 		76BD233E20302A4C00C360CA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		76C555F32030BD240045603F /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		76C633B7202E5E040075E144 /* AWSAuthCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAuthCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -350,28 +356,7 @@
 			path = iDareUUITests;
 			sourceTree = "<group>";
 		};
-		76DC47B4201A99D900C97B24 /* Data Model */ = {
-			isa = PBXGroup;
-			children = (
-				76DDEEA9201929CD002CBE52 /* iDareU.xcdatamodeld */,
-				760531CA201FEAC6009F9B05 /* Session.xcdatamodeld */,
-				767A64C0201AF54A00EF0F84 /* CoreModel.swift */,
-				76AEB2DB201FC87B00953919 /* ChallengeModel.swift */,
-				760D91B1201EE1C000628725 /* ErrorModel.swift */,
-			);
-			path = "Data Model";
-			sourceTree = "<group>";
-		};
-		76DE76992001CB7900F790D8 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				765EF5672002EB33006B36B0 /* FriendViewModel.swift */,
-				763688C4200311B200129279 /* MeViewModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		76DE769A2001CB8000F790D8 /* View */ = {
+		7692CE712033F91F001FFFBC /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				76A918E920095A7B00BE27A1 /* CommunityViewCell.swift */,
@@ -380,6 +365,36 @@
 				76376135202064CB006BE727 /* PendingChallTVCell.swift */,
 				76EA6B6920211B9000AC40CA /* CreatedChallTVCell.swift */,
 				763BC54D2022D8F000F57BD4 /* SelectTakerTVCell.swift */,
+				7692CE722033F97B001FFFBC /* FriendsTVCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		76DC47B4201A99D900C97B24 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				76DDEEA9201929CD002CBE52 /* iDareU.xcdatamodeld */,
+				760531CA201FEAC6009F9B05 /* Session.xcdatamodeld */,
+				767A64C0201AF54A00EF0F84 /* CoreModel.swift */,
+				76AEB2DB201FC87B00953919 /* ChallengeModel.swift */,
+				760D91B1201EE1C000628725 /* ErrorModel.swift */,
+				76407EB22034161700163545 /* ServerResponseModel.swift */,
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		76DE76992001CB7900F790D8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				765EF5672002EB33006B36B0 /* FriendViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		76DE769A2001CB8000F790D8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7692CE712033F91F001FFFBC /* Cell */,
 				7650EA1E200095080011125B /* LaunchScreen.storyboard */,
 				7650EA19200095080011125B /* Main.storyboard */,
 				76EC146020167B1600C73DFC /* Signup.storyboard */,
@@ -391,6 +406,7 @@
 				7622385C202CDB3F00291AB6 /* ChallengeReward.storyboard */,
 				76B1FBAB20009E9D00402173 /* Me.storyboard */,
 				760531C4201FE87C009F9B05 /* ViewChallenge.storyboard */,
+				7692CE692033EA87001FFFBC /* Profile.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -422,6 +438,9 @@
 				763FA65C2031291500D7A46B /* ViewChallengeNavigationController.swift */,
 				76E7396D202FEA4400A2EDBC /* ViewChallengeViewController.swift */,
 				768206EB2033A9E2004E049C /* ViewChallengeLabelController.swift */,
+				76B20005203400270040934B /* ProfileNaviController.swift */,
+				7692CE6F2033F610001FFFBC /* MyFriendsTableViewController.swift */,
+				7692CE6D2033EE4D001FFFBC /* AddFriendsTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -430,8 +449,6 @@
 			isa = PBXGroup;
 			children = (
 				7650EA15200095080011125B /* CaptureVideoViewController.swift */,
-				7645385C2001421C004A96F7 /* CollapsibleTableViewCell.swift */,
-				7645385A2001421B004A96F7 /* CollapsibleTableViewHeader.swift */,
 			);
 			path = Trash;
 			sourceTree = "<group>";
@@ -565,6 +582,7 @@
 				76EC146120167B1600C73DFC /* Signup.storyboard in Resources */,
 				765A09DD2017BE950004A67D /* Router.storyboard in Resources */,
 				765A09DF2017BF0C0004A67D /* Login.storyboard in Resources */,
+				7692CE6A2033EA87001FFFBC /* Profile.storyboard in Resources */,
 				7645385920012DB5004A96F7 /* Create.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -761,12 +779,12 @@
 				763BC54A2022D04D00F57BD4 /* SelectTakerTableViewController.swift in Sources */,
 				762296F7200A930A00D09D12 /* FriendsViewController.swift in Sources */,
 				76CF47172021AC3300E7E5BF /* CreateViewController.swift in Sources */,
-				763688C5200311B200129279 /* MeViewModel.swift in Sources */,
 				760531D2201FECCC009F9B05 /* Local.swift in Sources */,
 				76EA6B6C202127ED00AC40CA /* UpdateChallengeRewardViewController.swift in Sources */,
 				76EC14672016864500C73DFC /* ValidationError.swift in Sources */,
 				76AC733B20258BCD0072C7BF /* SelectSponsorTableViewController.swift in Sources */,
 				765EF5662002CBEB006B36B0 /* EFCountingLabel.swift in Sources */,
+				7692CE6E2033EE4D001FFFBC /* AddFriendsTableViewController.swift in Sources */,
 				7696C998201698560074717E /* Server.swift in Sources */,
 				7645385F2001421C004A96F7 /* Extensions.swift in Sources */,
 				7630D9F72022C39B00C5603B /* PreviewViewController.swift in Sources */,
@@ -775,15 +793,15 @@
 				76789C9920205D9300024019 /* MeInitialViewController.swift in Sources */,
 				76AA3F39202058B90038DAD9 /* CompletedChallViewController.swift in Sources */,
 				765EF5682002EB33006B36B0 /* FriendViewModel.swift in Sources */,
+				76407EB32034161700163545 /* ServerResponseModel.swift in Sources */,
 				767D1EA920250E6A0098DF47 /* SetupChallengeViewController.swift in Sources */,
-				764538602001421C004A96F7 /* CollapsibleTableViewCell.swift in Sources */,
 				76EC146320167E5B00C73DFC /* SignupViewController.swift in Sources */,
 				763B13F220217D97006DC47E /* SegueAnimation.swift in Sources */,
 				763BC54C2022D5D100F57BD4 /* Button.swift in Sources */,
 				765A09D82017BB5D0004A67D /* LoginViewController.swift in Sources */,
 				76B1FBB02000A0C700402173 /* CommunityViewController.swift in Sources */,
 				763FA65D2031291500D7A46B /* ViewChallengeNavigationController.swift in Sources */,
-				7645385E2001421C004A96F7 /* CollapsibleTableViewHeader.swift in Sources */,
+				7692CE732033F97B001FFFBC /* FriendsTVCell.swift in Sources */,
 				7650EA14200095080011125B /* AppDelegate.swift in Sources */,
 				768206EC2033A9E2004E049C /* ViewChallengeLabelController.swift in Sources */,
 				76AEB2DC201FC87B00953919 /* ChallengeModel.swift in Sources */,
@@ -794,12 +812,14 @@
 				7650EA16200095080011125B /* CaptureVideoViewController.swift in Sources */,
 				762296F9200A961900D09D12 /* FriendFeedViewCell.swift in Sources */,
 				76FC08ED201ED323008F9902 /* GenericUIViewController.swift in Sources */,
+				76B20006203400270040934B /* ProfileNaviController.swift in Sources */,
 				76376136202064CB006BE727 /* PendingChallTVCell.swift in Sources */,
 				76BD233F20302A4C00C360CA /* MainViewController.swift in Sources */,
 				763BC54E2022D8F000F57BD4 /* SelectTakerTVCell.swift in Sources */,
 				76DDEEAB201929CD002CBE52 /* iDareU.xcdatamodeld in Sources */,
 				760531DB201FFD00009F9B05 /* Session.xcdatamodeld in Sources */,
 				76AA3F372020583E0038DAD9 /* PendingChallViewController.swift in Sources */,
+				7692CE702033F610001FFFBC /* MyFriendsTableViewController.swift in Sources */,
 				76E7396E202FEA4400A2EDBC /* ViewChallengeViewController.swift in Sources */,
 				76682213201E5C6800F52659 /* RouterTabBarController.swift in Sources */,
 			);

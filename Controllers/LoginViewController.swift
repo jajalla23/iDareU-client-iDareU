@@ -26,6 +26,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        username_input.delegate = self
+        password_input.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -130,10 +132,10 @@ class LoginViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let defaults = UserDefaults.standard
-        defaults.set(self.user!._id, forKey: "user_id")
-        
         if (segue.identifier == "loginToRouterSegue") {
+            let defaults = UserDefaults.standard
+            defaults.set(self.user!._id, forKey: "user_id")
+            
             let routerController = segue.destination as! RouterTabBarController
             routerController.user = self.user
         }
@@ -149,5 +151,12 @@ class LoginViewController: UIViewController {
     }
     */
 
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 }
 

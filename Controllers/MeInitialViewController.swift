@@ -52,9 +52,15 @@ class MeInitialViewController: GenericUIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let routerController: RouterTabBarController = self.tabBarController as! RouterTabBarController
-        let meViewController = segue.destination as? MeGenericViewController
-        meViewController?.user = routerController.user
+        if (segue.identifier == "profileSegue") {
+            let controller = segue.destination as! ProfileNaviController
+            controller.user = self.user
+            
+        } else {
+            let routerController: RouterTabBarController = self.tabBarController as! RouterTabBarController
+            let meViewController = segue.destination as? MeGenericViewController
+            meViewController?.user = routerController.user
+        }
     }
     
     @IBAction func leftBarBtnTapped(_ sender: UIBarButtonItem) {

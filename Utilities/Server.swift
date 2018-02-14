@@ -61,7 +61,7 @@ public class Server {
         
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod
-        request.httpBody = data
+        request.httpBody = data ?? nil
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -174,7 +174,6 @@ extension Server {
     }
     
     static func createNewUser(userInfo: User) throws -> User {
-        var newUser = userInfo
         let encoder = JSONEncoder()
         let data = try! encoder.encode(userInfo)
         
@@ -184,32 +183,22 @@ extension Server {
                 throw cError
         }
         
-        do {
-            if let json = try JSONSerialization.jsonObject(with: respData, options: .mutableContainers) as? [String: Any] {
-                let status = json["status"] as? NSDictionary
-                if (status!["code"] as? String != "001") {
-                    print("error post response")
-                    let error: CustomError = CustomError.init(code: status!["code"] as! String, description: status!["description"] as! String, severity: Severity.HIGH, location: self.error_location)
-                    
-                    throw error
-                }
-                
-                if let data_block = json["data"] as? NSDictionary {
-                    if let session_data = data_block["session"] as? String {
-                        let defaults = UserDefaults.standard
-                        defaults.set(session_data, forKey: "session_id")
-                        
-                        //let user = data_block["user"] as? NSDictionary
-                        //userInfo._id = user!["_id"] as? String
-                        let jsonData = try JSONSerialization.data(withJSONObject: data_block["user"]!, options: .prettyPrinted)
-
-                        let decoder = JSONDecoder()
-                        newUser = try decoder.decode(User.self, from: jsonData)
-                        newUser.identification?.password = nil
-
-                    }
-                }
+        do {           
+            let response = try JSONDecoder().decode(CreateUserResponse.self, from: respData)
+        
+            if (response.error != nil) {
+                print(response.error?.description ?? "error")
+                throw response.error!
             }
+        
+            if let data = response.data {
+                let defaults = UserDefaults.standard
+                defaults.set(data.session, forKey: "session_id")
+                
+                data.user?.identification?.password = nil
+                return data.user!
+            }
+            
         } catch let customError as CustomError {
             throw customError
         } catch let error {
@@ -219,7 +208,7 @@ extension Server {
             throw customerError
         }
         
-        return newUser
+        return userInfo
     }
     
     static func getFriendFeedData(userId: String) throws -> [FriendFeed] {
@@ -288,7 +277,7 @@ extension Server {
         }
         
         do {
-            if let json = try JSONSerialization.jsonObject(with: respData, options: .mutableContainers) as? [String: Any] {
+            /*if let json = try JSONSerialization.jsonObject(with: respData, options: .mutableContainers) as? [String: Any] {
                 let status = json["status"] as? NSDictionary
                 if (status!["code"] as? String != "001") {
                     print("error post response")
@@ -296,7 +285,17 @@ extension Server {
                     
                     throw error
                 }
+            }*/
+            let decoder = JSONDecoder()
+            let response = try decoder.decode(Response.self, from: respData)
+            
+            if (response.error != nil) {
+                print("error post response")
+                let error: CustomError = CustomError.init(code: response.error!.code, description: response.error!.description, severity: Severity.HIGH, location: self.error_location)
+                
+                throw error
             }
+            
         } catch let customError as CustomError {
             throw customError
         } catch let error {
@@ -317,5 +316,27 @@ extension Server {
         let request = URLRequest(url: url)
         let task = session.synchronousDataTask(with: request)
         return task.0        
+    }
+    
+    static func getOtherUsers(user_id: String) throws -> [User]? {
+        guard let respData = try invokeHTTP(action: "users/" + user_id, httpMethod: "GET", data: nil, sync: true)
+            else {
+                let cError: CustomError = CustomError.init(code: "002", description: "Unable to call server", severity: Severity.HIGH, location: error_location)
+                throw cError
+        }
+        
+        do {
+            let decoder = JSONDecoder()
+            let response: GetUsersResponse = try decoder.decode(GetUsersResponse.self, from: respData)
+
+            if (response.error != nil) {
+                throw response.error!
+            }
+
+            return response.data
+        } catch let error {
+            let cError: CustomError = CustomError.init(code: "002", description: error.localizedDescription, severity: Severity.HIGH, location: error_location)
+            throw cError
+        }
     }
 }

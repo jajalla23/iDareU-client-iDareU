@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zgd-PA-N0X">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--My Friends-->
+        <scene sceneID="YuU-wq-6O0">
+            <objects>
+                <tableViewController id="fXu-3b-DtI" customClass="MyFriendsTableViewController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jgZ-zT-nE4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="p0w-sI-A1m">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="fXu-3b-DtI" id="jSA-Vr-TZs"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="friendCell" editingAccessoryType="checkmark" textLabel="Xy3-fl-gMq" imageView="CnD-d0-lbP" rowHeight="40" style="IBUITableViewCellStyleDefault" id="XpP-cL-c8m" customClass="FriendsTVCell" customModule="iDareU" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="375" height="40"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XpP-cL-c8m" id="phE-pj-3lM">
+                                    <rect key="frame" x="0.0" y="0.0" width="327" height="39.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Friend" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xy3-fl-gMq">
+                                            <rect key="frame" x="69" y="0.0" width="258" height="39.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="unchecked" id="CnD-d0-lbP" userLabel="Image">
+                                            <rect key="frame" x="16" y="0.0" width="38" height="39.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="friendImgView" destination="CnD-d0-lbP" id="nOV-1M-YrZ"/>
+                                    <outlet property="friendLbl" destination="Xy3-fl-gMq" id="iTo-rW-Yn0"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fXu-3b-DtI" id="SwN-d4-TYf"/>
+                            <outlet property="delegate" destination="fXu-3b-DtI" id="mgj-Dv-nYQ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="My Friends" leftItemsSupplementBackButton="YES" id="cM0-it-MFX">
+                        <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="Rwn-Ra-u2D">
+                            <connections>
+                                <action selector="backBtnTapped:" destination="fXu-3b-DtI" id="NvN-L6-1Bq"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="+" id="p0R-Sf-mt6">
+                            <connections>
+                                <segue destination="iX9-XG-Id6" kind="show" id="E6j-WN-vXr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="p0w-sI-A1m" id="UJU-XB-ImF"/>
+                        <outlet property="searchDisplayController" destination="nM1-jd-SvR" id="ZWr-eK-13k"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="34m-xa-MOG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="nM1-jd-SvR">
+                    <connections>
+                        <outlet property="delegate" destination="fXu-3b-DtI" id="KBy-2g-My9"/>
+                        <outlet property="searchBar" destination="p0w-sI-A1m" id="uUH-14-t50"/>
+                        <outlet property="searchContentsController" destination="fXu-3b-DtI" id="tA5-hL-L1B"/>
+                        <outlet property="searchResultsDataSource" destination="fXu-3b-DtI" id="C8M-LF-AW5"/>
+                        <outlet property="searchResultsDelegate" destination="fXu-3b-DtI" id="eVg-F6-OwF"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1463.2" y="67.980295566502463"/>
+        </scene>
+        <!--Profile Navi Controller-->
+        <scene sceneID="mtv-Yo-rXa">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zgd-PA-N0X" customClass="ProfileNaviController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UcV-h9-zuv">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fXu-3b-DtI" kind="relationship" relationship="rootViewController" id="uz0-uH-chM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bjs-Sp-AFi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="374" y="68"/>
+        </scene>
+        <!--Add Friends-->
+        <scene sceneID="Qdz-Z5-AzB">
+            <objects>
+                <tableViewController title="Add Friends" id="iX9-XG-Id6" customClass="AddFriendsTableViewController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Y8t-re-suB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="jHH-65-pSN">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="iX9-XG-Id6" id="fyo-JH-rbx"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="friendResultCell" textLabel="WlE-ZW-dYh" imageView="Zzg-Xi-eNR" rowHeight="40" style="IBUITableViewCellStyleDefault" id="Xrb-I2-cgV" customClass="FriendsTVCell" customModule="iDareU" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="375" height="40"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xrb-I2-cgV" id="f7Y-eP-aLE">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="39.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Friend" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WlE-ZW-dYh">
+                                            <rect key="frame" x="69" y="0.0" width="290" height="39.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="unchecked" id="Zzg-Xi-eNR" userLabel="image">
+                                            <rect key="frame" x="16" y="0.0" width="38" height="39.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="friendLbl" destination="WlE-ZW-dYh" id="DO9-Ht-9Qh"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="iX9-XG-Id6" id="usx-O5-uex"/>
+                            <outlet property="delegate" destination="iX9-XG-Id6" id="rxs-LS-qkl"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Friends" leftItemsSupplementBackButton="YES" id="ZqR-81-LgD"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="nM1-jd-SvR" id="Smm-69-WTw"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9jD-A2-4dq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="Eu6-0a-deg">
+                    <connections>
+                        <outlet property="delegate" destination="iX9-XG-Id6" id="FaK-nm-AmR"/>
+                        <outlet property="searchBar" destination="jHH-65-pSN" id="W5T-C7-6uV"/>
+                        <outlet property="searchContentsController" destination="iX9-XG-Id6" id="cEZ-7o-Cf8"/>
+                        <outlet property="searchResultsDataSource" destination="iX9-XG-Id6" id="rFA-iH-FNj"/>
+                        <outlet property="searchResultsDelegate" destination="iX9-XG-Id6" id="ARZ-Cx-dGw"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="2586" y="68"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="unchecked" width="93" height="97"/>
+    </resources>
+</document>

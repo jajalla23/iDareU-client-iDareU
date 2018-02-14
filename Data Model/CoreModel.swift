@@ -15,12 +15,13 @@ public class User: Codable {
 
     public var identification: Identification?
     public var personalDetails: PersonalDetails?
+    public var media: Media?
     
     public var jans: Jan?
     private(set) var friends: [String: User]?
     private(set) var challenges: Challenge?
     
-    init(facebook_id: String, email: String, firstName: String, lastName: String?) {
+    init(facebook_id: String, email: String, firstName: String, lastName: String) {
         self.identification = Identification.init(email: email)
         self.identification!.facebook_id = facebook_id
         
@@ -30,7 +31,7 @@ public class User: Codable {
         self.friends = [String: User]()
         self.challenges = Challenge.init()
         
-        self.display_name = firstName
+        self.display_name = firstName + " " + lastName.prefix(1).description + "."
     }
     
     init(username: String, password: String, email: String) {

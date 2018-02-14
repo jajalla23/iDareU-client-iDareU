@@ -119,7 +119,7 @@ public class ChallengeDetails: Codable {
             self.media?.fileName = fileName
         }
         
-        self.media?.challengeImagePreviewURL = imagePrevURL
+        self.media?.preview = imagePrevURL
     }
     
     public func addTaker(user: User) {
@@ -179,8 +179,7 @@ public class Sponsor: Codable {
 }
 
 public class Media: Codable {
-    public var challengeImagePreviewURL: String?
-    //public var challengeVideoURL: String
+    public var preview: String?
     public var fileName: String
     public var type: String
     
