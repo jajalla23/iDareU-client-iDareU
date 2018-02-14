@@ -48,6 +48,7 @@
 		76789C9920205D9300024019 /* MeInitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76789C9820205D9300024019 /* MeInitialViewController.swift */; };
 		767A64C1201AF54A00EF0F84 /* CoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767A64C0201AF54A00EF0F84 /* CoreModel.swift */; };
 		767D1EA920250E6A0098DF47 /* SetupChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1EA820250E6A0098DF47 /* SetupChallengeViewController.swift */; };
+		768206EC2033A9E2004E049C /* ViewChallengeLabelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768206EB2033A9E2004E049C /* ViewChallengeLabelController.swift */; };
 		7696C998201698560074717E /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7696C997201698560074717E /* Server.swift */; };
 		76A918EA20095A7B00BE27A1 /* CommunityViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A918E920095A7B00BE27A1 /* CommunityViewCell.swift */; };
 		76AA3F3320204BAB0038DAD9 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA3F3220204BAB0038DAD9 /* MeViewController.swift */; };
@@ -152,6 +153,7 @@
 		76789C9820205D9300024019 /* MeInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeInitialViewController.swift; sourceTree = "<group>"; };
 		767A64C0201AF54A00EF0F84 /* CoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreModel.swift; sourceTree = "<group>"; };
 		767D1EA820250E6A0098DF47 /* SetupChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupChallengeViewController.swift; sourceTree = "<group>"; };
+		768206EB2033A9E2004E049C /* ViewChallengeLabelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewChallengeLabelController.swift; sourceTree = "<group>"; };
 		7696C997201698560074717E /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		76A918E920095A7B00BE27A1 /* CommunityViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewCell.swift; sourceTree = "<group>"; };
 		76AA3F3220204BAB0038DAD9 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 				76AA3F38202058B90038DAD9 /* CompletedChallViewController.swift */,
 				763FA65C2031291500D7A46B /* ViewChallengeNavigationController.swift */,
 				76E7396D202FEA4400A2EDBC /* ViewChallengeViewController.swift */,
+				768206EB2033A9E2004E049C /* ViewChallengeLabelController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -782,6 +785,7 @@
 				763FA65D2031291500D7A46B /* ViewChallengeNavigationController.swift in Sources */,
 				7645385E2001421C004A96F7 /* CollapsibleTableViewHeader.swift in Sources */,
 				7650EA14200095080011125B /* AppDelegate.swift in Sources */,
+				768206EC2033A9E2004E049C /* ViewChallengeLabelController.swift in Sources */,
 				76AEB2DC201FC87B00953919 /* ChallengeModel.swift in Sources */,
 				76A918EA20095A7B00BE27A1 /* CommunityViewCell.swift in Sources */,
 				763688C12003036C00129279 /* StatusViewController.swift in Sources */,

@@ -123,12 +123,12 @@ class CameraToolsTableViewController: UITableViewController {
     */
 
     @IBAction func controlBtnTapped(_ sender: Any) {
-        let camCell = self.cameraFlashCell!
+        //let camCell = self.cameraFlashCell!
         if (isExpanded) {
-            UIView.animate(withDuration: 0.7, animations: {
+            /*UIView.animate(withDuration: 0.7, animations: {
                 camCell.contentView.frame = CGRect(x: camCell.contentView.frame.origin.x, y: camCell.contentView.frame.origin.y, width: camCell.contentView.frame.width, height: 0.0)
                 self.view.layoutIfNeeded()
-            })
+            })*/
         }
         
         isExpanded = !isExpanded

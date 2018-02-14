@@ -11,6 +11,8 @@ import UIKit
 
 public class User: Codable {
     public var _id: String?
+    private(set) var display_name: String
+
     public var identification: Identification?
     public var personalDetails: PersonalDetails?
     
@@ -27,6 +29,8 @@ public class User: Codable {
         self.jans = Jan()
         self.friends = [String: User]()
         self.challenges = Challenge.init()
+        
+        self.display_name = firstName
     }
     
     init(username: String, password: String, email: String) {
@@ -37,6 +41,8 @@ public class User: Codable {
         self.jans = Jan()
         self.friends = [String: User]()
         self.challenges = Challenge.init()
+        
+        self.display_name = username
     }
     
     public func addFriends(friends: [User]) {

@@ -52,7 +52,6 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
         
         cell.challangePrevImage.image = UIImage(named: "Play")
         cell.challengeTitleLbl.text = currChallenge?.title
-        cell.challengeDescLbl.text = currChallenge?.description ?? ""
         cell.challengeRewardLbl.text = "J \(currChallenge?.reward.description ?? "0")"
         
         return cell

@@ -48,10 +48,7 @@ class LoginViewController: UIViewController {
         do {
             self.user = try Server.login(username: username_input.text!, password: password_input.text!)
             
-            if (self.user != nil) {
-                let defaults = UserDefaults.standard
-                defaults.set(user?._id, forKey: "user_id")
-             
+            if (self.user != nil) {            
                 self.loginDone()
             }
         } catch let error as CustomError {
@@ -106,9 +103,6 @@ class LoginViewController: UIViewController {
         do {
             self.user = try Server.createNewUser(userInfo: newUser)
             if self.user!._id != nil {
-                let defaults = UserDefaults.standard
-                defaults.set(newUser._id, forKey: "user_id")
-                
                 self.loginDone()
             }
             
@@ -136,6 +130,9 @@ class LoginViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let defaults = UserDefaults.standard
+        defaults.set(self.user!._id, forKey: "user_id")
+        
         if (segue.identifier == "loginToRouterSegue") {
             let routerController = segue.destination as! RouterTabBarController
             routerController.user = self.user

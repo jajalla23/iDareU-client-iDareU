@@ -71,7 +71,7 @@ class SelectTakerTableViewController: UITableViewController {
             let selected_friend = self.selectedFriends![current_friend._id!] ?? nil
             
             cell.cellCheckbox.friend = current_friend
-            cell.friendUsernameLbl.text = (current_friend.identification?.username ?? current_friend.personalDetails?.name?.first ?? current_friend.identification?.email)
+            cell.friendUsernameLbl.text = current_friend.display_name
             
             if (selected_friend?._id != current_friend._id) {
                 cell.cellCheckbox.isChecked = false

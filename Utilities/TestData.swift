@@ -14,10 +14,10 @@ class TestData {
         user._id = "00000"
         user.jans?.available = 99
         
-        let challenge1: ChallengeDetails = ChallengeDetails.init(sponsorId: user._id!, title: "Challenge1", description: "Completed Challenge", reward: 10)
-        let challenge2: ChallengeDetails = ChallengeDetails.init(sponsorId: user._id!, title: "Challenge2", description: "Pending Challenge", reward: 20)
-        let challenge3: ChallengeDetails = ChallengeDetails.init(sponsorId: user._id!, title: "Challenge3", description: "Owned Challenge", reward: 30)
-        let challenge4: ChallengeDetails = ChallengeDetails.init(sponsorId: user._id!, title: "Challenge4", description: "Pending Challenge", reward: 20)
+        let challenge1: ChallengeDetails = ChallengeDetails.init(sponsorId: user._id!, sponsor_displayName: user.identification!.username!, title: "Challenge1", description: "Completed Challenge", reward: 10)
+        let challenge2: ChallengeDetails = ChallengeDetails.init(sponsorId: user._id!, sponsor_displayName: user.identification!.username!, title: "Challenge2", description: "Pending Challenge", reward: 20)
+        let challenge3: ChallengeDetails = ChallengeDetails.init(sponsorId: user._id!, sponsor_displayName: user.identification!.username!, title: "Challenge3", description: "Owned Challenge", reward: 30)
+        let challenge4: ChallengeDetails = ChallengeDetails.init(sponsorId: user._id!, sponsor_displayName: user.identification!.username!, title: "Challenge4", description: "Pending Challenge", reward: 20)
         
         challenge3.description = "Lorem ipsum dolor sit amet, ex alia mediocritatem usu. In laudem propriae duo, doctus aliquid praesent ad pro, detraxit sapientem et vis."
         challenge3.addMedia(fileName: "AD4A76BE-9BC5-4299-804B-6FB317B7D3D1", type: "image/jpg", imagePrevURL: "")

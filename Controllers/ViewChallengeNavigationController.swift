@@ -10,7 +10,7 @@ import UIKit
 
 class ViewChallengeNavigationController: UINavigationController {
     var challenge: ChallengeDetails?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

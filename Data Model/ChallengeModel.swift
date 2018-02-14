@@ -94,15 +94,15 @@ public class ChallengeDetails: Codable {
     public var isForCommunity: Bool = false
     public var location: String?
     
-    init(sponsorId: String, title: String, description: String?, reward: Int) {
-        self.sponsor = Sponsor.init(sponsorId: sponsorId, reward: reward)
+    init(sponsorId: String, sponsor_displayName: String, title: String, description: String?, reward: Int) {
+        self.sponsor = Sponsor.init(sponsorId: sponsorId, display_name: sponsor_displayName, reward: reward)
         self.title = title
         self.description = description
         self.reward = reward
     }
        
     public func addSponsor(user: User, reward: Int) {
-        self.sponsor = Sponsor.init(sponsorId: user._id!, reward: reward)
+        self.sponsor = Sponsor.init(sponsorId: user._id!, display_name: user.display_name, reward: reward)
         self.reward += reward
     }
     
@@ -136,7 +136,7 @@ public class ChallengeDetails: Codable {
     }
     
     public func addCosponsor(user: User, reward: Int) {
-        let newCosponsor: Sponsor = Sponsor.init(sponsorId: user._id!, reward: reward)
+        let newCosponsor: Sponsor = Sponsor.init(sponsorId: user._id!, display_name: user.display_name, reward: reward)
         
         // if condition ? true : else
         if (self.coSponsors == nil) {
@@ -168,10 +168,12 @@ public class Taker: Codable {
 
 public class Sponsor: Codable {
     public var _id: String
+    public var display_name: String
     public var reward: Int
     
-    init(sponsorId: String, reward: Int) {
+    init(sponsorId: String, display_name: String, reward: Int) {
         self._id = sponsorId
+        self.display_name = display_name
         self.reward = reward
     }
 }

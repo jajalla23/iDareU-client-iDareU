@@ -36,7 +36,7 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
         self.challengeTitleTxtField.delegate = self;
 
         if (challenge == nil) {
-            challenge = ChallengeDetails.init(sponsorId: self.user?._id ?? "00000", title: "Untitled Challenge", description: "", reward: 0)
+            challenge = ChallengeDetails.init(sponsorId: self.user?._id ?? "00000", sponsor_displayName: "no name", title: "Untitled Challenge", description: "", reward: 0)
             challenge?.addSponsor(user: self.user!, reward: 1)
             self.sponsors = []
         }

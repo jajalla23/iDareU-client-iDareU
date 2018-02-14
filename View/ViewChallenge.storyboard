@@ -27,7 +27,7 @@
                                     <constraint firstAttribute="height" constant="425" id="DjX-xg-hlk"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="E1U-KG-BlK" kind="embed" id="8Yq-tc-YT4"/>
+                                    <segue destination="E1U-KG-BlK" kind="embed" identifier="challengeLabelSegue" id="8Yq-tc-YT4"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -77,6 +77,7 @@
         <!--View Challenge Navigation Controller-->
         <scene sceneID="WIg-KY-Ar2">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yff-dW-qNP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iCZ-fM-oiC" customClass="ViewChallengeNavigationController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="F3E-3i-QJR">
@@ -88,14 +89,13 @@
                         <segue destination="XIF-Ks-bQz" kind="relationship" relationship="rootViewController" id="DZN-uY-aRz"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yff-dW-qNP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-284" y="56"/>
         </scene>
-        <!--View Controller-->
+        <!--View Challenge Label Controller-->
         <scene sceneID="KHD-Nz-U1g">
             <objects>
-                <viewController id="E1U-KG-BlK" sceneMemberID="viewController">
+                <viewController id="E1U-KG-BlK" customClass="ViewChallengeLabelController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FKa-hm-EJ7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="425"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -132,7 +132,13 @@
                             <constraint firstItem="8xy-1v-MYj" firstAttribute="top" secondItem="XNq-wA-yTl" secondAttribute="bottom" constant="40" id="oCA-jz-poS"/>
                             <constraint firstItem="XNq-wA-yTl" firstAttribute="top" secondItem="okQ-uI-cnZ" secondAttribute="bottom" constant="45" id="spn-r0-ZL7" userLabel="Challenge Info.top = Reward Value.bottom + 40"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="GGk-f9-nTf"/>
                     </view>
+                    <connections>
+                        <outlet property="challengeDescLbl" destination="8xy-1v-MYj" id="siD-NG-pCf"/>
+                        <outlet property="challengeInfoLbl" destination="XNq-wA-yTl" id="y5v-AX-kwF"/>
+                        <outlet property="rewardValLbl" destination="okQ-uI-cnZ" id="2FN-qL-QvV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2xA-Vo-Nh7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

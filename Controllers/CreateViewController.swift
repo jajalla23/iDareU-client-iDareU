@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import AVFoundation
 
-class CreateViewController: GenericUIViewController, CameraToolsControllerDelegate {
+class CreateViewController: GenericUIViewController {
     
     private var capturePhotoOutput: AVCapturePhotoOutput?
     private var capturedImage: UIImage?
@@ -92,6 +92,51 @@ class CreateViewController: GenericUIViewController, CameraToolsControllerDelega
         captureSession?.addOutput(capturePhotoOutput!)
     }
     
+    @IBAction func onCaptureBtnTapped(_ sender: Any) {
+        #if SIMULATOR
+            self.performSegue(withIdentifier: "previewSegue", sender: self)
+        #endif
+        
+        guard let capturePhotoOutput = self.capturePhotoOutput else { return }
+
+        let photoSettings = AVCapturePhotoSettings()
+        photoSettings.isAutoStillImageStabilizationEnabled = true
+        photoSettings.isHighResolutionPhotoEnabled = true
+        photoSettings.flashMode = self.flashMode!
+
+        capturePhotoOutput.capturePhoto(with: photoSettings, delegate: self as AVCapturePhotoCaptureDelegate)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "previewSegue") {
+            guard let controller = segue.destination as? PreviewViewController else {
+                return
+            }
+            controller.image = self.capturedImage
+            controller.user = self.user
+        } else if (segue.identifier == "cameraToolsSegue") {
+            guard let controller = segue.destination as? CameraToolsTableViewController else {
+                return
+            }
+            controller.delegate = self
+        }
+    }
+    
+    @IBAction func unwindToCreate(segue: UIStoryboardSegue) {}
+    
+    func prepare(completionHandler: @escaping (Error?) -> Void) { }
+
+}
+
+extension CreateViewController: AVCapturePhotoCaptureDelegate {
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        let imageData = photo.fileDataRepresentation()
+        self.capturedImage = UIImage.init(data: imageData! , scale: 1.0)
+        self.performSegue(withIdentifier: "previewSegue", sender: self)
+    }
+}
+
+extension CreateViewController: CameraToolsControllerDelegate {
     func cameraFlashBtnTapped(cameraToolsController: CameraToolsTableViewController) {
         do {
             try captureDevice?.lockForConfiguration()
@@ -125,59 +170,13 @@ class CreateViewController: GenericUIViewController, CameraToolsControllerDelega
             }
             
             self.capturePosition = AVCaptureDevice.Position.back
-            //cameraToolsController.cameraFlashBtn.isHidden = false
-
+            
         } else {
             if let frontCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .front) {
                 self.captureDevice = frontCameraDevice
                 self.capturePosition = AVCaptureDevice.Position.front
-                //cameraToolsController.cameraFlashBtn.isHidden = true
             }
         }
         setupCamera()
-    }
-    
-    @IBAction func onCaptureBtnTapped(_ sender: Any) {
-        #if SIMULATOR
-            self.performSegue(withIdentifier: "previewSegue", sender: self)
-        #endif
-        
-        guard let capturePhotoOutput = self.capturePhotoOutput else { return }
-
-        let photoSettings = AVCapturePhotoSettings()
-        photoSettings.isAutoStillImageStabilizationEnabled = true
-        photoSettings.isHighResolutionPhotoEnabled = true
-        //photoSettings.flashMode = .auto
-        photoSettings.flashMode = self.flashMode!
-
-        capturePhotoOutput.capturePhoto(with: photoSettings, delegate: self as AVCapturePhotoCaptureDelegate)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "previewSegue") {
-            guard let controller = segue.destination as? PreviewViewController else {
-                return
-            }
-            controller.image = self.capturedImage
-            controller.user = self.user
-        } else if (segue.identifier == "cameraToolsSegue") {
-            guard let controller = segue.destination as? CameraToolsTableViewController else {
-                return
-            }
-            controller.delegate = self
-        }
-    }
-    
-    @IBAction func unwindToCreate(segue: UIStoryboardSegue) {}
-    
-    func prepare(completionHandler: @escaping (Error?) -> Void) { }
-
-}
-
-extension CreateViewController: AVCapturePhotoCaptureDelegate {
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        let imageData = photo.fileDataRepresentation()
-        self.capturedImage = UIImage.init(data: imageData! , scale: 1.0)
-        self.performSegue(withIdentifier: "previewSegue", sender: self)
     }
 }
