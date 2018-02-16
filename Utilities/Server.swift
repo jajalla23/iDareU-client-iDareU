@@ -39,7 +39,7 @@ public class Server {
     
     private static func invokeHTTP(action: String, httpMethod: String, data: Data?, sync: Bool = true) throws -> Data? {
         print("calling server sync...")
-
+        
         let url = URL(string: self.server + action)!
         let session = URLSession.shared
         var request = URLRequest(url: url)
@@ -71,7 +71,7 @@ public class Server {
             guard error == nil else {
                 return
             }
-         
+            
             guard data != nil else {
                 return
             }
@@ -83,11 +83,11 @@ public class Server {
             } catch let error {
                 print(error.localizedDescription)
             }
-         })
+        })
         task.resume()
     }
     
-    public static func invokeHTTP(action: String, httpMethod: String, data: Data, type: String, filename: String, uuid: UUID, sendfile: Bool?) throws -> Data? {
+    private static func invokeHTTP(action: String, httpMethod: String, data: Data, type: String, filename: String, uuid: UUID, sendfile: Bool?) throws -> Data? {
         print("calling server send file...")
         
         let url = URL(string: self.server + action)!
@@ -100,7 +100,7 @@ public class Server {
         request.addValue(String(data.count), forHTTPHeaderField: "Content-Length")
         request.addValue("image/jpeg", forHTTPHeaderField: "Content-Type")
         request.addValue(uuid.uuidString, forHTTPHeaderField: "originalfilename")
-
+        
         let task = session.synchronousDataTask(with: request as URLRequest)
         return task.0
     }
@@ -132,35 +132,30 @@ extension Server {
                 throw cError
         }
         
-        
         do {
-            if let json = try JSONSerialization.jsonObject(with: respData, options: .mutableContainers) as? [String: Any] {
-                let status = json["status"] as? NSDictionary
-                if (status!["code"] as? String != "001") {
-                    print("error post response")
-                    let error: CustomError = CustomError.init(code: status!["code"] as! String, description: status!["description"] as! String, severity: Severity.HIGH, location: self.error_location)
-                    
-                    throw error
-                }
-                
-                if let data_block = json["data"] as? NSDictionary {
-                    if let session_data = data_block["session"] as? String {
-                        let defaults = UserDefaults.standard
-                        defaults.set(session_data, forKey: "session_id")
-                        
-                        let user_json = data_block["user"]
-                        let jsonData = try JSONSerialization.data(withJSONObject: user_json!, options: .prettyPrinted)
-                        
-                        let decoder = JSONDecoder()
-                        let userObj = try decoder.decode(User.self, from: jsonData) as User
-                        
-                        print("return here")
-                        userObj.identification?.password = nil
-                        return userObj
-                    }
-                }
-                
+            let response = try JSONDecoder().decode(LoginResponse.self, from: respData)
+            
+            if (response.error != nil) {
+                print(response.error?.description ?? "error")
+                throw response.error!
             }
+
+            if (response.status?.code != "001") {
+                let status = response.status
+                let customerError: CustomError = CustomError.init(code: (status?.code ?? "009"), description: (status?.description ?? "unknown error"), severity: Severity.HIGH, location: self.error_location)
+                
+                throw customerError
+            }
+            print("login success")
+            
+            if let data = response.data {
+                let defaults = UserDefaults.standard
+                defaults.set(data.session, forKey: "session_id")
+                
+                data.user?.identification?.password = nil
+                return data.user!
+            }
+
         } catch let customError as CustomError {
             throw customError
         } catch let error {
@@ -277,15 +272,6 @@ extension Server {
         }
         
         do {
-            /*if let json = try JSONSerialization.jsonObject(with: respData, options: .mutableContainers) as? [String: Any] {
-                let status = json["status"] as? NSDictionary
-                if (status!["code"] as? String != "001") {
-                    print("error post response")
-                    let error: CustomError = CustomError.init(code: status!["code"] as! String, description: status!["description"] as! String, severity: Severity.HIGH, location: self.error_location)
-                    
-                    throw error
-                }
-            }*/
             let decoder = JSONDecoder()
             let response = try decoder.decode(Response.self, from: respData)
             
@@ -318,8 +304,11 @@ extension Server {
         return task.0        
     }
     
-    static func getOtherUsers(user_id: String) throws -> [User]? {
-        guard let respData = try invokeHTTP(action: "users/" + user_id, httpMethod: "GET", data: nil, sync: true)
+    static func getOtherUsers(user_id: String, friends: [User]) throws -> [User]? {       
+        let encoder = JSONEncoder()
+        let data = try! encoder.encode(friends)
+        
+        guard let respData = try invokeHTTP(action: "users/notfriends/" + user_id, httpMethod: "POST", data: data, sync: true)
             else {
                 let cError: CustomError = CustomError.init(code: "002", description: "Unable to call server", severity: Severity.HIGH, location: error_location)
                 throw cError
@@ -334,6 +323,57 @@ extension Server {
             }
 
             return response.data
+        } catch let error {
+            let cError: CustomError = CustomError.init(code: "002", description: error.localizedDescription, severity: Severity.HIGH, location: error_location)
+            throw cError
+        }
+    }
+    
+    static func addFriends(user_id: String, friends: [User]) throws -> Void {
+        let encoder = JSONEncoder()
+        let data = try! encoder.encode(friends)
+        
+        guard let respData = try invokeHTTP(action: "users/addfriends/" + user_id, httpMethod: "POST", data: data, sync: true)
+            else {
+                let cError: CustomError = CustomError.init(code: "002", description: "Unable to call server", severity: Severity.HIGH, location: error_location)
+                throw cError
+        }
+        
+        do {
+            let decoder = JSONDecoder()
+            let response: Response = try decoder.decode(Response.self, from: respData)
+            
+            if (response.error != nil) {
+                throw response.error!
+            }            
+        } catch let error {
+            let cError: CustomError = CustomError.init(code: "002", description: error.localizedDescription, severity: Severity.HIGH, location: error_location)
+            throw cError
+        }
+    }
+    
+    static func getFriends(user_id: String) throws -> [String: User] {
+        guard let respData = try invokeHTTP(action: "users/friends/" + user_id, httpMethod: "GET", data: nil, sync: true)
+            else {
+                let cError: CustomError = CustomError.init(code: "002", description: "Unable to call server", severity: Severity.HIGH, location: error_location)
+                throw cError
+        }
+        
+        do {
+            let decoder = JSONDecoder()
+            let response: GetFriendsResponse = try decoder.decode(GetFriendsResponse.self, from: respData)
+            
+            if (response.error != nil) {
+                throw response.error!
+            }
+            
+            guard let friends = response.data
+                else {
+                    let cError: CustomError = CustomError.init(code: "005", description: "Data Missing", severity: Severity.HIGH, location: error_location)
+                    throw cError
+            }
+            
+            return friends
         } catch let error {
             let cError: CustomError = CustomError.init(code: "002", description: error.localizedDescription, severity: Severity.HIGH, location: error_location)
             throw cError

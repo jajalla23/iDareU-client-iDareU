@@ -9,8 +9,12 @@
 import UIKit
 
 class AddFriendsTableViewController: UITableViewController {
-    var friends: [User]?
-
+    var delegate: AddFriendsDelegate?
+    
+    var user_id: String?
+    var potential_friends: [User]?
+    var selectedFriends: [Int: User]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,13 +23,22 @@ class AddFriendsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        let naviController = self.navigationController as! ProfileNaviController
+        
+        self.refreshControl?.addTarget(self, action: #selector(self.handleRefresh(sender:)), for: UIControlEvents.valueChanged)
 
+
+        let naviController = self.navigationController as! ProfileNaviController
+        self.user_id = naviController.user?._id
+        
         do {
-            self.friends = try Server.getOtherUsers(user_id: naviController.user!._id!)
+            self.potential_friends = try Server.getOtherUsers(user_id: naviController.user!._id!, friends: Array(naviController.user!.friends!.values))
+        } catch let cError as CustomError {
+            print(cError.description)
         } catch let error {
             print(error.localizedDescription)
         }
+        
+        self.selectedFriends = [Int: User]()
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,15 +55,20 @@ class AddFriendsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.friends?.count ?? 0
+        return self.potential_friends?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "friendResultCell", for: indexPath) as! FriendsTVCell
 
-        let friend = self.friends![indexPath.row]
+        let friend = self.potential_friends![indexPath.row]
         cell.friendLbl.text = friend.display_name
+        cell.checkBox.isChecked = false
+        cell.onCheckBoxToggled = {
+            self.updateSelectedFriends(cell: cell, indexPath: indexPath)
+        }
 
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         return cell
     }
 
@@ -88,21 +106,70 @@ class AddFriendsTableViewController: UITableViewController {
         return true
     }
     */
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! FriendsTVCell
+        self.updateSelectedFriends(cell: cell, indexPath: indexPath)
+        cell.checkBox.isChecked = !cell.checkBox.isChecked
+    }
+    
     /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+
     }
     */
     
-    @IBAction func backBtnTapped(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-        self.dismiss(animated: true, completion: nil)
+    @IBAction func addFriendsBtnTapped(_ sender: Any) {
+        if (self.selectedFriends?.count == 0) {
+            return
+        }
+        
+        self.potential_friends! = self.potential_friends!
+            .enumerated()
+            .filter { !Array(self.selectedFriends!.keys).contains($0.offset) }
+            .map { $0.element }
+        
+        do {
+            try Server.addFriends(user_id: self.user_id!, friends: Array(selectedFriends!.values))
+            self.delegate?.friendsUpdated(addFriendsController: self)
+            self.tableView.reloadData()
+            self.selectedFriends?.removeAll()
+
+        } catch let error {
+            
+        }
+
     }
     
+    private func updateSelectedFriends(cell: FriendsTVCell, indexPath: IndexPath) {
+        if (cell.checkBox.isChecked) {
+            //will be unchecked
+            self.selectedFriends?.removeValue(forKey: indexPath.row)
+        } else {
+            //will be checked
+            self.selectedFriends?[indexPath.row] = self.potential_friends![indexPath.row]
+        }
+    }
+    
+    @objc func handleRefresh(sender: AnyObject) {
+        do {
+            let naviController = self.navigationController as! ProfileNaviController
+            self.potential_friends = try Server.getOtherUsers(user_id: naviController.user!._id!, friends: Array(naviController.user!.friends!.values))
+        } catch let cError as CustomError {
+            print(cError.description)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        self.selectedFriends = [Int: User]()
+        self.tableView.reloadData()
+        self.refreshControl?.endRefreshing()
+    }
+}
 
+protocol AddFriendsDelegate {
+    func friendsUpdated(addFriendsController: AddFriendsTableViewController)
 }

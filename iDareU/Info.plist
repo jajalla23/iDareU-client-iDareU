@@ -45,33 +45,33 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>amazonaws.com</key>
+			<key>34.208.110.84</key>
 			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
 				<key>NSThirdPartyExceptionMinimumTLSVersion</key>
 				<string>TLSv1.0</string>
 				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
 				<false/>
+			</dict>
+			<key>amazonaws.com</key>
+			<dict>
 				<key>NSIncludesSubdomains</key>
 				<true/>
+				<key>NSThirdPartyExceptionMinimumTLSVersion</key>
+				<string>TLSv1.0</string>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
 			</dict>
 			<key>amazonaws.com.cn</key>
 			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
 				<key>NSThirdPartyExceptionMinimumTLSVersion</key>
 				<string>TLSv1.0</string>
 				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
 				<false/>
-				<key>NSIncludesSubdomains</key>
-				<true/>
 			</dict>
-            <key>34.208.110.84</key>
-            <dict>
-                <key>NSThirdPartyExceptionMinimumTLSVersion</key>
-                <string>TLSv1.0</string>
-                <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-                <false/>
-                <key>NSIncludesSubdomains</key>
-                <true/>
-            </dict>
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>

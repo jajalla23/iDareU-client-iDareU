@@ -27,6 +27,8 @@ class MyFriendsTableViewController: UITableViewController, UISearchBarDelegate {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
+        self.refreshControl?.addTarget(self, action: #selector(self.handleRefresh(sender:)), for: UIControlEvents.valueChanged)
+        
         let naviController = self.navigationController as! ProfileNaviController
         self.friends = naviController.user?.friends
         self.friendsKeys = Array(self.friends!.keys)
@@ -37,6 +39,13 @@ class MyFriendsTableViewController: UITableViewController, UISearchBarDelegate {
         searchController.dimsBackgroundDuringPresentation = false
         tableView.tableHeaderView = searchController.searchBar
     }
+    
+    /*
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
+    }
+    */
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -102,19 +111,56 @@ class MyFriendsTableViewController: UITableViewController, UISearchBarDelegate {
         return true
     }
     */
+    
+    override func tableView(_ tableView: UITableView,
+                   leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let closeAction = UIContextualAction(style: .normal, title:  "Remove", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+            
+            self.friends?.removeValue(forKey: self.friendsKeys![indexPath.row])
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+            success(true)
+        })
+        closeAction.backgroundColor = .red
+        
+        return UISwipeActionsConfiguration(actions: [closeAction])
+        
+    }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "addFriendsSegue") {
+            let controller = segue.destination as! AddFriendsTableViewController
+            controller.delegate = self
+        }
     }
-    */
+    
+    @IBAction func unwindToMyFriends(segue: UIStoryboardSegue) {
+        self.friendsKeys = Array(self.friends!.keys)
+        self.tableView.reloadData()
+    }
+    
     @IBAction func backBtnTapped(_ sender: Any) {
         navigationController?.popViewController(animated: true)
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func handleRefresh(sender: AnyObject) {
+        do {
+            let naviController = self.navigationController as! ProfileNaviController
+            let updatedFriends = try Server.getFriends(user_id: naviController.user!._id!)
+            
+            self.friends = updatedFriends
+            self.friendsKeys = Array(updatedFriends.keys)
+        } catch let cError as CustomError {
+            print(cError.description)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+
+        self.tableView.reloadData()
+        self.refreshControl?.endRefreshing()
     }
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -127,6 +173,29 @@ class MyFriendsTableViewController: UITableViewController, UISearchBarDelegate {
             filteredNFLTeams = unfilteredNFLTeams
         }
         tableView.reloadData()*/
+    }
+}
+
+extension MyFriendsTableViewController: AddFriendsDelegate {
+    func friendsUpdated(addFriendsController: AddFriendsTableViewController) {
+        if let newFriends = addFriendsController.selectedFriends {
+            if (!newFriends.isEmpty) {
+                let naviController = self.navigationController as! ProfileNaviController
+
+                for (_, friend) in newFriends {
+                    naviController.user?.addFriend(friend: friend)
+                    self.friends![friend._id!] = friend
+                    self.friendsKeys?.append(friend._id!)
+                }
+                
+                DispatchQueue.main.async{
+                    let dataDict:[String: User] = ["user": naviController.user!]
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshUserData"), object: nil, userInfo: dataDict)
+                }
+                
+                self.tableView.reloadData()
+            }
+        }
     }
 
 }

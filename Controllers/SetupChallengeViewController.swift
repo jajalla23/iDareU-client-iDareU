@@ -146,7 +146,6 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
         
         //update screens
         DispatchQueue.main.async{
-            //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPendingChallengeView"), object: nil)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshAllViewsOnMe"), object: nil)
         }
         

@@ -102,7 +102,7 @@ public class ChallengeDetails: Codable {
     }
        
     public func addSponsor(user: User, reward: Int) {
-        self.sponsor = Sponsor.init(sponsorId: user._id!, display_name: user.display_name, reward: reward)
+        self.sponsor = Sponsor.init(sponsorId: user._id!, display_name: (user.display_name ?? "<no display name>"), reward: reward)
         self.reward += reward
     }
     
@@ -136,7 +136,7 @@ public class ChallengeDetails: Codable {
     }
     
     public func addCosponsor(user: User, reward: Int) {
-        let newCosponsor: Sponsor = Sponsor.init(sponsorId: user._id!, display_name: user.display_name, reward: reward)
+        let newCosponsor: Sponsor = Sponsor.init(sponsorId: user._id!, display_name: (user.display_name ?? "<no display name>"), reward: reward)
         
         // if condition ? true : else
         if (self.coSponsors == nil) {

@@ -26,7 +26,7 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="friendCell" editingAccessoryType="checkmark" textLabel="Xy3-fl-gMq" imageView="CnD-d0-lbP" rowHeight="40" style="IBUITableViewCellStyleDefault" id="XpP-cL-c8m" customClass="FriendsTVCell" customModule="iDareU" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="friendCell" editingAccessoryType="checkmark" textLabel="Xy3-fl-gMq" rowHeight="40" style="IBUITableViewCellStyleDefault" id="XpP-cL-c8m" customClass="FriendsTVCell" customModule="iDareU" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="375" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XpP-cL-c8m" id="phE-pj-3lM">
@@ -34,20 +34,15 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Friend" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xy3-fl-gMq">
-                                            <rect key="frame" x="69" y="0.0" width="258" height="39.666666666666664"/>
+                                            <rect key="frame" x="16" y="0.0" width="311" height="39.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="unchecked" id="CnD-d0-lbP" userLabel="Image">
-                                            <rect key="frame" x="16" y="0.0" width="38" height="39.666666666666664"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="friendImgView" destination="CnD-d0-lbP" id="nOV-1M-YrZ"/>
                                     <outlet property="friendLbl" destination="Xy3-fl-gMq" id="iTo-rW-Yn0"/>
                                 </connections>
                             </tableViewCell>
@@ -63,12 +58,23 @@
                                 <action selector="backBtnTapped:" destination="fXu-3b-DtI" id="NvN-L6-1Bq"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="+" id="p0R-Sf-mt6">
+                        <barButtonItem key="rightBarButtonItem" title="+ Friends" id="p0R-Sf-mt6">
                             <connections>
-                                <segue destination="iX9-XG-Id6" kind="show" id="E6j-WN-vXr"/>
+                                <segue destination="iX9-XG-Id6" kind="show" identifier="addFriendsSegue" id="E6j-WN-vXr"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="bFR-Y6-Qyk">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <attributedString key="attributedTitle">
+                            <fragment content="Pull to refresh friends list...">
+                                <attributes>
+                                    <font key="NSFont" metaFont="smallSystem"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </refreshControl>
                     <connections>
                         <outlet property="searchBar" destination="p0w-sI-A1m" id="UJU-XB-ImF"/>
                         <outlet property="searchDisplayController" destination="nM1-jd-SvR" id="ZWr-eK-13k"/>
@@ -122,28 +128,44 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="friendResultCell" textLabel="WlE-ZW-dYh" imageView="Zzg-Xi-eNR" rowHeight="40" style="IBUITableViewCellStyleDefault" id="Xrb-I2-cgV" customClass="FriendsTVCell" customModule="iDareU" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="375" height="40"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="friendResultCell" id="Xrb-I2-cgV" customClass="FriendsTVCell" customModule="iDareU" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xrb-I2-cgV" id="f7Y-eP-aLE">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="39.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Friend" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WlE-ZW-dYh">
-                                            <rect key="frame" x="69" y="0.0" width="290" height="39.666666666666664"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VJ2-Ac-58D" userLabel="checkbox" customClass="AddFriendCheckBox" customModule="iDareU" customModuleProvider="target">
+                                            <rect key="frame" x="16" y="4" width="36" height="36"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="36" id="475-hJ-WJ9"/>
+                                                <constraint firstAttribute="height" constant="36" id="Cap-cl-4rf"/>
+                                            </constraints>
+                                            <state key="normal" title="Button" image="unchecked"/>
+                                            <connections>
+                                                <action selector="checkBoxTappedWithSender:" destination="Xrb-I2-cgV" eventType="touchUpInside" id="Cfk-oi-iIg"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpl-it-YIf" userLabel="friendLbl">
+                                            <rect key="frame" x="77" y="1" width="66.666666666666686" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="I0M-D6-cGw"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="unchecked" id="Zzg-Xi-eNR" userLabel="image">
-                                            <rect key="frame" x="16" y="0.0" width="38" height="39.666666666666664"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="VJ2-Ac-58D" firstAttribute="leading" secondItem="f7Y-eP-aLE" secondAttribute="leading" constant="16" id="9ZR-Ow-CaZ"/>
+                                        <constraint firstItem="VJ2-Ac-58D" firstAttribute="centerY" secondItem="f7Y-eP-aLE" secondAttribute="centerY" id="axc-Wh-xAq"/>
+                                        <constraint firstItem="qpl-it-YIf" firstAttribute="centerY" secondItem="f7Y-eP-aLE" secondAttribute="centerY" id="i30-OE-NJ7"/>
+                                        <constraint firstItem="qpl-it-YIf" firstAttribute="leading" secondItem="VJ2-Ac-58D" secondAttribute="trailing" constant="25" id="sbB-kx-a4j"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="friendLbl" destination="WlE-ZW-dYh" id="DO9-Ht-9Qh"/>
+                                    <outlet property="checkBox" destination="VJ2-Ac-58D" id="E3n-sT-V4W"/>
+                                    <outlet property="friendLbl" destination="qpl-it-YIf" id="FCy-AP-q5p"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -152,12 +174,32 @@
                             <outlet property="delegate" destination="iX9-XG-Id6" id="rxs-LS-qkl"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Add Friends" leftItemsSupplementBackButton="YES" id="ZqR-81-LgD"/>
+                    <navigationItem key="navigationItem" title="Add Friends" leftItemsSupplementBackButton="YES" id="ZqR-81-LgD">
+                        <barButtonItem key="rightBarButtonItem" title="Add" style="done" id="7Fy-Kq-hot">
+                            <connections>
+                                <action selector="addFriendsBtnTapped:" destination="iX9-XG-Id6" id="J3U-wF-oW7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="SbW-bn-Ywf">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <attributedString key="attributedTitle">
+                            <fragment content="Pull To Refresh...">
+                                <attributes>
+                                    <font key="NSFont" metaFont="smallSystem"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </refreshControl>
                     <connections>
                         <outlet property="searchDisplayController" destination="nM1-jd-SvR" id="Smm-69-WTw"/>
+                        <segue destination="N9f-nQ-0nv" kind="unwind" identifier="unwindToMyFriendsSegue" unwindAction="unwindToMyFriendsWithSegue:" id="jOl-ky-9t0"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9jD-A2-4dq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="N9f-nQ-0nv" userLabel="Exit" sceneMemberID="exit"/>
                 <searchDisplayController id="Eu6-0a-deg">
                     <connections>
                         <outlet property="delegate" destination="iX9-XG-Id6" id="FaK-nm-AmR"/>
@@ -168,7 +210,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2586" y="68"/>
+            <point key="canvasLocation" x="2584.8000000000002" y="67.980295566502463"/>
         </scene>
     </scenes>
     <resources>

@@ -9,15 +9,10 @@
 import Foundation
 import UIKit
 
-class SelectUserCheckBox: UIButton {
-    var isCommunity: Bool = false
-    var friend: User?
-
-    // Images
+class SelectCheckBox: UIButton {
     let checkedImage = UIImage(named: "checked")! as UIImage
     let uncheckedImage = UIImage(named: "unchecked")! as UIImage
     
-    // Bool property
     var isChecked: Bool = false {
         didSet{
             if isChecked == true {
@@ -38,4 +33,13 @@ class SelectUserCheckBox: UIButton {
             isChecked = !isChecked
         }
     }
+}
+
+class SelectUserCheckBox: SelectCheckBox {
+    var isCommunity: Bool = false
+    var friend: User?
+}
+
+class AddFriendCheckBox: SelectCheckBox {
+    var row: Int?
 }

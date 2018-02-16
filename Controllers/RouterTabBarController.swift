@@ -14,7 +14,8 @@ class RouterTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.        
+        // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(self.refreshUserData), name: NSNotification.Name(rawValue: "refreshUserData"), object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,6 +30,13 @@ class RouterTabBarController: UITabBarController {
         print("router segue")
         let controller = segue.destination as! GenericUIViewController
         controller.user = self.user
+    }
+    
+    @objc func refreshUserData(_ notification: NSNotification){
+        if let updatedUser = notification.userInfo?["user"] as? User {
+            self.user = updatedUser
+        }
+        print(self.user?.friends?.count)
     }
     
 

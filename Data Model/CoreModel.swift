@@ -11,7 +11,7 @@ import UIKit
 
 public class User: Codable {
     public var _id: String?
-    private(set) var display_name: String
+    private(set) var display_name: String?
 
     public var identification: Identification?
     public var personalDetails: PersonalDetails?
@@ -46,6 +46,11 @@ public class User: Codable {
         self.display_name = username
     }
     
+    public func refreshFriends(friends: [User]) {
+        self.friends?.removeAll()
+        self.addFriends(friends: friends)
+    }
+    
     public func addFriends(friends: [User]) {
         //self.friends?.append(contentsOf: friends)
         for friend in friends {
@@ -55,6 +60,10 @@ public class User: Codable {
     
     public func addFriend(friend: User) {
         self.friends![friend._id!] = friend
+    }
+    
+    public func refreshFriends(friends: [String: User]) {
+        self.friends = friends
     }
     
     public func addSponsoredChallenges(challengesDetail: [ChallengeDetails]) {

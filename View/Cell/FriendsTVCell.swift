@@ -9,8 +9,11 @@
 import UIKit
 
 class FriendsTVCell: UITableViewCell {
+    //var friend: User?
+    
     @IBOutlet weak var friendImgView: UIImageView!
     @IBOutlet weak var friendLbl: UILabel!
+    @IBOutlet weak var checkBox: SelectCheckBox!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,6 +24,14 @@ class FriendsTVCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    var onCheckBoxToggled : (() -> Void)? = nil
+
+    @IBAction func checkBoxTapped(sender: SelectCheckBox) {
+        if let onCheckBoxToggled = self.onCheckBoxToggled {
+            onCheckBoxToggled()
+        }
     }
 
 }
