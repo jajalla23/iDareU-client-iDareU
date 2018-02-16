@@ -9,7 +9,8 @@
 import UIKit
 
 class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
-    
+    var delegate: SetupChallengeDelegate?
+
     public var user: User?
     public var image: UIImage?
     private var orig_setUpframeYaxis: CGFloat?
@@ -52,6 +53,10 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func hideSetupBtnTapped(_ sender: Any) {
+        self.delegate?.closeSetupView(setupChallengeController: self)
     }
     
     @IBAction func sponsorBtnTapped(_ sender: Any) {
@@ -241,5 +246,10 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
     @objc func keyboardWillHide(notification: NSNotification) {
         self.view.frame.origin.y = self.orig_setUpframeYaxis!
     }
+    
+}
+
+protocol SetupChallengeDelegate {
+    func closeSetupView(setupChallengeController: SetupChallengeViewController)
     
 }

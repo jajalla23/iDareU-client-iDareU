@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PreviewViewController: UIViewController {
+class PreviewViewController: UIViewController, SetupChallengeDelegate {
     
     public var user: User?
     public var image: UIImage?
@@ -26,12 +26,6 @@ class PreviewViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
-        /*
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = .clear
-        */
         self.setupViewOrigHeight = self.setupChallengeView.frame.height
         self.setupViewOriginY = self.setupChallengeView.frame.origin.y
         self.previewImg.image = self.image
@@ -43,31 +37,8 @@ class PreviewViewController: UIViewController {
     }
     
     @IBAction func setupBtnTapped(_ sender: Any) {
-        if (isSetupShown) {
-            //hide
-            /*UIView.animate(withDuration: 0.7, animations: {
-                self.setupChallengeView.frame.origin.y = 0.0
-                
-                //self.setupChallengeView.frame =  CGRect(x: self.setupChallengeView.frame.origin.x, y: 0.0, width: self.setupChallengeView.frame.width, height: 0.0)
-                self.view.layoutIfNeeded()
-            })*/
-            self.toggleSetupBtn.frame.origin.y += self.setupViewOrigHeight!
-            self.toggleSetupBtn.transform = CGAffineTransform(rotationAngle: CGFloat(0.0))
-
-        } else {
-            //show
-            /*UIView.animate(withDuration: 0.7, animations: {
-                self.setupChallengeView.frame.origin.y = self.setupViewOriginY!
-
-                //self.setupChallengeView.frame =  CGRect(x: self.setupChallengeView.frame.origin.x, y: self.setupViewOriginY!, width: self.setupChallengeView.frame.width, height: self.setupViewOrigHeight!)
-                self.view.layoutIfNeeded()
-            })*/
-            self.toggleSetupBtn.frame.origin.y -= self.setupViewOrigHeight!
-            self.toggleSetupBtn.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
-        }
-        
-        self.setupChallengeView.isHidden = !self.setupChallengeView.isHidden
-        self.isSetupShown = !self.isSetupShown
+        self.toggleSetupBtn.isHidden = true
+        self.setupChallengeView.isHidden = false
     }
     
     @IBAction func closeView(_ sender: Any) {
@@ -86,8 +57,14 @@ class PreviewViewController: UIViewController {
             guard let controller = segue.destination as? SetupChallengeViewController else {
                 return
             }
+            controller.delegate = self
             controller.user = self.user
             controller.image = self.image
         }
+    }
+    
+    func closeSetupView(setupChallengeController: SetupChallengeViewController) {
+        self.toggleSetupBtn.isHidden = false
+        self.setupChallengeView.isHidden = true
     }
 }
