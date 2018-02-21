@@ -93,6 +93,7 @@ public class ChallengeDetails: Codable {
     
     public var isForCommunity: Bool = false
     public var location: String?
+    public var createdTimestamp: String?
     
     init(sponsorId: String, sponsor_displayName: String, title: String, description: String?, reward: Int) {
         self.sponsor = Sponsor.init(sponsorId: sponsorId, display_name: sponsor_displayName, reward: reward)

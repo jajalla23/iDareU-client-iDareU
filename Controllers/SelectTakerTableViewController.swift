@@ -170,7 +170,7 @@ class SelectTakerTableViewController: UITableViewController {
                 controller.challenge?.isForCommunity = true
             } else if (self.selectedFriends!.count == 1) {
                 let friend: User = self.selectedFriends!.first!.value
-                controller.takerBtn.setTitle(friend.identification?.username, for: UIControlState.normal)                
+                controller.takerBtn.setTitle(friend.display_name, for: UIControlState.normal)                
             } else {
                 controller.takerBtn.setTitle("people", for: UIControlState.normal)
                 

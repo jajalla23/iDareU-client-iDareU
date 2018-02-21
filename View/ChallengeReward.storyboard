@@ -46,12 +46,6 @@
                                     <action selector="submitBtnPressed:" destination="kyF-lc-YLg" eventType="touchDown" id="NQf-1I-MSt"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="sdC-ad-gxQ">
-                                <rect key="frame" x="8" y="650" width="359" height="31"/>
-                                <connections>
-                                    <action selector="rewardSliderChanged:" destination="kyF-lc-YLg" eventType="valueChanged" id="6qq-cK-aj9"/>
-                                </connections>
-                            </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fan-eU-xRK">
                                 <rect key="frame" x="10" y="44" width="46" height="30"/>
                                 <constraints>
@@ -130,24 +124,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="sdC-ad-gxQ">
+                                <rect key="frame" x="35" y="650" width="305" height="31"/>
+                                <connections>
+                                    <action selector="rewardSliderChanged:" destination="kyF-lc-YLg" eventType="valueChanged" id="6qq-cK-aj9"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="fan-eU-xRK" firstAttribute="leading" secondItem="HTj-hz-dsZ" secondAttribute="leading" constant="10" id="7Tc-nA-vJP"/>
                             <constraint firstItem="sdC-ad-gxQ" firstAttribute="top" secondItem="Ljc-BI-8SQ" secondAttribute="bottom" constant="10" id="7bu-O6-9fE"/>
                             <constraint firstItem="GmO-9r-Q2z" firstAttribute="centerX" secondItem="SBD-g9-JK3" secondAttribute="centerX" id="C5p-cf-XFV"/>
-                            <constraint firstItem="HTj-hz-dsZ" firstAttribute="trailing" secondItem="sdC-ad-gxQ" secondAttribute="trailing" constant="10" id="FIw-lZ-8Lh"/>
                             <constraint firstItem="HTj-hz-dsZ" firstAttribute="bottom" secondItem="xc2-oC-K1i" secondAttribute="bottom" constant="28" id="Ove-aR-nzr"/>
                             <constraint firstItem="h2J-03-M9b" firstAttribute="top" secondItem="HTj-hz-dsZ" secondAttribute="top" id="PZQ-G0-ron"/>
                             <constraint firstItem="fan-eU-xRK" firstAttribute="top" secondItem="HTj-hz-dsZ" secondAttribute="top" id="UK3-xy-N0M"/>
-                            <constraint firstItem="sdC-ad-gxQ" firstAttribute="centerX" secondItem="SBD-g9-JK3" secondAttribute="centerX" id="XqV-iX-pyR"/>
                             <constraint firstItem="h2J-03-M9b" firstAttribute="centerX" secondItem="SBD-g9-JK3" secondAttribute="centerX" id="YCJ-hY-cBt"/>
                             <constraint firstItem="GmO-9r-Q2z" firstAttribute="top" secondItem="xk4-Cs-lzS" secondAttribute="bottom" constant="15" id="foH-hH-Mv8"/>
                             <constraint firstItem="HTj-hz-dsZ" firstAttribute="trailing" secondItem="xk4-Cs-lzS" secondAttribute="trailing" constant="71" id="gCV-LN-WKa"/>
+                            <constraint firstItem="HTj-hz-dsZ" firstAttribute="trailing" secondItem="sdC-ad-gxQ" secondAttribute="trailing" constant="37" id="lH8-vT-HNg"/>
                             <constraint firstItem="xk4-Cs-lzS" firstAttribute="centerX" secondItem="SBD-g9-JK3" secondAttribute="centerX" id="ld6-zw-kHc"/>
                             <constraint firstItem="Ljc-BI-8SQ" firstAttribute="centerX" secondItem="SBD-g9-JK3" secondAttribute="centerX" id="qbY-rn-YYc"/>
                             <constraint firstItem="GmO-9r-Q2z" firstAttribute="top" secondItem="h2J-03-M9b" secondAttribute="bottom" constant="254" id="rvE-Xl-0Dq"/>
-                            <constraint firstItem="sdC-ad-gxQ" firstAttribute="leading" secondItem="HTj-hz-dsZ" secondAttribute="leading" constant="10" id="s5d-ac-LX7"/>
+                            <constraint firstItem="sdC-ad-gxQ" firstAttribute="leading" secondItem="HTj-hz-dsZ" secondAttribute="leading" constant="37" id="sSi-DY-eCG"/>
                             <constraint firstItem="xc2-oC-K1i" firstAttribute="top" secondItem="sdC-ad-gxQ" secondAttribute="bottom" constant="22" id="yk2-Gj-1iX"/>
                             <constraint firstItem="xc2-oC-K1i" firstAttribute="centerX" secondItem="SBD-g9-JK3" secondAttribute="centerX" id="ypO-ZP-SDr"/>
                         </constraints>

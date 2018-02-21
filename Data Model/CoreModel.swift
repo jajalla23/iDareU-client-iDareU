@@ -21,6 +21,8 @@ public class User: Codable {
     private(set) var friends: [String: User]?
     private(set) var challenges: Challenge?
     
+    public var createdTimestamp: String?
+    
     init(facebook_id: String, email: String, firstName: String, lastName: String) {
         self.identification = Identification.init(email: email)
         self.identification!.facebook_id = facebook_id

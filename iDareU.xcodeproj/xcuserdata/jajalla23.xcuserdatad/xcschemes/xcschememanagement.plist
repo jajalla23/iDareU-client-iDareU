@@ -4,10 +4,35 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>iDareU.xcscheme</key>
+		<key>iDareU-iPhone.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>10</integer>
+		</dict>
+		<key>iDareU.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<true/>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>7650EA0F200095080011125B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7650EA25200095080011125B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7650EA30200095080011125B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

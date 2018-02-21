@@ -48,7 +48,17 @@ public class GetUsersResponse: Response {
 /** Get Users End **/
 
 public class CreateChallengeResponse: Response {
+    var data: [ChallengeDetails]?
     
+    enum CodingKeys : String, CodingKey {
+        case data = "data"
+    }
+    
+    required public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode([ChallengeDetails].self, forKey: .data)
+        try super.init(from: decoder)
+    }
 }
 
 public class CreateChallengeData {
@@ -113,3 +123,4 @@ public class GetFriendsResponse: Response {
     }
 }
 /** Add Friends End **/
+

@@ -50,7 +50,8 @@ class LoginViewController: UIViewController {
         do {
             self.user = try Server.login(username: username_input.text!, password: password_input.text!)
             
-            if (self.user != nil) {            
+            if (self.user != nil) {
+                loginStatusLbl.text = "Success!"
                 self.loginDone()
             }
         } catch let error as CustomError {

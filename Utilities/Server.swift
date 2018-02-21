@@ -159,7 +159,7 @@ extension Server {
         } catch let customError as CustomError {
             throw customError
         } catch let error {
-            print(error.localizedDescription)
+            print(error)
             let customerError: CustomError = CustomError.init(code: "003", description: error.localizedDescription, severity: Severity.HIGH, location: self.error_location)
             
             throw customerError
@@ -232,33 +232,17 @@ extension Server {
         }
         
         do {
-            if let json = try JSONSerialization.jsonObject(with: respData, options: .mutableContainers) as? [String: Any] {
-                let status = json["status"] as? NSDictionary
-                if (status!["code"] as? String != "001") {
-                    print("error post response")
-                    let error: CustomError = CustomError.init(code: status!["code"] as! String, description: status!["description"] as! String, severity: Severity.HIGH, location: self.error_location)
-                    
-                    throw error
-                }
-                
-                if let data_block = json["data"] as? NSDictionary {
-                    //for each
-                    if let session_data = data_block["session"] as? String {
-                        let defaults = UserDefaults.standard
-                        defaults.set(session_data, forKey: "session_id")
-                        
-                        let user = data_block["user"] as? NSDictionary
-                        challenges[0]._id = user!["_id"] as? String
-                    }
-                }
-            }
-        } catch let customError as CustomError {
-            throw customError
-        } catch let error {
-            print(error.localizedDescription)
-            let customerError: CustomError = CustomError.init(code: "003", description: error.localizedDescription, severity: Severity.HIGH, location: self.error_location)
+            let decoder = JSONDecoder()
+            let response: CreateChallengeResponse = try decoder.decode(CreateChallengeResponse.self, from: respData)
             
-            throw customerError
+            if (response.error != nil) {
+                throw response.error!
+            }
+            
+            return response.data!
+        } catch let error {
+            let cError: CustomError = CustomError.init(code: "002", description: error.localizedDescription, severity: Severity.HIGH, location: error_location)
+            throw cError
         }
         
         return challenges
