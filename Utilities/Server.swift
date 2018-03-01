@@ -363,4 +363,46 @@ extension Server {
             throw cError
         }
     }
+    
+    static func acceptChallenge(user_id: String, challenge_id: String) throws {
+        guard let respData = try invokeHTTP(action: "challenges/accept/" + challenge_id + "/" + user_id, httpMethod: "POST", data: nil, sync: true)
+            else {
+                let cError: CustomError = CustomError.init(code: "002", description: "Unable to call server", severity: Severity.HIGH, location: error_location)
+                throw cError
+        }
+        
+        do {
+            let decoder = JSONDecoder()
+            let response: DefaultResponse = try decoder.decode(DefaultResponse.self, from: respData)
+            
+            if (response.error != nil) {
+                throw response.error!
+            }
+            
+        } catch let error {
+            let cError: CustomError = CustomError.init(code: "002", description: error.localizedDescription, severity: Severity.HIGH, location: error_location)
+            throw cError
+        }
+    }
+    
+    static func rejectChallenge(user_id: String, challenge_id: String) throws {
+        guard let respData = try invokeHTTP(action: "challenges/reject/" + challenge_id + "/" + user_id, httpMethod: "POST", data: nil, sync: true)
+            else {
+                let cError: CustomError = CustomError.init(code: "002", description: "Unable to call server", severity: Severity.HIGH, location: error_location)
+                throw cError
+        }
+        
+        do {
+            let decoder = JSONDecoder()
+            let response: DefaultResponse = try decoder.decode(DefaultResponse.self, from: respData)
+            
+            if (response.error != nil) {
+                throw response.error!
+            }
+            
+        } catch let error {
+            let cError: CustomError = CustomError.init(code: "002", description: error.localizedDescription, severity: Severity.HIGH, location: error_location)
+            throw cError
+        }
+    }
 }

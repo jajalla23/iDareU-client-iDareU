@@ -18,6 +18,28 @@ public class Status: Decodable {
     var description: String?
 }
 
+public class DefaultData: Decodable {
+    var n: String?
+    var nModified: Int?
+    var ok: Int?
+}
+
+/** Default Begin **/
+public class DefaultResponse: Response {
+    var data: [DefaultData]?
+    
+    enum CodingKeys : String, CodingKey {
+        case data = "data"
+    }
+    
+    required public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode([DefaultData].self, forKey: .data)
+        try super.init(from: decoder)
+    }
+}
+/** Default End **/
+
 /** Login Begin **/
 public class LoginResponse: Decodable {
     var status: Status?
@@ -88,7 +110,7 @@ public class CreateUserData: Decodable {
 
 /** Add Friends Begin **/
 public class AddFriendsResponse: Response {
-    var data: [AddFriendsData]?
+    var data: [DefaultData]?
     
     enum CodingKeys : String, CodingKey {
         case data = "data"
@@ -96,15 +118,9 @@ public class AddFriendsResponse: Response {
     
     required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode([AddFriendsData].self, forKey: .data)
+        data = try container.decode([DefaultData].self, forKey: .data)
         try super.init(from: decoder)
     }
-}
-
-public class AddFriendsData: Decodable {
-    var n: String?
-    var nModified: Int?
-    var ok: Int?
 }
 /** Add Friends End **/
 
@@ -123,4 +139,3 @@ public class GetFriendsResponse: Response {
     }
 }
 /** Add Friends End **/
-

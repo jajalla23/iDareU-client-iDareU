@@ -155,15 +155,19 @@ public class ChallengeDetails: Codable {
 
 public class Taker: Codable {
     public var user: User
-    public var isCompleted: Bool
+    public var completed: Bool?
     public var completedTimestamp: Date?
-    public var responseAccepted: Bool
+    public var accepted: Bool?
+    public var acceptedTimestamp: Date?
+    
+    public var isCompleted: Bool?
+    public var responseAccepted: Bool?
     public var responseAcceptedTimestamp: Date?
     
     init(user: User) {
         self.user = user
-        self.isCompleted = false
-        self.responseAccepted = false
+        self.completed = false
+        self.accepted = false
     }
 }
 

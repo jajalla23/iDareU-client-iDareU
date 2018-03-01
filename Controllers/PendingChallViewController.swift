@@ -10,6 +10,7 @@ import UIKit
 
 class PendingChallengesViewController: MeGenericViewController, UITableViewDataSource, UITableViewDelegate  {
     
+    private var selectedChallenge: ChallengeDetails?
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tableView: UITableView!
     
@@ -63,7 +64,7 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let challenge: ChallengeDetails = (self.user?.challenges?.pending![indexPath.row])!
-        print(challenge._id ?? "unknown")
+        self.selectedChallenge = challenge
         performSegue(withIdentifier: "pendingToWatchSegue", sender: self)
     }
     
@@ -78,6 +79,9 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
         //closeAction.image = UIImage(named: "second")
         closeAction.backgroundColor = .red
         
+        rejectChallenge(challenge: (self.user?.challenges?.pending![indexPath.row])!)
+
+        
         return UISwipeActionsConfiguration(actions: [closeAction])
         
     }
@@ -90,6 +94,8 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
         })
         //modifyAction.image = UIImage(named: "Play")
         modifyAction.backgroundColor = .blue
+        
+        acceptChallenge(challenge: (self.user?.challenges?.pending![indexPath.row])!)
         
         return UISwipeActionsConfiguration(actions: [modifyAction])
     }
@@ -109,14 +115,40 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
         self.view.layoutIfNeeded()
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "pendingToWatchSegue") {
+            let controller = segue.destination as! ViewChallengeNavigationController
+            controller.challenge = self.selectedChallenge
+            
+            controller.navigationItem.hidesBackButton = false
+        }
     }
-    */
+    
+    private func acceptChallenge(challenge: ChallengeDetails) {
+        do {
+            try Server.acceptChallenge(user_id: self.user!._id!, challenge_id: challenge._id!)
+        } catch let cError as CustomError {
+            //TODO: handler error
+            print(cError.description)
+        } catch let error {
+            //TODO: error
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func rejectChallenge(challenge: ChallengeDetails) {
+        do {
+            try Server.rejectChallenge(user_id: self.user!._id!, challenge_id: challenge._id!)
+        } catch let cError as CustomError {
+            //TODO: handler error
+            print(cError.description)
+        } catch let error {
+            //TODO: error
+            print(error.localizedDescription)
+        }
+    }
 
 }
