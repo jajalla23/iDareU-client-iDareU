@@ -11,6 +11,7 @@ import UIKit
 class PendingChallengesViewController: MeGenericViewController, UITableViewDataSource, UITableViewDelegate  {
     
     private var selectedChallenge: ChallengeDetails?
+    private var selectedIndex: Int?
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tableView: UITableView!
     
@@ -55,6 +56,13 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
         cell.challengeTitleLbl.text = currChallenge?.title
         cell.challengeRewardLbl.text = "J \(currChallenge?.reward.description ?? "0")"
         
+        if let i = currChallenge?.takers!.index(where: {$0.user._id == self.user?._id}) {
+            if (currChallenge?.takers?[i].accepted ?? false) {
+                cell.layer.borderWidth = 3.0
+                cell.layer.borderColor = UIColor.green.cgColor
+            }
+        }
+        
         return cell
     }
     
@@ -65,22 +73,27 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let challenge: ChallengeDetails = (self.user?.challenges?.pending![indexPath.row])!
         self.selectedChallenge = challenge
+        self.selectedIndex = indexPath.row
         performSegue(withIdentifier: "pendingToWatchSegue", sender: self)
     }
     
     func tableView(_ tableView: UITableView,
                    leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let closeAction = UIContextualAction(style: .normal, title:  "Reject", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+            
+            self.rejectChallenge(challenge: (self.user?.challenges?.pending![indexPath.row])!)
+
             self.user?.challenges?.pending!.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-            self.adjustHeight()
+            
+            DispatchQueue.main.async{
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshAllViewsOnMe"), object: nil)
+            }
+            
             success(true)
         })
         //closeAction.image = UIImage(named: "second")
         closeAction.backgroundColor = .red
-        
-        rejectChallenge(challenge: (self.user?.challenges?.pending![indexPath.row])!)
-
         
         return UISwipeActionsConfiguration(actions: [closeAction])
         
@@ -89,13 +102,12 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let modifyAction = UIContextualAction(style: .normal, title:  "Accept", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-            print("Challenge Accepted")
+            
+            self.acceptChallenge(challenge: (self.user?.challenges?.pending![indexPath.row])!, cell: tableView.cellForRow(at: indexPath)!)
             success(true)
         })
         //modifyAction.image = UIImage(named: "Play")
         modifyAction.backgroundColor = .blue
-        
-        acceptChallenge(challenge: (self.user?.challenges?.pending![indexPath.row])!)
         
         return UISwipeActionsConfiguration(actions: [modifyAction])
     }
@@ -121,22 +133,39 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "pendingToWatchSegue") {
             let controller = segue.destination as! ViewChallengeNavigationController
-            controller.challenge = self.selectedChallenge
+            controller.user = self.user
+            
+            let sub_array = self.user?.challenges?.pending![self.selectedIndex!...]
+            controller.challengeList = Array(sub_array!)
+            
+            if (self.selectedIndex != 0) {
+                let temp = self.user?.challenges?.pending![0...self.selectedIndex! - 1]
+                let temp_array = Array(temp!)
+            
+                controller.challengeList?.append(contentsOf: temp_array)
+            }
+            
+            controller.viewType = "PENDING"
             
             controller.navigationItem.hidesBackButton = false
         }
     }
     
-    private func acceptChallenge(challenge: ChallengeDetails) {
+    private func acceptChallenge(challenge: ChallengeDetails, cell: UITableViewCell) {
         do {
             try Server.acceptChallenge(user_id: self.user!._id!, challenge_id: challenge._id!)
         } catch let cError as CustomError {
             //TODO: handler error
             print(cError.description)
+            return
         } catch let error {
             //TODO: error
             print(error.localizedDescription)
+            return
         }
+        
+        cell.layer.borderWidth = 3.0
+        cell.layer.borderColor = UIColor.green.cgColor
     }
     
     private func rejectChallenge(challenge: ChallengeDetails) {
@@ -148,6 +177,10 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
         } catch let error {
             //TODO: error
             print(error.localizedDescription)
+        }
+        
+        DispatchQueue.main.async{
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshAllViewsOnMe"), object: nil)
         }
     }
 

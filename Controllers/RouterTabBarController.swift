@@ -36,7 +36,6 @@ class RouterTabBarController: UITabBarController {
         if let updatedUser = notification.userInfo?["user"] as? User {
             self.user = updatedUser
         }
-        print(self.user?.friends?.count)
     }
     
 

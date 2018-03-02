@@ -21,7 +21,6 @@ class MeInitialViewController: GenericUIViewController {
         // Do any additional setup after loading the view.
         //self.navigationController?.isNavigationBarHidden = true
         self.scrollView.contentSize = CGSize(width: containerView.frame.size.width, height: containerView.frame.size.height)
-        print(NSStringFromClass(self.classForCoder) + " : " + (self.user?._id ?? "user not set"))
 
         self.view.layoutIfNeeded()
         
@@ -44,8 +43,19 @@ class MeInitialViewController: GenericUIViewController {
     
     @objc func refresh(sender: AnyObject) {
         //TODO: refresh me-info
+        do {
+            self.user = try Server.getUser(user_id: (self.user?._id)!)
+            
+            if let meViewContr = self.childViewControllers.first as? MeViewController {
+                meViewContr.refreshAllViews_v2(user: self.user!)
+            }
+        } catch let cError as CustomError {
+            print(cError.description)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
         self.refreshControl?.endRefreshing()
-        print("initial view refresh done")
     }
     
     // MARK: - Navigation

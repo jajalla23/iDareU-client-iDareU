@@ -16,6 +16,7 @@
 		7622385D202CDB3F00291AB6 /* ChallengeReward.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7622385C202CDB3F00291AB6 /* ChallengeReward.storyboard */; };
 		762296F7200A930A00D09D12 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762296F6200A930A00D09D12 /* FriendsViewController.swift */; };
 		762296F9200A961900D09D12 /* FriendFeedViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762296F8200A961900D09D12 /* FriendFeedViewCell.swift */; };
+		7627C2EE204892EB008A0074 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7627C2ED204892EB008A0074 /* Data.swift */; };
 		7630D9F72022C39B00C5603B /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7630D9F62022C39B00C5603B /* PreviewViewController.swift */; };
 		763688C12003036C00129279 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763688C02003036C00129279 /* StatusViewController.swift */; };
 		76376136202064CB006BE727 /* PendingChallTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76376135202064CB006BE727 /* PendingChallTVCell.swift */; };
@@ -117,6 +118,7 @@
 		7622385C202CDB3F00291AB6 /* ChallengeReward.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChallengeReward.storyboard; sourceTree = "<group>"; };
 		762296F6200A930A00D09D12 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		762296F8200A961900D09D12 /* FriendFeedViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendFeedViewCell.swift; sourceTree = "<group>"; };
+		7627C2ED204892EB008A0074 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		7630D9F62022C39B00C5603B /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		763688C02003036C00129279 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		76376135202064CB006BE727 /* PendingChallTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingChallTVCell.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 		7645386320014464004A96F7 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				7627C2ED204892EB008A0074 /* Data.swift */,
 				765EF5652002CBEB006B36B0 /* EFCountingLabel.swift */,
 				7645385B2001421B004A96F7 /* Extensions.swift */,
 				76C555F32030BD240045603F /* Media.swift */,
@@ -794,6 +797,7 @@
 				76AA3F39202058B90038DAD9 /* CompletedChallViewController.swift in Sources */,
 				765EF5682002EB33006B36B0 /* FriendViewModel.swift in Sources */,
 				76407EB32034161700163545 /* ServerResponseModel.swift in Sources */,
+				7627C2EE204892EB008A0074 /* Data.swift in Sources */,
 				767D1EA920250E6A0098DF47 /* SetupChallengeViewController.swift in Sources */,
 				76EC146320167E5B00C73DFC /* SignupViewController.swift in Sources */,
 				763B13F220217D97006DC47E /* SegueAnimation.swift in Sources */,

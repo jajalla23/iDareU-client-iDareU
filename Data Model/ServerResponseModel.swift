@@ -53,8 +53,8 @@ public class LoginData: Decodable {
 }
 /** Login End **/
 
-/** Get Users **/
-public class GetUsersResponse: Response {
+/** Get Other Users **/
+public class GetOtherUsersResponse: Response {
     var data: [User]?
     
     enum CodingKeys : String, CodingKey {
@@ -64,6 +64,22 @@ public class GetUsersResponse: Response {
     required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         data = try container.decode([User].self, forKey: .data)
+        try super.init(from: decoder)
+    }
+}
+/** Get Other Users End **/
+
+/** Get Users **/
+public class GetUserResponse: Response {
+    var data: User?
+    
+    enum CodingKeys : String, CodingKey {
+        case data = "data"
+    }
+    
+    required public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(User.self, forKey: .data)
         try super.init(from: decoder)
     }
 }

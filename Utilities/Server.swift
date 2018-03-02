@@ -243,9 +243,7 @@ extension Server {
         } catch let error {
             let cError: CustomError = CustomError.init(code: "002", description: error.localizedDescription, severity: Severity.HIGH, location: error_location)
             throw cError
-        }
-        
-        return challenges
+        }        
     }
     
     static func uploadMedia(media: Data, type: String, uuid: UUID) throws -> Void {
@@ -300,7 +298,7 @@ extension Server {
         
         do {
             let decoder = JSONDecoder()
-            let response: GetUsersResponse = try decoder.decode(GetUsersResponse.self, from: respData)
+            let response: GetOtherUsersResponse = try decoder.decode(GetOtherUsersResponse.self, from: respData)
 
             if (response.error != nil) {
                 throw response.error!
@@ -405,4 +403,28 @@ extension Server {
             throw cError
         }
     }
+    
+    static func getUser(user_id: String) throws -> User {
+        guard let respData = try invokeHTTP(action: "users/" + user_id, httpMethod: "GET", data: nil, sync: true)
+            else {
+                let cError: CustomError = CustomError.init(code: "002", description: "Unable to call server", severity: Severity.HIGH, location: error_location)
+                throw cError
+        }
+        
+        do {
+            let decoder = JSONDecoder()
+            let response: GetUserResponse = try decoder.decode(GetUserResponse.self, from: respData)
+            
+            if (response.error != nil) {
+                throw response.error!
+            }
+            
+            return response.data!
+            
+        } catch let error {
+            let cError: CustomError = CustomError.init(code: "002", description: error.localizedDescription, severity: Severity.HIGH, location: error_location)
+            throw cError
+        }
+    }
+
 }

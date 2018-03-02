@@ -158,10 +158,16 @@ public class Taker: Codable {
     public var completed: Bool?
     public var completedTimestamp: Date?
     public var accepted: Bool?
-    public var acceptedTimestamp: Date?
+    public var acceptedTimestamp: String?
     
+    
+    @available(*, deprecated, message: "to be removed")
     public var isCompleted: Bool?
+    
+    @available(*, deprecated, message: "to be removed")
     public var responseAccepted: Bool?
+
+    @available(*, deprecated, message: "to be removed")
     public var responseAcceptedTimestamp: Date?
     
     init(user: User) {

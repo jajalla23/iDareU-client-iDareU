@@ -18,9 +18,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NgO-oo-adn">
-                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
-                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ab4-hX-brs">
+                                <rect key="frame" x="16" y="143" width="343" height="580"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NgO-oo-adn">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="580"/>
+                                        <gestureRecognizers/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="accept" translatesAutoresizingMaskIntoConstraints="NO" id="Igp-We-AWb" userLabel="action">
+                                        <rect key="frame" x="0.0" y="173.66666666666669" width="343" height="233"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="NgO-oo-adn" secondAttribute="trailing" id="7mi-0U-sJB"/>
+                                    <constraint firstItem="Igp-We-AWb" firstAttribute="centerY" secondItem="ab4-hX-brs" secondAttribute="centerY" id="Tbj-uh-rNs"/>
+                                    <constraint firstAttribute="bottom" secondItem="NgO-oo-adn" secondAttribute="bottom" id="Xo1-6s-pb6"/>
+                                    <constraint firstItem="Igp-We-AWb" firstAttribute="centerX" secondItem="ab4-hX-brs" secondAttribute="centerX" id="d1t-8c-lXH"/>
+                                    <constraint firstItem="Igp-We-AWb" firstAttribute="leading" secondItem="ab4-hX-brs" secondAttribute="leading" id="i2v-18-2Qq"/>
+                                    <constraint firstItem="NgO-oo-adn" firstAttribute="centerY" secondItem="ab4-hX-brs" secondAttribute="centerY" id="lHt-Ir-awg"/>
+                                    <constraint firstAttribute="trailing" secondItem="Igp-We-AWb" secondAttribute="trailing" id="nTB-EU-a7c"/>
+                                    <constraint firstItem="NgO-oo-adn" firstAttribute="leading" secondItem="ab4-hX-brs" secondAttribute="leading" id="rOg-cI-wc8"/>
+                                    <constraint firstItem="NgO-oo-adn" firstAttribute="top" secondItem="ab4-hX-brs" secondAttribute="top" id="vQH-Dp-KHm"/>
+                                    <constraint firstItem="NgO-oo-adn" firstAttribute="centerX" secondItem="ab4-hX-brs" secondAttribute="centerX" id="xYd-w8-59M"/>
+                                </constraints>
+                            </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kps-9U-6QP">
                                 <rect key="frame" x="0.0" y="194" width="375" height="425"/>
                                 <constraints>
@@ -35,16 +57,18 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="kps-9U-6QP" firstAttribute="leading" secondItem="OLY-Bh-cCG" secondAttribute="leading" id="0yo-a5-nKo"/>
-                            <constraint firstItem="NgO-oo-adn" firstAttribute="leading" secondItem="OLY-Bh-cCG" secondAttribute="leading" id="FzK-LI-ieA"/>
+                            <constraint firstItem="ab4-hX-brs" firstAttribute="centerX" secondItem="web-cz-bkk" secondAttribute="centerX" id="9wZ-Uy-XDT"/>
                             <constraint firstItem="kps-9U-6QP" firstAttribute="trailing" secondItem="OLY-Bh-cCG" secondAttribute="trailing" id="H6F-Fp-lEW"/>
                             <constraint firstItem="kps-9U-6QP" firstAttribute="centerY" secondItem="web-cz-bkk" secondAttribute="centerY" id="K9j-Av-qGx"/>
-                            <constraint firstItem="NgO-oo-adn" firstAttribute="trailing" secondItem="OLY-Bh-cCG" secondAttribute="trailing" id="KjV-Nj-wy8"/>
-                            <constraint firstAttribute="bottom" secondItem="NgO-oo-adn" secondAttribute="bottom" id="Wzp-hG-Gad"/>
-                            <constraint firstItem="NgO-oo-adn" firstAttribute="top" secondItem="OLY-Bh-cCG" secondAttribute="top" id="mMN-zI-xZb"/>
+                            <constraint firstItem="OLY-Bh-cCG" firstAttribute="bottom" secondItem="ab4-hX-brs" secondAttribute="bottom" constant="55" id="Zud-EZ-vsZ"/>
+                            <constraint firstItem="OLY-Bh-cCG" firstAttribute="trailing" secondItem="ab4-hX-brs" secondAttribute="trailing" constant="16" id="nwH-vp-a6i"/>
+                            <constraint firstItem="ab4-hX-brs" firstAttribute="top" secondItem="OLY-Bh-cCG" secondAttribute="top" constant="55" id="oN9-Fe-EcE"/>
+                            <constraint firstItem="ab4-hX-brs" firstAttribute="leading" secondItem="OLY-Bh-cCG" secondAttribute="leading" constant="16" id="ssY-5s-iJD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OLY-Bh-cCG"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="wGz-4D-cJo" appends="YES" id="ZBx-hd-l3P"/>
+                            <outletCollection property="gestureRecognizers" destination="o6K-Ja-KxX" appends="YES" id="jF3-2P-CJU"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="vCf-VD-fDK">
@@ -60,12 +84,20 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="actionImageView" destination="Igp-We-AWb" id="N1K-6m-BI4"/>
                         <outlet property="challengeInfoView" destination="kps-9U-6QP" id="sDC-7m-d7X"/>
+                        <outlet property="imageContainerView" destination="ab4-hX-brs" id="gtW-de-fle"/>
                         <outlet property="imageView" destination="NgO-oo-adn" id="KMq-NH-VRe"/>
+                        <outlet property="panGestureRecognizer" destination="o6K-Ja-KxX" id="fbb-wU-4Kq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YYE-Xp-aWp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="lwc-BA-WMM" userLabel="Exit" sceneMemberID="exit"/>
+                <panGestureRecognizer enabled="NO" minimumNumberOfTouches="1" id="o6K-Ja-KxX">
+                    <connections>
+                        <action selector="panHandler:" destination="XIF-Ks-bQz" id="E3k-6m-E7O"/>
+                    </connections>
+                </panGestureRecognizer>
                 <tapGestureRecognizer id="wGz-4D-cJo">
                     <connections>
                         <action selector="screenTapped:" destination="XIF-Ks-bQz" id="yWm-hL-KOu"/>
@@ -77,7 +109,6 @@
         <!--View Challenge Navigation Controller-->
         <scene sceneID="WIg-KY-Ar2">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yff-dW-qNP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iCZ-fM-oiC" customClass="ViewChallengeNavigationController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="F3E-3i-QJR">
@@ -89,6 +120,7 @@
                         <segue destination="XIF-Ks-bQz" kind="relationship" relationship="rootViewController" id="DZN-uY-aRz"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yff-dW-qNP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-284" y="56"/>
         </scene>
@@ -146,6 +178,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="accept" width="352" height="233"/>
         <image name="second" width="30" height="30"/>
     </resources>
 </document>

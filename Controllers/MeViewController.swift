@@ -182,20 +182,73 @@ class MeViewController: MeGenericViewController {
     }
     
     @objc func refreshAllViews(){
-        self.myStatusHeightConstr.constant = 500
-        self.myStatusView.isHidden = false
-        self.isMyStatusExpanded = true
-        self.statusViewController.needsRefresh = true
-        
         self.pendingViewController.reloadTableData()
-        self.pendingChallengesHeightConstr.constant = 0
-        self.pendingChallengesView.isHidden = true
-        self.isPendingChallengesExpanded = false
-        
         self.createdChallengeViewController.reloadTableData()
-        self.createdChallengesHeightConstr.constant = 0
-        self.createdChallengesView.isHidden = true
-        self.isCreatedChallengesExpanded = false
+        
+        if (isMyStatusExpanded) {
+            self.myStatusHeightConstr.constant = 500
+            self.statusViewController.needsRefresh = true
+        }
+        
+        if (isPendingChallengesExpanded) {
+            var height: CGFloat = CGFloat(self.pendingChallengeRowHeight * (self.user?.challenges?.pending?.count ?? 0))
+            
+            if (height > PendingChallengesViewController.scrollViewMaxHeight) {
+                height = PendingChallengesViewController.scrollViewMaxHeight
+            }
+            
+            self.pendingChallengesHeightConstr.constant = height
+            self.view.layoutIfNeeded()
+        }
+        
+        if (isCreatedChallengesExpanded) {
+            var height: CGFloat = CGFloat(self.createdChallengeRowHeight * (self.user?.challenges?.sponsored?.count ?? 0))
+            
+            if (height > MyCreatedChallengesViewController.scrollViewMaxHeight) {
+                height = MyCreatedChallengesViewController.scrollViewMaxHeight
+            }
+            
+            self.createdChallengesHeightConstr.constant = height
+            self.view.layoutIfNeeded()
+        }
+
+        self.view.layoutIfNeeded()
+    }
+    
+    func refreshAllViews_v2(user: User){
+        self.user = user
+        self.pendingViewController.user = user
+        self.pendingViewController.reloadTableData()
+        
+        self.createdChallengeViewController.user = user
+        self.createdChallengeViewController.reloadTableData()
+        
+        if (isMyStatusExpanded) {
+            self.myStatusHeightConstr.constant = 500
+            self.statusViewController.needsRefresh = true
+        }
+        
+        if (isPendingChallengesExpanded) {
+            var height: CGFloat = CGFloat(self.pendingChallengeRowHeight * (self.user?.challenges?.pending?.count ?? 0))
+            
+            if (height > PendingChallengesViewController.scrollViewMaxHeight) {
+                height = PendingChallengesViewController.scrollViewMaxHeight
+            }
+            
+            self.pendingChallengesHeightConstr.constant = height
+            self.view.layoutIfNeeded()
+        }
+        
+        if (isCreatedChallengesExpanded) {
+            var height: CGFloat = CGFloat(self.createdChallengeRowHeight * (self.user?.challenges?.sponsored?.count ?? 0))
+            
+            if (height > MyCreatedChallengesViewController.scrollViewMaxHeight) {
+                height = MyCreatedChallengesViewController.scrollViewMaxHeight
+            }
+            
+            self.createdChallengesHeightConstr.constant = height
+            self.view.layoutIfNeeded()
+        }
         
         self.view.layoutIfNeeded()
     }
