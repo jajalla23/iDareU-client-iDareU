@@ -106,5 +106,9 @@ class StatusViewController: MeGenericViewController {
         
         shapeLayer.add(basicAnimation, forKey: "urSoBasic")
     }
+    
+    func expandView() {
+        animate(jansAvail: self.getJansAvailable(), pctComplete: self.calculatePctCompleted())
+    }
 
 }

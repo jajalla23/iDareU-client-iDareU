@@ -12,6 +12,8 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
     
     private var selectedChallenge: ChallengeDetails?
     private var selectedIndex: Int?
+    
+    private var tableContents: [ChallengeDetails]?
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,6 +23,8 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
+        self.tableContents = self.user?.challenges?.pending
+        
         tableView.delegate = self
         tableView.dataSource = self
 
@@ -44,7 +48,7 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.user?.challenges?.pending?.count ?? 0
+        return self.tableContents?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -221,4 +225,13 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
         return true
     }
 
+    func collapseView() {
+        self.tableContents?.removeAll()
+        self.reloadTableData()
+    }
+    
+    func expandView() {
+        self.tableContents = self.user?.challenges?.pending
+        self.reloadTableData()
+    }
 }

@@ -12,6 +12,7 @@ class MeInitialViewController: GenericUIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var containerView: UIView!
+    //@IBOutlet weak var containerViewHeightConstr: NSLayoutConstraint!
     
     var refreshControl: UIRefreshControl!
     
@@ -68,7 +69,8 @@ class MeInitialViewController: GenericUIViewController {
             
         } else {
             let routerController: RouterTabBarController = self.tabBarController as! RouterTabBarController
-            let meViewController = segue.destination as? MeGenericViewController
+            let meViewController = segue.destination as? MeViewController
+            meViewController?.delegate = self
             meViewController?.user = routerController.user
         }
     }
@@ -76,5 +78,17 @@ class MeInitialViewController: GenericUIViewController {
     @IBAction func leftBarBtnTapped(_ sender: UIBarButtonItem) {
         //TODO: profile settings
     }
+    
+}
+
+extension MeInitialViewController: MeViewControllerDelegate {
+    func adjustViewHeight(meViewController: MeViewController) {
+        let totalViewHeight = meViewController.pendingChallengesHeightConstr.constant + meViewController.myStatusHeightConstr.constant + meViewController.createdChallengesHeightConstr.constant
+        let totalHeaderHeight = CGFloat.init(200)
+        print(totalViewHeight.description)
+        print(totalHeaderHeight.description)
+        //self.containerViewHeightConstr.constant = totalHeaderHeight + totalViewHeight
+    }
+    
     
 }

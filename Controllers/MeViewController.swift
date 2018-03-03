@@ -9,13 +9,15 @@
 import UIKit
 
 class MeViewController: MeGenericViewController {
+    var delegate: MeViewControllerDelegate?
+    
     public var statusViewController: StatusViewController!
-    private var isMyStatusExpanded: Bool = true
+    private var isMyStatusExpanded: Bool = false
     @IBOutlet weak var myStatusHeightConstr: NSLayoutConstraint!
     @IBOutlet weak var myStatusView: UIView!
     
     public var pendingViewController: PendingChallengesViewController!
-    private var isPendingChallengesExpanded: Bool = false
+    private var isPendingChallengesExpanded: Bool = true
     private var pendingChallengeRowHeight: Int = 80
     @IBOutlet weak var pendingChallengesHeightConstr: NSLayoutConstraint!
     @IBOutlet weak var pendingChallengesView: UIView!
@@ -31,13 +33,22 @@ class MeViewController: MeGenericViewController {
         // Do any additional setup after loading the view.
 
         //self.navigationController?.isNavigationBarHidden = true
-        self.statusViewController = self.childViewControllers[0] as! StatusViewController
+        self.statusViewController = self.childViewControllers[1] as! StatusViewController
+        self.myStatusHeightConstr.constant = 0
+        self.myStatusView.isHidden = true
 
         //pending challenges minimized
         //self.isPendingChallengesExpanded = false
-        self.pendingChallengesHeightConstr.constant = 0
-        self.pendingChallengesView.isHidden = true
-        self.pendingViewController = self.childViewControllers[1] as! PendingChallengesViewController
+        //self.pendingChallengesHeightConstr.constant = 0
+        var height: CGFloat = CGFloat(self.pendingChallengeRowHeight * (self.user?.challenges?.pending?.count ?? 0))
+        
+        if (height > PendingChallengesViewController.scrollViewMaxHeight) {
+            height = PendingChallengesViewController.scrollViewMaxHeight
+        }
+        
+        self.pendingChallengesHeightConstr.constant = height
+        self.pendingChallengesView.isHidden = false
+        self.pendingViewController = self.childViewControllers[0] as! PendingChallengesViewController
         
         //created challenges minimized
         self.createdChallengesHeightConstr.constant = 0
@@ -82,6 +93,14 @@ class MeViewController: MeGenericViewController {
             self.toggleCreatedChallengesView()
         }
         
+        if self.isPendingChallengesExpanded {
+            self.togglePendingChallengesView()
+        }
+        
+        if self.isCreatedChallengesExpanded {
+            self.toggleCreatedChallengesView()
+        }
+        
         //TODO: toggle completed challenges
     }
     
@@ -91,16 +110,41 @@ class MeViewController: MeGenericViewController {
         if self.isCreatedChallengesExpanded {
             self.toggleCreatedChallengesView()
         }
+        
+        if self.isPendingChallengesExpanded {
+            self.togglePendingChallengesView()
+        }
+        
+        if self.isCreatedChallengesExpanded {
+            self.toggleCreatedChallengesView()
+        }
     }
     
     @IBAction func pendingChallBtnToggled(_ sender: Any) {
         self.togglePendingChallengesView()
+        
+        if self.isMyStatusExpanded {
+            self.toggleStatusView()
+        }
+        
+        if self.isCreatedChallengesExpanded {
+            self.toggleCreatedChallengesView()
+        }
         
         //TODO: toggle completed challenges
     }
     
     @IBAction func pendingHeaderTapped(_ sender: UITapGestureRecognizer) {
         self.togglePendingChallengesView()
+        
+        if self.isMyStatusExpanded {
+            self.toggleStatusView()
+        }
+        
+        if self.isCreatedChallengesExpanded {
+            self.toggleCreatedChallengesView()
+        }
+        
         //TODO: toggle completed challenges
 
     }
@@ -111,6 +155,10 @@ class MeViewController: MeGenericViewController {
         if self.isMyStatusExpanded {
             self.toggleStatusView()
         }
+        
+        if self.isPendingChallengesExpanded {
+            self.togglePendingChallengesView()
+        }
     }
     
     @IBAction func sponsorHeaderTapped(_ sender: UITapGestureRecognizer) {
@@ -118,6 +166,10 @@ class MeViewController: MeGenericViewController {
         
         if self.isMyStatusExpanded {
             self.toggleStatusView()
+        }
+        
+        if self.isPendingChallengesExpanded {
+            self.togglePendingChallengesView()
         }
     }
     
@@ -146,6 +198,8 @@ class MeViewController: MeGenericViewController {
                 self.myStatusView.isHidden = !self.myStatusView.isHidden
                 self.view.layoutIfNeeded()
             })
+            
+            self.statusViewController.expandView()
         }
         
         isMyStatusExpanded = !isMyStatusExpanded
@@ -155,7 +209,9 @@ class MeViewController: MeGenericViewController {
         if (isPendingChallengesExpanded) {
             UIView.animate(withDuration: 1.0, animations: {
                 self.pendingChallengesHeightConstr.constant = 0
-                self.pendingChallengesView.isHidden = !self.pendingChallengesView.isHidden
+                //self.pendingChallengesView.isHidden = !self.pendingChallengesView.isHidden
+                self.pendingViewController.collapseView()
+
                 self.view.layoutIfNeeded()
             })
         } else {
@@ -167,7 +223,9 @@ class MeViewController: MeGenericViewController {
                 }
                 
                 self.pendingChallengesHeightConstr.constant = height
-                self.pendingChallengesView.isHidden = !self.pendingChallengesView.isHidden
+                //self.pendingChallengesView.isHidden = !self.pendingChallengesView.isHidden
+                self.pendingViewController.expandView()
+
                 self.view.layoutIfNeeded()
             })
         }
@@ -285,4 +343,8 @@ class MeViewController: MeGenericViewController {
     }
     */
 
+}
+
+protocol MeViewControllerDelegate {
+    func adjustViewHeight(meViewController: MeViewController)
 }
