@@ -16,6 +16,11 @@ class SelectTakerTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let naviController = navigationController as! TakerNavigationController
+        self.allFriends = naviController.allFriends
+        self.selectedFriends = naviController.selectedFriends
+        self.isCommunityChecked = naviController.isCommunityChecked
+        
         if (self.selectedFriends == nil) {
             self.selectedFriends = [String: User]()
         }

@@ -59,10 +59,29 @@ class ViewChallengeViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let naviController = self.navigationController as! ViewChallengeNavigationController
         if (segue.identifier == "challengeLabelSegue") {
             let controller = segue.destination as! ViewChallengeLabelController
-            let naviController = self.navigationController as! ViewChallengeNavigationController
+            controller.user = naviController.user
             controller.challenge = naviController.getChallenge()
+        }
+        
+        if (segue.identifier == "selectTakerSegue" && naviController.viewType == "SPONSORED") {
+            guard let controller = segue.destination as? TakerNavigationController else {
+                return
+            }
+            controller.allFriends = Array(naviController.user!.friends!.values)
+            
+            if ((self.challenge?.takers?.count ?? 0) > 0) {
+                controller.selectedFriends = [String: User]()
+                for taker in self.challenge!.takers! {
+                    controller.selectedFriends![taker.user._id!] = taker.user
+                }
+            }
+            
+            if (self.challenge!.isForCommunity) {
+                controller.isCommunityChecked = true
+            }
         }
     }
     

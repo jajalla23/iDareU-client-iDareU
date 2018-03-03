@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LaB-qL-5q3">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Select Taker-->
+        <scene sceneID="cln-hS-gxp">
+            <objects>
+                <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="Ktn-0P-csg" customClass="SelectTakerTableViewController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="r3s-II-v5P">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="friendsCell" rowHeight="70" id="4ix-5N-Y3Z" customClass="SelectTakerTVCell" customModule="iDareU" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4ix-5N-Y3Z" id="ZAQ-bS-FFm">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="friend username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHd-UF-bUB">
+                                            <rect key="frame" x="98" y="18.5" width="207" height="33"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWs-7G-92H" customClass="SelectUserCheckBox" customModule="iDareU" customModuleProvider="target">
+                                            <rect key="frame" x="27" y="14" width="42" height="42"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="42" id="8mV-Gf-WHs"/>
+                                                <constraint firstAttribute="height" constant="42" id="G7L-KB-UAm"/>
+                                            </constraints>
+                                            <state key="normal" title="Button" image="checked"/>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="dHd-UF-bUB" firstAttribute="centerY" secondItem="ZAQ-bS-FFm" secondAttribute="centerY" id="7j4-Rx-L7e"/>
+                                        <constraint firstItem="dHd-UF-bUB" firstAttribute="leading" secondItem="gWs-7G-92H" secondAttribute="trailing" constant="29" id="BKe-Yy-Z5G" userLabel="Friend Username Lbl.leading = Cell Checkbox.trailing + 8"/>
+                                        <constraint firstItem="gWs-7G-92H" firstAttribute="centerY" secondItem="ZAQ-bS-FFm" secondAttribute="centerY" id="O9A-sW-uUE"/>
+                                        <constraint firstItem="gWs-7G-92H" firstAttribute="leading" secondItem="ZAQ-bS-FFm" secondAttribute="leadingMargin" constant="11" id="aAq-Hy-IJa"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cellCheckbox" destination="gWs-7G-92H" id="inE-5Q-EI0"/>
+                                    <outlet property="friendUsernameLbl" destination="dHd-UF-bUB" id="HFF-go-UO3"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ktn-0P-csg" id="LZd-r0-QTa"/>
+                            <outlet property="delegate" destination="Ktn-0P-csg" id="bvR-p8-7a0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Select Taker" id="JP2-Sy-wCA">
+                        <barButtonItem key="leftBarButtonItem" style="done" id="w15-3l-uQu">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uXe-ad-kVu">
+                                <rect key="frame" x="16" y="7" width="55" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelTapped:" destination="Ktn-0P-csg" eventType="touchDown" id="2D0-rw-Nn3"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" id="Inq-kF-iil">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EjR-zq-TxL">
+                                <rect key="frame" x="313" y="7" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="doneTapped:" destination="Ktn-0P-csg" eventType="touchUpInside" id="A9i-ak-7K5"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="G4b-Bn-Io4" kind="unwind" identifier="setupUnwindSegue" unwindAction="unwindToSetupChallengeWithSegue:" id="eMZ-2c-SYk"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Sg-NY-wi4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="G4b-Bn-Io4" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4256.8000000000002" y="-98.50074962518741"/>
+        </scene>
+        <!--Taker Navigation Controller-->
+        <scene sceneID="l4g-Qd-2wv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LaB-qL-5q3" customClass="TakerNavigationController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kLM-ZZ-GxW">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Ktn-0P-csg" kind="relationship" relationship="rootViewController" id="D2j-td-cV1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r95-Ym-C4i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3414" y="-99"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="checked" width="91" height="92"/>
+    </resources>
+</document>

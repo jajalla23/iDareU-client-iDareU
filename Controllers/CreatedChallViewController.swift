@@ -96,6 +96,8 @@ class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDat
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "createdToWatchSegue") {
             let controller = segue.destination as! ViewChallengeNavigationController
+            controller.viewType = "SPONSORED"
+            controller.user = self.user
             controller.challengeList = [self.selectedChallenge!]
             controller.navigationItem.hidesBackButton = false
         }

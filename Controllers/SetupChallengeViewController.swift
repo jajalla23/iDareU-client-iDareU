@@ -46,9 +46,11 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         #if SIMULATOR
-            //self.image = UIImage(named: "Play")
-            self.image = LetterImageGenerator.imageWith(name: "JAN JAJALLA")
+            self.image = UIImage(named: "Play")
         #endif
+        
+        let availHalf = (user?.jans?.available ?? 0) / 2
+        challengeRewardBtn.setTitle("J \(availHalf)", for: .normal)
     }
 
     override func didReceiveMemoryWarning() {
@@ -164,7 +166,7 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch (segue.identifier!) {
         case "selectTakerSegue":
-            guard let controller = segue.destination as? SelectTakerTableViewController else {
+            guard let controller = segue.destination as? TakerNavigationController else {
                 return
             }
             controller.allFriends = Array(self.user!.friends!.values)

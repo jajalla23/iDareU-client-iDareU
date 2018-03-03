@@ -35,6 +35,7 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
     }
     
     public func reloadTableData(){
+        self.tableContents = self.user?.challenges?.pending
         self.tableView.reloadData()
         self.tableView.delegate = self
         self.tableView.dataSource = self

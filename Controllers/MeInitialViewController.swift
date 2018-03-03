@@ -82,12 +82,13 @@ class MeInitialViewController: GenericUIViewController {
 }
 
 extension MeInitialViewController: MeViewControllerDelegate {
-    func adjustViewHeight(meViewController: MeViewController) {
-        let totalViewHeight = meViewController.pendingChallengesHeightConstr.constant + meViewController.myStatusHeightConstr.constant + meViewController.createdChallengesHeightConstr.constant
-        let totalHeaderHeight = CGFloat.init(200)
-        print(totalViewHeight.description)
-        print(totalHeaderHeight.description)
+    func adjustView(meViewController: MeViewController) {
+        //let totalViewHeight = meViewController.pendingChallengesHeightConstr.constant + meViewController.myStatusHeightConstr.constant + meViewController.createdChallengesHeightConstr.constant
+        //let totalHeaderHeight = CGFloat.init(200)
+
         //self.containerViewHeightConstr.constant = totalHeaderHeight + totalViewHeight
+        
+        scrollView.setContentOffset(CGPoint.init(x: 0, y: scrollView.contentOffset.y), animated: true)
     }
     
     

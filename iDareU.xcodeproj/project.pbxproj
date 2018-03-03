@@ -17,6 +17,8 @@
 		762296F7200A930A00D09D12 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762296F6200A930A00D09D12 /* FriendsViewController.swift */; };
 		762296F9200A961900D09D12 /* FriendFeedViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762296F8200A961900D09D12 /* FriendFeedViewCell.swift */; };
 		7627C2EE204892EB008A0074 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7627C2ED204892EB008A0074 /* Data.swift */; };
+		7629D8E8204A9857009C4A90 /* SelectTaker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7629D8E7204A9857009C4A90 /* SelectTaker.storyboard */; };
+		7629D8EA204A9FA9009C4A90 /* TakerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7629D8E9204A9FA9009C4A90 /* TakerNavigationController.swift */; };
 		7630D9F72022C39B00C5603B /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7630D9F62022C39B00C5603B /* PreviewViewController.swift */; };
 		763688C12003036C00129279 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763688C02003036C00129279 /* StatusViewController.swift */; };
 		76376136202064CB006BE727 /* PendingChallTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76376135202064CB006BE727 /* PendingChallTVCell.swift */; };
@@ -119,6 +121,8 @@
 		762296F6200A930A00D09D12 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		762296F8200A961900D09D12 /* FriendFeedViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendFeedViewCell.swift; sourceTree = "<group>"; };
 		7627C2ED204892EB008A0074 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		7629D8E7204A9857009C4A90 /* SelectTaker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SelectTaker.storyboard; sourceTree = "<group>"; };
+		7629D8E9204A9FA9009C4A90 /* TakerNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakerNavigationController.swift; sourceTree = "<group>"; };
 		7630D9F62022C39B00C5603B /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		763688C02003036C00129279 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		76376135202064CB006BE727 /* PendingChallTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingChallTVCell.swift; sourceTree = "<group>"; };
@@ -404,6 +408,7 @@
 				765A09DE2017BF0C0004A67D /* Login.storyboard */,
 				765A09DC2017BE950004A67D /* Router.storyboard */,
 				7645385820012DB5004A96F7 /* Create.storyboard */,
+				7629D8E7204A9857009C4A90 /* SelectTaker.storyboard */,
 				76B1FBAD2000A07100402173 /* Community.storyboard */,
 				7675178D2009746400481464 /* Friends.storyboard */,
 				7622385C202CDB3F00291AB6 /* ChallengeReward.storyboard */,
@@ -428,6 +433,7 @@
 				7630D9F62022C39B00C5603B /* PreviewViewController.swift */,
 				767D1EA820250E6A0098DF47 /* SetupChallengeViewController.swift */,
 				76AC733A20258BCD0072C7BF /* SelectSponsorTableViewController.swift */,
+				7629D8E9204A9FA9009C4A90 /* TakerNavigationController.swift */,
 				763BC5492022D04D00F57BD4 /* SelectTakerTableViewController.swift */,
 				76B1FBAF2000A0C700402173 /* CommunityViewController.swift */,
 				762296F6200A930A00D09D12 /* FriendsViewController.swift */,
@@ -575,6 +581,7 @@
 			files = (
 				7650EA20200095080011125B /* LaunchScreen.storyboard in Resources */,
 				7675178E2009746400481464 /* Friends.storyboard in Resources */,
+				7629D8E8204A9857009C4A90 /* SelectTaker.storyboard in Resources */,
 				767637C1202E567F0038D9E2 /* awsconfiguration.json in Resources */,
 				76B1FBAC20009E9D00402173 /* Me.storyboard in Resources */,
 				763FA65B2031156E00D7A46B /* Assets.xcassets in Resources */,
@@ -797,6 +804,7 @@
 				76AA3F39202058B90038DAD9 /* CompletedChallViewController.swift in Sources */,
 				765EF5682002EB33006B36B0 /* FriendViewModel.swift in Sources */,
 				76407EB32034161700163545 /* ServerResponseModel.swift in Sources */,
+				7629D8EA204A9FA9009C4A90 /* TakerNavigationController.swift in Sources */,
 				7627C2EE204892EB008A0074 /* Data.swift in Sources */,
 				767D1EA920250E6A0098DF47 /* SetupChallengeViewController.swift in Sources */,
 				76EC146320167E5B00C73DFC /* SignupViewController.swift in Sources */,

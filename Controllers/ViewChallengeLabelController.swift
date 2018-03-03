@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewChallengeLabelController: UIViewController {
+    var user: User?
     var challenge: ChallengeDetails?
     
     @IBOutlet weak var rewardValLbl: UILabel!
@@ -28,13 +29,23 @@ class ViewChallengeLabelController: UIViewController {
         var dare = " DARE "
         
         var taker = "anyone"
-        if (!challenge!.isForCommunity) {
-            taker = challenge?.takers?[0].user.display_name ?? "???"
-        }
-                
-        if (false) {
-            sponsor = challenge!.sponsor!.display_name
+        
+        if (challenge?.sponsor?._id != user?._id) {
+            sponsor = challenge?.sponsor?.display_name ?? "???"
             dare = " DARES "
+            taker = "YOU"
+        } else {
+            if ((challenge?.takers?.count ?? -1) == 0) {
+                taker = "nobody"
+            } else if ((challenge?.takers?.count ?? 0) > 1) {
+                taker = "people"
+            } else {
+                taker = challenge?.takers?[0].user.display_name ?? user?.friends![(challenge?.takers?[0].user._id)!]?.display_name ?? "???"
+            }
+        }
+        
+        if (challenge!.isForCommunity) {
+            taker = "anyone"
         }
         
         challengeInfoLbl.text = sponsor + dare + taker + " TO " + title!

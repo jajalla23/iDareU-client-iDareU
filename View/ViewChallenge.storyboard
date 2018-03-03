@@ -80,6 +80,7 @@
                         <barButtonItem key="rightBarButtonItem" image="second" id="ZES-C1-hoC">
                             <connections>
                                 <action selector="rightBarItemTapped:" destination="lwc-BA-WMM" id="P3Z-dx-XVh"/>
+                                <segue destination="CnN-hT-FfI" kind="show" identifier="selectTakerSegue" id="gMN-2D-c2U"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -123,6 +124,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yff-dW-qNP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-284" y="56"/>
+        </scene>
+        <!--SelectTaker-->
+        <scene sceneID="Mdg-Vb-SQc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SelectTaker" id="CnN-hT-FfI" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5ae-4e-hyx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1462" y="-202"/>
         </scene>
         <!--View Challenge Label Controller-->
         <scene sceneID="KHD-Nz-U1g">
