@@ -85,13 +85,35 @@ class MeViewController: MeGenericViewController {
         //TODO: toggle completed challenges
     }
     
+    @IBAction func myStatusHeaderTapped(_ sender: UITapGestureRecognizer) {
+        self.toggleStatusView()
+        
+        if self.isCreatedChallengesExpanded {
+            self.toggleCreatedChallengesView()
+        }
+    }
+    
     @IBAction func pendingChallBtnToggled(_ sender: Any) {
         self.togglePendingChallengesView()
         
         //TODO: toggle completed challenges
     }
     
+    @IBAction func pendingHeaderTapped(_ sender: UITapGestureRecognizer) {
+        self.togglePendingChallengesView()
+        //TODO: toggle completed challenges
+
+    }
+    
     @IBAction func createdChallBtnToggled(_ sender: Any) {
+        self.toggleCreatedChallengesView()
+        
+        if self.isMyStatusExpanded {
+            self.toggleStatusView()
+        }
+    }
+    
+    @IBAction func sponsorHeaderTapped(_ sender: UITapGestureRecognizer) {
         self.toggleCreatedChallengesView()
         
         if self.isMyStatusExpanded {

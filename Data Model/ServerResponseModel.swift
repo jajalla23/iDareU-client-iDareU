@@ -18,8 +18,8 @@ public class Status: Decodable {
     var description: String?
 }
 
-public class DefaultData: Decodable {
-    var n: String?
+public struct DefaultData: Decodable {
+    var n: Int?
     var nModified: Int?
     var ok: Int?
 }

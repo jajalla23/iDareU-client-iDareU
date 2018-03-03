@@ -52,14 +52,23 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
         
         let currChallenge = user?.challenges?.pending![indexPath.row]
         
-        cell.challangePrevImage.image = UIImage(named: "Play")
+        if let challengePreview = currChallenge?.media?.preview {
+            print(challengePreview)
+            cell.challengePrevImage.image = UIImage(named: "Play")
+        } else {
+            cell.challengePrevImage.image = LetterImageGenerator.imageWith(name: (currChallenge?.sponsor?.display_name ?? "?"))
+        }
+
         cell.challengeTitleLbl.text = currChallenge?.title
         cell.challengeRewardLbl.text = "J \(currChallenge?.reward.description ?? "0")"
         
         if let i = currChallenge?.takers!.index(where: {$0.user._id == self.user?._id}) {
             if (currChallenge?.takers?[i].accepted ?? false) {
-                cell.layer.borderWidth = 3.0
-                cell.layer.borderColor = UIColor.green.cgColor
+                cell.noActionIndicatorView.backgroundColor = UIColor.clear
+                cell.acceptedIndicatorView.backgroundColor = UIColor.orange
+            } else {
+                cell.noActionIndicatorView.backgroundColor = UIColor.red
+                cell.acceptedIndicatorView.backgroundColor = UIColor.clear
             }
         }
         
@@ -81,16 +90,19 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
                    leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let closeAction = UIContextualAction(style: .normal, title:  "Reject", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             
-            self.rejectChallenge(challenge: (self.user?.challenges?.pending![indexPath.row])!)
+            let result = self.rejectChallenge(challenge: (self.user?.challenges?.pending![indexPath.row])!)
 
-            self.user?.challenges?.pending!.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-            
-            DispatchQueue.main.async{
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshAllViewsOnMe"), object: nil)
+            if (result) {
+                self.user?.challenges?.pending!.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                
+                DispatchQueue.main.async{
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshAllViewsOnMe"), object: nil)
+                }
+                success(true)
+            } else {
+                success(false)
             }
-            
-            success(true)
         })
         //closeAction.image = UIImage(named: "second")
         closeAction.backgroundColor = .red
@@ -101,15 +113,41 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
     
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let modifyAction = UIContextualAction(style: .normal, title:  "Accept", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-            
-            self.acceptChallenge(challenge: (self.user?.challenges?.pending![indexPath.row])!, cell: tableView.cellForRow(at: indexPath)!)
-            success(true)
-        })
-        //modifyAction.image = UIImage(named: "Play")
-        modifyAction.backgroundColor = .blue
+
+        let cell = tableView.cellForRow(at: indexPath)! as! PendingChallengeTableViewCell
+        let currChallenge = self.user?.challenges?.pending![indexPath.row]
         
-        return UISwipeActionsConfiguration(actions: [modifyAction])
+        var modifyAction: UIContextualAction?
+        if let i = currChallenge?.takers!.index(where: {$0.user._id == self.user?._id}) {
+            if (currChallenge?.takers?[i].accepted ?? false) {
+                
+                modifyAction = UIContextualAction(style: .normal, title:  "Complete", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+                    
+                    //TODO
+                    print("complete the challenge")
+                    success(true)
+                })
+                modifyAction?.backgroundColor = .green
+                
+            } else {
+                modifyAction = UIContextualAction(style: .normal, title:  "Accept", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+                    
+                    let result = self.acceptChallenge(challenge: (self.user?.challenges?.pending![indexPath.row])!)
+                    
+                    if (result) {
+                        cell.noActionIndicatorView.backgroundColor = UIColor.clear
+                        cell.acceptedIndicatorView.backgroundColor = UIColor.orange
+                        success(true)
+                    } else {
+                        success(false)
+                    }
+                    
+                })
+                modifyAction?.backgroundColor = .orange
+            }
+        }
+        
+        return UISwipeActionsConfiguration(actions: [modifyAction!])
     }
     
     private func adjustHeight() {
@@ -151,37 +189,36 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
         }
     }
     
-    private func acceptChallenge(challenge: ChallengeDetails, cell: UITableViewCell) {
+    private func acceptChallenge(challenge: ChallengeDetails) -> Bool {
         do {
             try Server.acceptChallenge(user_id: self.user!._id!, challenge_id: challenge._id!)
         } catch let cError as CustomError {
             //TODO: handler error
             print(cError.description)
-            return
+            return false
         } catch let error {
             //TODO: error
             print(error.localizedDescription)
-            return
+            return false
         }
         
-        cell.layer.borderWidth = 3.0
-        cell.layer.borderColor = UIColor.green.cgColor
+        return true
     }
     
-    private func rejectChallenge(challenge: ChallengeDetails) {
+    private func rejectChallenge(challenge: ChallengeDetails) -> Bool {
         do {
             try Server.rejectChallenge(user_id: self.user!._id!, challenge_id: challenge._id!)
         } catch let cError as CustomError {
             //TODO: handler error
             print(cError.description)
+            return false
         } catch let error {
             //TODO: error
             print(error.localizedDescription)
+            return false
         }
-        
-        DispatchQueue.main.async{
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshAllViewsOnMe"), object: nil)
-        }
+
+        return true
     }
 
 }

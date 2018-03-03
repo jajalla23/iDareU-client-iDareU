@@ -46,7 +46,8 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         #if SIMULATOR
-            self.image = UIImage(named: "Play")
+            //self.image = UIImage(named: "Play")
+            self.image = LetterImageGenerator.imageWith(name: "JAN JAJALLA")
         #endif
     }
 

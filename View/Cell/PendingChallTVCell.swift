@@ -10,10 +10,12 @@ import UIKit
 
 class PendingChallengeTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var challangePrevImage: UIImageView!
+    @IBOutlet weak var challengePrevImage: UIImageView!
+    @IBOutlet weak var noActionIndicatorView: UIView!
+    @IBOutlet weak var acceptedIndicatorView: UIView!
     @IBOutlet weak var challengeTitleLbl: UILabel!
-    @IBOutlet weak var challengeDescLbl: UILabel!
     @IBOutlet weak var challengeRewardLbl: UILabel!
+    @IBOutlet weak var expirationLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
