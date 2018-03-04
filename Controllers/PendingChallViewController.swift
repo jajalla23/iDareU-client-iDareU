@@ -70,10 +70,10 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
         if let i = currChallenge?.takers!.index(where: {$0.user._id == self.user?._id}) {
             if (currChallenge?.takers?[i].accepted ?? false) {
                 cell.noActionIndicatorView.backgroundColor = UIColor.clear
-                cell.acceptedIndicatorView.backgroundColor = UIColor.orange
+                cell.acceptedIndicatorView.backgroundColor = UIColor.green
             } else {
-                cell.noActionIndicatorView.backgroundColor = UIColor.red
-                cell.acceptedIndicatorView.backgroundColor = UIColor.clear
+                cell.noActionIndicatorView.backgroundColor = UIColor.clear
+                cell.acceptedIndicatorView.backgroundColor = UIColor.orange
             }
         }
         
@@ -99,6 +99,7 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
 
             if (result) {
                 self.user?.challenges?.pending!.remove(at: indexPath.row)
+                self.tableContents?.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
                 
                 DispatchQueue.main.async{
@@ -132,7 +133,7 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
                     print("complete the challenge")
                     success(true)
                 })
-                modifyAction?.backgroundColor = .green
+                modifyAction?.backgroundColor = .blue
                 
             } else {
                 modifyAction = UIContextualAction(style: .normal, title:  "Accept", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
@@ -140,15 +141,15 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
                     let result = self.acceptChallenge(challenge: (self.user?.challenges?.pending![indexPath.row])!)
                     
                     if (result) {
-                        cell.noActionIndicatorView.backgroundColor = UIColor.clear
-                        cell.acceptedIndicatorView.backgroundColor = UIColor.orange
+                        //cell.noActionIndicatorView.backgroundColor = UIColor.clear
+                        cell.acceptedIndicatorView.backgroundColor = UIColor.green
                         success(true)
                     } else {
                         success(false)
                     }
                     
                 })
-                modifyAction?.backgroundColor = .orange
+                modifyAction?.backgroundColor = .green
             }
         }
         

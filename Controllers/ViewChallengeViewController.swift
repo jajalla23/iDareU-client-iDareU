@@ -71,6 +71,7 @@ class ViewChallengeViewController: UIViewController {
                 return
             }
             controller.allFriends = Array(naviController.user!.friends!.values)
+            controller.takerDelegate = self
             
             if ((self.challenge?.takers?.count ?? 0) > 0) {
                 controller.selectedFriends = [String: User]()
@@ -83,6 +84,7 @@ class ViewChallengeViewController: UIViewController {
                 controller.isCommunityChecked = true
             }
         }
+        
     }
     
     @IBAction func backBtnTapped(_ sender: Any) {
@@ -201,6 +203,32 @@ class ViewChallengeViewController: UIViewController {
             challengeInfoView.layoutIfNeeded()
         }
         
+    }
+    
+    @IBAction func unwindToViewChallenge(segue: UIStoryboardSegue) {
+        print("unwind")
+    }
+}
+
+extension ViewChallengeViewController: SelectTakerDelegate {
+    func selectionDone(selectTakerController: SelectTakerTableViewController) {
+
+        var new_takers: [Taker] = []
+        for currUser in selectTakerController.selectedFriends!.values {
+            if (!challenge!.takers!.contains(where: {$0.user._id == currUser._id})) {
+                challenge?.addTaker(user: currUser)
+                let newTaker = Taker.init(user: currUser)
+                new_takers.append(newTaker)
+            }
+        }
+        
+        do {
+            try Server.addTakers(challenge_id: (self.challenge?._id)!, new_takers: new_takers)
+        } catch let cError as CustomError {
+            print(cError.description)
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
 }
 

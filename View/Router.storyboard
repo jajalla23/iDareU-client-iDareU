@@ -20,9 +20,9 @@
                     </tabBar>
                     <connections>
                         <segue destination="oRf-9p-TC2" kind="relationship" relationship="viewControllers" id="HlR-MT-Zrt"/>
-                        <segue destination="jds-K3-3Ru" kind="relationship" relationship="viewControllers" id="xba-Z8-zWW"/>
-                        <segue destination="dWX-YS-IeM" kind="relationship" relationship="viewControllers" id="wKw-k0-7D0"/>
                         <segue destination="Ooi-kM-wms" kind="relationship" relationship="viewControllers" id="LCp-ja-6MU"/>
+                        <segue destination="dWX-YS-IeM" kind="relationship" relationship="viewControllers" id="wKw-k0-7D0"/>
+                        <segue destination="jds-K3-3Ru" kind="relationship" relationship="viewControllers" id="xba-Z8-zWW"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gCs-vX-7KT" sceneMemberID="firstResponder"/>

@@ -79,7 +79,6 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="second" id="ZES-C1-hoC">
                             <connections>
-                                <action selector="rightBarItemTapped:" destination="lwc-BA-WMM" id="P3Z-dx-XVh"/>
                                 <segue destination="CnN-hT-FfI" kind="show" identifier="selectTakerSegue" id="gMN-2D-c2U"/>
                             </connections>
                         </barButtonItem>
@@ -93,7 +92,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YYE-Xp-aWp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="lwc-BA-WMM" userLabel="Exit" sceneMemberID="exit"/>
                 <panGestureRecognizer enabled="NO" minimumNumberOfTouches="1" id="o6K-Ja-KxX">
                     <connections>
                         <action selector="panHandler:" destination="XIF-Ks-bQz" id="E3k-6m-E7O"/>

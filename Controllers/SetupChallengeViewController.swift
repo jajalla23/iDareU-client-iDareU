@@ -170,6 +170,7 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             controller.allFriends = Array(self.user!.friends!.values)
+            controller.takerDelegate = self
             
             if ((self.challenge?.takers?.count ?? 0) > 0) {
                 controller.selectedFriends = [String: User]()
@@ -250,6 +251,26 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
         self.view.frame.origin.y = self.orig_setUpframeYaxis!
     }
     
+}
+
+extension SetupChallengeViewController: SelectTakerDelegate {
+    func selectionDone(selectTakerController: SelectTakerTableViewController) {
+        for friend in selectTakerController.selectedFriends!.values {
+            self.challenge?.addTaker(user: friend)
+        }
+        
+        self.challenge?.isForCommunity = false
+        if (selectTakerController.isCommunityChecked) {
+            self.takerBtn.setTitle("anyone", for: UIControlState.normal)
+            self.challenge?.isForCommunity = true
+        } else if (selectTakerController.selectedFriends!.count == 1) {
+            let friend: User = selectTakerController.selectedFriends!.first!.value
+            self.takerBtn.setTitle(friend.display_name, for: UIControlState.normal)
+        } else {
+            self.takerBtn.setTitle("people", for: UIControlState.normal)
+            
+        }
+    }
 }
 
 protocol SetupChallengeDelegate {

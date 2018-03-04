@@ -110,5 +110,9 @@ class StatusViewController: MeGenericViewController {
     func expandView() {
         animate(jansAvail: self.getJansAvailable(), pctComplete: self.calculatePctCompleted())
     }
+    
+    func refresh() {
+        animate(jansAvail: self.getJansAvailable(), pctComplete: self.calculatePctCompleted())
+    }
 
 }

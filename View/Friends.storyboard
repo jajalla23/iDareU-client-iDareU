@@ -86,7 +86,7 @@
         <scene sceneID="f77-h2-59z">
             <objects>
                 <navigationController title="Friends" automaticallyAdjustsScrollViewInsets="NO" id="Ip3-X4-RwT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Friends" image="second" id="d1Y-TR-GXQ"/>
+                    <tabBarItem key="tabBarItem" title="Friends" image="first" id="d1Y-TR-GXQ"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8WO-4S-Evj">
@@ -113,6 +113,6 @@
     </scenes>
     <resources>
         <image name="Play" width="321" height="321"/>
-        <image name="second" width="30" height="30"/>
+        <image name="first" width="30" height="30"/>
     </resources>
 </document>

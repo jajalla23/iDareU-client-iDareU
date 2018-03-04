@@ -9,6 +9,8 @@
 import UIKit
 
 class TakerNavigationController: UINavigationController {
+    var takerDelegate: SelectTakerDelegate?
+    
     var allFriends: [User]?
     var selectedFriends: [String: User]?
     var isCommunityChecked: Bool = false

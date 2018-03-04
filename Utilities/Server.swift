@@ -12,7 +12,7 @@ public class Server {
     static private var error_location = "/Auxiliary/Server.swift"
     static private let server: String = "http://34.208.110.84:3000/"
     //static private let server: String = "http://localhost:3000/"
-    //static private let server: String = "http://192.168.1.109:3000/"
+    //static private let server: String = "http://192.168.0.105:3000/"
     
     private static func invokeHTTP (action: String, httpMethod: String, parameters: Dictionary<String, String>) {
         print("calling server...")
@@ -371,7 +371,7 @@ extension Server {
         
         do {
             let decoder = JSONDecoder()
-            let response: DefaultResponse = try decoder.decode(DefaultResponse.self, from: respData)
+            let response: UpdateResponse = try decoder.decode(UpdateResponse.self, from: respData)
             
             if (response.error != nil) {
                 throw response.error!
@@ -392,7 +392,7 @@ extension Server {
         
         do {
             let decoder = JSONDecoder()
-            let response: DefaultResponse = try decoder.decode(DefaultResponse.self, from: respData)
+            let response: UpdateResponse = try decoder.decode(UpdateResponse.self, from: respData)
             
             if (response.error != nil) {
                 throw response.error!
@@ -427,4 +427,27 @@ extension Server {
         }
     }
 
+    static func addTakers(challenge_id: String, new_takers: [Taker]) throws {
+        let encoder = JSONEncoder()
+        let data = try! encoder.encode(new_takers)
+        
+        guard let respData = try invokeHTTP(action: "challenges/addTakers/" + challenge_id, httpMethod: "POST", data: data, sync: true)
+            else {
+                let cError: CustomError = CustomError.init(code: "002", description: "Unable to call server", severity: Severity.HIGH, location: error_location)
+                throw cError
+        }
+        
+        do {
+            let decoder = JSONDecoder()
+            let response: UpdateResponse = try decoder.decode(UpdateResponse.self, from: respData)
+            
+            if (response.error != nil) {
+                throw response.error!
+            }
+                        
+        } catch let error {
+            let cError: CustomError = CustomError.init(code: "002", description: error.localizedDescription, severity: Severity.HIGH, location: error_location)
+            throw cError
+        }
+    }
 }

@@ -64,7 +64,7 @@
         <scene sceneID="mZq-su-hyC">
             <objects>
                 <navigationController title="Me" automaticallyAdjustsScrollViewInsets="NO" id="tbG-HK-e9x" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Me" image="first" id="dyB-eO-GyW"/>
+                    <tabBarItem key="tabBarItem" title="Me" image="second" id="dyB-eO-GyW"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ojg-wU-sRo">
@@ -584,8 +584,8 @@
     </scenes>
     <resources>
         <image name="Play" width="321" height="321"/>
-        <image name="first" width="30" height="30"/>
         <image name="profile" width="22" height="35"/>
+        <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="q5A-QS-J6t"/>

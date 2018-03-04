@@ -13,7 +13,7 @@
         <!--Select Taker-->
         <scene sceneID="cln-hS-gxp">
             <objects>
-                <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="Ktn-0P-csg" customClass="SelectTakerTableViewController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Ktn-0P-csg" customClass="SelectTakerTableViewController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="r3s-II-v5P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

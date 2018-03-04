@@ -18,15 +18,15 @@ public class Status: Decodable {
     var description: String?
 }
 
-public struct DefaultData: Decodable {
+public struct UpdateData: Decodable {
     var n: Int?
     var nModified: Int?
     var ok: Int?
 }
 
 /** Default Begin **/
-public class DefaultResponse: Response {
-    var data: [DefaultData]?
+public class UpdateResponse: Response {
+    var data: [UpdateData]?
     
     enum CodingKeys : String, CodingKey {
         case data = "data"
@@ -34,7 +34,7 @@ public class DefaultResponse: Response {
     
     required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode([DefaultData].self, forKey: .data)
+        data = try container.decode([UpdateData].self, forKey: .data)
         try super.init(from: decoder)
     }
 }
@@ -126,7 +126,7 @@ public class CreateUserData: Decodable {
 
 /** Add Friends Begin **/
 public class AddFriendsResponse: Response {
-    var data: [DefaultData]?
+    var data: [UpdateData]?
     
     enum CodingKeys : String, CodingKey {
         case data = "data"
@@ -134,7 +134,7 @@ public class AddFriendsResponse: Response {
     
     required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode([DefaultData].self, forKey: .data)
+        data = try container.decode([UpdateData].self, forKey: .data)
         try super.init(from: decoder)
     }
 }

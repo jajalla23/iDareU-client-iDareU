@@ -9,6 +9,8 @@
 import UIKit
 
 class SelectTakerTableViewController: UITableViewController {
+    var delegate: SelectTakerDelegate?
+    
     var allFriends: [User]?
     var selectedFriends: [String: User]?
     var isCommunityChecked: Bool = false
@@ -17,6 +19,7 @@ class SelectTakerTableViewController: UITableViewController {
         super.viewDidLoad()
         
         let naviController = navigationController as! TakerNavigationController
+        self.delegate = naviController.takerDelegate
         self.allFriends = naviController.allFriends
         self.selectedFriends = naviController.selectedFriends
         self.isCommunityChecked = naviController.isCommunityChecked
@@ -134,7 +137,10 @@ class SelectTakerTableViewController: UITableViewController {
     */
     
     @IBAction func doneTapped(_ sender: Any) {
-        performSegue(withIdentifier: "setupUnwindSegue", sender: sender)
+        //performSegue(withIdentifier: "setupUnwindSegue", sender: sender)
+        delegate?.selectionDone(selectTakerController: self)
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancelTapped(_ sender: Any) {
@@ -160,8 +166,9 @@ class SelectTakerTableViewController: UITableViewController {
             }
         }
     }
-    
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print(segue.destination)
         switch (segue.identifier!) {
         case "setupUnwindSegue":
             let controller = segue.destination as! SetupChallengeViewController
@@ -170,6 +177,7 @@ class SelectTakerTableViewController: UITableViewController {
                 controller.challenge?.addTaker(user: friend)
             }
             
+            controller.challenge?.isForCommunity = false
             if (self.isCommunityChecked) {
                 controller.takerBtn.setTitle("anyone", for: UIControlState.normal)
                 controller.challenge?.isForCommunity = true
@@ -180,8 +188,15 @@ class SelectTakerTableViewController: UITableViewController {
                 controller.takerBtn.setTitle("people", for: UIControlState.normal)
                 
             }
+        case "unwindToViewSegue":
+            print(segue.destination.description)
         default:
             return
         }
     }
+    */
+}
+
+protocol SelectTakerDelegate {
+    func selectionDone(selectTakerController: SelectTakerTableViewController)
 }

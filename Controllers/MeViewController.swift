@@ -32,23 +32,31 @@ class MeViewController: MeGenericViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
-        //self.navigationController?.isNavigationBarHidden = true
-        self.statusViewController = self.childViewControllers[1] as! StatusViewController
-        self.myStatusHeightConstr.constant = 0
-        self.myStatusView.isHidden = true
-
-        //pending challenges minimized
-        //self.isPendingChallengesExpanded = false
-        //self.pendingChallengesHeightConstr.constant = 0
-        var height: CGFloat = CGFloat(self.pendingChallengeRowHeight * (self.user?.challenges?.pending?.count ?? 0))
-        
-        if (height > PendingChallengesViewController.scrollViewMaxHeight) {
-            height = PendingChallengesViewController.scrollViewMaxHeight
-        }
-        
-        self.pendingChallengesHeightConstr.constant = height
-        self.pendingChallengesView.isHidden = false
         self.pendingViewController = self.childViewControllers[0] as! PendingChallengesViewController
+        self.statusViewController = self.childViewControllers[1] as! StatusViewController
+
+        if ((user?.challenges?.pending?.count ?? 0) > 0) {
+            var height: CGFloat = CGFloat(self.pendingChallengeRowHeight * (self.user?.challenges?.pending?.count ?? 0))
+            
+            if (height > PendingChallengesViewController.scrollViewMaxHeight) {
+                height = PendingChallengesViewController.scrollViewMaxHeight
+            }
+            
+            self.pendingChallengesHeightConstr.constant = height
+            self.pendingChallengesView.isHidden = false
+            
+            self.myStatusHeightConstr.constant = 0
+            self.myStatusView.isHidden = true
+        } else {
+            //pending challenges minimized
+            self.isPendingChallengesExpanded = false
+            self.pendingChallengesHeightConstr.constant = 0
+            self.pendingChallengesView.isHidden = true
+
+            self.isMyStatusExpanded = true
+            self.myStatusHeightConstr.constant = 500
+            self.myStatusView.isHidden = false
+        }
         
         //created challenges minimized
         self.createdChallengesHeightConstr.constant = 0
@@ -209,7 +217,7 @@ class MeViewController: MeGenericViewController {
         if (isPendingChallengesExpanded) {
             UIView.animate(withDuration: 1.0, animations: {
                 self.pendingChallengesHeightConstr.constant = 0
-                //self.pendingChallengesView.isHidden = !self.pendingChallengesView.isHidden
+                self.pendingChallengesView.isHidden = !self.pendingChallengesView.isHidden
                 self.pendingViewController.collapseView()
 
                 self.view.layoutIfNeeded()
@@ -223,7 +231,7 @@ class MeViewController: MeGenericViewController {
                 }
                 
                 self.pendingChallengesHeightConstr.constant = height
-                //self.pendingChallengesView.isHidden = !self.pendingChallengesView.isHidden
+                self.pendingChallengesView.isHidden = !self.pendingChallengesView.isHidden
                 self.pendingViewController.expandView()
 
                 self.view.layoutIfNeeded()
@@ -300,12 +308,15 @@ class MeViewController: MeGenericViewController {
         self.pendingViewController.user = user
         self.pendingViewController.reloadTableData()
         
+        self.statusViewController.user = user
+        
         self.createdChallengeViewController.user = user
         self.createdChallengeViewController.reloadTableData()
         
         if (isMyStatusExpanded) {
             self.myStatusHeightConstr.constant = 500
             self.statusViewController.needsRefresh = true
+            self.statusViewController.refresh()
         }
         
         if (isPendingChallengesExpanded) {
