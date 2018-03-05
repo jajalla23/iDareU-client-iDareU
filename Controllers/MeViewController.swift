@@ -51,7 +51,7 @@ class MeViewController: MeGenericViewController {
             self.pendingChallengesView.isHidden = false
             
             self.myStatusHeightConstr.constant = 0
-            //statusViewLayer?.removeFromSuperlayer()
+            statusViewLayer?.removeFromSuperlayer()
             self.myStatusView.isHidden = true
         } else {
             //pending challenges minimized
@@ -60,7 +60,7 @@ class MeViewController: MeGenericViewController {
             self.pendingChallengesView.isHidden = true
 
             self.isMyStatusExpanded = true
-            self.myStatusHeightConstr.constant = 500
+            self.myStatusHeightConstr.constant = StatusViewController.statusViewHeight
             self.myStatusView.isHidden = false
         }
         
@@ -182,15 +182,16 @@ class MeViewController: MeGenericViewController {
     private func toggleStatusView() {
         if (isMyStatusExpanded) {
             UIView.animate(withDuration: 1.0, animations: {
-                self.myStatusView.isHidden = !self.myStatusView.isHidden
-                //self.statusViewLayer?.removeFromSuperlayer()
                 self.myStatusHeightConstr.constant = 0
                 self.view.layoutIfNeeded()
+            }, completion: { (finished: Bool) in
+                self.myStatusView.isHidden = !self.myStatusView.isHidden
+                self.statusViewLayer?.removeFromSuperlayer()
             })
         } else {
             UIView.animate(withDuration: 1.0, animations: {
-                self.myStatusHeightConstr.constant = 500
-                //self.myStatusView.layer.addSublayer(self.statusViewLayer!)
+                self.myStatusHeightConstr.constant = StatusViewController.statusViewHeight
+                self.myStatusView.layer.addSublayer(self.statusViewLayer!)
                 self.myStatusView.isHidden = !self.myStatusView.isHidden
                 self.view.layoutIfNeeded()
             })
@@ -232,9 +233,11 @@ class MeViewController: MeGenericViewController {
     private func toggleCreatedChallengesView() {
         if (isCreatedChallengesExpanded) {
             UIView.animate(withDuration: 1.0, animations: {
-                self.createdChallengeViewController.collapseView()
-                self.createdChallengesHeightConstr.constant = 0
                 self.createdChallengesView.isHidden = !self.createdChallengesView.isHidden
+                self.createdChallengeViewController.collapseView()
+
+            }, completion: { (finished: Bool) in
+                self.createdChallengesHeightConstr.constant = 0
                 self.view.layoutIfNeeded()
             })
         } else {
@@ -264,7 +267,7 @@ class MeViewController: MeGenericViewController {
         self.createdChallengeViewController.reloadTableData()
         
         if (isMyStatusExpanded) {
-            self.myStatusHeightConstr.constant = 500
+            self.myStatusHeightConstr.constant = StatusViewController.statusViewHeight
             self.statusViewController.needsRefresh = true
         }
         
@@ -304,7 +307,7 @@ class MeViewController: MeGenericViewController {
         self.createdChallengeViewController.reloadTableData()
         
         if (isMyStatusExpanded) {
-            self.myStatusHeightConstr.constant = 500
+            self.myStatusHeightConstr.constant = StatusViewController.statusViewHeight
             self.statusViewController.needsRefresh = true
             self.statusViewController.refresh()
         }

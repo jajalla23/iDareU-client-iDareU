@@ -16,6 +16,8 @@ class StatusViewController: MeGenericViewController {
     
     @IBOutlet weak var pctComLbl: EFCountingLabel!
     @IBOutlet weak var completionStatusView: UIView!
+    
+    public static let statusViewHeight: CGFloat = 450
 
     let shapeLayer = CAShapeLayer()
     
