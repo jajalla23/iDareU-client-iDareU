@@ -264,5 +264,8 @@ extension PendingChallengesViewController: ViewChallengeDelegate {
         let indexPath = IndexPath.init(row: index, section: 0)
         let cell = tableView.cellForRow(at: indexPath) as! PendingChallengeTableViewCell
         cell.acceptedIndicatorView.backgroundColor = UIColor.green
+        cell.layoutIfNeeded()
+        tableView.layoutIfNeeded()
+        view.layoutIfNeeded()
     }
 }

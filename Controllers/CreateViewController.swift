@@ -22,10 +22,12 @@ class CreateViewController: GenericUIViewController {
     
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var captureBtn: UIButton!
+    @IBOutlet weak var cameraSettingsBtn: UIButton!
     @IBOutlet var cameraTools: [UIButton]! {
         didSet {
             cameraTools.forEach {
                 $0.isHidden = true
+                $0.backgroundColor = UIColor(white: 1, alpha: 0.25)
             }
         }
     }
@@ -37,6 +39,8 @@ class CreateViewController: GenericUIViewController {
         self.navigationController?.isNavigationBarHidden = true
         let tabController = self.tabBarController as! RouterTabBarController
         self.user = tabController.user
+        
+        cameraSettingsBtn.backgroundColor = UIColor(white: 1, alpha: 0.25)
         
         #if !SIMULATOR
             self.cameraTools.forEach {
