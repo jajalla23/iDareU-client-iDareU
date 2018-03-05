@@ -11,6 +11,8 @@ import UIKit
 class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDataSource, UITableViewDelegate {
     
     private var selectedChallenge: ChallengeDetails?
+    private var tableContents: [ChallengeDetails]?
+
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tableView: UITableView!
@@ -22,6 +24,9 @@ class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDat
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
+        self.tableContents = self.user?.challenges?.sponsored
+        
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -35,6 +40,7 @@ class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDat
     }
     
     public func reloadTableData(){
+        self.tableContents = self.user?.challenges?.sponsored
         self.tableView.reloadData()
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -43,7 +49,7 @@ class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return user?.challenges?.sponsored?.count ?? 0
+        return tableContents?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -68,7 +74,7 @@ class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastitem = (user!.challenges?.sponsored!.count)! - 1
+        let lastitem = tableContents!.count - 1
         
         if (indexPath.row == lastitem) {
             //TODO: loadMoreChallenges()
@@ -103,5 +109,14 @@ class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDat
         }
     }
     
+    func collapseView() {
+        self.tableContents?.removeAll()
+        self.reloadTableData()
+    }
+    
+    func expandView() {
+        self.tableContents = self.user?.challenges?.sponsored
+        self.reloadTableData()
+    }
 
 }

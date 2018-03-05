@@ -11,105 +11,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Camera Tools Table View Controller-->
-        <scene sceneID="uKU-D4-AYN">
-            <objects>
-                <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="5mq-M6-2T7" customClass="CameraToolsTableViewController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" id="se4-Gr-laY">
-                        <rect key="frame" x="0.0" y="0.0" width="70" height="140"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <sections>
-                            <tableViewSection id="IBh-Ss-ubs">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="control" id="K0z-e8-xgP" userLabel="control">
-                                        <rect key="frame" x="0.0" y="0.0" width="70" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K0z-e8-xgP" id="yOq-kc-KBU">
-                                            <rect key="frame" x="0.0" y="0.0" width="70" height="43.666666666666664"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSY-1Y-lcz">
-                                                    <rect key="frame" x="24" y="11" width="22" height="22"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="zSY-1Y-lcz" firstAttribute="centerX" secondItem="yOq-kc-KBU" secondAttribute="centerX" id="6Nk-Hb-h1H"/>
-                                                <constraint firstItem="zSY-1Y-lcz" firstAttribute="centerY" secondItem="yOq-kc-KBU" secondAttribute="centerY" id="Pib-NR-cdG"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="camera_rotate_cell" id="bB8-6R-Dfc">
-                                        <rect key="frame" x="0.0" y="44" width="70" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bB8-6R-Dfc" id="K8v-Xh-7Nt">
-                                            <rect key="frame" x="0.0" y="0.0" width="70" height="43.666666666666664"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVx-w7-b7b" userLabel="camera_rotate">
-                                                    <rect key="frame" x="17" y="3" width="36" height="36"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="36" id="1Ac-Jq-5Mu"/>
-                                                        <constraint firstAttribute="height" constant="36" id="rDr-Je-gfJ"/>
-                                                    </constraints>
-                                                    <state key="normal" backgroundImage="camera_rotate"/>
-                                                    <connections>
-                                                        <action selector="cameraRotateBtnTapped:" destination="5mq-M6-2T7" eventType="touchDown" id="NvA-h6-qdE"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="fVx-w7-b7b" firstAttribute="centerY" secondItem="K8v-Xh-7Nt" secondAttribute="centerY" id="U2F-vG-UXd"/>
-                                                <constraint firstItem="fVx-w7-b7b" firstAttribute="centerX" secondItem="K8v-Xh-7Nt" secondAttribute="centerX" id="W8A-8g-258"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="camera_flash_cell" id="NhL-S7-NHg">
-                                        <rect key="frame" x="0.0" y="88" width="70" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NhL-S7-NHg" id="PBD-bn-0MM">
-                                            <rect key="frame" x="0.0" y="0.0" width="70" height="43.666666666666664"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e92-bN-L1a" userLabel="camera_flash">
-                                                    <rect key="frame" x="17" y="3" width="36" height="36"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="36" id="TYx-pl-rZE"/>
-                                                        <constraint firstAttribute="width" constant="36" id="hDu-lN-GKL"/>
-                                                    </constraints>
-                                                    <state key="normal" backgroundImage="camera_flash"/>
-                                                    <connections>
-                                                        <action selector="cameraFlashBtnTapped:" destination="5mq-M6-2T7" eventType="touchDown" id="RYr-9c-6Wm"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="e92-bN-L1a" firstAttribute="centerX" secondItem="PBD-bn-0MM" secondAttribute="centerX" id="pYs-em-wC9"/>
-                                                <constraint firstItem="e92-bN-L1a" firstAttribute="centerY" secondItem="PBD-bn-0MM" secondAttribute="centerY" id="wra-ps-WnK"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="5mq-M6-2T7" id="WIi-BN-1X6"/>
-                            <outlet property="delegate" destination="5mq-M6-2T7" id="RfX-Pq-hSm"/>
-                        </connections>
-                    </tableView>
-                    <connections>
-                        <outlet property="cameraFlashBtn" destination="e92-bN-L1a" id="LXM-Hu-uFn"/>
-                        <outlet property="cameraFlashCell" destination="NhL-S7-NHg" id="z1x-WP-5mn"/>
-                        <outlet property="cameraRotateBtn" destination="fVx-w7-b7b" id="UBM-tq-DiU"/>
-                        <outlet property="cameraRotateCell" destination="bB8-6R-Dfc" id="r9H-pt-3c0"/>
-                        <outlet property="controlCell" destination="K0z-e8-xgP" id="5k9-YC-D0b"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3Br-gO-b6p" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-271" y="-61"/>
-        </scene>
         <!--Capture Video-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
@@ -126,16 +27,41 @@
                                     <outletCollection property="gestureRecognizers" destination="qsX-zd-CWC" appends="YES" id="Zsa-bI-d10"/>
                                 </connections>
                             </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ihU-O6-07Y" userLabel="Camera Tools View">
-                                <rect key="frame" x="10" y="30" width="70" height="140"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="DW8-MG-g6g" userLabel="Camera Tools">
+                                <rect key="frame" x="330" y="40" width="32" height="126"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ine-HT-8B5" userLabel="settings">
+                                        <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="camera_settings"/>
+                                        <connections>
+                                            <action selector="onSettingsTapped:" destination="9pv-A4-QxB" eventType="touchDown" id="1Xm-8o-bD5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EQK-0R-Xdw" userLabel="rotate">
+                                        <rect key="frame" x="0.0" y="47" width="32" height="32"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="camera_rotate"/>
+                                        <connections>
+                                            <action selector="cameraRotateBtnTapped:" destination="9pv-A4-QxB" eventType="touchDown" id="Usa-7n-9mR"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9yk-t6-vDE" userLabel="flash">
+                                        <rect key="frame" x="0.0" y="94" width="32" height="32"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="camera_flash"/>
+                                        <connections>
+                                            <action selector="cameraFlashBtnTapped:" destination="9pv-A4-QxB" eventType="touchDown" id="Ow4-R8-7Uv"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="Jxy-ux-HpZ"/>
-                                    <constraint firstAttribute="height" constant="140" id="tQ1-uE-aZQ"/>
+                                    <constraint firstAttribute="width" constant="32" id="kEy-aK-uGB"/>
+                                    <constraint firstItem="EQK-0R-Xdw" firstAttribute="top" secondItem="Ine-HT-8B5" secondAttribute="bottom" constant="15" id="muC-n2-cjW"/>
+                                    <constraint firstAttribute="bottom" secondItem="9yk-t6-vDE" secondAttribute="bottom" id="rmF-qI-zbJ"/>
                                 </constraints>
-                                <connections>
-                                    <segue destination="5mq-M6-2T7" kind="embed" identifier="cameraToolsSegue" id="LRd-xR-Kd2"/>
-                                </connections>
-                            </containerView>
+                            </stackView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lkU-4U-owI">
                                 <rect key="frame" x="157.66666666666666" y="649" width="60" height="60"/>
                                 <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -156,12 +82,12 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="ihU-O6-07Y" firstAttribute="leading" secondItem="Vd7-12-Zpq" secondAttribute="leading" constant="10" id="HsP-Qi-kxo"/>
+                            <constraint firstItem="DW8-MG-g6g" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" constant="40" id="Hl0-mj-Bc8"/>
                             <constraint firstItem="yRd-h7-GVY" firstAttribute="bottom" secondItem="Vd7-12-Zpq" secondAttribute="bottom" id="NO4-dU-npG"/>
                             <constraint firstItem="yRd-h7-GVY" firstAttribute="leading" secondItem="Vd7-12-Zpq" secondAttribute="leading" id="QAE-Yz-b7E"/>
+                            <constraint firstItem="Vd7-12-Zpq" firstAttribute="trailing" secondItem="DW8-MG-g6g" secondAttribute="trailing" constant="13" id="SAK-WU-bCl"/>
                             <constraint firstItem="Vd7-12-Zpq" firstAttribute="bottom" secondItem="lkU-4U-owI" secondAttribute="bottom" constant="20" id="VFN-qJ-QCw"/>
                             <constraint firstItem="yRd-h7-GVY" firstAttribute="trailing" secondItem="Vd7-12-Zpq" secondAttribute="trailing" id="cje-lI-n8K"/>
-                            <constraint firstItem="ihU-O6-07Y" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" constant="30" id="fE6-Cq-Rsk"/>
                             <constraint firstItem="lkU-4U-owI" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="jCf-I6-T5H"/>
                             <constraint firstItem="yRd-h7-GVY" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" id="s2Q-Lk-9qi"/>
                         </constraints>
@@ -173,6 +99,8 @@
                     <connections>
                         <outlet property="captureBtn" destination="lkU-4U-owI" id="bX6-F2-Lfy"/>
                         <outlet property="previewView" destination="yRd-h7-GVY" id="2zb-FX-oOC"/>
+                        <outletCollection property="cameraTools" destination="EQK-0R-Xdw" collectionClass="NSMutableArray" id="n8i-ee-WIe"/>
+                        <outletCollection property="cameraTools" destination="9yk-t6-vDE" collectionClass="NSMutableArray" id="FfM-QR-Hsv"/>
                         <segue destination="y9z-31-yVc" kind="show" identifier="previewSegue" id="cQS-lu-d3x"/>
                     </connections>
                 </viewController>
@@ -508,7 +436,8 @@
     <resources>
         <image name="arrow" width="417" height="279"/>
         <image name="camera_flash" width="32" height="32"/>
-        <image name="camera_rotate" width="64" height="64"/>
+        <image name="camera_rotate" width="32" height="32"/>
+        <image name="camera_settings" width="32" height="32"/>
         <image name="checked" width="91" height="92"/>
         <image name="first" width="30" height="30"/>
     </resources>

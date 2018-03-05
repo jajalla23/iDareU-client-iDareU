@@ -28,12 +28,17 @@ class MeViewController: MeGenericViewController {
     @IBOutlet weak var createdChallengesHeightConstr: NSLayoutConstraint!
     @IBOutlet weak var createdChallengesView: UIView!
     
+    private var statusViewLayer: CALayer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
         self.pendingViewController = self.childViewControllers[0] as! PendingChallengesViewController
         self.statusViewController = self.childViewControllers[1] as! StatusViewController
+        self.createdChallengeViewController = self.childViewControllers[2] as! MyCreatedChallengesViewController
+
+        statusViewLayer = myStatusView.layer.sublayers?[0]
 
         if ((user?.challenges?.pending?.count ?? 0) > 0) {
             var height: CGFloat = CGFloat(self.pendingChallengeRowHeight * (self.user?.challenges?.pending?.count ?? 0))
@@ -46,6 +51,7 @@ class MeViewController: MeGenericViewController {
             self.pendingChallengesView.isHidden = false
             
             self.myStatusHeightConstr.constant = 0
+            //statusViewLayer?.removeFromSuperlayer()
             self.myStatusView.isHidden = true
         } else {
             //pending challenges minimized
@@ -61,7 +67,6 @@ class MeViewController: MeGenericViewController {
         //created challenges minimized
         self.createdChallengesHeightConstr.constant = 0
         self.createdChallengesView.isHidden = true
-        self.createdChallengeViewController = self.childViewControllers[2] as! MyCreatedChallengesViewController
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.refreshAllViews), name: NSNotification.Name(rawValue: "refreshAllViewsOnMe"), object: nil)
     }
@@ -70,24 +75,6 @@ class MeViewController: MeGenericViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /*
-    override func viewWillAppear(_ animated: Bool) {
-        print("pending rows")
-        DispatchQueue.main.async{
-            self.pendingViewController.tableView.reloadData()
-            print("dispatch done")
-        }
-        print(self.pendingViewController.tableView.numberOfRows(inSection: 0))
-        
-        let cell = self.pendingViewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0))
-        if (cell != nil) {
-            print("pending cell")
-            let pendingCell = cell as! PendingChallengeTableViewCell
-            print(pendingCell.challengeTitleLbl.text)
-        }
-    }
-    */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let controller = segue.destination as? MeGenericViewController
@@ -154,7 +141,6 @@ class MeViewController: MeGenericViewController {
         }
         
         //TODO: toggle completed challenges
-
     }
     
     @IBAction func createdChallBtnToggled(_ sender: Any) {
@@ -196,13 +182,15 @@ class MeViewController: MeGenericViewController {
     private func toggleStatusView() {
         if (isMyStatusExpanded) {
             UIView.animate(withDuration: 1.0, animations: {
-                self.myStatusHeightConstr.constant = 0
                 self.myStatusView.isHidden = !self.myStatusView.isHidden
+                //self.statusViewLayer?.removeFromSuperlayer()
+                self.myStatusHeightConstr.constant = 0
                 self.view.layoutIfNeeded()
             })
         } else {
             UIView.animate(withDuration: 1.0, animations: {
                 self.myStatusHeightConstr.constant = 500
+                //self.myStatusView.layer.addSublayer(self.statusViewLayer!)
                 self.myStatusView.isHidden = !self.myStatusView.isHidden
                 self.view.layoutIfNeeded()
             })
@@ -216,9 +204,9 @@ class MeViewController: MeGenericViewController {
     private func togglePendingChallengesView() {
         if (isPendingChallengesExpanded) {
             UIView.animate(withDuration: 1.0, animations: {
-                self.pendingChallengesHeightConstr.constant = 0
                 self.pendingChallengesView.isHidden = !self.pendingChallengesView.isHidden
                 self.pendingViewController.collapseView()
+                self.pendingChallengesHeightConstr.constant = 0
 
                 self.view.layoutIfNeeded()
             })
@@ -232,8 +220,8 @@ class MeViewController: MeGenericViewController {
                 
                 self.pendingChallengesHeightConstr.constant = height
                 self.pendingChallengesView.isHidden = !self.pendingChallengesView.isHidden
-                self.pendingViewController.expandView()
 
+                self.pendingViewController.expandView()
                 self.view.layoutIfNeeded()
             })
         }
@@ -244,6 +232,7 @@ class MeViewController: MeGenericViewController {
     private func toggleCreatedChallengesView() {
         if (isCreatedChallengesExpanded) {
             UIView.animate(withDuration: 1.0, animations: {
+                self.createdChallengeViewController.collapseView()
                 self.createdChallengesHeightConstr.constant = 0
                 self.createdChallengesView.isHidden = !self.createdChallengesView.isHidden
                 self.view.layoutIfNeeded()
@@ -256,6 +245,7 @@ class MeViewController: MeGenericViewController {
                     height = MyCreatedChallengesViewController.scrollViewMaxHeight
                 }
                 
+                self.createdChallengeViewController.expandView()
                 self.createdChallengesHeightConstr.constant = height
                 self.createdChallengesView.isHidden = !self.createdChallengesView.isHidden
                 self.view.layoutIfNeeded()

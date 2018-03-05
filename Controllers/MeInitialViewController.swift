@@ -22,7 +22,7 @@ class MeInitialViewController: GenericUIViewController {
         // Do any additional setup after loading the view.
         //self.navigationController?.isNavigationBarHidden = true
         self.scrollView.contentSize = CGSize(width: containerView.frame.size.width, height: containerView.frame.size.height)
-
+        self.scrollView.contentInsetAdjustmentBehavior = .never
         self.view.layoutIfNeeded()
         
         refreshControl = UIRefreshControl()

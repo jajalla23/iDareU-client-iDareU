@@ -60,10 +60,6 @@ class StatusViewController: MeGenericViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func statusViewTapped(_ sender: UITapGestureRecognizer) {
-        self.animate(jansAvail: self.getJansAvailable(), pctComplete: self.calculatePctCompleted())
-    }
-    
     /*
     // MARK: - Navigation
 

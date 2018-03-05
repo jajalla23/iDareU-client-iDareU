@@ -21,7 +21,14 @@ class CreateViewController: GenericUIViewController {
     private var flashMode: AVCaptureDevice.FlashMode?
     
     @IBOutlet weak var previewView: UIView!
-    @IBOutlet weak var captureBtn: UIButton!    
+    @IBOutlet weak var captureBtn: UIButton!
+    @IBOutlet var cameraTools: [UIButton]! {
+        didSet {
+            cameraTools.forEach {
+                $0.isHidden = true
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +38,10 @@ class CreateViewController: GenericUIViewController {
         let tabController = self.tabBarController as! RouterTabBarController
         self.user = tabController.user
         
-        print(self.user?._id ?? "no user id")
-        
         #if !SIMULATOR
+            self.cameraTools.forEach {
+                $0.isEnabled = true
+            }
             self.setupCaptureDevice()
             self.setupCamera()
         #endif
@@ -114,54 +122,18 @@ class CreateViewController: GenericUIViewController {
             }
             controller.image = self.capturedImage
             controller.user = self.user
-        } else if (segue.identifier == "cameraToolsSegue") {
-            guard let controller = segue.destination as? CameraToolsTableViewController else {
-                return
+        }
+    }
+    
+    @IBAction func onSettingsTapped(_ sender: Any) {
+        UIView.animate(withDuration: 0.4) {
+            self.cameraTools.forEach {
+                $0.isHidden = !$0.isHidden
             }
-            controller.delegate = self
         }
     }
     
-    @IBAction func unwindToCreate(segue: UIStoryboardSegue) {}
-    
-    func prepare(completionHandler: @escaping (Error?) -> Void) { }
-
-}
-
-extension CreateViewController: AVCapturePhotoCaptureDelegate {
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        let imageData = photo.fileDataRepresentation()
-        self.capturedImage = UIImage.init(data: imageData! , scale: 1.0)
-        self.performSegue(withIdentifier: "previewSegue", sender: self)
-    }
-}
-
-extension CreateViewController: CameraToolsControllerDelegate {
-    func cameraFlashBtnTapped(cameraToolsController: CameraToolsTableViewController) {
-        do {
-            try captureDevice?.lockForConfiguration()
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        
-        if (self.flashMode == AVCaptureDevice.FlashMode.off) {
-            //captureDevice?.torchMode = AVCaptureDevice.TorchMode.auto
-            self.flashMode = AVCaptureDevice.FlashMode.auto
-            cameraToolsController.cameraFlashBtn.setBackgroundImage(UIImage(named: "second"), for: .normal)
-        } else if (self.flashMode == AVCaptureDevice.FlashMode.auto) {
-            //captureDevice?.torchMode = AVCaptureDevice.TorchMode.on
-            self.flashMode = AVCaptureDevice.FlashMode.on
-            cameraToolsController.cameraFlashBtn.setBackgroundImage(UIImage(named: "camera_flash"), for: .normal)
-        } else {
-            //captureDevice?.torchMode = AVCaptureDevice.TorchMode.off
-            self.flashMode = AVCaptureDevice.FlashMode.off
-            cameraToolsController.cameraFlashBtn.setBackgroundImage(UIImage(named: "first"), for: .normal)
-        }
-        
-        captureDevice?.unlockForConfiguration()
-    }
-    
-    func cameraRotateBtnTapped(cameraToolsController: CameraToolsTableViewController) {
+    @IBAction func cameraRotateBtnTapped(_ sender: Any) {
         if (self.capturePosition == AVCaptureDevice.Position.front) {
             if let dualCameraDevice = AVCaptureDevice.default(.builtInDualCamera, for: AVMediaType.video, position: .back) {
                 self.captureDevice = dualCameraDevice
@@ -178,5 +150,40 @@ extension CreateViewController: CameraToolsControllerDelegate {
             }
         }
         setupCamera()
+    }
+    
+    @IBAction func cameraFlashBtnTapped(_ sender: Any) {
+        do {
+            try captureDevice?.lockForConfiguration()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        if (self.flashMode == AVCaptureDevice.FlashMode.off) {
+            self.flashMode = AVCaptureDevice.FlashMode.auto
+            cameraTools[1].setImage(UIImage(named: "second"), for: .normal)
+        } else if (self.flashMode == AVCaptureDevice.FlashMode.auto) {
+            self.flashMode = AVCaptureDevice.FlashMode.on
+            cameraTools[1].setImage(UIImage(named: "camera_flash"), for: .normal)
+        } else {
+            //captureDevice?.torchMode = AVCaptureDevice.TorchMode.off
+            self.flashMode = AVCaptureDevice.FlashMode.off
+            cameraTools[1].setImage(UIImage(named: "first"), for: .normal)
+        }
+        
+        captureDevice?.unlockForConfiguration()
+    }
+    
+    @IBAction func unwindToCreate(segue: UIStoryboardSegue) {}
+    
+    func prepare(completionHandler: @escaping (Error?) -> Void) { }
+
+}
+
+extension CreateViewController: AVCapturePhotoCaptureDelegate {
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        let imageData = photo.fileDataRepresentation()
+        self.capturedImage = UIImage.init(data: imageData! , scale: 1.0)
+        self.performSegue(withIdentifier: "previewSegue", sender: self)
     }
 }
