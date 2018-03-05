@@ -82,24 +82,34 @@ class MeViewController: MeGenericViewController {
     }
     
     @IBAction func myStatusBtnToggled(_ sender: Any) {
-        self.toggleStatusView()
-        
-        if self.isCreatedChallengesExpanded {
-            self.toggleCreatedChallengesView()
-        }
-        
-        if self.isPendingChallengesExpanded {
-            self.togglePendingChallengesView()
-        }
-        
-        if self.isCreatedChallengesExpanded {
-            self.toggleCreatedChallengesView()
-        }
-        
-        //TODO: toggle completed challenges
+        toggleStatus()
     }
     
     @IBAction func myStatusHeaderTapped(_ sender: UITapGestureRecognizer) {
+        toggleStatus()
+    }
+    
+    @IBAction func pendingChallBtnToggled(_ sender: Any) {
+        togglePending()
+    }
+    
+    @IBAction func pendingHeaderTapped(_ sender: UITapGestureRecognizer) {
+        togglePending()
+    }
+    
+    @IBAction func createdChallBtnToggled(_ sender: Any) {
+        toggleSponsor()
+    }
+    
+    @IBAction func sponsorHeaderTapped(_ sender: UITapGestureRecognizer) {
+        toggleSponsor()
+    }
+    
+    @IBAction func completedChallBtnToggled(_ sender: Any) {
+        toggleCompleted()
+    }
+    
+    private func toggleStatus() {
         self.toggleStatusView()
         
         if self.isCreatedChallengesExpanded {
@@ -113,9 +123,15 @@ class MeViewController: MeGenericViewController {
         if self.isCreatedChallengesExpanded {
             self.toggleCreatedChallengesView()
         }
+        
+        //TODO: toggle completed challenges
     }
     
-    @IBAction func pendingChallBtnToggled(_ sender: Any) {
+    private func togglePending() {
+        if ((user?.challenges?.pending?.count ?? 0) == 0) {
+            return
+        }
+        
         self.togglePendingChallengesView()
         
         if self.isMyStatusExpanded {
@@ -129,21 +145,11 @@ class MeViewController: MeGenericViewController {
         //TODO: toggle completed challenges
     }
     
-    @IBAction func pendingHeaderTapped(_ sender: UITapGestureRecognizer) {
-        self.togglePendingChallengesView()
-        
-        if self.isMyStatusExpanded {
-            self.toggleStatusView()
+    private func toggleSponsor() {
+        if ((user?.challenges?.sponsored?.count ?? 0) == 0) {
+            return
         }
         
-        if self.isCreatedChallengesExpanded {
-            self.toggleCreatedChallengesView()
-        }
-        
-        //TODO: toggle completed challenges
-    }
-    
-    @IBAction func createdChallBtnToggled(_ sender: Any) {
         self.toggleCreatedChallengesView()
         
         if self.isMyStatusExpanded {
@@ -155,19 +161,11 @@ class MeViewController: MeGenericViewController {
         }
     }
     
-    @IBAction func sponsorHeaderTapped(_ sender: UITapGestureRecognizer) {
-        self.toggleCreatedChallengesView()
-        
-        if self.isMyStatusExpanded {
-            self.toggleStatusView()
+    private func toggleCompleted() {
+        if ((user?.challenges?.completed?.count ?? 0) == 0) {
+            return
         }
         
-        if self.isPendingChallengesExpanded {
-            self.togglePendingChallengesView()
-        }
-    }
-    
-    @IBAction func completedChallBtnToggled(_ sender: Any) {
         self.toggleCompletedChallengesView()
         
         if self.isMyStatusExpanded {

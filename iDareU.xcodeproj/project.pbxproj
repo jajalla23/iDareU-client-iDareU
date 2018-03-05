@@ -40,7 +40,7 @@
 		765A09D82017BB5D0004A67D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765A09D72017BB5D0004A67D /* LoginViewController.swift */; };
 		765A09DD2017BE950004A67D /* Router.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 765A09DC2017BE950004A67D /* Router.storyboard */; };
 		765A09DF2017BF0C0004A67D /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 765A09DE2017BF0C0004A67D /* Login.storyboard */; };
-		765EF5662002CBEB006B36B0 /* EFCountingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765EF5652002CBEB006B36B0 /* EFCountingLabel.swift */; };
+		765EF5662002CBEB006B36B0 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765EF5652002CBEB006B36B0 /* Animation.swift */; };
 		765EF5682002EB33006B36B0 /* FriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765EF5672002EB33006B36B0 /* FriendViewModel.swift */; };
 		76682213201E5C6800F52659 /* RouterTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76682212201E5C6800F52659 /* RouterTabBarController.swift */; };
 		7675178E2009746400481464 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7675178D2009746400481464 /* Friends.storyboard */; };
@@ -150,7 +150,7 @@
 		765A09D72017BB5D0004A67D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		765A09DC2017BE950004A67D /* Router.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Router.storyboard; sourceTree = "<group>"; };
 		765A09DE2017BF0C0004A67D /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
-		765EF5652002CBEB006B36B0 /* EFCountingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFCountingLabel.swift; sourceTree = "<group>"; };
+		765EF5652002CBEB006B36B0 /* Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		765EF5672002EB33006B36B0 /* FriendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewModel.swift; sourceTree = "<group>"; };
 		76682212201E5C6800F52659 /* RouterTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTabBarController.swift; sourceTree = "<group>"; };
 		7675178D2009746400481464 /* Friends.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
@@ -291,7 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				7627C2ED204892EB008A0074 /* Data.swift */,
-				765EF5652002CBEB006B36B0 /* EFCountingLabel.swift */,
+				765EF5652002CBEB006B36B0 /* Animation.swift */,
 				7645385B2001421B004A96F7 /* Extensions.swift */,
 				76C555F32030BD240045603F /* Media.swift */,
 				760531D1201FECCC009F9B05 /* Local.swift */,
@@ -407,10 +407,10 @@
 				765A09DC2017BE950004A67D /* Router.storyboard */,
 				7645385820012DB5004A96F7 /* Create.storyboard */,
 				7629D8E7204A9857009C4A90 /* SelectTaker.storyboard */,
-				76B1FBAD2000A07100402173 /* Community.storyboard */,
-				7675178D2009746400481464 /* Friends.storyboard */,
-				7622385C202CDB3F00291AB6 /* ChallengeReward.storyboard */,
 				76B1FBAB20009E9D00402173 /* Me.storyboard */,
+				7675178D2009746400481464 /* Friends.storyboard */,
+				76B1FBAD2000A07100402173 /* Community.storyboard */,
+				7622385C202CDB3F00291AB6 /* ChallengeReward.storyboard */,
 				760531C4201FE87C009F9B05 /* ViewChallenge.storyboard */,
 				7692CE692033EA87001FFFBC /* Profile.storyboard */,
 			);
@@ -432,8 +432,6 @@
 				76AC733A20258BCD0072C7BF /* SelectSponsorTableViewController.swift */,
 				7629D8E9204A9FA9009C4A90 /* TakerNavigationController.swift */,
 				763BC5492022D04D00F57BD4 /* SelectTakerTableViewController.swift */,
-				76B1FBAF2000A0C700402173 /* CommunityViewController.swift */,
-				762296F6200A930A00D09D12 /* FriendsViewController.swift */,
 				76EA6B6B202127ED00AC40CA /* UpdateChallengeRewardViewController.swift */,
 				76789C9820205D9300024019 /* MeInitialViewController.swift */,
 				76AA3F3220204BAB0038DAD9 /* MeViewController.swift */,
@@ -441,6 +439,8 @@
 				76AA3F362020583E0038DAD9 /* PendingChallViewController.swift */,
 				76FC08E8201ECBAB008F9902 /* CreatedChallViewController.swift */,
 				76AA3F38202058B90038DAD9 /* CompletedChallViewController.swift */,
+				762296F6200A930A00D09D12 /* FriendsViewController.swift */,
+				76B1FBAF2000A0C700402173 /* CommunityViewController.swift */,
 				763FA65C2031291500D7A46B /* ViewChallengeNavigationController.swift */,
 				76E7396D202FEA4400A2EDBC /* ViewChallengeViewController.swift */,
 				768206EB2033A9E2004E049C /* ViewChallengeLabelController.swift */,
@@ -789,7 +789,7 @@
 				76EA6B6C202127ED00AC40CA /* UpdateChallengeRewardViewController.swift in Sources */,
 				76EC14672016864500C73DFC /* ValidationError.swift in Sources */,
 				76AC733B20258BCD0072C7BF /* SelectSponsorTableViewController.swift in Sources */,
-				765EF5662002CBEB006B36B0 /* EFCountingLabel.swift in Sources */,
+				765EF5662002CBEB006B36B0 /* Animation.swift in Sources */,
 				7692CE6E2033EE4D001FFFBC /* AddFriendsTableViewController.swift in Sources */,
 				7696C998201698560074717E /* Server.swift in Sources */,
 				7645385F2001421C004A96F7 /* Extensions.swift in Sources */,

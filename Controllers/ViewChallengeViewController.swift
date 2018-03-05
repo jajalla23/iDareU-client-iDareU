@@ -10,9 +10,11 @@ import UIKit
 
 class ViewChallengeViewController: UIViewController {
 
+    var delegate: ViewChallengeDelegate?
     var challenge: ChallengeDetails?
     
     private var divisor: CGFloat?
+    private var challengeIndex: Int = 0
     
     @IBOutlet weak var imageContainerView: UIView!
     @IBOutlet weak var imageView: UIImageView!
@@ -30,6 +32,7 @@ class ViewChallengeViewController: UIViewController {
         
         let controller = self.navigationController as! ViewChallengeNavigationController
         
+        self.delegate = controller.viewChallengeDelegate
         self.challenge = controller.getChallenge()
         self.navigationItem.title = self.challenge?.title
         self.navigationItem.hidesBackButton = false
@@ -88,6 +91,10 @@ class ViewChallengeViewController: UIViewController {
     }
     
     @IBAction func backBtnTapped(_ sender: Any) {
+        DispatchQueue.main.async{
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshAllViewsOnMe"), object: nil)
+        }
+        
         self.navigationController?.popViewController(animated: true)
         self.dismiss(animated: true, completion: nil)
     }
@@ -152,14 +159,15 @@ class ViewChallengeViewController: UIViewController {
         } catch let cError as CustomError {
             //TODO: handler error
             print(cError.description)
+            return
         } catch let error {
             //TODO: error
             print(error.localizedDescription)
+            return
         }
         
-        DispatchQueue.main.async{
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshAllViewsOnMe"), object: nil)
-        }
+        delegate?.rejectChallenge(challenge: self.challenge!, challengeIndex: self.challengeIndex)
+        challengeIndex += 1
     }
     
     private func acceptChallenge() {
@@ -173,11 +181,18 @@ class ViewChallengeViewController: UIViewController {
             //TODO: error
             print(error.localizedDescription)
         }
+        
+        delegate?.acceptChallenge(challenge: self.challenge!, challengeIndex: self.challengeIndex)
+        challengeIndex += 1
     }
     
     private func reloadChallengeDetails() {
         let controller = self.navigationController as! ViewChallengeNavigationController
         if (controller.isChallengeListEmpty()) {
+            DispatchQueue.main.async{
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshAllViewsOnMe"), object: nil)
+            }
+            
             self.navigationController?.popViewController(animated: true)
             self.dismiss(animated: true, completion: nil)
             return
@@ -208,6 +223,21 @@ class ViewChallengeViewController: UIViewController {
     @IBAction func unwindToViewChallenge(segue: UIStoryboardSegue) {
         print("unwind")
     }
+    
+    @IBAction func screenEdgePanned(_ sender: UIScreenEdgePanGestureRecognizer) {
+        DispatchQueue.main.async{
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshAllViewsOnMe"), object: nil)
+        }
+        
+        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+protocol ViewChallengeDelegate {
+    func rejectChallenge(challenge: ChallengeDetails, challengeIndex: Int)
+    func acceptChallenge(challenge: ChallengeDetails, challengeIndex: Int)
 }
 
 extension ViewChallengeViewController: SelectTakerDelegate {

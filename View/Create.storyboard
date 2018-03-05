@@ -25,6 +25,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="qsX-zd-CWC" appends="YES" id="Zsa-bI-d10"/>
+                                    <outletCollection property="gestureRecognizers" destination="cow-MI-lmL" appends="YES" id="Jee-Um-Nbi"/>
                                 </connections>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="DW8-MG-g6g" userLabel="Camera Tools">
@@ -107,6 +108,12 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="cKP-Zi-157"/>
                 <pinchGestureRecognizer id="qsX-zd-CWC"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="cow-MI-lmL">
+                    <rectEdge key="edges" right="YES"/>
+                    <connections>
+                        <action selector="edgePanned:" destination="9pv-A4-QxB" id="4io-AQ-d4G"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="536.79999999999995" y="-99.01477832512316"/>
         </scene>
@@ -213,7 +220,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fhb-wO-hIq" customClass="SelectUserCheckBox" customModule="iDareU" customModuleProvider="target">
-                                            <rect key="frame" x="16" y="13" width="42" height="42"/>
+                                            <rect key="frame" x="20" y="13" width="42" height="42"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="42" id="2ZX-eR-NWf"/>
                                                 <constraint firstAttribute="height" constant="42" id="avs-Je-kXm"/>
@@ -221,7 +228,7 @@
                                             <state key="normal" title="Button" image="checked"/>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="friend username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xwy-dA-mgf">
-                                            <rect key="frame" x="66" y="17.666666666666671" width="207" height="34"/>
+                                            <rect key="frame" x="70" y="17.5" width="207" height="34"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>

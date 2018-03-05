@@ -61,7 +61,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="0IX-9m-til"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="lm1-Cc-O6Z" appends="YES" id="Oml-Q5-CVN"/>
+                            <outletCollection property="gestureRecognizers" destination="13L-ov-OuE" appends="YES" id="qta-3a-3O3"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="Ffo-J9-xFk"/>
                     <connections>
@@ -71,6 +76,18 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y3L-rM-SVT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="lm1-Cc-O6Z" userLabel="Left Screen Edge Pan Gesture Recognizer">
+                    <rectEdge key="edges" left="YES"/>
+                    <connections>
+                        <action selector="edgePanned:" destination="AUR-br-Hym" id="u0l-5G-weu"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="13L-ov-OuE" userLabel="Right Screen Edge Pan Gesture Recognizer">
+                    <rectEdge key="edges" right="YES"/>
+                    <connections>
+                        <action selector="edgePanned:" destination="AUR-br-Hym" id="hM7-oE-efN"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="664.79999999999995" y="-171.42857142857144"/>
         </scene>

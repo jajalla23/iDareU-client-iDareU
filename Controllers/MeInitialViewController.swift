@@ -79,6 +79,15 @@ class MeInitialViewController: GenericUIViewController {
         //TODO: profile settings
     }
     
+    @IBAction func edgePanned(_ sender: UIScreenEdgePanGestureRecognizer) {
+        let tabController = self.tabBarController as! RouterTabBarController
+        
+        if (sender.edges == .left) {
+            tabController.selectedIndex = 0
+        } else {
+            tabController.selectedIndex = 2
+        }
+    }
 }
 
 extension MeInitialViewController: MeViewControllerDelegate {

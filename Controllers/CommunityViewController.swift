@@ -78,5 +78,13 @@ class CommunityViewController: GenericUIViewController, UITableViewDataSource, U
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func edgePanned(_ sender: UIScreenEdgePanGestureRecognizer) {
+        if (sender.edges == .left) {
+            let tabController = self.tabBarController as! RouterTabBarController
+            tabController.selectedIndex = 2
+        }
+    }
+    
 
 }

@@ -10,14 +10,14 @@ import UIKit
 
 class PendingChallengesViewController: MeGenericViewController, UITableViewDataSource, UITableViewDelegate  {
     
-    private var selectedChallenge: ChallengeDetails?
-    private var selectedIndex: Int?
-    
-    private var tableContents: [ChallengeDetails]?
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tableView: UITableView!
     
     public static let scrollViewMaxHeight: CGFloat = CGFloat(80 * 5) //row height x number of cells
+    
+    private var selectedChallenge: ChallengeDetails?
+    private var selectedIndex: Int?
+    private var tableContents: [ChallengeDetails]?
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -178,6 +178,9 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
         if (segue.identifier == "pendingToWatchSegue") {
             let controller = segue.destination as! ViewChallengeNavigationController
             controller.user = self.user
+            controller.viewType = "PENDING"
+            controller.viewChallengeDelegate = self
+            controller.navigationItem.hidesBackButton = false
             
             let sub_array = self.user?.challenges?.pending![self.selectedIndex!...]
             controller.challengeList = Array(sub_array!)
@@ -188,10 +191,6 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
             
                 controller.challengeList?.append(contentsOf: temp_array)
             }
-            
-            controller.viewType = "PENDING"
-            
-            controller.navigationItem.hidesBackButton = false
         }
     }
     
@@ -235,5 +234,35 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
     func expandView() {
         self.tableContents = self.user?.challenges?.pending
         self.reloadTableData()
+    }
+}
+
+extension PendingChallengesViewController: ViewChallengeDelegate {
+    func rejectChallenge(challenge: ChallengeDetails, challengeIndex challengeRow: Int) {
+        print("reject view")
+        var index = selectedIndex! + challengeRow
+        if (index > tableContents!.count) {
+            index = index - tableContents!.count
+        }
+        
+        //self.user?.challenges?.pending!.remove(at: index)
+        //self.tableContents?.remove(at: index)
+        
+        //let indexPath = IndexPath.init(row: index, section: 0)
+        //tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+        tableView.reloadData()
+    }
+    
+    func acceptChallenge(challenge: ChallengeDetails, challengeIndex challengeRow: Int) {
+        print("accept view")
+
+        var index = selectedIndex! + challengeRow
+        if (index > tableContents!.count) {
+            index = index - tableContents!.count
+        }
+        
+        let indexPath = IndexPath.init(row: index, section: 0)
+        let cell = tableView.cellForRow(at: indexPath) as! PendingChallengeTableViewCell
+        cell.acceptedIndicatorView.backgroundColor = UIColor.green
     }
 }

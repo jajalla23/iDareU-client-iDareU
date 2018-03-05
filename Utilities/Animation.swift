@@ -216,3 +216,39 @@ open class EFCountingLabel: UILabel {
         }
     }
 }
+
+
+public class TransitioningObject: NSObject, UIViewControllerAnimatedTransitioning {
+    public var fromIndex: Int?
+    public var toIndex: Int?
+    
+    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        if (fromIndex == toIndex) {
+            return
+        }
+        
+        // Get the "from" and "to" views
+        let fromView : UIView = transitionContext.view(forKey: UITransitionContextViewKey.from )!
+        let toView : UIView = transitionContext.view(forKey: UITransitionContextViewKey.to)!
+        let animateFromRight = ((fromIndex! < toIndex!) ? true : false)
+        
+        transitionContext.containerView.addSubview(fromView)
+        transitionContext.containerView.addSubview(toView)
+        
+        //The "to" view with start "off screen" and slide left pushing the "from" view "off screen"
+        toView.frame = CGRect.init(x: (animateFromRight ? 1 : -1) * toView.frame.width, y: 0, width: toView.frame.width, height: toView.frame.height)
+        let fromNewFrame = CGRect.init(x: (animateFromRight ? -1 : 1) * fromView.frame.width, y: 0, width: fromView.frame.width, height: fromView.frame.height)
+        
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: { () -> Void in
+            toView.frame = CGRect.init(x: 0, y: 0, width: toView.frame.width, height: toView.frame.height)
+            fromView.frame = fromNewFrame
+        }) { (Bool) -> Void in
+            // update internal view - must always be called
+            transitionContext.completeTransition(true)
+        }
+    }
+    
+    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return 0.35
+    }
+}

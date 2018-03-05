@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewChallengeNavigationController: UINavigationController {
+    var viewChallengeDelegate: ViewChallengeDelegate?
+    
     var user: User?
     var challengeList: [ChallengeDetails]?
     var viewType: String?

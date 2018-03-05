@@ -157,6 +157,7 @@ class CreateViewController: GenericUIViewController {
             try captureDevice?.lockForConfiguration()
         } catch let error {
             print(error.localizedDescription)
+            return
         }
         
         if (self.flashMode == AVCaptureDevice.FlashMode.off) {
@@ -177,7 +178,13 @@ class CreateViewController: GenericUIViewController {
     @IBAction func unwindToCreate(segue: UIStoryboardSegue) {}
     
     func prepare(completionHandler: @escaping (Error?) -> Void) { }
-
+    
+    @IBAction func edgePanned(_ sender: UIScreenEdgePanGestureRecognizer) {
+        if (sender.edges == .right) {
+            let tabController = self.tabBarController as! RouterTabBarController
+            tabController.selectedIndex = 1
+        }
+    }
 }
 
 extension CreateViewController: AVCapturePhotoCaptureDelegate {

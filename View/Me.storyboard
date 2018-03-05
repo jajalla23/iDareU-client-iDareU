@@ -39,6 +39,7 @@
                                         </connections>
                                     </containerView>
                                 </subviews>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="pnN-dM-iyJ" firstAttribute="centerX" secondItem="sGj-Pk-VHs" secondAttribute="centerX" id="1jz-Qb-sF9"/>
                                     <constraint firstAttribute="trailing" secondItem="pnN-dM-iyJ" secondAttribute="trailing" id="Ta2-10-bMO"/>
@@ -46,6 +47,10 @@
                                     <constraint firstItem="pnN-dM-iyJ" firstAttribute="top" secondItem="sGj-Pk-VHs" secondAttribute="top" id="XlZ-rx-Ud0"/>
                                     <constraint firstItem="pnN-dM-iyJ" firstAttribute="leading" secondItem="sGj-Pk-VHs" secondAttribute="leading" id="gea-XW-bKt"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="TsZ-QB-qZ7" appends="YES" id="RUp-Vn-Ln1"/>
+                                    <outletCollection property="gestureRecognizers" destination="OZZ-S2-IxG" appends="YES" id="isi-bI-7EC"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -71,6 +76,18 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f6D-fp-2J0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="TsZ-QB-qZ7" userLabel="Left Screen Edge Pan Gesture Recognizer">
+                    <rectEdge key="edges" left="YES"/>
+                    <connections>
+                        <action selector="edgePanned:" destination="GHN-pL-xEb" id="DjH-36-2CF"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="OZZ-S2-IxG" userLabel="Right Screen Edge Pan Gesture Recognizer">
+                    <rectEdge key="edges" right="YES"/>
+                    <connections>
+                        <action selector="edgePanned:" destination="GHN-pL-xEb" id="0Qb-4u-MFW"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="604" y="261.57635467980299"/>
         </scene>

@@ -52,6 +52,14 @@
                                     <segue destination="E1U-KG-BlK" kind="embed" identifier="challengeLabelSegue" id="8Yq-tc-YT4"/>
                                 </connections>
                             </containerView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D2X-8H-uYT" userLabel="Pan View">
+                                <rect key="frame" x="16" y="136" width="343" height="587"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="o6K-Ja-KxX" appends="YES" id="snc-B7-MD8"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
@@ -68,7 +76,7 @@
                         <viewLayoutGuide key="safeArea" id="OLY-Bh-cCG"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="wGz-4D-cJo" appends="YES" id="ZBx-hd-l3P"/>
-                            <outletCollection property="gestureRecognizers" destination="o6K-Ja-KxX" appends="YES" id="jF3-2P-CJU"/>
+                            <outletCollection property="gestureRecognizers" destination="0sk-oW-ElO" appends="YES" id="tCm-fa-kGf"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="vCf-VD-fDK">
@@ -92,16 +100,22 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YYE-Xp-aWp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer enabled="NO" minimumNumberOfTouches="1" id="o6K-Ja-KxX">
-                    <connections>
-                        <action selector="panHandler:" destination="XIF-Ks-bQz" id="E3k-6m-E7O"/>
-                    </connections>
-                </panGestureRecognizer>
                 <tapGestureRecognizer id="wGz-4D-cJo">
                     <connections>
                         <action selector="screenTapped:" destination="XIF-Ks-bQz" id="yWm-hL-KOu"/>
                     </connections>
                 </tapGestureRecognizer>
+                <panGestureRecognizer enabled="NO" minimumNumberOfTouches="1" id="o6K-Ja-KxX">
+                    <connections>
+                        <action selector="panHandler:" destination="XIF-Ks-bQz" id="E3k-6m-E7O"/>
+                    </connections>
+                </panGestureRecognizer>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="0sk-oW-ElO">
+                    <rectEdge key="edges" left="YES"/>
+                    <connections>
+                        <action selector="screenEdgePanned:" destination="XIF-Ks-bQz" id="jqY-fG-3Tx"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="668" y="56.157635467980299"/>
         </scene>

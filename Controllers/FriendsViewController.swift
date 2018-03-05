@@ -12,28 +12,22 @@ class FriendsViewController: GenericUIViewController, UITableViewDataSource, UIT
 
     @IBOutlet weak var friendFeedTableView: UITableView!
     
-    //var user: User? = nil
     var friendFeeds: [FriendFeed] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.navigationController?.isNavigationBarHidden = true
+        
+        // Do any additional setup after loading the view.
 
         friendFeedTableView.delegate = self
         friendFeedTableView.dataSource = self
-        
-        //let routerController: RouterTabBarController = self.tabBarController as! RouterTabBarController
-        //self.user = routerController.user
-        print(NSStringFromClass(self.classForCoder) + " : " + (self.user?._id ?? "user not set"))
-        
+
         do {
             try friendFeeds = Server.getFriendFeedData(userId: self.user!._id!)
         } catch let error {
             //TODO: catch error
             print(error)
         }
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -134,7 +128,16 @@ class FriendsViewController: GenericUIViewController, UITableViewDataSource, UIT
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func edgePanned(_ sender: UIScreenEdgePanGestureRecognizer) {
+        let tabController = self.tabBarController as! RouterTabBarController
 
+        if (sender.edges == .left) {
+            tabController.selectedIndex = 1
+        } else {
+            tabController.selectedIndex = 3
+        }
+    }
 }
 
 extension NSMutableAttributedString {
