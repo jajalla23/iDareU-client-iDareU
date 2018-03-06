@@ -69,13 +69,20 @@
                                 <segue destination="GUo-TN-XTL" kind="show" identifier="profileSegue" id="YLh-Lw-2S5"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="profile_exit" id="1J8-fH-gI4">
+                            <connections>
+                                <action selector="logout:" destination="GHN-pL-xEb" id="bZo-ye-zS8"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="containerView" destination="pnN-dM-iyJ" id="tIE-4B-TQm"/>
                         <outlet property="scrollView" destination="sGj-Pk-VHs" id="LYu-Fa-lVg"/>
+                        <segue destination="vST-c3-pqJ" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLoginWithSegue:" id="N9T-EV-dPk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f6D-fp-2J0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="vST-c3-pqJ" userLabel="Exit" sceneMemberID="exit"/>
                 <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="TsZ-QB-qZ7" userLabel="Left Screen Edge Pan Gesture Recognizer">
                     <rectEdge key="edges" left="YES"/>
                     <connections>
@@ -628,6 +635,7 @@
     <resources>
         <image name="Play" width="321" height="321"/>
         <image name="profile" width="22" height="35"/>
+        <image name="profile_exit" width="35" height="35"/>
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>

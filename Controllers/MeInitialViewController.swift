@@ -79,6 +79,11 @@ class MeInitialViewController: GenericUIViewController {
         //TODO: profile settings
     }
     
+    @IBAction func logout(_ sender: Any) {
+        performSegue(withIdentifier: "unwindToLogin", sender: self)
+    }
+    
+    
     @IBAction func edgePanned(_ sender: UIScreenEdgePanGestureRecognizer) {
         let tabController = self.tabBarController as! RouterTabBarController
         
