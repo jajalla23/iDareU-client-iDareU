@@ -9,14 +9,30 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    
-    //@IBOutlet weak var imageView: UIImageView!
+    private var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        //imageView.image = UIImage(named: "process")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let defaults = UserDefaults.standard
+        
+        if let session_id = defaults.string(forKey: "session_id") {
+            if let user_id = defaults.string(forKey: "user_id") {
+                print(session_id)
+                do {
+                    user = try Server.getUser(user_id: user_id)
+                    self.performSegue(withIdentifier: "routerSegue", sender: self)
+                } catch let cError as CustomError {
+                    print(cError)
+                } catch let error {
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,16 +40,25 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "routerSegue") {
+            let controller = segue.destination as! RouterTabBarController
+            controller.user = user
+        }
     }
-    */
 
-    @IBAction func unwindToMain(segue: UIStoryboardSegue) {}
+    @IBAction func unwindToMain(segue: UIStoryboardSegue) {
+        let defaults = UserDefaults.standard
+        if defaults.string(forKey: "session_id") != nil {
+            defaults.removeObject(forKey: "session_id")
+        }
+        
+        if defaults.string(forKey: "user_id") != nil {
+            defaults.removeObject(forKey: "user_id")
+        }
+    }
 
 }

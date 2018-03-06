@@ -14,8 +14,7 @@ class RouterTabBarController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        
+        // Do any additional setup after loading the view.        
         self.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(self.refreshUserData), name: NSNotification.Name(rawValue: "refreshUserData"), object: nil)
     }

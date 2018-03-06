@@ -107,11 +107,11 @@ public class Server {
 }
 
 extension Server {
-    static func login(username: String, password: String) throws -> User? {
+    static func login(username: String, password: String) throws -> [Any?] {
         let userResp: User? = nil
         
         if (username == "test") {
-            return TestData.generateUser()
+            return [TestData.generateUser(), "ABCDEFG"]
         }
         
         let credentials: NSDictionary = NSMutableDictionary()
@@ -148,12 +148,9 @@ extension Server {
             }
             print("login success")
             
-            if let data = response.data {
-                let defaults = UserDefaults.standard
-                defaults.set(data.session, forKey: "session_id")
-                
+            if let data = response.data {                
                 data.user?.identification?.password = nil
-                return data.user!
+                return [data.user!, (data.session ?? "")]
             }
 
         } catch let customError as CustomError {
@@ -165,10 +162,10 @@ extension Server {
             throw customerError
         }
         
-        return userResp
+        return [userResp, ""]
     }
     
-    static func createNewUser(userInfo: User) throws -> User {
+    static func createNewUser(userInfo: User) throws -> [Any?] {
         let encoder = JSONEncoder()
         let data = try! encoder.encode(userInfo)
         
@@ -191,7 +188,7 @@ extension Server {
                 defaults.set(data.session, forKey: "session_id")
                 
                 data.user?.identification?.password = nil
-                return data.user!
+                return [data.user!, (data.session ?? "")]
             }
             
         } catch let customError as CustomError {
@@ -203,7 +200,7 @@ extension Server {
             throw customerError
         }
         
-        return userInfo
+        return [userInfo, ""]
     }
     
     static func getFriendFeedData(userId: String) throws -> [FriendFeed] {

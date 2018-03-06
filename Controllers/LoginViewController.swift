@@ -48,11 +48,12 @@ class LoginViewController: UIViewController {
 
     @IBAction func loginBtnPressed(_ sender: Any) {
         do {
-            self.user = try Server.login(username: username_input.text!, password: password_input.text!)
+            let response = try Server.login(username: username_input.text!, password: password_input.text!)
+            self.user = response[0] as? User
             
             if (self.user != nil) {
                 loginStatusLbl.text = "Success!"
-                self.loginDone()
+                self.loginDone(user: user!, session: response[1] as! String)
             }
         } catch let error as CustomError {
             loginStatusLbl.isHidden = false
@@ -104,9 +105,10 @@ class LoginViewController: UIViewController {
     
     private func createGetUser(newUser: User) {
         do {
-            self.user = try Server.createNewUser(userInfo: newUser)
+            let response = try Server.createNewUser(userInfo: newUser)
+            self.user = response[0] as? User
             if self.user!._id != nil {
-                self.loginDone()
+                self.loginDone(user: user!, session: response[1] as! String)
             }
             
         } catch let error as CustomError {
@@ -120,13 +122,12 @@ class LoginViewController: UIViewController {
         }
     }
     
-    private func loginDone() {
+    private func loginDone(user: User, session: String) {
         print("logged in")
         
-        //let session_id = UserDefaults.standard.string(forKey: "session_id")
-        //let user_id = UserDefaults.standard.string(forKey: "user_id")
-        
-        //Local.saveSession(session_id: session_id ?? "", user_id: user_id ?? "")
+        let defaults = UserDefaults.standard
+        defaults.set(session, forKey: "session_id")
+        defaults.set(user._id, forKey: "user_id")
         
         self.performSegue(withIdentifier: "loginToRouterSegue", sender: self)
 
@@ -134,8 +135,6 @@ class LoginViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "loginToRouterSegue") {
-            let defaults = UserDefaults.standard
-            defaults.set(self.user!._id, forKey: "user_id")
             
             let routerController = segue.destination as! RouterTabBarController
             routerController.user = self.user

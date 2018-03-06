@@ -41,13 +41,13 @@ class SignupViewController: UIViewController {
             }
             
             var newUser: User = User(username: userNameTxtFld.text!, password: password1TxtFld.text!, email: emailTxtFld.text!)
-            newUser = try Server.createNewUser(userInfo: newUser)
+            let response = try Server.createNewUser(userInfo: newUser)
+            newUser = response[0] as! User
             if newUser._id != nil {
                 let defaults = UserDefaults.standard
                 defaults.set(newUser._id, forKey: "user_id")
-                
-                //let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: newUser)
-                //defaults.set(encodedData, forKey: "user")
+                defaults.set(response[1] as! String, forKey: "session_id")
+
                 self.user = newUser
                 self.performSegue(withIdentifier: "signupToRouterSegue", sender: sender)
             }

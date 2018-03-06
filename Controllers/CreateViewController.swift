@@ -27,7 +27,7 @@ class CreateViewController: GenericUIViewController {
         didSet {
             cameraTools.forEach {
                 $0.isHidden = true
-                $0.backgroundColor = UIColor(white: 1, alpha: 0.25)
+                $0.backgroundColor = UIColor(white: 1, alpha: 0.5)
             }
         }
     }
@@ -40,7 +40,7 @@ class CreateViewController: GenericUIViewController {
         let tabController = self.tabBarController as! RouterTabBarController
         self.user = tabController.user
         
-        cameraSettingsBtn.backgroundColor = UIColor(white: 1, alpha: 0.25)
+        cameraSettingsBtn.backgroundColor = UIColor(white: 1, alpha: 0.5)
         
         #if !SIMULATOR
             self.cameraTools.forEach {

@@ -79,11 +79,11 @@ class MeInitialViewController: GenericUIViewController {
         //TODO: profile settings
     }
     
-    @IBAction func logout(_ sender: Any) {
+    @IBAction func logoutBtnTapped(_ sender: Any) {
         let refreshAlert = UIAlertController(title: "Logout", message: "Are you sure to want to logout?", preferredStyle: UIAlertControllerStyle.alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
-            self.performSegue(withIdentifier: "unwindToMain", sender: self)
+            self.logout()
         }))
         
         refreshAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
@@ -102,6 +102,10 @@ class MeInitialViewController: GenericUIViewController {
         } else {
             tabController.selectedIndex = 2
         }
+    }
+    
+    private func logout() {
+        self.performSegue(withIdentifier: "unwindToMain", sender: self)
     }
 }
 

@@ -18,6 +18,14 @@
             </objects>
             <point key="canvasLocation" x="603" y="683"/>
         </scene>
+        <!--Main-->
+        <scene sceneID="guS-wi-7NZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="UGa-yM-eSE" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P0g-jc-EcK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1138" y="-244"/>
+        </scene>
         <!--Me Initial View Controller-->
         <scene sceneID="ZOl-LB-Nc9">
             <objects>
@@ -71,7 +79,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="profile_exit" id="1J8-fH-gI4">
                             <connections>
-                                <action selector="logout:" destination="GHN-pL-xEb" id="bZo-ye-zS8"/>
+                                <action selector="logoutBtnTapped:" destination="GHN-pL-xEb" id="xdx-1n-ALd"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -79,6 +87,7 @@
                         <outlet property="containerView" destination="pnN-dM-iyJ" id="tIE-4B-TQm"/>
                         <outlet property="scrollView" destination="sGj-Pk-VHs" id="LYu-Fa-lVg"/>
                         <segue destination="vST-c3-pqJ" kind="unwind" identifier="unwindToMain" unwindAction="unwindToMainWithSegue:" id="Bjl-Af-PuP"/>
+                        <segue destination="UGa-yM-eSE" kind="show" identifier="mainSegue" id="Jy7-zx-F4X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f6D-fp-2J0" userLabel="First Responder" sceneMemberID="firstResponder"/>
