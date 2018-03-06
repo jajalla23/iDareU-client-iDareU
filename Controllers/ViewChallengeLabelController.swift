@@ -35,7 +35,7 @@ class ViewChallengeLabelController: UIViewController {
             dare = " DARES "
             taker = "YOU"
         } else {
-            if ((challenge?.takers?.count ?? -1) == 0) {
+            if ((challenge?.takers?.count ?? 0) == 0) {
                 taker = "nobody"
             } else if ((challenge?.takers?.count ?? 0) > 1) {
                 taker = "people"

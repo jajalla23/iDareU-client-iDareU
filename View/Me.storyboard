@@ -214,9 +214,10 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mi5-yM-f3A" userLabel="PendingToggle">
-                                                <rect key="frame" x="345" y="14" width="22" height="22"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mi5-yM-f3A" userLabel="PendingToggle">
+                                                <rect key="frame" x="337" y="12" width="30" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" backgroundImage="min_max"/>
                                                 <connections>
                                                     <action selector="pendingChallBtnToggled:" destination="vIq-7f-Ww0" eventType="touchUpInside" id="g9H-kU-cX2"/>
                                                 </connections>
@@ -250,9 +251,10 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7x-Cr-MM7" userLabel="StatusToggle">
-                                                <rect key="frame" x="345" y="14" width="22" height="22"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7x-Cr-MM7" userLabel="StatusToggle">
+                                                <rect key="frame" x="337" y="12" width="30" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" backgroundImage="min_max"/>
                                                 <connections>
                                                     <action selector="myStatusBtnToggled:" destination="GHN-pL-xEb" eventType="touchDown" id="Bf2-Bl-h3b"/>
                                                     <action selector="myStatusBtnToggled:" destination="vIq-7f-Ww0" eventType="touchUpInside" id="fet-I5-UJ0"/>
@@ -287,9 +289,10 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVR-38-Qzb" userLabel="CreatedToggle">
-                                                <rect key="frame" x="345" y="14" width="22" height="22"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVR-38-Qzb" userLabel="CreatedToggle">
+                                                <rect key="frame" x="337" y="12" width="30" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" backgroundImage="min_max"/>
                                                 <connections>
                                                     <action selector="createdChallBtnToggled:" destination="vIq-7f-Ww0" eventType="touchUpInside" id="Ja3-jG-xgv"/>
                                                 </connections>
@@ -323,9 +326,10 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFo-io-VF4" userLabel="CompletedToggle">
-                                                <rect key="frame" x="345" y="14" width="22" height="22"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFo-io-VF4" userLabel="CompletedToggle">
+                                                <rect key="frame" x="337" y="12" width="30" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" backgroundImage="min_max"/>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -384,6 +388,9 @@
                         <outlet property="myStatusView" destination="upn-6q-8nE" id="QtO-iw-07G"/>
                         <outlet property="pendingChallengesHeightConstr" destination="c0k-v8-2Vx" id="r5W-VR-yEz"/>
                         <outlet property="pendingChallengesView" destination="8lB-6Y-gSJ" id="Ebb-9c-7Qn"/>
+                        <outlet property="pendingHeaderBtn" destination="mi5-yM-f3A" id="CGV-Po-g31"/>
+                        <outlet property="sponsoredHeaderBtn" destination="HVR-38-Qzb" id="ifJ-oK-OKf"/>
+                        <outlet property="statusHeaderBtn" destination="q7x-Cr-MM7" id="NXG-Dz-VeL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X1J-qh-5vE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -643,6 +650,7 @@
     </scenes>
     <resources>
         <image name="Play" width="321" height="321"/>
+        <image name="min_max" width="80" height="80"/>
         <image name="profile" width="22" height="35"/>
         <image name="profile_exit" width="35" height="35"/>
         <image name="second" width="30" height="30"/>

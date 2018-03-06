@@ -242,11 +242,16 @@ protocol ViewChallengeDelegate {
 
 extension ViewChallengeViewController: SelectTakerDelegate {
     func selectionDone(selectTakerController: SelectTakerTableViewController) {
-
+        
+        let labelController = self.childViewControllers[0] as! ViewChallengeLabelController
         var new_takers: [Taker] = []
+        
         for currUser in selectTakerController.selectedFriends!.values {
             if (!challenge!.takers!.contains(where: {$0.user._id == currUser._id})) {
                 challenge?.addTaker(user: currUser)
+                labelController.challenge?.addTaker(user: currUser)
+                labelController.viewDidLoad()
+                
                 let newTaker = Taker.init(user: currUser)
                 new_takers.append(newTaker)
             }
@@ -254,6 +259,8 @@ extension ViewChallengeViewController: SelectTakerDelegate {
         
         do {
             try Server.addTakers(challenge_id: (self.challenge?._id)!, new_takers: new_takers)
+
+
         } catch let cError as CustomError {
             print(cError.description)
         } catch let error {

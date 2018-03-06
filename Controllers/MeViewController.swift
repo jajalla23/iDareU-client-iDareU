@@ -15,19 +15,22 @@ class MeViewController: MeGenericViewController {
     private var isMyStatusExpanded: Bool = false
     @IBOutlet weak var myStatusHeightConstr: NSLayoutConstraint!
     @IBOutlet weak var myStatusView: UIView!
+    @IBOutlet weak var statusHeaderBtn: UIButton!
     
     public var pendingViewController: PendingChallengesViewController!
     private var isPendingChallengesExpanded: Bool = true
     private var pendingChallengeRowHeight: Int = 80
     @IBOutlet weak var pendingChallengesHeightConstr: NSLayoutConstraint!
     @IBOutlet weak var pendingChallengesView: UIView!
-    
+    @IBOutlet weak var pendingHeaderBtn: UIButton!
+
     public var createdChallengeViewController: MyCreatedChallengesViewController!
     private var isCreatedChallengesExpanded: Bool = false
     private var createdChallengeRowHeight: Int = 80
     @IBOutlet weak var createdChallengesHeightConstr: NSLayoutConstraint!
     @IBOutlet weak var createdChallengesView: UIView!
-    
+    @IBOutlet weak var sponsoredHeaderBtn: UIButton!
+
     private var statusViewLayer: CALayer?
     
     override func viewDidLoad() {
@@ -49,7 +52,8 @@ class MeViewController: MeGenericViewController {
             
             self.pendingChallengesHeightConstr.constant = height
             self.pendingChallengesView.isHidden = false
-            
+            self.pendingHeaderBtn.transform = self.pendingHeaderBtn.transform.rotated(by: CGFloat.pi)
+
             self.myStatusHeightConstr.constant = 0
             statusViewLayer?.removeFromSuperlayer()
             self.myStatusView.isHidden = true
@@ -62,6 +66,8 @@ class MeViewController: MeGenericViewController {
             self.isMyStatusExpanded = true
             self.myStatusHeightConstr.constant = StatusViewController.statusViewHeight
             self.myStatusView.isHidden = false
+            self.statusHeaderBtn.transform = self.statusHeaderBtn.transform.rotated(by: CGFloat.pi)
+
         }
         
         //created challenges minimized
@@ -187,6 +193,8 @@ class MeViewController: MeGenericViewController {
         if (isMyStatusExpanded) {
             UIView.animate(withDuration: 1.0, animations: {
                 self.myStatusHeightConstr.constant = 0
+                self.statusHeaderBtn.transform = self.statusHeaderBtn.transform.rotated(by: CGFloat.pi)
+
                 self.view.layoutIfNeeded()
             }, completion: { (finished: Bool) in
                 self.myStatusView.isHidden = !self.myStatusView.isHidden
@@ -195,6 +203,7 @@ class MeViewController: MeGenericViewController {
         } else {
             UIView.animate(withDuration: 1.0, animations: {
                 self.myStatusHeightConstr.constant = StatusViewController.statusViewHeight
+                self.statusHeaderBtn.transform = self.statusHeaderBtn.transform.rotated(by: CGFloat.pi)
                 self.myStatusView.layer.addSublayer(self.statusViewLayer!)
                 self.myStatusView.isHidden = !self.myStatusView.isHidden
                 self.view.layoutIfNeeded()
@@ -212,7 +221,8 @@ class MeViewController: MeGenericViewController {
                 self.pendingChallengesView.isHidden = !self.pendingChallengesView.isHidden
                 self.pendingViewController.collapseView()
                 self.pendingChallengesHeightConstr.constant = 0
-
+                self.pendingHeaderBtn.transform = self.pendingHeaderBtn.transform.rotated(by: -CGFloat.pi)
+                
                 self.view.layoutIfNeeded()
             })
         } else {
@@ -225,6 +235,7 @@ class MeViewController: MeGenericViewController {
                 
                 self.pendingChallengesHeightConstr.constant = height
                 self.pendingChallengesView.isHidden = !self.pendingChallengesView.isHidden
+                self.pendingHeaderBtn.transform = self.pendingHeaderBtn.transform.rotated(by: CGFloat.pi)
 
                 self.pendingViewController.expandView()
                 self.view.layoutIfNeeded()
@@ -239,6 +250,7 @@ class MeViewController: MeGenericViewController {
             UIView.animate(withDuration: 1.0, animations: {
                 self.createdChallengesView.isHidden = !self.createdChallengesView.isHidden
                 self.createdChallengeViewController.collapseView()
+                self.sponsoredHeaderBtn.transform = self.sponsoredHeaderBtn.transform.rotated(by: CGFloat.pi)
 
             }, completion: { (finished: Bool) in
                 self.createdChallengesHeightConstr.constant = 0
@@ -254,6 +266,8 @@ class MeViewController: MeGenericViewController {
                 
                 self.createdChallengeViewController.expandView()
                 self.createdChallengesHeightConstr.constant = height
+                self.sponsoredHeaderBtn.transform = self.sponsoredHeaderBtn.transform.rotated(by: CGFloat.pi)
+
                 self.createdChallengesView.isHidden = !self.createdChallengesView.isHidden
                 self.view.layoutIfNeeded()
             })
