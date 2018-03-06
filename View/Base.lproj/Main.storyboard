@@ -14,14 +14,10 @@
         <scene sceneID="scZ-99-0v3">
             <objects>
                 <viewController storyboardIdentifier="MainViewController" title="MainViewController" id="nRm-j7-WVJ" customClass="MainViewController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="K4K-uX-m4U">
+                    <view key="view" hidden="YES" contentMode="scaleToFill" id="K4K-uX-m4U">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="I0C-vv-6aI">
-                                <rect key="frame" x="57" y="443" width="169" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="1E0-xF-5DK">
                                 <rect key="frame" x="70.666666666666686" y="65" width="234" height="151"/>
                                 <constraints>

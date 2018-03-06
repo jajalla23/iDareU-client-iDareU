@@ -110,10 +110,6 @@ extension Server {
     static func login(username: String, password: String) throws -> [Any?] {
         let userResp: User? = nil
         
-        if (username == "test") {
-            return [TestData.generateUser(), "ABCDEFG"]
-        }
-        
         let credentials: NSDictionary = NSMutableDictionary()
         
         credentials.setValue(username, forKey: "username")

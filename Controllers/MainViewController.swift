@@ -26,6 +26,8 @@ class MainViewController: UIViewController {
                 do {
                     user = try Server.getUser(user_id: user_id)
                     self.performSegue(withIdentifier: "routerSegue", sender: self)
+                    
+                    return
                 } catch let cError as CustomError {
                     print(cError)
                 } catch let error {
@@ -33,6 +35,8 @@ class MainViewController: UIViewController {
                 }
             }
         }
+        
+        self.view.isHidden = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,6 +63,7 @@ class MainViewController: UIViewController {
         if defaults.string(forKey: "user_id") != nil {
             defaults.removeObject(forKey: "user_id")
         }
+        self.view.isHidden = false
     }
 
 }
