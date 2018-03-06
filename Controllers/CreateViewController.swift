@@ -119,6 +119,32 @@ class CreateViewController: GenericUIViewController {
         capturePhotoOutput.capturePhoto(with: photoSettings, delegate: self as AVCapturePhotoCaptureDelegate)
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let screenSize = view.bounds.size
+        if let touchPoint = touches.first {
+            let x = touchPoint.location(in: view).y / screenSize.height
+            let y = 1.0 - touchPoint.location(in: view).x / screenSize.width
+            let focusPoint = CGPoint(x: x, y: y)
+            
+            if let device = captureDevice {
+                do {
+                    try device.lockForConfiguration()
+                    
+                    device.focusPointOfInterest = focusPoint
+                    //device.focusMode = .continuousAutoFocus
+                    device.focusMode = .autoFocus
+                    //device.focusMode = .locked
+                    device.exposurePointOfInterest = focusPoint
+                    device.exposureMode = AVCaptureDevice.ExposureMode.continuousAutoExposure
+                    device.unlockForConfiguration()
+                }
+                catch {
+                    // just ignore
+                }
+            }
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "previewSegue") {
             guard let controller = segue.destination as? PreviewViewController else {
@@ -163,17 +189,16 @@ class CreateViewController: GenericUIViewController {
             print(error.localizedDescription)
             return
         }
-        
         if (self.flashMode == AVCaptureDevice.FlashMode.off) {
             self.flashMode = AVCaptureDevice.FlashMode.auto
-            cameraTools[1].setImage(UIImage(named: "second"), for: .normal)
+            cameraTools[1].setImage(UIImage(named: "camera_flash_auto"), for: .normal)
         } else if (self.flashMode == AVCaptureDevice.FlashMode.auto) {
             self.flashMode = AVCaptureDevice.FlashMode.on
-            cameraTools[1].setImage(UIImage(named: "camera_flash"), for: .normal)
+            cameraTools[1].setImage(UIImage(named: "camera_flash_on"), for: .normal)
         } else {
             //captureDevice?.torchMode = AVCaptureDevice.TorchMode.off
             self.flashMode = AVCaptureDevice.FlashMode.off
-            cameraTools[1].setImage(UIImage(named: "first"), for: .normal)
+            cameraTools[1].setImage(UIImage(named: "camera_flash_off"), for: .normal)
         }
         
         captureDevice?.unlockForConfiguration()

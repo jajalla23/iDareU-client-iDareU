@@ -50,7 +50,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9yk-t6-vDE" userLabel="flash">
                                         <rect key="frame" x="0.0" y="94" width="32" height="32"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="camera_flash"/>
+                                        <state key="normal" image="camera_flash_auto"/>
                                         <connections>
                                             <action selector="cameraFlashBtnTapped:" destination="9pv-A4-QxB" eventType="touchDown" id="Ow4-R8-7Uv"/>
                                         </connections>
@@ -443,7 +443,7 @@
     </scenes>
     <resources>
         <image name="arrow" width="417" height="279"/>
-        <image name="camera_flash" width="32" height="32"/>
+        <image name="camera_flash_auto" width="32" height="32"/>
         <image name="camera_rotate" width="32" height="32"/>
         <image name="camera_settings" width="32" height="32"/>
         <image name="checked" width="91" height="92"/>
