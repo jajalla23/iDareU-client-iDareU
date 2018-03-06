@@ -14,70 +14,83 @@
         <scene sceneID="scZ-99-0v3">
             <objects>
                 <viewController storyboardIdentifier="MainViewController" title="MainViewController" id="nRm-j7-WVJ" customClass="MainViewController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" hidden="YES" contentMode="scaleToFill" id="K4K-uX-m4U">
+                    <view key="view" contentMode="scaleToFill" id="K4K-uX-m4U">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lgy-Cv-94X">
+                                <rect key="frame" x="102.66666666666669" y="321" width="170" height="170"/>
+                                <subviews>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="inb-rh-QlL">
+                                        <rect key="frame" x="0.0" y="0.0" width="170" height="57"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="57" id="cmq-EN-1Vt"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Login">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="xHZ-EN-gyH" kind="showDetail" animates="NO" action="showViewController:sender:" id="En3-yy-UOh"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zEh-OL-r1d">
+                                        <rect key="frame" x="0.0" y="113" width="170" height="57"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="57" id="AGj-Lf-cUI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Sign Up">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="NFH-Hz-Hjj" kind="show" animates="NO" id="M3Z-fS-ufj"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="zEh-OL-r1d" secondAttribute="bottom" id="GRs-tb-OQB"/>
+                                    <constraint firstItem="inb-rh-QlL" firstAttribute="leading" secondItem="lgy-Cv-94X" secondAttribute="leading" id="NRZ-AT-HZt"/>
+                                    <constraint firstAttribute="trailing" secondItem="zEh-OL-r1d" secondAttribute="trailing" id="U8Z-F2-bhG"/>
+                                    <constraint firstAttribute="height" constant="170" id="gs5-it-B35"/>
+                                    <constraint firstAttribute="width" constant="170" id="pZq-cU-O4r"/>
+                                    <constraint firstItem="inb-rh-QlL" firstAttribute="top" secondItem="lgy-Cv-94X" secondAttribute="top" id="u7G-5j-4l0"/>
+                                    <constraint firstItem="zEh-OL-r1d" firstAttribute="leading" secondItem="lgy-Cv-94X" secondAttribute="leading" id="xRH-t8-pyr"/>
+                                    <constraint firstAttribute="trailing" secondItem="inb-rh-QlL" secondAttribute="trailing" id="zyg-xu-hE5"/>
+                                </constraints>
+                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="1E0-xF-5DK">
-                                <rect key="frame" x="70.666666666666686" y="65" width="234" height="151"/>
+                                <rect key="frame" x="70" y="120" width="234" height="151"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="234" id="VIy-IG-yrq"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="117" id="weM-Ys-dE5"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zEh-OL-r1d">
-                                <rect key="frame" x="103" y="427" width="169" height="57"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="57" id="AGj-Lf-cUI"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="Sign Up">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="15"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="NFH-Hz-Hjj" kind="show" animates="NO" id="M3Z-fS-ufj"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="inb-rh-QlL">
-                                <rect key="frame" x="103" y="318" width="169" height="57"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="57" id="cmq-EN-1Vt"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="Login">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="15"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="xHZ-EN-gyH" kind="showDetail" animates="NO" action="showViewController:sender:" id="En3-yy-UOh"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="0.33350278253424659" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="1E0-xF-5DK" firstAttribute="top" secondItem="Mik-cm-Rcf" secondAttribute="top" constant="21" id="2gC-LC-RZY"/>
-                            <constraint firstItem="zEh-OL-r1d" firstAttribute="top" secondItem="inb-rh-QlL" secondAttribute="bottom" constant="52" id="JZE-6M-DNk"/>
-                            <constraint firstItem="zEh-OL-r1d" firstAttribute="leading" secondItem="Mik-cm-Rcf" secondAttribute="leading" constant="103" id="QWx-yY-Ob3"/>
                             <constraint firstItem="1E0-xF-5DK" firstAttribute="centerX" secondItem="K4K-uX-m4U" secondAttribute="centerX" id="SfD-ZP-hLZ"/>
-                            <constraint firstItem="inb-rh-QlL" firstAttribute="top" secondItem="1E0-xF-5DK" secondAttribute="bottom" constant="102" id="e0m-Zp-ycK"/>
-                            <constraint firstItem="inb-rh-QlL" firstAttribute="leading" secondItem="Mik-cm-Rcf" secondAttribute="leading" constant="103" id="g2J-gr-dba"/>
-                            <constraint firstItem="Mik-cm-Rcf" firstAttribute="trailing" secondItem="inb-rh-QlL" secondAttribute="trailing" constant="103" id="t7r-UZ-TGR"/>
-                            <constraint firstItem="Mik-cm-Rcf" firstAttribute="trailing" secondItem="zEh-OL-r1d" secondAttribute="trailing" constant="103" id="uZ0-uW-Zz0"/>
+                            <constraint firstItem="lgy-Cv-94X" firstAttribute="top" secondItem="1E0-xF-5DK" secondAttribute="bottom" constant="50" id="V4i-37-0ff"/>
+                            <constraint firstItem="lgy-Cv-94X" firstAttribute="centerX" secondItem="K4K-uX-m4U" secondAttribute="centerX" id="kdU-TM-DBp"/>
+                            <constraint firstItem="lgy-Cv-94X" firstAttribute="centerY" secondItem="K4K-uX-m4U" secondAttribute="centerY" id="vE1-JM-HUz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Mik-cm-Rcf"/>
                     </view>
                     <connections>
+                        <outletCollection property="mainBtns" destination="inb-rh-QlL" collectionClass="NSMutableArray" id="5mD-kz-JH5"/>
+                        <outletCollection property="mainBtns" destination="zEh-OL-r1d" collectionClass="NSMutableArray" id="koJ-lS-2BT"/>
                         <segue destination="yDg-Es-BlP" kind="show" identifier="routerSegue" id="tpI-Uv-ue6"/>
                     </connections>
                 </viewController>

@@ -125,6 +125,7 @@ class MeViewController: MeGenericViewController {
         }
         
         //TODO: toggle completed challenges
+        delegate?.adjustView(meViewController: self)
     }
     
     private func togglePending() {
@@ -143,6 +144,7 @@ class MeViewController: MeGenericViewController {
         }
         
         //TODO: toggle completed challenges
+        delegate?.adjustView(meViewController: self)
     }
     
     private func toggleSponsor() {
@@ -159,6 +161,8 @@ class MeViewController: MeGenericViewController {
         if self.isPendingChallengesExpanded {
             self.togglePendingChallengesView()
         }
+        
+        delegate?.adjustView(meViewController: self)
     }
     
     private func toggleCompleted() {
@@ -175,6 +179,8 @@ class MeViewController: MeGenericViewController {
         if self.isPendingChallengesExpanded {
             self.togglePendingChallengesView()
         }
+
+        delegate?.adjustView(meViewController: self)
     }
     
     private func toggleStatusView() {
@@ -196,7 +202,7 @@ class MeViewController: MeGenericViewController {
             
             self.statusViewController.expandView()
         }
-        delegate?.adjustView(meViewController: self)
+        
         isMyStatusExpanded = !isMyStatusExpanded
     }
     
@@ -252,7 +258,7 @@ class MeViewController: MeGenericViewController {
                 self.view.layoutIfNeeded()
             })
         }
-        delegate?.adjustView(meViewController: self)
+        
         isCreatedChallengesExpanded = !isCreatedChallengesExpanded
     }
     

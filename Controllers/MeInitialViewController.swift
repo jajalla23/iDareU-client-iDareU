@@ -111,12 +111,7 @@ class MeInitialViewController: GenericUIViewController {
 
 extension MeInitialViewController: MeViewControllerDelegate {
     func adjustView(meViewController: MeViewController) {
-        //let totalViewHeight = meViewController.pendingChallengesHeightConstr.constant + meViewController.myStatusHeightConstr.constant + meViewController.createdChallengesHeightConstr.constant
-        //let totalHeaderHeight = CGFloat.init(200)
-
-        //self.containerViewHeightConstr.constant = totalHeaderHeight + totalViewHeight
-        
-        scrollView.setContentOffset(CGPoint.init(x: 0, y: scrollView.contentOffset.y), animated: true)
+        scrollView.setContentOffset(CGPoint.init(x: scrollView.contentOffset.x, y: 0), animated: true)
     }
     
     

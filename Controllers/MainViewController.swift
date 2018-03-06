@@ -11,6 +11,9 @@ import UIKit
 class MainViewController: UIViewController {
     private var user: User?
     
+    @IBOutlet var mainBtns: [UIButton]!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,7 +39,9 @@ class MainViewController: UIViewController {
             }
         }
         
-        self.view.isHidden = false
+        mainBtns.forEach {
+            $0.isHidden = false
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,7 +68,10 @@ class MainViewController: UIViewController {
         if defaults.string(forKey: "user_id") != nil {
             defaults.removeObject(forKey: "user_id")
         }
-        self.view.isHidden = false
+        
+        mainBtns.forEach {
+            $0.isHidden = false
+        }
     }
 
 }
