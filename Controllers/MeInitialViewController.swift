@@ -80,7 +80,17 @@ class MeInitialViewController: GenericUIViewController {
     }
     
     @IBAction func logout(_ sender: Any) {
-        performSegue(withIdentifier: "unwindToLogin", sender: self)
+        let refreshAlert = UIAlertController(title: "Logout", message: "Are you sure to want to logout?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+            self.performSegue(withIdentifier: "unwindToMain", sender: self)
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
+            return
+        }))
+        
+        present(refreshAlert, animated: true, completion: nil)
     }
     
     

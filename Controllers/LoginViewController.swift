@@ -151,9 +151,6 @@ class LoginViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    
-    @IBAction func unwindToLogin(segue: UIStoryboardSegue) {}
-
 }
 
 extension LoginViewController: UITextFieldDelegate {

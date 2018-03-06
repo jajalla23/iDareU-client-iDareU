@@ -78,7 +78,7 @@
                     <connections>
                         <outlet property="containerView" destination="pnN-dM-iyJ" id="tIE-4B-TQm"/>
                         <outlet property="scrollView" destination="sGj-Pk-VHs" id="LYu-Fa-lVg"/>
-                        <segue destination="vST-c3-pqJ" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLoginWithSegue:" id="N9T-EV-dPk"/>
+                        <segue destination="vST-c3-pqJ" kind="unwind" identifier="unwindToMain" unwindAction="unwindToMainWithSegue:" id="Bjl-Af-PuP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f6D-fp-2J0" userLabel="First Responder" sceneMemberID="firstResponder"/>

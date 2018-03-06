@@ -23,21 +23,6 @@ class MainViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /*
-    @IBAction func testBtnPressed(_ sender: Any) {
-        print(UIImageJPEGRepresentation((imageView.image)!, 1)?.count)
-        let compressed = imageView.image?.compressJPEGImage()
-        do {
-            let gzipped = try compressed!.gzipped(level: .bestCompression)
-            let unzip = try gzipped.gunzipped()
-            imageView.image = UIImage(data:unzip,scale:1.0)
-            print(UIImageJPEGRepresentation((imageView.image)!, 1)?.count)
-        } catch let error {
-            
-        }
-    }
-    */
 
     /*
     // MARK: - Navigation
@@ -48,5 +33,7 @@ class MainViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+    @IBAction func unwindToMain(segue: UIStoryboardSegue) {}
 
 }
