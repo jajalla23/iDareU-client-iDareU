@@ -56,7 +56,7 @@ class PreviewController: UIViewController {
         
         do {
             dispatchGroup.enter()
-            //try Server.uploadMedia(media: self.image!.compressJPEGImage(), type: (self.challenge?.media?.type ?? "image/jpg"), uuid: uuid)
+            try Server.uploadMedia(media: self.image!.compressJPEGImage(), type: (self.challenge?.media?.type ?? "image/jpg"), uuid: uuid)
             dispatchGroup.leave()
         } catch let c_error as CustomError {
             print(c_error)
@@ -67,7 +67,7 @@ class PreviewController: UIViewController {
         }
         
         do {
-            //try Server.completeChallenge(challenge_id: challenge!._id!, taker: taker!)
+            try Server.completeChallenge(challenge_id: challenge!._id!, taker: taker!)
         } catch let c_error as CustomError {
             print(c_error)
         } catch let error {
