@@ -69,6 +69,7 @@ class CameraController: UIViewController {
             controller.image = self.capturedImage
             controller.user = self.user
             controller.challenge = self.challenge
+            controller.taker = self.taker
         }
     }
     
@@ -121,6 +122,7 @@ class CameraController: UIViewController {
     
     @IBAction func onCaptureBtnTapped(_ sender: Any) {
         #if SIMULATOR
+            capturedImage = #imageLiteral(resourceName: "Play")
             self.performSegue(withIdentifier: "showPreview", sender: self)
         #endif
         

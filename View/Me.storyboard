@@ -202,7 +202,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KL7-nC-ge6">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="400.33333333333331"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="480.33333333333331"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oi6-UP-Be1" userLabel="Pending Challenges Header">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50.333333333333336"/>
@@ -308,7 +308,7 @@
                                         </connections>
                                     </view>
                                     <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dEf-hG-hkg">
-                                        <rect key="frame" x="0.0" y="250.33333333333337" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="250.33333333333331" width="375" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="BiT-kf-th3"/>
                                         </constraints>
@@ -336,19 +336,30 @@
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="fL0-SW-sUi"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="EGa-Wc-yqp" appends="YES" id="A7s-kv-RxX"/>
+                                        </connections>
                                     </view>
                                     <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VT7-Mg-MZE">
-                                        <rect key="frame" x="0.0" y="350.33333333333337" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="350.33333333333337" width="375" height="80"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="Tbj-Dd-8su"/>
+                                            <constraint firstAttribute="height" constant="80" id="Tbj-Dd-8su"/>
                                         </constraints>
                                         <connections>
                                             <segue destination="gnD-9x-BLA" kind="embed" identifier="meToCompletedSegue" id="rKx-dH-Hzq"/>
                                         </connections>
                                     </containerView>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q4t-xi-SVB">
+                                        <rect key="frame" x="0.0" y="430.33333333333337" width="375" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="tyJ-Ij-3fy"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="XoO-UL-66t" firstAttribute="top" secondItem="dEf-hG-hkg" secondAttribute="bottom" id="2Ve-oV-XtO"/>
@@ -413,6 +424,11 @@
                 <tapGestureRecognizer id="xBS-bI-ulx" userLabel="Sponsored Tap Gesture Recognizer">
                     <connections>
                         <action selector="sponsorHeaderTapped:" destination="vIq-7f-Ww0" id="0Dc-5m-seA"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="EGa-Wc-yqp" userLabel="Completed Tap Gesture Recognizer">
+                    <connections>
+                        <action selector="completedHeaderTapped:" destination="vIq-7f-Ww0" id="tlf-OK-XJw"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -629,7 +645,7 @@
             <objects>
                 <viewController id="gnD-9x-BLA" customClass="CompletedChallengesViewController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Egx-fr-O15">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HA9-Zb-Yev">
@@ -642,7 +658,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="sectionIndexBackgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="createdChallengeCell" rowHeight="72" id="Tla-aZ-f4H" customClass="CreatedChallengeTableViewCell" customModule="iDareU" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="completedChallengeCell" rowHeight="72" id="Tla-aZ-f4H" customClass="CompletedChallengeTableViewCell" customModule="iDareU" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="72"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tla-aZ-f4H" id="jox-yG-r3j">
@@ -708,6 +724,6 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sWd-sA-4dS"/>
+        <segue reference="njK-Bs-Jco"/>
     </inferredMetricsTieBreakers>
 </document>

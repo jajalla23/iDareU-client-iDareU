@@ -103,6 +103,13 @@ class ViewChallengeViewController: UIViewController {
             let controller = segue.destination as? CameraController
             controller?.challenge = self.challenge
             controller?.user = naviController.user
+            
+            for taker in (challenge?.takers)! {
+                if (taker.user._id == controller?.user?._id) {
+                    controller?.taker = taker
+                    break
+                }
+            }
         }
         
     }

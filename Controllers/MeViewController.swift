@@ -55,7 +55,7 @@ class MeViewController: MeGenericViewController {
         self.createdChallengesView.isHidden = true
         
         //completed challenges minimized
-        self.completedChallengesHeightConstr.constant = 0
+        self.completedChallengesHeightConstr.constant = 80
         self.completedChallengesView.isHidden = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.refreshAllViews), name: NSNotification.Name(rawValue: "refreshAllViewsOnMe"), object: nil)
@@ -100,6 +100,9 @@ class MeViewController: MeGenericViewController {
         isAlreadyShown = true
     }
     
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let controller = segue.destination as? MeGenericViewController
         controller?.user = self.user
@@ -130,6 +133,10 @@ class MeViewController: MeGenericViewController {
     }
     
     @IBAction func completedChallBtnToggled(_ sender: Any) {
+        toggleCompleted()
+    }
+    
+    @IBAction func completedHeaderTapped(_ sender: UITapGestureRecognizer) {
         toggleCompleted()
     }
     
@@ -322,7 +329,6 @@ class MeViewController: MeGenericViewController {
         } else {
             UIView.animate(withDuration: 1.0, animations: {
                 var height: CGFloat = CGFloat(self.completedChallengeRowHeight * (self.user?.challenges?.completed?.count ?? 0))
-                
                 if (height > CompletedChallengesViewController.scrollViewMaxHeight) {
                     height = CompletedChallengesViewController.scrollViewMaxHeight
                 }
@@ -413,17 +419,6 @@ class MeViewController: MeGenericViewController {
         
         self.view.layoutIfNeeded()
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 protocol MeViewControllerDelegate {

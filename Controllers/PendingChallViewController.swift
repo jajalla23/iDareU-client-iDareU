@@ -129,8 +129,6 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
                 
                 modifyAction = UIContextualAction(style: .normal, title:  "Complete", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
                     
-                    //TODO
-                    //print("complete the challenge")
                     self.selectedIndex = indexPath.row
                     self.performSegue(withIdentifier: "cameraSegue", sender: self)
                     success(true)
@@ -197,8 +195,16 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
         
         if (segue.identifier == "cameraSegue") {
             let controller = segue.destination as? CameraController
-            controller?.challenge = self.user?.challenges?.pending![self.selectedIndex!]
-            controller?.user = self.user            
+            let temp_challenge = self.user?.challenges?.pending![self.selectedIndex!]
+            controller?.challenge = temp_challenge
+            controller?.user = self.user
+            
+            for taker in (temp_challenge?.takers)! {
+                if (taker.user._id == controller?.user?._id) {
+                    controller?.taker = taker
+                    break
+                }
+            }
         }
     }
     

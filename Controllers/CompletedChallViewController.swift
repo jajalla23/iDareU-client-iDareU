@@ -56,7 +56,7 @@ class CompletedChallengesViewController: MeGenericViewController, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "createdChallengeCell") as! CreatedChallengeTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "completedChallengeCell") as! CompletedChallengeTableViewCell
         
         let currChallenge = user?.challenges?.completed![indexPath.row]
         
@@ -86,8 +86,8 @@ class CompletedChallengesViewController: MeGenericViewController, UITableViewDat
         
         self.scrollView.contentSize = CGSize(width: self.tableView.frame.size.width, height: tableViewHeight)
         
-        if (tableViewHeight > MyCreatedChallengesViewController.scrollViewMaxHeight) {
-            self.scrollView.frame.size.height = MyCreatedChallengesViewController.scrollViewMaxHeight
+        if (tableViewHeight > CompletedChallengesViewController.scrollViewMaxHeight) {
+            self.scrollView.frame.size.height = CompletedChallengesViewController.scrollViewMaxHeight
         } else {
             self.scrollView.frame.size.height = tableViewHeight
         }

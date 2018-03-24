@@ -48,8 +48,6 @@ class PreviewController: UIViewController {
     }
     
     @IBAction func sendBtnTapped(_ sender: Any) {
-        //performSegue(withIdentifier: "sendSegue", sender: sender)
-        //Server.uploadMedia(media: <#T##Data#>, type: <#T##String#>, uuid: <#T##UUID#>)
         let uuid = UUID.init()
         
         let dispatchGroup = DispatchGroup()
@@ -69,8 +67,7 @@ class PreviewController: UIViewController {
         }
         
         do {
-            //response = try Server.createChallenge(challenges: response)
-            //TODO: update server
+            //try Server.completeChallenge(challenge_id: challenge!._id!, taker: taker!)
         } catch let c_error as CustomError {
             print(c_error)
         } catch let error {

@@ -75,6 +75,7 @@
 		76DDEEAB201929CD002CBE52 /* iDareU.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76DDEEA9201929CD002CBE52 /* iDareU.xcdatamodeld */; };
 		76DE5F5920646A140076DA4E /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DE5F5820646A140076DA4E /* Camera.storyboard */; };
 		76DE5F5B20646BA60076DA4E /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DE5F5A20646BA60076DA4E /* PreviewController.swift */; };
+		76E1BBD92066280800764131 /* CompletedChallTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E1BBD82066280800764131 /* CompletedChallTVCell.swift */; };
 		76E7396C202FE5CE00A2EDBC /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760F7F88201E7D86001A38BF /* TestData.swift */; };
 		76E7396E202FEA4400A2EDBC /* ViewChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7396D202FEA4400A2EDBC /* ViewChallengeViewController.swift */; };
 		76EA6B6A20211B9000AC40CA /* CreatedChallTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EA6B6920211B9000AC40CA /* CreatedChallTVCell.swift */; };
@@ -194,6 +195,7 @@
 		76DDEEAA201929CD002CBE52 /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
 		76DE5F5820646A140076DA4E /* Camera.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		76DE5F5A20646BA60076DA4E /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
+		76E1BBD82066280800764131 /* CompletedChallTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedChallTVCell.swift; sourceTree = "<group>"; };
 		76E7396D202FEA4400A2EDBC /* ViewChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewChallengeViewController.swift; sourceTree = "<group>"; };
 		76E73970202FEB7800A2EDBC /* AWSMobileClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSMobileClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76EA6B6920211B9000AC40CA /* CreatedChallTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedChallTVCell.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				76CDF83620200EF90098948C /* MyStatusView.swift */,
 				76376135202064CB006BE727 /* PendingChallTVCell.swift */,
 				76EA6B6920211B9000AC40CA /* CreatedChallTVCell.swift */,
+				76E1BBD82066280800764131 /* CompletedChallTVCell.swift */,
 				763BC54D2022D8F000F57BD4 /* SelectTakerTVCell.swift */,
 				7692CE722033F97B001FFFBC /* FriendsTVCell.swift */,
 			);
@@ -828,6 +831,7 @@
 				763688C12003036C00129279 /* StatusViewController.swift in Sources */,
 				76CF47152021A0E700E7E5BF /* MeGenericViewController.swift in Sources */,
 				76EC14652016861E00C73DFC /* SignupFormValidationModel.swift in Sources */,
+				76E1BBD92066280800764131 /* CompletedChallTVCell.swift in Sources */,
 				7650EA16200095080011125B /* CaptureVideoViewController.swift in Sources */,
 				762296F9200A961900D09D12 /* FriendFeedViewCell.swift in Sources */,
 				76FC08ED201ED323008F9902 /* GenericUIViewController.swift in Sources */,
