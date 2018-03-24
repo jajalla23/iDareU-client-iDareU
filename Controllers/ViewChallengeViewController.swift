@@ -15,6 +15,7 @@ class ViewChallengeViewController: UIViewController {
     
     private var divisor: CGFloat?
     private var challengeIndex: Int = 0
+    private var isAccepted: Bool = false
     
     @IBOutlet weak var imageContainerView: UIView!
     @IBOutlet weak var imageView: UIImageView!
@@ -40,6 +41,16 @@ class ViewChallengeViewController: UIViewController {
         if (controller.viewType == "PENDING") {
             self.panGestureRecognizer.isEnabled = true
             let _ = controller.popChallenge()
+            
+            
+            for taker in (challenge?.takers)! {
+                if (taker.user._id == controller.user?._id && taker.accepted!) {
+                    imageView.layer.borderWidth = 5
+                    imageView.layer.borderColor = UIColor.green.cgColor
+                    isAccepted = true
+                    break
+                }
+            }
         }
         
         do {
@@ -88,6 +99,12 @@ class ViewChallengeViewController: UIViewController {
             }
         }
         
+        if (segue.identifier == "cameraSegue") {
+            let controller = segue.destination as? CameraController
+            controller?.challenge = self.challenge
+            controller?.user = naviController.user
+        }
+        
     }
     
     @IBAction func backBtnTapped(_ sender: Any) {
@@ -117,7 +134,11 @@ class ViewChallengeViewController: UIViewController {
         container.transform = CGAffineTransform(rotationAngle: xFromCenter/self.divisor!).scaledBy(x: scale, y: scale)
         
         if (xFromCenter > 0) {
-            actionImageView.image = #imageLiteral(resourceName: "accept")
+            if (isAccepted) {
+                actionImageView.image = #imageLiteral(resourceName: "complete")
+            } else {
+                actionImageView.image = #imageLiteral(resourceName: "accept")
+            }
         } else {
             actionImageView.image = #imageLiteral(resourceName: "reject")
         }
@@ -138,8 +159,13 @@ class ViewChallengeViewController: UIViewController {
                 UIView.animate(withDuration: 0.3, animations: {
                     container.center = CGPoint(x: container.center.x + 200, y: container.center.y + 75)
                 })
-                acceptChallenge()
-                self.reloadChallengeDetails()
+                
+                if (!isAccepted) {
+                    acceptChallenge()
+                    self.reloadChallengeDetails()
+                } else {
+                    completeChallenge()
+                }
             }
             
             UIView.animate(withDuration: 0.3, animations: {
@@ -184,6 +210,10 @@ class ViewChallengeViewController: UIViewController {
         
         delegate?.acceptChallenge(challenge: self.challenge!, challengeIndex: self.challengeIndex)
         challengeIndex += 1
+    }
+    
+    private func completeChallenge() {
+        performSegue(withIdentifier: "cameraSegue", sender: self)
     }
     
     private func reloadChallengeDetails() {

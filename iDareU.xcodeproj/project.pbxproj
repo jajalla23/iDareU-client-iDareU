@@ -67,11 +67,14 @@
 		76B1FBB02000A0C700402173 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B1FBAF2000A0C700402173 /* CommunityViewController.swift */; };
 		76B20006203400270040934B /* ProfileNaviController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B20005203400270040934B /* ProfileNaviController.swift */; };
 		76BD233F20302A4C00C360CA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BD233E20302A4C00C360CA /* MainViewController.swift */; };
+		76C3F8BE2063232B00266F7E /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C3F8BD2063232B00266F7E /* CameraController.swift */; };
 		76C555F42030BD240045603F /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C555F32030BD240045603F /* Media.swift */; };
 		76CDF83720200EF90098948C /* MyStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDF83620200EF90098948C /* MyStatusView.swift */; };
 		76CF47152021A0E700E7E5BF /* MeGenericViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CF47142021A0E700E7E5BF /* MeGenericViewController.swift */; };
 		76CF47172021AC3300E7E5BF /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CF47162021AC3300E7E5BF /* CreateViewController.swift */; };
 		76DDEEAB201929CD002CBE52 /* iDareU.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76DDEEA9201929CD002CBE52 /* iDareU.xcdatamodeld */; };
+		76DE5F5920646A140076DA4E /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DE5F5820646A140076DA4E /* Camera.storyboard */; };
+		76DE5F5B20646BA60076DA4E /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DE5F5A20646BA60076DA4E /* PreviewController.swift */; };
 		76E7396C202FE5CE00A2EDBC /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760F7F88201E7D86001A38BF /* TestData.swift */; };
 		76E7396E202FEA4400A2EDBC /* ViewChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7396D202FEA4400A2EDBC /* ViewChallengeViewController.swift */; };
 		76EA6B6A20211B9000AC40CA /* CreatedChallTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EA6B6920211B9000AC40CA /* CreatedChallTVCell.swift */; };
@@ -180,6 +183,7 @@
 		76B1FBAF2000A0C700402173 /* CommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		76B20005203400270040934B /* ProfileNaviController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNaviController.swift; sourceTree = "<group>"; };
 		76BD233E20302A4C00C360CA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		76C3F8BD2063232B00266F7E /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		76C555F32030BD240045603F /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		76C633B7202E5E040075E144 /* AWSAuthCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAuthCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76C633B8202E5E040075E144 /* AWSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +192,8 @@
 		76CF47142021A0E700E7E5BF /* MeGenericViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeGenericViewController.swift; sourceTree = "<group>"; };
 		76CF47162021AC3300E7E5BF /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		76DDEEAA201929CD002CBE52 /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
+		76DE5F5820646A140076DA4E /* Camera.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
+		76DE5F5A20646BA60076DA4E /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
 		76E7396D202FEA4400A2EDBC /* ViewChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewChallengeViewController.swift; sourceTree = "<group>"; };
 		76E73970202FEB7800A2EDBC /* AWSMobileClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSMobileClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76EA6B6920211B9000AC40CA /* CreatedChallTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedChallTVCell.swift; sourceTree = "<group>"; };
@@ -413,6 +419,7 @@
 				7622385C202CDB3F00291AB6 /* ChallengeReward.storyboard */,
 				760531C4201FE87C009F9B05 /* ViewChallenge.storyboard */,
 				7692CE692033EA87001FFFBC /* Profile.storyboard */,
+				76DE5F5820646A140076DA4E /* Camera.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -447,6 +454,8 @@
 				76B20005203400270040934B /* ProfileNaviController.swift */,
 				7692CE6F2033F610001FFFBC /* MyFriendsTableViewController.swift */,
 				7692CE6D2033EE4D001FFFBC /* AddFriendsTableViewController.swift */,
+				76C3F8BD2063232B00266F7E /* CameraController.swift */,
+				76DE5F5A20646BA60076DA4E /* PreviewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -577,6 +586,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7650EA20200095080011125B /* LaunchScreen.storyboard in Resources */,
+				76DE5F5920646A140076DA4E /* Camera.storyboard in Resources */,
 				7675178E2009746400481464 /* Friends.storyboard in Resources */,
 				7629D8E8204A9857009C4A90 /* SelectTaker.storyboard in Resources */,
 				767637C1202E567F0038D9E2 /* awsconfiguration.json in Resources */,
@@ -805,6 +815,7 @@
 				767D1EA920250E6A0098DF47 /* SetupChallengeViewController.swift in Sources */,
 				76EC146320167E5B00C73DFC /* SignupViewController.swift in Sources */,
 				763B13F220217D97006DC47E /* SegueAnimation.swift in Sources */,
+				76C3F8BE2063232B00266F7E /* CameraController.swift in Sources */,
 				763BC54C2022D5D100F57BD4 /* Button.swift in Sources */,
 				765A09D82017BB5D0004A67D /* LoginViewController.swift in Sources */,
 				76B1FBB02000A0C700402173 /* CommunityViewController.swift in Sources */,
@@ -825,6 +836,7 @@
 				76BD233F20302A4C00C360CA /* MainViewController.swift in Sources */,
 				763BC54E2022D8F000F57BD4 /* SelectTakerTVCell.swift in Sources */,
 				76DDEEAB201929CD002CBE52 /* iDareU.xcdatamodeld in Sources */,
+				76DE5F5B20646BA60076DA4E /* PreviewController.swift in Sources */,
 				760531DB201FFD00009F9B05 /* Session.xcdatamodeld in Sources */,
 				76AA3F372020583E0038DAD9 /* PendingChallViewController.swift in Sources */,
 				7692CE702033F610001FFFBC /* MyFriendsTableViewController.swift in Sources */,

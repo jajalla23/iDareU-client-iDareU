@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FBSDKLoginKit
+import FBSDKCoreKit
 
 class MainViewController: UIViewController {
     private var user: User?
@@ -33,8 +35,19 @@ class MainViewController: UIViewController {
                     return
                 } catch let cError as CustomError {
                     print(cError)
+                    mainBtns.forEach {
+                        $0.isHidden = false
+                    }
+                    
+                    return
                 } catch let error {
                     print(error.localizedDescription)
+                    
+                    mainBtns.forEach {
+                        $0.isHidden = false
+                    }
+                    
+                    return
                 }
             }
         }
@@ -60,6 +73,8 @@ class MainViewController: UIViewController {
     }
 
     @IBAction func unwindToMain(segue: UIStoryboardSegue) {
+        FBSDKLoginManager().logOut()
+        
         let defaults = UserDefaults.standard
         if defaults.string(forKey: "session_id") != nil {
             defaults.removeObject(forKey: "session_id")

@@ -21,6 +21,7 @@ class MeInitialViewController: GenericUIViewController {
         
         // Do any additional setup after loading the view.
         //self.navigationController?.isNavigationBarHidden = true
+        self.navigationItem.title = user?.display_name ?? ""
         self.scrollView.contentSize = CGSize(width: containerView.frame.size.width, height: containerView.frame.size.height)
         self.scrollView.contentInsetAdjustmentBehavior = .never
         self.view.layoutIfNeeded()
@@ -28,15 +29,13 @@ class MeInitialViewController: GenericUIViewController {
         refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refresh(sender:)), for: UIControlEvents.valueChanged)
-        scrollView.refreshControl = self.refreshControl
-
-        //NSStringFromClass(self.classForCoder)
+        scrollView.refreshControl = self.refreshControl        
     }
     
     override func viewDidLayoutSubviews() {
         self.scrollView.isScrollEnabled = true
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -106,6 +105,9 @@ class MeInitialViewController: GenericUIViewController {
     
     private func logout() {
         self.performSegue(withIdentifier: "unwindToMain", sender: self)
+    }
+    
+    @IBAction func unwindToMe(segue: UIStoryboardSegue) {
     }
 }
 

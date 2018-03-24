@@ -1,17 +1,19 @@
 //
-//  CaptureViewController.swift
+//  CameraController.swift
 //  iDareU
 //
-//  Created by Jan Jajalla on 1/30/18.
+//  Created by Jan Jajalla on 3/21/18.
 //  Copyright © 2018 Jan Jajalla. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import AVFoundation
 
-class CreateViewController: GenericUIViewController {
-    
+class CameraController: UIViewController {
+    public var user: User?
+    public var challenge: ChallengeDetails?
+    public var taker: Taker?
+
     private var capturePhotoOutput: AVCapturePhotoOutput?
     private var capturedImage: UIImage?
     
@@ -34,12 +36,8 @@ class CreateViewController: GenericUIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
 
-        self.navigationController?.isNavigationBarHidden = true
-        let tabController = self.tabBarController as! RouterTabBarController
-        self.user = tabController.user
-        
+        // Do any additional setup after loading the view.
         cameraSettingsBtn.backgroundColor = UIColor(white: 1, alpha: 0.5)
         
         #if !SIMULATOR
@@ -49,12 +47,29 @@ class CreateViewController: GenericUIViewController {
             self.setupCaptureDevice()
             self.setupCamera()
         #endif
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showPreview") {
+            guard let controller = segue.destination as? PreviewController else {
+                return
+            }
+            controller.image = self.capturedImage
+            controller.user = self.user
+            controller.challenge = self.challenge
+        }
     }
     
     private func setupCaptureDevice() {
@@ -106,16 +121,16 @@ class CreateViewController: GenericUIViewController {
     
     @IBAction func onCaptureBtnTapped(_ sender: Any) {
         #if SIMULATOR
-            self.performSegue(withIdentifier: "previewSegue", sender: self)
+            self.performSegue(withIdentifier: "showPreview", sender: self)
         #endif
         
         guard let capturePhotoOutput = self.capturePhotoOutput else { return }
-
+        
         let photoSettings = AVCapturePhotoSettings()
         photoSettings.isAutoStillImageStabilizationEnabled = true
         photoSettings.isHighResolutionPhotoEnabled = true
         photoSettings.flashMode = self.flashMode!
-
+        
         capturePhotoOutput.capturePhoto(with: photoSettings, delegate: self as AVCapturePhotoCaptureDelegate)
     }
     
@@ -151,41 +166,12 @@ class CreateViewController: GenericUIViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "previewSegue") {
-            guard let controller = segue.destination as? PreviewViewController else {
-                return
-            }
-            controller.image = self.capturedImage
-            controller.user = self.user
-        }
-    }
-    
     @IBAction func onSettingsTapped(_ sender: Any) {
         UIView.animate(withDuration: 0.4) {
             self.cameraTools.forEach {
                 $0.isHidden = !$0.isHidden
             }
         }
-    }
-    
-    @IBAction func cameraRotateBtnTapped(_ sender: Any) {
-        if (self.capturePosition == AVCaptureDevice.Position.front) {
-            if let dualCameraDevice = AVCaptureDevice.default(.builtInDualCamera, for: AVMediaType.video, position: .back) {
-                self.captureDevice = dualCameraDevice
-            } else if let backCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .back) {
-                self.captureDevice = backCameraDevice
-            }
-            
-            self.capturePosition = AVCaptureDevice.Position.back
-            
-        } else {
-            if let frontCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .front) {
-                self.captureDevice = frontCameraDevice
-                self.capturePosition = AVCaptureDevice.Position.front
-            }
-        }
-        setupCamera()
     }
     
     @IBAction func cameraFlashBtnTapped(_ sender: Any) {
@@ -209,23 +195,17 @@ class CreateViewController: GenericUIViewController {
         
         captureDevice?.unlockForConfiguration()
     }
-    
-    @IBAction func unwindToCreate(segue: UIStoryboardSegue) {}
-    
-    func prepare(completionHandler: @escaping (Error?) -> Void) { }
-    
-    @IBAction func edgePanned(_ sender: UIScreenEdgePanGestureRecognizer) {
-        if (sender.edges == .right) {
-            let tabController = self.tabBarController as! RouterTabBarController
-            tabController.selectedIndex = 1
-        }
+
+    @IBAction func unwindToCamera(segue: UIStoryboardSegue) {
+        self.navigationController?.isNavigationBarHidden = true
     }
+
 }
 
-extension CreateViewController: AVCapturePhotoCaptureDelegate {
+extension CameraController: AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         let imageData = photo.fileDataRepresentation()
         self.capturedImage = UIImage.init(data: imageData! , scale: 1.0)
-        self.performSegue(withIdentifier: "previewSegue", sender: self)
+        self.performSegue(withIdentifier: "showPreview", sender: self)
     }
 }

@@ -130,7 +130,9 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
                 modifyAction = UIContextualAction(style: .normal, title:  "Complete", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
                     
                     //TODO
-                    print("complete the challenge")
+                    //print("complete the challenge")
+                    self.selectedIndex = indexPath.row
+                    self.performSegue(withIdentifier: "cameraSegue", sender: self)
                     success(true)
                 })
                 modifyAction?.backgroundColor = .blue
@@ -191,6 +193,12 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
             
                 controller.challengeList?.append(contentsOf: temp_array)
             }
+        }
+        
+        if (segue.identifier == "cameraSegue") {
+            let controller = segue.destination as? CameraController
+            controller?.challenge = self.user?.challenges?.pending![self.selectedIndex!]
+            controller?.user = self.user            
         }
     }
     

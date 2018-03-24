@@ -97,6 +97,7 @@
                         <outlet property="imageContainerView" destination="ab4-hX-brs" id="gtW-de-fle"/>
                         <outlet property="imageView" destination="NgO-oo-adn" id="KMq-NH-VRe"/>
                         <outlet property="panGestureRecognizer" destination="o6K-Ja-KxX" id="fbb-wU-4Kq"/>
+                        <segue destination="pPH-wV-ZPG" kind="show" identifier="cameraSegue" id="hS1-OH-hpD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YYE-Xp-aWp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -118,6 +119,14 @@
                 </screenEdgePanGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="668" y="56.157635467980299"/>
+        </scene>
+        <!--Camera-->
+        <scene sceneID="Vwb-E0-ZR3">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Camera" id="pPH-wV-ZPG" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XUb-53-bVC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="677" y="475"/>
         </scene>
         <!--View Challenge Navigation Controller-->
         <scene sceneID="WIg-KY-Ar2">

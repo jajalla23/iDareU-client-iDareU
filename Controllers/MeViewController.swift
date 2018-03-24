@@ -30,8 +30,16 @@ class MeViewController: MeGenericViewController {
     @IBOutlet weak var createdChallengesHeightConstr: NSLayoutConstraint!
     @IBOutlet weak var createdChallengesView: UIView!
     @IBOutlet weak var sponsoredHeaderBtn: UIButton!
+    
+    public var completedChallengeViewController: CompletedChallengesViewController!
+    private var isCompletedChallengesExpanded: Bool = false
+    private var completedChallengeRowHeight: Int = 80
+    @IBOutlet weak var completedChallengesHeightConstr: NSLayoutConstraint!
+    @IBOutlet weak var completedChallengesView: UIView!
+    @IBOutlet weak var completedHeaderBtn: UIButton!
 
     private var statusViewLayer: CALayer?
+    private var isAlreadyShown: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,12 +48,31 @@ class MeViewController: MeGenericViewController {
         self.pendingViewController = self.childViewControllers[0] as! PendingChallengesViewController
         self.statusViewController = self.childViewControllers[1] as! StatusViewController
         self.createdChallengeViewController = self.childViewControllers[2] as! MyCreatedChallengesViewController
+        self.completedChallengeViewController = self.childViewControllers[3] as! CompletedChallengesViewController
+        
+        //created challenges minimized
+        self.createdChallengesHeightConstr.constant = 0
+        self.createdChallengesView.isHidden = true
+        
+        //completed challenges minimized
+        self.completedChallengesHeightConstr.constant = 0
+        self.completedChallengesView.isHidden = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.refreshAllViews), name: NSNotification.Name(rawValue: "refreshAllViewsOnMe"), object: nil)
+    }
 
-        statusViewLayer = myStatusView.layer.sublayers?[0]
-
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if isAlreadyShown {
+            return
+        }
+        
         if ((user?.challenges?.pending?.count ?? 0) > 0) {
             var height: CGFloat = CGFloat(self.pendingChallengeRowHeight * (self.user?.challenges?.pending?.count ?? 0))
-            
             if (height > PendingChallengesViewController.scrollViewMaxHeight) {
                 height = PendingChallengesViewController.scrollViewMaxHeight
             }
@@ -53,7 +80,7 @@ class MeViewController: MeGenericViewController {
             self.pendingChallengesHeightConstr.constant = height
             self.pendingChallengesView.isHidden = false
             self.pendingHeaderBtn.transform = self.pendingHeaderBtn.transform.rotated(by: CGFloat.pi)
-
+            
             self.myStatusHeightConstr.constant = 0
             statusViewLayer?.removeFromSuperlayer()
             self.myStatusView.isHidden = true
@@ -62,24 +89,15 @@ class MeViewController: MeGenericViewController {
             self.isPendingChallengesExpanded = false
             self.pendingChallengesHeightConstr.constant = 0
             self.pendingChallengesView.isHidden = true
-
+            
             self.isMyStatusExpanded = true
             self.myStatusHeightConstr.constant = StatusViewController.statusViewHeight
             self.myStatusView.isHidden = false
             self.statusHeaderBtn.transform = self.statusHeaderBtn.transform.rotated(by: CGFloat.pi)
-
         }
         
-        //created challenges minimized
-        self.createdChallengesHeightConstr.constant = 0
-        self.createdChallengesView.isHidden = true
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.refreshAllViews), name: NSNotification.Name(rawValue: "refreshAllViewsOnMe"), object: nil)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        statusViewLayer = myStatusView.layer.sublayers?[0]
+        isAlreadyShown = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -116,8 +134,6 @@ class MeViewController: MeGenericViewController {
     }
     
     private func toggleStatus() {
-        self.toggleStatusView()
-        
         if self.isCreatedChallengesExpanded {
             self.toggleCreatedChallengesView()
         }
@@ -130,7 +146,12 @@ class MeViewController: MeGenericViewController {
             self.toggleCreatedChallengesView()
         }
         
-        //TODO: toggle completed challenges
+        if self.isCompletedChallengesExpanded {
+            self.toggleCompleted()
+        }
+        
+        self.toggleStatusView()
+
         delegate?.adjustView(meViewController: self)
     }
     
@@ -139,8 +160,6 @@ class MeViewController: MeGenericViewController {
             return
         }
         
-        self.togglePendingChallengesView()
-        
         if self.isMyStatusExpanded {
             self.toggleStatusView()
         }
@@ -149,7 +168,12 @@ class MeViewController: MeGenericViewController {
             self.toggleCreatedChallengesView()
         }
         
-        //TODO: toggle completed challenges
+        if self.isCompletedChallengesExpanded {
+            self.toggleCompleted()
+        }
+        
+        self.togglePendingChallengesView()
+        
         delegate?.adjustView(meViewController: self)
     }
     
@@ -158,8 +182,6 @@ class MeViewController: MeGenericViewController {
             return
         }
         
-        self.toggleCreatedChallengesView()
-        
         if self.isMyStatusExpanded {
             self.toggleStatusView()
         }
@@ -167,6 +189,12 @@ class MeViewController: MeGenericViewController {
         if self.isPendingChallengesExpanded {
             self.togglePendingChallengesView()
         }
+        
+        if self.isCompletedChallengesExpanded {
+            self.toggleCompleted()
+        }
+        
+        self.toggleCreatedChallengesView()
         
         delegate?.adjustView(meViewController: self)
     }
@@ -176,15 +204,19 @@ class MeViewController: MeGenericViewController {
             return
         }
         
-        self.toggleCompletedChallengesView()
+        if self.isPendingChallengesExpanded {
+            self.togglePendingChallengesView()
+        }
         
         if self.isMyStatusExpanded {
             self.toggleStatusView()
         }
         
-        if self.isPendingChallengesExpanded {
-            self.togglePendingChallengesView()
+        if self.isCreatedChallengesExpanded {
+            self.toggleCreatedChallengesView()
         }
+        
+        self.toggleCompletedChallengesView()
 
         delegate?.adjustView(meViewController: self)
     }
@@ -232,7 +264,7 @@ class MeViewController: MeGenericViewController {
                 if (height > PendingChallengesViewController.scrollViewMaxHeight) {
                     height = PendingChallengesViewController.scrollViewMaxHeight
                 }
-                
+
                 self.pendingChallengesHeightConstr.constant = height
                 self.pendingChallengesView.isHidden = !self.pendingChallengesView.isHidden
                 self.pendingHeaderBtn.transform = self.pendingHeaderBtn.transform.rotated(by: CGFloat.pi)
@@ -277,7 +309,34 @@ class MeViewController: MeGenericViewController {
     }
     
     private func toggleCompletedChallengesView() {
+        if (isCompletedChallengesExpanded) {
+            UIView.animate(withDuration: 1.0, animations: {
+                self.completedChallengesView.isHidden = !self.completedChallengesView.isHidden
+                self.completedChallengeViewController.collapseView()
+                self.completedHeaderBtn.transform = self.completedHeaderBtn.transform.rotated(by: CGFloat.pi)
+                
+            }, completion: { (finished: Bool) in
+                self.completedChallengesHeightConstr.constant = 0
+                self.view.layoutIfNeeded()
+            })
+        } else {
+            UIView.animate(withDuration: 1.0, animations: {
+                var height: CGFloat = CGFloat(self.completedChallengeRowHeight * (self.user?.challenges?.completed?.count ?? 0))
+                
+                if (height > CompletedChallengesViewController.scrollViewMaxHeight) {
+                    height = CompletedChallengesViewController.scrollViewMaxHeight
+                }
+                
+                self.completedChallengeViewController.expandView()
+                self.completedChallengesHeightConstr.constant = height
+                self.completedHeaderBtn.transform = self.completedHeaderBtn.transform.rotated(by: CGFloat.pi)
+                
+                self.completedChallengesView.isHidden = !self.completedChallengesView.isHidden
+                self.view.layoutIfNeeded()
+            })
+        }
         
+        isCompletedChallengesExpanded = !isCompletedChallengesExpanded
     }
     
     @objc func refreshAllViews(){
