@@ -110,18 +110,17 @@ class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDat
             }
         }
         
-        if (!hasCompleted) {
-            return nil
+        if (hasCompleted) {
+            let modifyAction = UIContextualAction(style: .normal, title:  "View Responses", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+                self.performSegue(withIdentifier: "viewResponseSegue", sender: currentChallenge)
+                success(true)
+            })
+            modifyAction.backgroundColor = .blue
+            
+            return UISwipeActionsConfiguration(actions: [modifyAction])
         }
         
-        let modifyAction = UIContextualAction(style: .normal, title:  "View Responses", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-
-            self.performSegue(withIdentifier: "viewResponseSegue", sender: currentChallenge)
-            success(true)
-        })
-        modifyAction.backgroundColor = .blue
-        
-        return UISwipeActionsConfiguration(actions: [modifyAction])
+        return nil
     }
     
     // MARK: - Navigation

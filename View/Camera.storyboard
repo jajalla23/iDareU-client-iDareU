@@ -25,7 +25,6 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="udY-rE-ptq" appends="YES" id="IQT-P3-5DP"/>
-                                    <outletCollection property="gestureRecognizers" destination="QXO-w8-fKE" appends="YES" id="JLh-4g-tGd"/>
                                 </connections>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Dki-w1-aAe" userLabel="Camera Tools">
@@ -114,12 +113,6 @@
                 <exit id="9W8-Ku-z2I" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="SVO-29-ETi"/>
                 <pinchGestureRecognizer id="udY-rE-ptq"/>
-                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="QXO-w8-fKE">
-                    <rectEdge key="edges" right="YES"/>
-                    <connections>
-                        <action selector="edgePanned:" destination="bIw-4Z-i1I" id="D8r-1P-ywj"/>
-                    </connections>
-                </screenEdgePanGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="536.79999999999995" y="-99.01477832512316"/>
         </scene>

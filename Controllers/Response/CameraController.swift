@@ -178,6 +178,25 @@ class CameraController: UIViewController {
         }
     }
     
+    @IBAction func cameraRotateBtnTapped(_ sender: Any) {
+        if (self.capturePosition == AVCaptureDevice.Position.front) {
+            if let dualCameraDevice = AVCaptureDevice.default(.builtInDualCamera, for: AVMediaType.video, position: .back) {
+                self.captureDevice = dualCameraDevice
+            } else if let backCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .back) {
+                self.captureDevice = backCameraDevice
+            }
+            
+            self.capturePosition = AVCaptureDevice.Position.back
+            
+        } else {
+            if let frontCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .front) {
+                self.captureDevice = frontCameraDevice
+                self.capturePosition = AVCaptureDevice.Position.front
+            }
+        }
+        setupCamera()
+    }
+    
     @IBAction func cameraFlashBtnTapped(_ sender: Any) {
         do {
             try captureDevice?.lockForConfiguration()

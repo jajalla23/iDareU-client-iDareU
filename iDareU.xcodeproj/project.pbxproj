@@ -419,7 +419,7 @@
 			path = ViewChallenge;
 			sourceTree = "<group>";
 		};
-		765C3A4620683459003F2953 /* ViewResponse */ = {
+		765C3A4620683459003F2953 /* Response */ = {
 			isa = PBXGroup;
 			children = (
 				76C3F8BD2063232B00266F7E /* CameraController.swift */,
@@ -428,7 +428,7 @@
 				765C3A4720683614003F2953 /* ViewResponse.swift */,
 				76A647942068490500CCFB5A /* RespLabelController.swift */,
 			);
-			path = ViewResponse;
+			path = Response;
 			sourceTree = "<group>";
 		};
 		7692CE712033F91F001FFFBC /* Cell */ = {
@@ -497,7 +497,7 @@
 				765C3A44206833DB003F2953 /* Create */,
 				765C3A43206833CF003F2953 /* Me */,
 				765C3A4520683400003F2953 /* ViewChallenge */,
-				765C3A4620683459003F2953 /* ViewResponse */,
+				765C3A4620683459003F2953 /* Response */,
 				76BD233E20302A4C00C360CA /* MainViewController.swift */,
 				76FC08EC201ED323008F9902 /* GenericUIViewController.swift */,
 				76EC146220167E5B00C73DFC /* SignupViewController.swift */,
