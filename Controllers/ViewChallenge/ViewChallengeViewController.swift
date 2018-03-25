@@ -24,7 +24,7 @@ class ViewChallengeViewController: UIViewController {
     @IBOutlet weak var actionImageView: UIImageView!
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     
-    override func viewDidLoad() {
+    /*override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
@@ -283,9 +283,10 @@ class ViewChallengeViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
         self.dismiss(animated: true, completion: nil)
     }
-    
+    */
 }
 
+/*
 protocol ViewChallengeDelegate {
     func rejectChallenge(challenge: ChallengeDetails, challengeIndex: Int)
     func acceptChallenge(challenge: ChallengeDetails, challengeIndex: Int)
@@ -319,4 +320,4 @@ extension ViewChallengeViewController: SelectTakerDelegate {
         }
     }
 }
-
+*/

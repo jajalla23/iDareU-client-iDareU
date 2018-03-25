@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Challenge View Controller-->
+        <!--View Challenge Controller-->
         <scene sceneID="H1b-J3-nhy">
             <objects>
-                <viewController id="XIF-Ks-bQz" customClass="ViewChallengeViewController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XIF-Ks-bQz" customClass="ViewChallengeController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="web-cz-bkk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -44,7 +44,7 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kps-9U-6QP">
-                                <rect key="frame" x="0.0" y="194" width="375" height="425"/>
+                                <rect key="frame" x="0.0" y="193.66666666666663" width="375" height="425"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="425" id="DjX-xg-hlk"/>
                                 </constraints>
@@ -97,7 +97,6 @@
                         <outlet property="imageContainerView" destination="ab4-hX-brs" id="gtW-de-fle"/>
                         <outlet property="imageView" destination="NgO-oo-adn" id="KMq-NH-VRe"/>
                         <outlet property="panGestureRecognizer" destination="o6K-Ja-KxX" id="fbb-wU-4Kq"/>
-                        <segue destination="pPH-wV-ZPG" kind="show" identifier="cameraSegue" id="hS1-OH-hpD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YYE-Xp-aWp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -118,7 +117,27 @@
                     </connections>
                 </screenEdgePanGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="668" y="56.157635467980299"/>
+            <point key="canvasLocation" x="-2188" y="1017"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="4xJ-Pb-yqM">
+            <objects>
+                <viewController id="g47-r2-roR" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cJf-9O-coQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="hIx-i3-DWe"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="PNt-ho-sAq"/>
+                    <connections>
+                        <segue destination="XIF-Ks-bQz" kind="show" id="3Pc-Jk-Dfd"/>
+                        <segue destination="9Kd-jD-jeB" kind="show" id="xA2-GR-D1X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="boq-8v-gTK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1116" y="146"/>
         </scene>
         <!--Camera-->
         <scene sceneID="Vwb-E0-ZR3">
@@ -126,7 +145,7 @@
                 <viewControllerPlaceholder storyboardName="Camera" id="pPH-wV-ZPG" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XUb-53-bVC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="677" y="475"/>
+            <point key="canvasLocation" x="-1078" y="1467"/>
         </scene>
         <!--View Challenge Navigation Controller-->
         <scene sceneID="WIg-KY-Ar2">
@@ -139,12 +158,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="XIF-Ks-bQz" kind="relationship" relationship="rootViewController" id="DZN-uY-aRz"/>
+                        <segue destination="g47-r2-roR" kind="relationship" relationship="rootViewController" id="p4p-17-XLc"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yff-dW-qNP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-284" y="56"/>
+            <point key="canvasLocation" x="-1116" y="-775"/>
         </scene>
         <!--SelectTaker-->
         <scene sceneID="Mdg-Vb-SQc">
@@ -152,7 +171,7 @@
                 <viewControllerPlaceholder storyboardName="SelectTaker" id="CnN-hT-FfI" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ae-4e-hyx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1462" y="-202"/>
+            <point key="canvasLocation" x="-2570" y="1468"/>
         </scene>
         <!--View Challenge Label Controller-->
         <scene sceneID="KHD-Nz-U1g">
@@ -204,11 +223,120 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2xA-Vo-Nh7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1572" y="56.527093596059117"/>
+            <point key="canvasLocation" x="-1689" y="1614"/>
+        </scene>
+        <!--View Accepted Challenge Controller-->
+        <scene sceneID="ZRS-ia-9aX">
+            <objects>
+                <viewController id="9Kd-jD-jeB" customClass="ViewAcceptedChallengeController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MMg-NO-s6v">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TJg-r5-dDx">
+                                <rect key="frame" x="16" y="143" width="343" height="580"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bNS-CR-Z7j">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="580"/>
+                                        <gestureRecognizers/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="accept" translatesAutoresizingMaskIntoConstraints="NO" id="eBn-u8-Xvu" userLabel="action">
+                                        <rect key="frame" x="0.0" y="173.66666666666669" width="343" height="233"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="bNS-CR-Z7j" secondAttribute="bottom" id="09R-2u-D74"/>
+                                    <constraint firstItem="eBn-u8-Xvu" firstAttribute="centerY" secondItem="TJg-r5-dDx" secondAttribute="centerY" id="2aa-YO-3wR"/>
+                                    <constraint firstItem="eBn-u8-Xvu" firstAttribute="centerX" secondItem="TJg-r5-dDx" secondAttribute="centerX" id="5Rv-ni-CLe"/>
+                                    <constraint firstItem="bNS-CR-Z7j" firstAttribute="top" secondItem="TJg-r5-dDx" secondAttribute="top" id="Cqb-nC-Qk1"/>
+                                    <constraint firstItem="bNS-CR-Z7j" firstAttribute="centerY" secondItem="TJg-r5-dDx" secondAttribute="centerY" id="ODJ-zy-s1j"/>
+                                    <constraint firstItem="eBn-u8-Xvu" firstAttribute="leading" secondItem="TJg-r5-dDx" secondAttribute="leading" id="RUc-Ek-XLR"/>
+                                    <constraint firstAttribute="trailing" secondItem="eBn-u8-Xvu" secondAttribute="trailing" id="S09-Fi-aYz"/>
+                                    <constraint firstItem="bNS-CR-Z7j" firstAttribute="centerX" secondItem="TJg-r5-dDx" secondAttribute="centerX" id="eSL-Ks-GFb"/>
+                                    <constraint firstItem="bNS-CR-Z7j" firstAttribute="leading" secondItem="TJg-r5-dDx" secondAttribute="leading" id="uMp-tg-2zj"/>
+                                    <constraint firstAttribute="trailing" secondItem="bNS-CR-Z7j" secondAttribute="trailing" id="xaP-sI-JcU"/>
+                                </constraints>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aod-eb-1q1">
+                                <rect key="frame" x="0.0" y="193.66666666666663" width="375" height="425"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="425" id="OFd-oP-taF"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="E1U-KG-BlK" kind="embed" id="2NL-BD-jMZ"/>
+                                </connections>
+                            </containerView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WJo-gE-lx9" userLabel="Pan View">
+                                <rect key="frame" x="16" y="136" width="343" height="587"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="ggi-Ln-FMl" appends="YES" id="GaK-1a-Yyn"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="74u-aR-5lw" firstAttribute="bottom" secondItem="TJg-r5-dDx" secondAttribute="bottom" constant="55" id="0IT-24-8y1"/>
+                            <constraint firstItem="TJg-r5-dDx" firstAttribute="leading" secondItem="74u-aR-5lw" secondAttribute="leading" constant="16" id="5aQ-jt-Ujj"/>
+                            <constraint firstItem="aod-eb-1q1" firstAttribute="trailing" secondItem="74u-aR-5lw" secondAttribute="trailing" id="JbQ-s2-SV9"/>
+                            <constraint firstItem="74u-aR-5lw" firstAttribute="trailing" secondItem="TJg-r5-dDx" secondAttribute="trailing" constant="16" id="ObM-y1-rIJ"/>
+                            <constraint firstItem="TJg-r5-dDx" firstAttribute="centerX" secondItem="MMg-NO-s6v" secondAttribute="centerX" id="OgB-Zl-WY4"/>
+                            <constraint firstItem="TJg-r5-dDx" firstAttribute="top" secondItem="74u-aR-5lw" secondAttribute="top" constant="55" id="SoE-b9-6Ng"/>
+                            <constraint firstItem="aod-eb-1q1" firstAttribute="centerY" secondItem="MMg-NO-s6v" secondAttribute="centerY" id="Xt0-Gh-2Pm"/>
+                            <constraint firstItem="aod-eb-1q1" firstAttribute="leading" secondItem="74u-aR-5lw" secondAttribute="leading" id="mvG-C3-SyS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="74u-aR-5lw"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="mNT-f0-eAZ" appends="YES" id="ULu-h6-uC8"/>
+                            <outletCollection property="gestureRecognizers" destination="veq-AV-Vi6" appends="YES" id="Pnm-2b-qyT"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="F78-M3-7E9">
+                        <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="PwE-Sv-KeJ">
+                            <connections>
+                                <action selector="backBtnTapped:" destination="9Kd-jD-jeB" id="SeE-Nx-eUJ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="second" id="XVR-rG-THj"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="actionImageView" destination="eBn-u8-Xvu" id="VfR-dc-M4G"/>
+                        <outlet property="challengeInfoView" destination="aod-eb-1q1" id="BNt-Zv-1lF"/>
+                        <outlet property="imageContainerView" destination="TJg-r5-dDx" id="ork-ag-F4M"/>
+                        <outlet property="imageView" destination="bNS-CR-Z7j" id="KDr-r9-ty9"/>
+                        <outlet property="panGestureRecognizer" destination="o6K-Ja-KxX" id="evE-O2-EEX"/>
+                        <segue destination="pPH-wV-ZPG" kind="show" identifier="cameraSegue" id="ehq-hG-9hb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bOq-85-f7D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="mNT-f0-eAZ">
+                    <connections>
+                        <action selector="screenTapped:" destination="9Kd-jD-jeB" id="hNp-GR-bWa"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer enabled="NO" minimumNumberOfTouches="1" id="ggi-Ln-FMl">
+                    <connections>
+                        <action selector="panHandler:" destination="9Kd-jD-jeB" id="Clj-T7-ApK"/>
+                    </connections>
+                </panGestureRecognizer>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="veq-AV-Vi6">
+                    <rectEdge key="edges" left="YES"/>
+                    <connections>
+                        <action selector="screenEdgePanned:" destination="9Kd-jD-jeB" id="aB0-BW-otV"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-1116" y="1017"/>
         </scene>
     </scenes>
     <resources>
         <image name="accept" width="352" height="233"/>
         <image name="second" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="2NL-BD-jMZ"/>
+    </inferredMetricsTieBreakers>
 </document>
