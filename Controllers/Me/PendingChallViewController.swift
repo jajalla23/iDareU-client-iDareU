@@ -151,9 +151,10 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
                 })
                 modifyAction?.backgroundColor = .green
             }
+            return UISwipeActionsConfiguration(actions: [modifyAction!])
         }
         
-        return UISwipeActionsConfiguration(actions: [modifyAction!])
+        return nil
     }
     
     private func adjustHeight() {
