@@ -19,18 +19,14 @@ class PreviewController: UIViewController {
     private var setupViewOriginY: CGFloat?
     
     @IBOutlet weak var previewImg: UIImageView!
+    @IBOutlet weak var errorLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.title = (challenge?.title ?? "") + " Response"
-        self.previewImg.image = self.image
-        
-        #if SIMULATOR
-            self.previewImg.image = #imageLiteral(resourceName: "Play")
-        #endif
-        
+        self.previewImg.image = self.image        
         self.previewImg.contentMode = .scaleAspectFit
     }
     
@@ -70,13 +66,20 @@ class PreviewController: UIViewController {
             try Server.completeChallenge(challenge_id: challenge!._id!, taker: taker!)
         } catch let c_error as CustomError {
             print(c_error)
+            errorHandling(message: c_error.description)
+            return
         } catch let error {
             print(error)
+            errorHandling(message: error.localizedDescription)
+            return
         }
         
         let timeoutResult = dispatchGroup.wait(timeout: DispatchTime.now() + 10)
         if (timeoutResult == .success) {
             DispatchQueue.main.async {
+                //update taker field
+                self.challenge?.replaceTaker(newTaker: self.taker!)
+                
                 //add challenge to completed
                 self.user?.challenges?.addCompletedChallenge(challengeDetail: self.challenge!)
                 
@@ -88,6 +91,7 @@ class PreviewController: UIViewController {
             }
         } else if (timeoutResult == .timedOut) {
             print("Server Error")
+            errorHandling(message: "Server Timed Out! Try Again")
             return
         }
         
@@ -103,6 +107,11 @@ class PreviewController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
+    }
+    
+    private func errorHandling(message: String) {
+        errorLabel.text = message
+        errorLabel.isHidden = false
     }
 }
 

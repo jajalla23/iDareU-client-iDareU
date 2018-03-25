@@ -121,19 +121,23 @@ class CameraController: UIViewController {
     }
     
     @IBAction func onCaptureBtnTapped(_ sender: Any) {
-        #if SIMULATOR
-            capturedImage = #imageLiteral(resourceName: "Play")
-            self.performSegue(withIdentifier: "showPreview", sender: self)
+        #if !SIMULATOR
+            guard let capturePhotoOutput = self.capturePhotoOutput else { return }
+            
+            let photoSettings = AVCapturePhotoSettings()
+            photoSettings.isAutoStillImageStabilizationEnabled = true
+            photoSettings.isHighResolutionPhotoEnabled = true
+            photoSettings.flashMode = self.flashMode!
+            
+            capturePhotoOutput.capturePhoto(with: photoSettings, delegate: self as AVCapturePhotoCaptureDelegate)
+            
+            return
         #endif
         
-        guard let capturePhotoOutput = self.capturePhotoOutput else { return }
-        
-        let photoSettings = AVCapturePhotoSettings()
-        photoSettings.isAutoStillImageStabilizationEnabled = true
-        photoSettings.isHighResolutionPhotoEnabled = true
-        photoSettings.flashMode = self.flashMode!
-        
-        capturePhotoOutput.capturePhoto(with: photoSettings, delegate: self as AVCapturePhotoCaptureDelegate)
+        #if SIMULATOR
+            capturedImage = ImageGenerator.imageWith(string: DateTime.getCurrentDateTime(), width: 100, height: 100, numOfLines: 2)
+            self.performSegue(withIdentifier: "showPreview", sender: self)
+        #endif
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

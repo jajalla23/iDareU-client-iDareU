@@ -61,7 +61,7 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
             print(challengePreview)
             cell.challengePrevImage.image = UIImage(named: "Play")
         } else {
-            cell.challengePrevImage.image = LetterImageGenerator.imageWith(name: (currChallenge?.sponsor?.display_name ?? "?"))
+            cell.challengePrevImage.image = ImageGenerator.imageWith(name: (currChallenge?.sponsor?.display_name ?? "?"))
         }
 
         cell.challengeTitleLbl.text = currChallenge?.title

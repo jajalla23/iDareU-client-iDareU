@@ -132,6 +132,12 @@ public class ChallengeDetails: Codable {
         self.takers?.append(taker)
     }
     
+    public func replaceTaker(newTaker: Taker) {
+        let temp = self.takers?.filter({$0.user._id != newTaker.user._id})
+        self.takers = temp
+        self.takers?.append(newTaker)
+    }
+    
     public func removeAllTakers() {
         self.takers?.removeAll()
     }

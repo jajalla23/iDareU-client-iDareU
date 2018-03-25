@@ -155,20 +155,33 @@
                                     <action selector="sendBtnTapped:" destination="tES-WL-3ml" eventType="touchDown" id="GuD-h6-i07"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ev4-m6-CBz">
+                                <rect key="frame" x="150" y="44" width="75" height="20"/>
+                                <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="5PC-Ld-0WC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ev4-m6-CBz" firstAttribute="centerX" secondItem="Vem-i6-uUc" secondAttribute="centerX" id="7jF-kL-FjN"/>
                             <constraint firstItem="NCA-pX-uL8" firstAttribute="leading" secondItem="Y03-F2-rtz" secondAttribute="leading" id="E9F-FK-end"/>
                             <constraint firstAttribute="bottomMargin" secondItem="NCA-pX-uL8" secondAttribute="bottom" id="GT9-0T-i30"/>
                             <constraint firstItem="Y03-F2-rtz" firstAttribute="trailing" secondItem="EvP-I1-lC0" secondAttribute="trailing" constant="10" id="PKv-Qp-med"/>
                             <constraint firstItem="NCA-pX-uL8" firstAttribute="trailing" secondItem="Y03-F2-rtz" secondAttribute="trailing" id="QuK-8I-YVP"/>
                             <constraint firstItem="EvP-I1-lC0" firstAttribute="top" secondItem="Y03-F2-rtz" secondAttribute="top" constant="10" id="RmT-0d-LgR"/>
                             <constraint firstItem="NCA-pX-uL8" firstAttribute="top" secondItem="Vem-i6-uUc" secondAttribute="topMargin" id="gDQ-xx-9fL"/>
+                            <constraint firstItem="ev4-m6-CBz" firstAttribute="top" secondItem="Y03-F2-rtz" secondAttribute="top" id="imS-0x-opn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Y03-F2-rtz"/>
                     </view>
                     <navigationItem key="navigationItem" id="YbQ-0l-8Ck"/>
                     <connections>
+                        <outlet property="errorLabel" destination="ev4-m6-CBz" id="7nM-4B-Ssd"/>
                         <outlet property="previewImg" destination="NCA-pX-uL8" id="czj-JO-ySi"/>
                         <segue destination="nWg-Fx-c2j" kind="unwind" identifier="previewUnwindSegue" unwindAction="unwindToMeWithSegue:" id="2Oo-f0-34n"/>
                     </connections>
@@ -176,7 +189,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NFT-OE-Ivz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="nWg-Fx-c2j" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1639" y="-99"/>
+            <point key="canvasLocation" x="1637.5999999999999" y="-99.01477832512316"/>
         </scene>
     </scenes>
     <resources>

@@ -32,3 +32,14 @@ public struct Queue<T>: ExpressibleByArrayLiteral {
         self.elements = elements
     }
 }
+
+public class DateTime {
+    public static func getCurrentDateTime() -> String {
+        let dateFormatter : DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = Date()
+        let dateString = dateFormatter.string(from: date)
+        //let interval = date.timeIntervalSince1970
+        return dateString
+    }
+}

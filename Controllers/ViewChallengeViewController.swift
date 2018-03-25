@@ -10,6 +10,7 @@ import UIKit
 
 class ViewChallengeViewController: UIViewController {
 
+    private let error_location = "/Controllers/ViewChallengeViewController.swift"
     var delegate: ViewChallengeDelegate?
     var challenge: ChallengeDetails?
     
@@ -54,11 +55,24 @@ class ViewChallengeViewController: UIViewController {
         }
         
         do {
-            let imageData = try Server.fetchMedia(mediaName: self.challenge!.media!.fileName, mediaType: self.challenge!.media!.type)
+            var media_name: String?
+            if (controller.viewType == "COMPLETED") {
+                if let taker = challenge?.takers?.first(where: {$0.user._id == controller.user?._id}) {
+                    media_name = taker.media?.fileName
+                } else {
+                    let cError: CustomError = CustomError.init(code: "001", description: "Missing Media Name", severity: .HIGH, location: error_location)
+                    throw cError
+                }
+            } else {
+                 media_name = challenge!.media!.fileName
+            }
             
+            let imageData = try Server.fetchMedia(mediaName: media_name!, mediaType: self.challenge!.media!.type)
             self.imageView.image = UIImage(data: imageData!, scale: 1.0)
             self.imageView.contentMode = .scaleAspectFit
             
+        } catch let cError as CustomError {
+            print(cError.description)
         } catch let error {
             print(error.localizedDescription)
         }
