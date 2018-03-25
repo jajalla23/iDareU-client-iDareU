@@ -105,50 +105,52 @@ class CreateViewController: GenericUIViewController {
     }
     
     @IBAction func onCaptureBtnTapped(_ sender: Any) {
-        #if SIMULATOR
-            self.performSegue(withIdentifier: "previewSegue", sender: self)
+        #if !SIMULATOR
+            guard let capturePhotoOutput = self.capturePhotoOutput else { return }
+
+            let photoSettings = AVCapturePhotoSettings()
+            photoSettings.isAutoStillImageStabilizationEnabled = true
+            photoSettings.isHighResolutionPhotoEnabled = true
+            photoSettings.flashMode = self.flashMode!
+
+            capturePhotoOutput.capturePhoto(with: photoSettings, delegate: self as AVCapturePhotoCaptureDelegate)
+            return
         #endif
         
-        guard let capturePhotoOutput = self.capturePhotoOutput else { return }
-
-        let photoSettings = AVCapturePhotoSettings()
-        photoSettings.isAutoStillImageStabilizationEnabled = true
-        photoSettings.isHighResolutionPhotoEnabled = true
-        photoSettings.flashMode = self.flashMode!
-
-        capturePhotoOutput.capturePhoto(with: photoSettings, delegate: self as AVCapturePhotoCaptureDelegate)
+        #if SIMULATOR
+            capturedImage = ImageGenerator.imageWith(string: (user?.display_name ?? "???") + " " + DateTime.getCurrentDateTime(), width: 100, height: 100, numOfLines: 2)
+            self.performSegue(withIdentifier: "previewSegue", sender: self)
+        #endif
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        #if SIMULATOR
-            return
-        #endif
-        
-        if (!(self.captureDevice?.isFocusPointOfInterestSupported)!) {
-            return
-        }
-        
-        let screenSize = view.bounds.size
-        if let touchPoint = touches.first {
-            let x = touchPoint.location(in: view).y / screenSize.height
-            let y = 1.0 - touchPoint.location(in: view).x / screenSize.width
-            let focusPoint = CGPoint(x: x, y: y)
+        #if !SIMULATOR
+            if (!(self.captureDevice?.isFocusPointOfInterestSupported)!) {
+                return
+            }
             
-            do {
-                try captureDevice?.lockForConfiguration()
+            let screenSize = view.bounds.size
+            if let touchPoint = touches.first {
+                let x = touchPoint.location(in: view).y / screenSize.height
+                let y = 1.0 - touchPoint.location(in: view).x / screenSize.width
+                let focusPoint = CGPoint(x: x, y: y)
                 
-                captureDevice?.focusPointOfInterest = focusPoint
-                //device.focusMode = .continuousAutoFocus
-                captureDevice?.focusMode = .autoFocus
-                //device.focusMode = .locked
-                captureDevice?.exposurePointOfInterest = focusPoint
-                captureDevice?.exposureMode = AVCaptureDevice.ExposureMode.continuousAutoExposure
-                captureDevice?.unlockForConfiguration()
+                do {
+                    try captureDevice?.lockForConfiguration()
+                    
+                    captureDevice?.focusPointOfInterest = focusPoint
+                    //device.focusMode = .continuousAutoFocus
+                    captureDevice?.focusMode = .autoFocus
+                    //device.focusMode = .locked
+                    captureDevice?.exposurePointOfInterest = focusPoint
+                    captureDevice?.exposureMode = AVCaptureDevice.ExposureMode.continuousAutoExposure
+                    captureDevice?.unlockForConfiguration()
+                }
+                catch {
+                    // just ignore
+                }
             }
-            catch {
-                // just ignore
-            }
-        }
+        #endif
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

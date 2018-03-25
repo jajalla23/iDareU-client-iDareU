@@ -135,41 +135,39 @@ class CameraController: UIViewController {
         #endif
         
         #if SIMULATOR
-            capturedImage = ImageGenerator.imageWith(string: DateTime.getCurrentDateTime(), width: 100, height: 100, numOfLines: 2)
+            capturedImage = ImageGenerator.imageWith(string: (user?.display_name ?? "???") + " " + DateTime.getCurrentDateTime(), width: 100, height: 100, numOfLines: 2)
             self.performSegue(withIdentifier: "showPreview", sender: self)
         #endif
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        #if SIMULATOR
-            return
-        #endif
-        
-        if (!(self.captureDevice?.isFocusPointOfInterestSupported)!) {
-            return
-        }
-        
-        let screenSize = view.bounds.size
-        if let touchPoint = touches.first {
-            let x = touchPoint.location(in: view).y / screenSize.height
-            let y = 1.0 - touchPoint.location(in: view).x / screenSize.width
-            let focusPoint = CGPoint(x: x, y: y)
+        #if !SIMULATOR
+            if (!(self.captureDevice?.isFocusPointOfInterestSupported)!) {
+                return
+            }
             
-            do {
-                try captureDevice?.lockForConfiguration()
+            let screenSize = view.bounds.size
+            if let touchPoint = touches.first {
+                let x = touchPoint.location(in: view).y / screenSize.height
+                let y = 1.0 - touchPoint.location(in: view).x / screenSize.width
+                let focusPoint = CGPoint(x: x, y: y)
                 
-                captureDevice?.focusPointOfInterest = focusPoint
-                //device.focusMode = .continuousAutoFocus
-                captureDevice?.focusMode = .autoFocus
-                //device.focusMode = .locked
-                captureDevice?.exposurePointOfInterest = focusPoint
-                captureDevice?.exposureMode = AVCaptureDevice.ExposureMode.continuousAutoExposure
-                captureDevice?.unlockForConfiguration()
+                do {
+                    try captureDevice?.lockForConfiguration()
+                    
+                    captureDevice?.focusPointOfInterest = focusPoint
+                    //device.focusMode = .continuousAutoFocus
+                    captureDevice?.focusMode = .autoFocus
+                    //device.focusMode = .locked
+                    captureDevice?.exposurePointOfInterest = focusPoint
+                    captureDevice?.exposureMode = AVCaptureDevice.ExposureMode.continuousAutoExposure
+                    captureDevice?.unlockForConfiguration()
+                }
+                catch {
+                    // just ignore
+                }
             }
-            catch {
-                // just ignore
-            }
-        }
+        #endif
     }
     
     @IBAction func onSettingsTapped(_ sender: Any) {

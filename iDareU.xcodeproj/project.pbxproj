@@ -69,9 +69,12 @@
 		76BD233F20302A4C00C360CA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BD233E20302A4C00C360CA /* MainViewController.swift */; };
 		76C3F8BE2063232B00266F7E /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C3F8BD2063232B00266F7E /* CameraController.swift */; };
 		76C555F42030BD240045603F /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C555F32030BD240045603F /* Media.swift */; };
+		76C96848206721B40018E270 /* ViewResponses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76C96847206721B40018E270 /* ViewResponses.storyboard */; };
 		76CDF83720200EF90098948C /* MyStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDF83620200EF90098948C /* MyStatusView.swift */; };
 		76CF47152021A0E700E7E5BF /* MeGenericViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CF47142021A0E700E7E5BF /* MeGenericViewController.swift */; };
 		76CF47172021AC3300E7E5BF /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CF47162021AC3300E7E5BF /* CreateViewController.swift */; };
+		76D4462A20672C8100273D6C /* ViewAllResponsesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D4462920672C8100273D6C /* ViewAllResponsesController.swift */; };
+		76D4462C20672FF700273D6C /* ViewResponseViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D4462B20672FF700273D6C /* ViewResponseViewCell.swift */; };
 		76DDEEAB201929CD002CBE52 /* iDareU.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76DDEEA9201929CD002CBE52 /* iDareU.xcdatamodeld */; };
 		76DE5F5920646A140076DA4E /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DE5F5820646A140076DA4E /* Camera.storyboard */; };
 		76DE5F5B20646BA60076DA4E /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DE5F5A20646BA60076DA4E /* PreviewController.swift */; };
@@ -86,7 +89,7 @@
 		76EC14672016864500C73DFC /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EC14662016864500C73DFC /* ValidationError.swift */; };
 		76EC1469201686DE00C73DFC /* SignupValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EC1468201686DE00C73DFC /* SignupValidationManager.swift */; };
 		76FB05B32016EE49006E3406 /* Tester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FB05B22016EE49006E3406 /* Tester.swift */; };
-		76FC08E9201ECBAB008F9902 /* CreatedChallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FC08E8201ECBAB008F9902 /* CreatedChallViewController.swift */; };
+		76FC08E9201ECBAB008F9902 /* SponsoredChallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FC08E8201ECBAB008F9902 /* SponsoredChallViewController.swift */; };
 		76FC08ED201ED323008F9902 /* GenericUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FC08EC201ED323008F9902 /* GenericUIViewController.swift */; };
 		CF5C1E8A87A5AB858324877C /* Pods_iDareUUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E0BA0D61879B3D7387BDC7D /* Pods_iDareUUITests.framework */; };
 /* End PBXBuildFile section */
@@ -189,9 +192,12 @@
 		76C633B7202E5E040075E144 /* AWSAuthCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAuthCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76C633B8202E5E040075E144 /* AWSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76C633B9202E5E040075E144 /* AWSMobileClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSMobileClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		76C96847206721B40018E270 /* ViewResponses.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ViewResponses.storyboard; sourceTree = "<group>"; };
 		76CDF83620200EF90098948C /* MyStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStatusView.swift; sourceTree = "<group>"; };
 		76CF47142021A0E700E7E5BF /* MeGenericViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeGenericViewController.swift; sourceTree = "<group>"; };
 		76CF47162021AC3300E7E5BF /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
+		76D4462920672C8100273D6C /* ViewAllResponsesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllResponsesController.swift; sourceTree = "<group>"; };
+		76D4462B20672FF700273D6C /* ViewResponseViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewResponseViewCell.swift; sourceTree = "<group>"; };
 		76DDEEAA201929CD002CBE52 /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
 		76DE5F5820646A140076DA4E /* Camera.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		76DE5F5A20646BA60076DA4E /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
@@ -206,7 +212,7 @@
 		76EC14662016864500C73DFC /* ValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
 		76EC1468201686DE00C73DFC /* SignupValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupValidationManager.swift; sourceTree = "<group>"; };
 		76FB05B22016EE49006E3406 /* Tester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tester.swift; sourceTree = "<group>"; };
-		76FC08E8201ECBAB008F9902 /* CreatedChallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedChallViewController.swift; sourceTree = "<group>"; };
+		76FC08E8201ECBAB008F9902 /* SponsoredChallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsoredChallViewController.swift; sourceTree = "<group>"; };
 		76FC08EC201ED323008F9902 /* GenericUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericUIViewController.swift; sourceTree = "<group>"; };
 		C39A2A0B395C8C0000E32A78 /* Pods-iDareU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iDareU.release.xcconfig"; path = "Pods/Target Support Files/Pods-iDareU/Pods-iDareU.release.xcconfig"; sourceTree = "<group>"; };
 		E7B6927FEBD7FABA885F4A44 /* Pods_iDareU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iDareU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -380,6 +386,7 @@
 				76E1BBD82066280800764131 /* CompletedChallTVCell.swift */,
 				763BC54D2022D8F000F57BD4 /* SelectTakerTVCell.swift */,
 				7692CE722033F97B001FFFBC /* FriendsTVCell.swift */,
+				76D4462B20672FF700273D6C /* ViewResponseViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -423,6 +430,7 @@
 				760531C4201FE87C009F9B05 /* ViewChallenge.storyboard */,
 				7692CE692033EA87001FFFBC /* Profile.storyboard */,
 				76DE5F5820646A140076DA4E /* Camera.storyboard */,
+				76C96847206721B40018E270 /* ViewResponses.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -447,7 +455,7 @@
 				76AA3F3220204BAB0038DAD9 /* MeViewController.swift */,
 				763688C02003036C00129279 /* StatusViewController.swift */,
 				76AA3F362020583E0038DAD9 /* PendingChallViewController.swift */,
-				76FC08E8201ECBAB008F9902 /* CreatedChallViewController.swift */,
+				76FC08E8201ECBAB008F9902 /* SponsoredChallViewController.swift */,
 				76AA3F38202058B90038DAD9 /* CompletedChallViewController.swift */,
 				762296F6200A930A00D09D12 /* FriendsViewController.swift */,
 				76B1FBAF2000A0C700402173 /* CommunityViewController.swift */,
@@ -459,6 +467,7 @@
 				7692CE6D2033EE4D001FFFBC /* AddFriendsTableViewController.swift */,
 				76C3F8BD2063232B00266F7E /* CameraController.swift */,
 				76DE5F5A20646BA60076DA4E /* PreviewController.swift */,
+				76D4462920672C8100273D6C /* ViewAllResponsesController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -604,6 +613,7 @@
 				765A09DF2017BF0C0004A67D /* Login.storyboard in Resources */,
 				7692CE6A2033EA87001FFFBC /* Profile.storyboard in Resources */,
 				7645385920012DB5004A96F7 /* Create.storyboard in Resources */,
+				76C96848206721B40018E270 /* ViewResponses.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -807,13 +817,14 @@
 				7696C998201698560074717E /* Server.swift in Sources */,
 				7645385F2001421C004A96F7 /* Extensions.swift in Sources */,
 				7630D9F72022C39B00C5603B /* PreviewViewController.swift in Sources */,
-				76FC08E9201ECBAB008F9902 /* CreatedChallViewController.swift in Sources */,
+				76FC08E9201ECBAB008F9902 /* SponsoredChallViewController.swift in Sources */,
 				76CDF83720200EF90098948C /* MyStatusView.swift in Sources */,
 				76789C9920205D9300024019 /* MeInitialViewController.swift in Sources */,
 				76AA3F39202058B90038DAD9 /* CompletedChallViewController.swift in Sources */,
 				765EF5682002EB33006B36B0 /* FriendViewModel.swift in Sources */,
 				76407EB32034161700163545 /* ServerResponseModel.swift in Sources */,
 				7629D8EA204A9FA9009C4A90 /* TakerNavigationController.swift in Sources */,
+				76D4462C20672FF700273D6C /* ViewResponseViewCell.swift in Sources */,
 				7627C2EE204892EB008A0074 /* Data.swift in Sources */,
 				767D1EA920250E6A0098DF47 /* SetupChallengeViewController.swift in Sources */,
 				76EC146320167E5B00C73DFC /* SignupViewController.swift in Sources */,
@@ -831,6 +842,7 @@
 				763688C12003036C00129279 /* StatusViewController.swift in Sources */,
 				76CF47152021A0E700E7E5BF /* MeGenericViewController.swift in Sources */,
 				76EC14652016861E00C73DFC /* SignupFormValidationModel.swift in Sources */,
+				76D4462A20672C8100273D6C /* ViewAllResponsesController.swift in Sources */,
 				76E1BBD92066280800764131 /* CompletedChallTVCell.swift in Sources */,
 				7650EA16200095080011125B /* CaptureVideoViewController.swift in Sources */,
 				762296F9200A961900D09D12 /* FriendFeedViewCell.swift in Sources */,

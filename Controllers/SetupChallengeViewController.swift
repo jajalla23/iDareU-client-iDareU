@@ -45,10 +45,6 @@ class SetupChallengeViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        #if SIMULATOR
-            self.image = UIImage(named: "Play")
-        #endif
-        
         let availHalf = (user?.jans?.available ?? 0) / 2
         challengeRewardBtn.setTitle("J \(availHalf)", for: .normal)
     }

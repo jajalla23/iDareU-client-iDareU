@@ -65,6 +65,21 @@ class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDat
         cell.challengeTitleLbl.text = currChallenge?.title
         cell.challengeRewardLbl.text = "J \(currChallenge?.reward.description ?? "0")"
         
+        var accepted: Int = 0
+        if (currChallenge?.takers != nil) {
+            for taker in (currChallenge?.takers)! {
+                if taker.accepted! {
+                    cell.trailerView.backgroundColor = UIColor.blue
+                    accepted += 1
+                }
+            }
+            let a: Double = Double(accepted)
+            let b: Double = Double((currChallenge?.takers?.count)!)
+            cell.trailerView.alpha = (currChallenge?.takers?.count == 0) ? 0 : CGFloat(a/b)
+        } else {
+            cell.trailerView.alpha = 0
+        }
+        
         return cell
     }
     
@@ -81,19 +96,32 @@ class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDat
         }
     }
     
-    private func adjustHeight() {
-        let tableViewHeight: CGFloat = CGFloat(80 * (self.user?.challenges?.sponsored?.count ?? 0))
-        self.tableView.frame.size.height = tableViewHeight
+    func tableView(_ tableView: UITableView,
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        self.scrollView.contentSize = CGSize(width: self.tableView.frame.size.width, height: tableViewHeight)
-        
-        if (tableViewHeight > MyCreatedChallengesViewController.scrollViewMaxHeight) {
-            self.scrollView.frame.size.height = MyCreatedChallengesViewController.scrollViewMaxHeight
-        } else {
-            self.scrollView.frame.size.height = tableViewHeight
+        var hasCompleted = false
+        let currentChallenge = user?.challenges?.sponsored![indexPath.row]
+        if (currentChallenge?.takers != nil) {
+            for taker in currentChallenge!.takers! {
+                if (taker.accepted)! {
+                    hasCompleted = true
+                    break
+                }
+            }
         }
         
-        self.view.layoutIfNeeded()
+        if (!hasCompleted) {
+            return nil
+        }
+        
+        let modifyAction = UIContextualAction(style: .normal, title:  "View Responses", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+
+            self.performSegue(withIdentifier: "viewResponseSegue", sender: currentChallenge)
+            success(true)
+        })
+        modifyAction.backgroundColor = .blue
+        
+        return UISwipeActionsConfiguration(actions: [modifyAction])
     }
     
     // MARK: - Navigation
@@ -107,6 +135,28 @@ class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDat
             controller.challengeList = [self.selectedChallenge!]
             controller.navigationItem.hidesBackButton = false
         }
+        
+        if (segue.identifier == "viewResponseSegue") {
+            let controller = segue.destination as! ViewAllResponsesController
+            let selected = sender as! ChallengeDetails
+            controller.takers = selected.takers
+            controller.user = self.user
+        }
+    }
+    
+    private func adjustHeight() {
+        let tableViewHeight: CGFloat = CGFloat(80 * (self.user?.challenges?.sponsored?.count ?? 0))
+        self.tableView.frame.size.height = tableViewHeight
+        
+        self.scrollView.contentSize = CGSize(width: self.tableView.frame.size.width, height: tableViewHeight)
+        
+        if (tableViewHeight > MyCreatedChallengesViewController.scrollViewMaxHeight) {
+            self.scrollView.frame.size.height = MyCreatedChallengesViewController.scrollViewMaxHeight
+        } else {
+            self.scrollView.frame.size.height = tableViewHeight
+        }
+        
+        self.view.layoutIfNeeded()
     }
     
     func collapseView() {

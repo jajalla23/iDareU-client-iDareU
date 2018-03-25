@@ -48,6 +48,7 @@ class PreviewController: UIViewController {
         
         let dispatchGroup = DispatchGroup()
         self.taker?.completed = true
+        self.taker?.completedTimestamp = DateTime.getCurrentDateTime()
         self.taker?.addMedia(fileName: uuid.uuidString, type: "image/jpg", imagePrevURL: nil)
         
         do {

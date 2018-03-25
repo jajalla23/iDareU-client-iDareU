@@ -21,7 +21,7 @@ class MeInitialViewController: GenericUIViewController {
         
         // Do any additional setup after loading the view.
         //self.navigationController?.isNavigationBarHidden = true
-        self.navigationItem.title = user?.display_name ?? ""
+        self.navigationItem.title = (user?.display_name ?? "") + "'s Profile"
         self.scrollView.contentSize = CGSize(width: containerView.frame.size.width, height: containerView.frame.size.height)
         self.scrollView.contentInsetAdjustmentBehavior = .never
         self.view.layoutIfNeeded()

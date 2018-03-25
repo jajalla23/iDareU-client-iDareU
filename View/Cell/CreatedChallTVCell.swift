@@ -14,6 +14,7 @@ class CreatedChallengeTableViewCell: UITableViewCell {
     @IBOutlet weak var challengeTitleLbl: UILabel!
     @IBOutlet weak var challengeDescLbl: UILabel!
     @IBOutlet weak var challengeRewardLbl: UILabel!
+    @IBOutlet weak var trailerView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

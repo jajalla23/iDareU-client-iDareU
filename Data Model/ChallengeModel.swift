@@ -162,7 +162,7 @@ public class ChallengeDetails: Codable {
 public class Taker: Codable {
     public var user: User
     public var completed: Bool?
-    public var completedTimestamp: Date?
+    public var completedTimestamp: String?
     public var accepted: Bool?
     public var acceptedTimestamp: String?
     public var media: Media?

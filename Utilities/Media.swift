@@ -43,16 +43,16 @@ public class MediaUtilities {
 
 class ImageGenerator: NSObject {
     class func imageWith(name: String?) -> UIImage? {
-        return self.imageWith(name: name, width: 40, height: 40)
+        return self.imageWith(name: name, width: 40, height: 40, fontSize: 20)
     }
     
-    class func imageWith(name: String?, width: Int, height: Int) -> UIImage? {
+    class func imageWith(name: String?, width: CGFloat, height: CGFloat, fontSize: CGFloat) -> UIImage? {
         let frame = CGRect(x: 0, y: 0, width: width, height: height)
         let nameLabel = UILabel(frame: frame)
         nameLabel.textAlignment = .center
         nameLabel.backgroundColor = .lightGray
         nameLabel.textColor = .white
-        nameLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        nameLabel.font = UIFont.boldSystemFont(ofSize: fontSize)
         var initials = ""
         if let initialsArray = name?.components(separatedBy: " ") {
             if let firstWord = initialsArray.first {
