@@ -9,6 +9,6 @@
 import UIKit
 
 class ViewResponseViewCell: UICollectionViewCell {
-    
+    var taker: Taker?
     @IBOutlet weak var responseImage: UIImageView!
 }

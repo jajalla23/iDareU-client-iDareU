@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -48,13 +49,164 @@
                             <outlet property="delegate" destination="JM4-Rt-C8H" id="heZ-2d-WCi"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" id="DTX-0y-SYk"/>
                     <connections>
                         <outlet property="responseCollView" destination="7Ep-ur-Uyb" id="zke-bN-LWJ"/>
+                        <segue destination="aat-Xb-ee0" kind="show" identifier="viewResponseSegue" id="FIP-IM-JYM"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q3Q-w3-6UP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="169" y="180"/>
+            <point key="canvasLocation" x="511.19999999999999" y="179.55665024630542"/>
+        </scene>
+        <!--View Response Controller-->
+        <scene sceneID="rjt-rg-tbw">
+            <objects>
+                <viewController id="aat-Xb-ee0" customClass="ViewResponseController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uoe-eB-7bW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yIH-fs-9SH">
+                                <rect key="frame" x="16" y="99" width="343" height="624"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kxg-eI-p6d">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="624"/>
+                                        <gestureRecognizers/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="accept" translatesAutoresizingMaskIntoConstraints="NO" id="5Wb-GE-k1s" userLabel="action">
+                                        <rect key="frame" x="0.0" y="195.66666666666669" width="343" height="233"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="kxg-eI-p6d" firstAttribute="centerY" secondItem="yIH-fs-9SH" secondAttribute="centerY" id="4gr-is-W3L"/>
+                                    <constraint firstItem="5Wb-GE-k1s" firstAttribute="leading" secondItem="yIH-fs-9SH" secondAttribute="leading" id="JIA-GR-rAk"/>
+                                    <constraint firstItem="5Wb-GE-k1s" firstAttribute="centerY" secondItem="yIH-fs-9SH" secondAttribute="centerY" id="L0f-hU-MOR"/>
+                                    <constraint firstItem="kxg-eI-p6d" firstAttribute="centerX" secondItem="yIH-fs-9SH" secondAttribute="centerX" id="OQF-Zb-a3T"/>
+                                    <constraint firstAttribute="trailing" secondItem="5Wb-GE-k1s" secondAttribute="trailing" id="Oxd-QC-bxe"/>
+                                    <constraint firstItem="5Wb-GE-k1s" firstAttribute="centerX" secondItem="yIH-fs-9SH" secondAttribute="centerX" id="QYQ-hP-4o7"/>
+                                    <constraint firstItem="kxg-eI-p6d" firstAttribute="top" secondItem="yIH-fs-9SH" secondAttribute="top" id="ZYb-qL-YjB"/>
+                                    <constraint firstAttribute="bottom" secondItem="kxg-eI-p6d" secondAttribute="bottom" id="esX-WG-S5r"/>
+                                    <constraint firstAttribute="trailing" secondItem="kxg-eI-p6d" secondAttribute="trailing" id="nvA-ab-SHc"/>
+                                    <constraint firstItem="kxg-eI-p6d" firstAttribute="leading" secondItem="yIH-fs-9SH" secondAttribute="leading" id="wAa-Hb-TTg"/>
+                                </constraints>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pGA-nO-n0E">
+                                <rect key="frame" x="0.0" y="194" width="375" height="425"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="425" id="YC8-C6-sJ7"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="9QN-OH-tmR" kind="embed" identifier="responseLabelSegue" id="75A-Ky-2Bd"/>
+                                </connections>
+                            </containerView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vBq-fS-7Mm" userLabel="Pan View">
+                                <rect key="frame" x="16" y="136" width="343" height="587"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="rh5-bz-sga" appends="YES" id="Clg-yU-zGd"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="pGA-nO-n0E" firstAttribute="trailing" secondItem="6ZY-PO-r31" secondAttribute="trailing" id="22H-Q7-BIz"/>
+                            <constraint firstItem="6ZY-PO-r31" firstAttribute="trailing" secondItem="yIH-fs-9SH" secondAttribute="trailing" constant="16" id="2Dc-WZ-B0l"/>
+                            <constraint firstItem="yIH-fs-9SH" firstAttribute="top" secondItem="6ZY-PO-r31" secondAttribute="top" constant="55" id="6VU-ym-XSw"/>
+                            <constraint firstItem="yIH-fs-9SH" firstAttribute="centerX" secondItem="uoe-eB-7bW" secondAttribute="centerX" id="OBX-1V-3CX"/>
+                            <constraint firstItem="6ZY-PO-r31" firstAttribute="bottom" secondItem="yIH-fs-9SH" secondAttribute="bottom" constant="55" id="TfQ-DH-zC0"/>
+                            <constraint firstItem="pGA-nO-n0E" firstAttribute="leading" secondItem="6ZY-PO-r31" secondAttribute="leading" id="Wvb-gm-Xcq"/>
+                            <constraint firstItem="yIH-fs-9SH" firstAttribute="leading" secondItem="6ZY-PO-r31" secondAttribute="leading" constant="16" id="Y0B-3A-3Fu"/>
+                            <constraint firstItem="pGA-nO-n0E" firstAttribute="centerY" secondItem="uoe-eB-7bW" secondAttribute="centerY" id="oWl-V6-VUX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6ZY-PO-r31"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="IP4-zR-jAG" appends="YES" id="xyh-HV-SUy"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="Dmp-0X-jh4"/>
+                    <connections>
+                        <outlet property="actionImageView" destination="5Wb-GE-k1s" id="VrU-RN-3Ld"/>
+                        <outlet property="challengeInfoView" destination="pGA-nO-n0E" id="RTG-MC-ObK"/>
+                        <outlet property="imageContainerView" destination="yIH-fs-9SH" id="SMo-rY-pCQ"/>
+                        <outlet property="imageView" destination="kxg-eI-p6d" id="Wne-ef-4Sm"/>
+                        <outlet property="panGestureRecognizer" destination="rh5-bz-sga" id="P9o-ui-uwE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1PW-3n-rTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="IP4-zR-jAG">
+                    <connections>
+                        <action selector="screenTapped:" destination="aat-Xb-ee0" id="TRY-kG-yoC"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer enabled="NO" minimumNumberOfTouches="1" id="rh5-bz-sga">
+                    <connections>
+                        <action selector="panHandler:" destination="aat-Xb-ee0" id="CX6-JR-u2l"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1516" y="179.55665024630542"/>
+        </scene>
+        <!--Response Label Controller-->
+        <scene sceneID="GaU-r9-UZQ">
+            <objects>
+                <viewController id="9QN-OH-tmR" customClass="ResponseLabelController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JJG-lS-B9P">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="425"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="J 100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBH-W9-cH0" userLabel="Reward Value">
+                                <rect key="frame" x="0.0" y="5" width="375" height="71.666666666666671"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="60"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I DARE YOU TO CHALLENGE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eR3-md-0Io" userLabel="Challenge Info">
+                                <rect key="frame" x="0.0" y="121.66666666666666" width="375" height="107.66666666666666"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="45"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9T-u9-OwF" userLabel="Challenge Desc">
+                                <rect key="frame" x="0.0" y="269.33333333333331" width="375" height="149.33333333333331"/>
+                                <string key="text">Lorem ipsum dolor sit amet, ex alia mediocritatem usu. In laudem propriae duo, doctus aliquid praesent ad pro, detraxit sapientem et vis</string>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="v9T-u9-OwF" firstAttribute="leading" secondItem="JJG-lS-B9P" secondAttribute="leading" id="Deg-oo-do9"/>
+                            <constraint firstAttribute="trailing" secondItem="v9T-u9-OwF" secondAttribute="trailing" id="ErH-6j-spm"/>
+                            <constraint firstItem="eR3-md-0Io" firstAttribute="leading" secondItem="JJG-lS-B9P" secondAttribute="leading" id="MFq-X7-trv"/>
+                            <constraint firstItem="eR3-md-0Io" firstAttribute="top" secondItem="LBH-W9-cH0" secondAttribute="bottom" constant="45" id="gJ0-v2-cK6" userLabel="Challenge Info.top = Reward Value.bottom + 40"/>
+                            <constraint firstItem="v9T-u9-OwF" firstAttribute="top" secondItem="eR3-md-0Io" secondAttribute="bottom" constant="40" id="lHt-u6-cS9"/>
+                            <constraint firstAttribute="trailing" secondItem="eR3-md-0Io" secondAttribute="trailing" id="sMV-K3-DX3"/>
+                            <constraint firstItem="LBH-W9-cH0" firstAttribute="leading" secondItem="JJG-lS-B9P" secondAttribute="leading" id="vkH-g2-FmU"/>
+                            <constraint firstAttribute="trailing" secondItem="LBH-W9-cH0" secondAttribute="trailing" id="zOf-3S-GXO"/>
+                            <constraint firstItem="LBH-W9-cH0" firstAttribute="top" secondItem="JJG-lS-B9P" secondAttribute="top" constant="5" id="zfK-Kl-0go" userLabel="Reward Value.top = top + 15"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="JNn-Ck-1eF"/>
+                    </view>
+                    <connections>
+                        <outlet property="challengeDescLbl" destination="v9T-u9-OwF" id="Euc-tq-7AP"/>
+                        <outlet property="challengeDescLbl2" destination="v9T-u9-OwF" id="eRD-nB-moH"/>
+                        <outlet property="challengeInfoLbl" destination="eR3-md-0Io" id="Dhc-AK-f32"/>
+                        <outlet property="challengeInfoLbl2" destination="eR3-md-0Io" id="3US-xx-4Xa"/>
+                        <outlet property="rewardLbl2" destination="LBH-W9-cH0" id="GVl-LD-oaM"/>
+                        <outlet property="rewardValLbl" destination="LBH-W9-cH0" id="HZP-AJ-VTR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8kQ-fz-WTK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2508" y="179.92610837438426"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="accept" width="352" height="233"/>
+    </resources>
 </document>

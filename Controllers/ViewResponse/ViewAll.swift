@@ -13,6 +13,7 @@ private let reuseIdentifier = "Cell"
 class ViewAllResponsesController: UICollectionViewController {
 
     var user: User?
+    var challenge: ChallengeDetails?
     var takers: [Taker]?
     
     private var cellSize: CGFloat?
@@ -43,15 +44,18 @@ class ViewAllResponsesController: UICollectionViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        let cell: ViewResponseViewCell = sender as! ViewResponseViewCell
+        if (segue.identifier == "viewResponseSegue") {
+            let dest_controller = segue.destination as! ViewResponseController
+            dest_controller.user = user
+            dest_controller.challenge = challenge
+            dest_controller.taker = cell.taker
+        }
     }
-    */
 
     // MARK: UICollectionViewDataSource
 
@@ -59,7 +63,6 @@ class ViewAllResponsesController: UICollectionViewController {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
@@ -86,12 +89,20 @@ class ViewAllResponsesController: UICollectionViewController {
             let taker_name = current.user.display_name ?? user?.friends![(current.user._id)!]?.display_name ?? "? ?"
             cell.responseImage.image = ImageGenerator.imageWith(name: taker_name, width: (cellSize ?? 80), height: (cellSize ?? 120), fontSize: 50)
         }
-    
+        
+        cell.taker = current
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSize.init(width: (cellSize ?? 120), height: (cellSize ?? 120))
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell: ViewResponseViewCell = collectionView.cellForItem(at: indexPath)! as! ViewResponseViewCell
+        if ((cell.taker?.completed ?? false)) {
+            performSegue(withIdentifier: "viewResponseSegue", sender: cell)
+        }
     }
 
     // MARK: UICollectionViewDelegate

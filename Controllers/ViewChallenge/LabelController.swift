@@ -16,15 +16,31 @@ class ViewChallengeLabelController: UIViewController {
     @IBOutlet weak var challengeInfoLbl: UILabel!
     @IBOutlet weak var challengeDescLbl: UILabel!
     
+    //public var infoLabel: UILabel?
+    //public var rewardLabel: UILabel?
+    //public var descLabel: UILabel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        load()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    public func load() {
+        load(infoLabel: challengeInfoLbl, rewardLabel: rewardValLbl, descLabel: challengeDescLbl)
+    }
+    
+    public func load(infoLabel: UILabel, rewardLabel: UILabel, descLabel: UILabel) {
+        rewardLabel.text = "J \(challenge?.reward.description ?? "0")"
+        descLabel.text = challenge?.description ?? "Lorem ipsum dolor sit amet, ex alia mediocritatem usu. In laudem propriae duo, doctus aliquid praesent ad pro, detraxit sapientem et vis"
         
-        rewardValLbl.text = "J \(challenge?.reward.description ?? "0")"
-        challengeDescLbl.text = challenge?.description ?? "Lorem ipsum dolor sit amet, ex alia mediocritatem usu. In laudem propriae duo, doctus aliquid praesent ad pro, detraxit sapientem et vis"
-        
-        let title = challenge?.title
+        let title = challenge?.title ?? "???"
         var sponsor = "I"
         var dare = " DARE "
         
@@ -44,18 +60,12 @@ class ViewChallengeLabelController: UIViewController {
             }
         }
         
-        if (challenge!.isForCommunity) {
+        if ((challenge?.isForCommunity ?? false)) {
             taker = "anyone"
         }
         
-        challengeInfoLbl.text = sponsor + dare + taker + " TO " + title!
+        infoLabel.text = sponsor + dare + taker + " TO " + title
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     /*
     // MARK: - Navigation

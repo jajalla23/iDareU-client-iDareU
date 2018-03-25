@@ -65,15 +65,15 @@ class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDat
         cell.challengeTitleLbl.text = currChallenge?.title
         cell.challengeRewardLbl.text = "J \(currChallenge?.reward.description ?? "0")"
         
-        var accepted: Int = 0
+        var completed: Int = 0
         if (currChallenge?.takers != nil) {
             for taker in (currChallenge?.takers)! {
-                if taker.accepted! {
+                if taker.completed! {
                     cell.trailerView.backgroundColor = UIColor.blue
-                    accepted += 1
+                    completed += 1
                 }
             }
-            let a: Double = Double(accepted)
+            let a: Double = Double(completed)
             let b: Double = Double((currChallenge?.takers?.count)!)
             cell.trailerView.alpha = (currChallenge?.takers?.count == 0) ? 0 : CGFloat(a/b)
         } else {
@@ -141,6 +141,7 @@ class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDat
             let selected = sender as! ChallengeDetails
             controller.takers = selected.takers
             controller.user = self.user
+            controller.challenge = selected
         }
     }
     

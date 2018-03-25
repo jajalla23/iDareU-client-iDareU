@@ -40,6 +40,7 @@
 		765A09D82017BB5D0004A67D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765A09D72017BB5D0004A67D /* LoginViewController.swift */; };
 		765A09DD2017BE950004A67D /* Router.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 765A09DC2017BE950004A67D /* Router.storyboard */; };
 		765A09DF2017BF0C0004A67D /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 765A09DE2017BF0C0004A67D /* Login.storyboard */; };
+		765C3A4820683614003F2953 /* ViewResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765C3A4720683614003F2953 /* ViewResponse.swift */; };
 		765EF5662002CBEB006B36B0 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765EF5652002CBEB006B36B0 /* Animation.swift */; };
 		765EF5682002EB33006B36B0 /* FriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765EF5672002EB33006B36B0 /* FriendViewModel.swift */; };
 		76682213201E5C6800F52659 /* RouterTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76682212201E5C6800F52659 /* RouterTabBarController.swift */; };
@@ -54,6 +55,7 @@
 		7692CE702033F610001FFFBC /* MyFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692CE6F2033F610001FFFBC /* MyFriendsTableViewController.swift */; };
 		7692CE732033F97B001FFFBC /* FriendsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692CE722033F97B001FFFBC /* FriendsTVCell.swift */; };
 		7696C998201698560074717E /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7696C997201698560074717E /* Server.swift */; };
+		76A647952068490500CCFB5A /* RespLabelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A647942068490500CCFB5A /* RespLabelController.swift */; };
 		76A918EA20095A7B00BE27A1 /* CommunityViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A918E920095A7B00BE27A1 /* CommunityViewCell.swift */; };
 		76AA3F3320204BAB0038DAD9 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA3F3220204BAB0038DAD9 /* MeViewController.swift */; };
 		76AA3F372020583E0038DAD9 /* PendingChallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AA3F362020583E0038DAD9 /* PendingChallViewController.swift */; };
@@ -73,7 +75,7 @@
 		76CDF83720200EF90098948C /* MyStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CDF83620200EF90098948C /* MyStatusView.swift */; };
 		76CF47152021A0E700E7E5BF /* MeGenericViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CF47142021A0E700E7E5BF /* MeGenericViewController.swift */; };
 		76CF47172021AC3300E7E5BF /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CF47162021AC3300E7E5BF /* CreateViewController.swift */; };
-		76D4462A20672C8100273D6C /* ViewAllResponsesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D4462920672C8100273D6C /* ViewAllResponsesController.swift */; };
+		76D4462A20672C8100273D6C /* ViewAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D4462920672C8100273D6C /* ViewAll.swift */; };
 		76D4462C20672FF700273D6C /* ViewResponseViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D4462B20672FF700273D6C /* ViewResponseViewCell.swift */; };
 		76DDEEAB201929CD002CBE52 /* iDareU.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76DDEEA9201929CD002CBE52 /* iDareU.xcdatamodeld */; };
 		76DE5F5920646A140076DA4E /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DE5F5820646A140076DA4E /* Camera.storyboard */; };
@@ -82,7 +84,7 @@
 		76E7396C202FE5CE00A2EDBC /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760F7F88201E7D86001A38BF /* TestData.swift */; };
 		76E7396E202FEA4400A2EDBC /* ViewChallengeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7396D202FEA4400A2EDBC /* ViewChallengeController.swift */; };
 		76EA6B6A20211B9000AC40CA /* CreatedChallTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EA6B6920211B9000AC40CA /* CreatedChallTVCell.swift */; };
-		76EA6B6C202127ED00AC40CA /* UpdateChallengeRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EA6B6B202127ED00AC40CA /* UpdateChallengeRewardViewController.swift */; };
+		76EA6B6C202127ED00AC40CA /* UpdateRewardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EA6B6B202127ED00AC40CA /* UpdateRewardController.swift */; };
 		76EC146120167B1600C73DFC /* Signup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76EC146020167B1600C73DFC /* Signup.storyboard */; };
 		76EC146320167E5B00C73DFC /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EC146220167E5B00C73DFC /* SignupViewController.swift */; };
 		76EC14652016861E00C73DFC /* SignupFormValidationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EC14642016861E00C73DFC /* SignupFormValidationModel.swift */; };
@@ -157,6 +159,7 @@
 		765A09D72017BB5D0004A67D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		765A09DC2017BE950004A67D /* Router.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Router.storyboard; sourceTree = "<group>"; };
 		765A09DE2017BF0C0004A67D /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		765C3A4720683614003F2953 /* ViewResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewResponse.swift; sourceTree = "<group>"; };
 		765EF5652002CBEB006B36B0 /* Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		765EF5672002EB33006B36B0 /* FriendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewModel.swift; sourceTree = "<group>"; };
 		76682212201E5C6800F52659 /* RouterTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTabBarController.swift; sourceTree = "<group>"; };
@@ -171,6 +174,7 @@
 		7692CE6F2033F610001FFFBC /* MyFriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsTableViewController.swift; sourceTree = "<group>"; };
 		7692CE722033F97B001FFFBC /* FriendsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTVCell.swift; sourceTree = "<group>"; };
 		7696C997201698560074717E /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		76A647942068490500CCFB5A /* RespLabelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespLabelController.swift; sourceTree = "<group>"; };
 		76A918E920095A7B00BE27A1 /* CommunityViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewCell.swift; sourceTree = "<group>"; };
 		76AA3F3220204BAB0038DAD9 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		76AA3F362020583E0038DAD9 /* PendingChallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingChallViewController.swift; sourceTree = "<group>"; };
@@ -196,7 +200,7 @@
 		76CDF83620200EF90098948C /* MyStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStatusView.swift; sourceTree = "<group>"; };
 		76CF47142021A0E700E7E5BF /* MeGenericViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeGenericViewController.swift; sourceTree = "<group>"; };
 		76CF47162021AC3300E7E5BF /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
-		76D4462920672C8100273D6C /* ViewAllResponsesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllResponsesController.swift; sourceTree = "<group>"; };
+		76D4462920672C8100273D6C /* ViewAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAll.swift; sourceTree = "<group>"; };
 		76D4462B20672FF700273D6C /* ViewResponseViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewResponseViewCell.swift; sourceTree = "<group>"; };
 		76DDEEAA201929CD002CBE52 /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
 		76DE5F5820646A140076DA4E /* Camera.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
@@ -205,7 +209,7 @@
 		76E7396D202FEA4400A2EDBC /* ViewChallengeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewChallengeController.swift; sourceTree = "<group>"; };
 		76E73970202FEB7800A2EDBC /* AWSMobileClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSMobileClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76EA6B6920211B9000AC40CA /* CreatedChallTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedChallTVCell.swift; sourceTree = "<group>"; };
-		76EA6B6B202127ED00AC40CA /* UpdateChallengeRewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChallengeRewardViewController.swift; sourceTree = "<group>"; };
+		76EA6B6B202127ED00AC40CA /* UpdateRewardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRewardController.swift; sourceTree = "<group>"; };
 		76EC146020167B1600C73DFC /* Signup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Signup.storyboard; sourceTree = "<group>"; };
 		76EC146220167E5B00C73DFC /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		76EC14642016861E00C73DFC /* SignupFormValidationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupFormValidationModel.swift; sourceTree = "<group>"; };
@@ -415,14 +419,16 @@
 			path = ViewChallenge;
 			sourceTree = "<group>";
 		};
-		765C3A4620683459003F2953 /* Response */ = {
+		765C3A4620683459003F2953 /* ViewResponse */ = {
 			isa = PBXGroup;
 			children = (
 				76C3F8BD2063232B00266F7E /* CameraController.swift */,
 				76DE5F5A20646BA60076DA4E /* PreviewController.swift */,
-				76D4462920672C8100273D6C /* ViewAllResponsesController.swift */,
+				76D4462920672C8100273D6C /* ViewAll.swift */,
+				765C3A4720683614003F2953 /* ViewResponse.swift */,
+				76A647942068490500CCFB5A /* RespLabelController.swift */,
 			);
-			path = Response;
+			path = ViewResponse;
 			sourceTree = "<group>";
 		};
 		7692CE712033F91F001FFFBC /* Cell */ = {
@@ -491,13 +497,13 @@
 				765C3A44206833DB003F2953 /* Create */,
 				765C3A43206833CF003F2953 /* Me */,
 				765C3A4520683400003F2953 /* ViewChallenge */,
-				765C3A4620683459003F2953 /* Response */,
+				765C3A4620683459003F2953 /* ViewResponse */,
 				76BD233E20302A4C00C360CA /* MainViewController.swift */,
 				76FC08EC201ED323008F9902 /* GenericUIViewController.swift */,
 				76EC146220167E5B00C73DFC /* SignupViewController.swift */,
 				765A09D72017BB5D0004A67D /* LoginViewController.swift */,
 				76682212201E5C6800F52659 /* RouterTabBarController.swift */,
-				76EA6B6B202127ED00AC40CA /* UpdateChallengeRewardViewController.swift */,
+				76EA6B6B202127ED00AC40CA /* UpdateRewardController.swift */,
 				762296F6200A930A00D09D12 /* FriendsViewController.swift */,
 				76B1FBAF2000A0C700402173 /* CommunityViewController.swift */,
 			);
@@ -841,7 +847,7 @@
 				762296F7200A930A00D09D12 /* FriendsViewController.swift in Sources */,
 				76CF47172021AC3300E7E5BF /* CreateViewController.swift in Sources */,
 				760531D2201FECCC009F9B05 /* Local.swift in Sources */,
-				76EA6B6C202127ED00AC40CA /* UpdateChallengeRewardViewController.swift in Sources */,
+				76EA6B6C202127ED00AC40CA /* UpdateRewardController.swift in Sources */,
 				76EC14672016864500C73DFC /* ValidationError.swift in Sources */,
 				76AC733B20258BCD0072C7BF /* SelectSponsorTableViewController.swift in Sources */,
 				765EF5662002CBEB006B36B0 /* Animation.swift in Sources */,
@@ -870,11 +876,13 @@
 				7650EA14200095080011125B /* AppDelegate.swift in Sources */,
 				768206EC2033A9E2004E049C /* LabelController.swift in Sources */,
 				76AEB2DC201FC87B00953919 /* ChallengeModel.swift in Sources */,
+				76A647952068490500CCFB5A /* RespLabelController.swift in Sources */,
 				76A918EA20095A7B00BE27A1 /* CommunityViewCell.swift in Sources */,
 				763688C12003036C00129279 /* StatusViewController.swift in Sources */,
 				76CF47152021A0E700E7E5BF /* MeGenericViewController.swift in Sources */,
 				76EC14652016861E00C73DFC /* SignupFormValidationModel.swift in Sources */,
-				76D4462A20672C8100273D6C /* ViewAllResponsesController.swift in Sources */,
+				76D4462A20672C8100273D6C /* ViewAll.swift in Sources */,
+				765C3A4820683614003F2953 /* ViewResponse.swift in Sources */,
 				76E1BBD92066280800764131 /* CompletedChallTVCell.swift in Sources */,
 				7650EA16200095080011125B /* CaptureVideoViewController.swift in Sources */,
 				762296F9200A961900D09D12 /* FriendFeedViewCell.swift in Sources */,
