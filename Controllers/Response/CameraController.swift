@@ -21,6 +21,8 @@ class CameraController: UIViewController {
     private var captureDevice: AVCaptureDevice?
     private var capturePosition: AVCaptureDevice.Position?
     private var flashMode: AVCaptureDevice.FlashMode?
+    private var captureSession: AVCaptureSession?
+
     
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var captureBtn: UIButton!
@@ -55,7 +57,20 @@ class CameraController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.navigationController?.isNavigationBarHidden = false
+        if (!(captureSession?.isRunning ?? true)) {
+            captureSession?.startRunning()
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        if ((captureSession?.isRunning ?? false)) {
+            captureSession?.stopRunning()
+        }
     }
     
     // MARK: - Navigation

@@ -20,7 +20,6 @@ class CreateViewController: GenericUIViewController {
     private var capturePosition: AVCaptureDevice.Position?
     private var flashMode: AVCaptureDevice.FlashMode?
     private var captureSession: AVCaptureSession?
-    //private var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var captureBtn: UIButton!
