@@ -19,6 +19,8 @@ class CreateViewController: GenericUIViewController {
     private var captureDevice: AVCaptureDevice?
     private var capturePosition: AVCaptureDevice.Position?
     private var flashMode: AVCaptureDevice.FlashMode?
+    private var captureSession: AVCaptureSession?
+    //private var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var captureBtn: UIButton!
@@ -49,12 +51,27 @@ class CreateViewController: GenericUIViewController {
             self.setupCaptureDevice()
             self.setupCamera()
         #endif
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if (!(captureSession?.isRunning ?? true)) {
+            captureSession?.startRunning()
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        if ((captureSession?.isRunning ?? false)) {
+            captureSession?.stopRunning()
+        }
     }
     
     private func setupCaptureDevice() {
@@ -76,7 +93,7 @@ class CreateViewController: GenericUIViewController {
     }
     
     private func setupCamera() {
-        var captureSession: AVCaptureSession?
+        //var captureSession: AVCaptureSession?
         var videoPreviewLayer: AVCaptureVideoPreviewLayer?
         
         var input: AVCaptureDeviceInput? = nil
