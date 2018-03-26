@@ -165,6 +165,8 @@ public class Taker: Codable {
     public var completedTimestamp: String?
     public var accepted: Bool?
     public var acceptedTimestamp: String?
+    public var declined: Bool?
+    public var declinedTimestamp: String?
     public var media: Media?
     
     
@@ -181,6 +183,7 @@ public class Taker: Codable {
         self.user = user
         self.completed = false
         self.accepted = false
+        self.declined = false
     }
     
     public func addMedia(fileName: String, type: String, imagePrevURL: String?) {

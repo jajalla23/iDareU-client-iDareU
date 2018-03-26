@@ -178,12 +178,16 @@ class CreateViewController: GenericUIViewController {
             } else if let backCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .back) {
                 self.captureDevice = backCameraDevice
             }
-            
+            cameraTools[1].isHidden = false
             self.capturePosition = AVCaptureDevice.Position.back
             
         } else {
             if let frontCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .front) {
                 self.captureDevice = frontCameraDevice
+                
+                self.flashMode = AVCaptureDevice.FlashMode.off
+                cameraTools[1].setImage(UIImage(named: "camera_flash_off"), for: .normal)
+                cameraTools[1].isHidden = true
                 self.capturePosition = AVCaptureDevice.Position.front
             }
         }
