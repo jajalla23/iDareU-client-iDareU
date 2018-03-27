@@ -412,7 +412,6 @@
 		765C3A4520683400003F2953 /* ViewChallenge */ = {
 			isa = PBXGroup;
 			children = (
-				763FA65C2031291500D7A46B /* NavigationController.swift */,
 				76E7396D202FEA4400A2EDBC /* ViewChallengeController.swift */,
 				768206EB2033A9E2004E049C /* LabelController.swift */,
 			);
@@ -513,6 +512,7 @@
 		76DE769C2001CC5800F790D8 /* Trash */ = {
 			isa = PBXGroup;
 			children = (
+				763FA65C2031291500D7A46B /* NavigationController.swift */,
 				7650EA15200095080011125B /* CaptureVideoViewController.swift */,
 			);
 			path = Trash;

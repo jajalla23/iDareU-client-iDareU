@@ -100,11 +100,10 @@ class CompletedChallengesViewController: MeGenericViewController, UITableViewDat
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "completedToWatchSegue") {
-            let controller = segue.destination as! ViewChallengeNavigationController
+            let controller = segue.destination as! ViewChallengeViewController
             controller.viewType = "COMPLETED"
             controller.user = self.user
-            controller.challengeList = [self.selectedChallenge!]
-            controller.navigationItem.hidesBackButton = false
+            controller.challengeQueue = Queue(elements: [self.selectedChallenge!])
         }
     }
     

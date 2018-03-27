@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iCZ-fM-oiC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XIF-Ks-bQz">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,14 +19,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ab4-hX-brs">
-                                <rect key="frame" x="16" y="143" width="343" height="580"/>
+                                <rect key="frame" x="16" y="99" width="343" height="624"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NgO-oo-adn">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="580"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="624"/>
                                         <gestureRecognizers/>
                                     </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="accept" translatesAutoresizingMaskIntoConstraints="NO" id="Igp-We-AWb" userLabel="action">
-                                        <rect key="frame" x="0.0" y="173.66666666666669" width="343" height="233"/>
+                                        <rect key="frame" x="0.0" y="195.66666666666669" width="343" height="233"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -79,18 +79,6 @@
                             <outletCollection property="gestureRecognizers" destination="0sk-oW-ElO" appends="YES" id="tCm-fa-kGf"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="vCf-VD-fDK">
-                        <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="zVI-3h-hrQ">
-                            <connections>
-                                <action selector="backBtnTapped:" destination="XIF-Ks-bQz" id="k28-Le-WlW"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="second" id="ZES-C1-hoC">
-                            <connections>
-                                <segue destination="CnN-hT-FfI" kind="show" identifier="selectTakerSegue" id="gMN-2D-c2U"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="actionImageView" destination="Igp-We-AWb" id="N1K-6m-BI4"/>
                         <outlet property="challengeInfoView" destination="kps-9U-6QP" id="sDC-7m-d7X"/>
@@ -98,6 +86,7 @@
                         <outlet property="imageView" destination="NgO-oo-adn" id="KMq-NH-VRe"/>
                         <outlet property="panGestureRecognizer" destination="o6K-Ja-KxX" id="fbb-wU-4Kq"/>
                         <segue destination="pPH-wV-ZPG" kind="show" identifier="cameraSegue" id="hS1-OH-hpD"/>
+                        <segue destination="CnN-hT-FfI" kind="show" identifier="selectTakerSegue" id="vfJ-h6-SgP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YYE-Xp-aWp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -111,7 +100,7 @@
                         <action selector="panHandler:" destination="XIF-Ks-bQz" id="E3k-6m-E7O"/>
                     </connections>
                 </panGestureRecognizer>
-                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="0sk-oW-ElO">
+                <screenEdgePanGestureRecognizer enabled="NO" minimumNumberOfTouches="1" id="0sk-oW-ElO">
                     <rectEdge key="edges" left="YES"/>
                     <connections>
                         <action selector="screenEdgePanned:" destination="XIF-Ks-bQz" id="jqY-fG-3Tx"/>
@@ -128,31 +117,13 @@
             </objects>
             <point key="canvasLocation" x="677" y="475"/>
         </scene>
-        <!--View Challenge Navigation Controller-->
-        <scene sceneID="WIg-KY-Ar2">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iCZ-fM-oiC" customClass="ViewChallengeNavigationController" customModule="iDareU" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="F3E-3i-QJR">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="XIF-Ks-bQz" kind="relationship" relationship="rootViewController" id="DZN-uY-aRz"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yff-dW-qNP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-284" y="56"/>
-        </scene>
         <!--SelectTaker-->
         <scene sceneID="Mdg-Vb-SQc">
             <objects>
                 <viewControllerPlaceholder storyboardName="SelectTaker" id="CnN-hT-FfI" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ae-4e-hyx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1462" y="-202"/>
+            <point key="canvasLocation" x="1399" y="-211"/>
         </scene>
         <!--View Challenge Label Controller-->
         <scene sceneID="KHD-Nz-U1g">
@@ -209,6 +180,5 @@
     </scenes>
     <resources>
         <image name="accept" width="352" height="233"/>
-        <image name="second" width="30" height="30"/>
     </resources>
 </document>

@@ -177,21 +177,18 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "pendingToWatchSegue") {
-            let controller = segue.destination as! ViewChallengeNavigationController
+            let controller = segue.destination as! ViewChallengeViewController
             controller.user = self.user
             controller.viewType = "PENDING"
-            controller.viewChallengeDelegate = self
-            controller.navigationItem.hidesBackButton = false
+            controller.delegate = self
             
-            let sub_array = self.user?.challenges?.pending![self.selectedIndex!...]
-            controller.challengeList = Array(sub_array!)
-            
-            if (self.selectedIndex != 0) {
+            var temp_array = Array((self.user?.challenges?.pending![self.selectedIndex!...] ?? []))
+            if (self.selectedIndex != 0 && temp_array.count > 0) {
                 let temp = self.user?.challenges?.pending![0...self.selectedIndex! - 1]
-                let temp_array = Array(temp!)
-            
-                controller.challengeList?.append(contentsOf: temp_array)
+                temp_array.append(contentsOf: Array(temp!))
             }
+            
+            controller.challengeQueue = Queue(elements: temp_array)
         }
         
         if (segue.identifier == "cameraSegue") {

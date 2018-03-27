@@ -8,12 +8,9 @@
 
 import UIKit
 
-class ViewChallengeViewController: UIViewController {
+class ViewChallengeViewController: UIViewController, UIGestureRecognizerDelegate {
 
     private let error_location = "/Controllers/ViewChallengeViewController.swift"
-    var delegate: ViewChallengeDelegate?
-    var challenge: ChallengeDetails?
-    
     private var divisor: CGFloat?
     private var challengeIndex: Int = 0
     private var isAccepted: Bool = false
@@ -24,50 +21,54 @@ class ViewChallengeViewController: UIViewController {
     @IBOutlet weak var actionImageView: UIImageView!
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     
+    var user: User?
+    var viewType: String?
+    var challengeQueue: Queue<ChallengeDetails>?
+    var delegate: ViewChallengeDelegate?
+    var challenge: ChallengeDetails?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
+        // Do any additional setup after loading the view.
+        self.navigationController?.isNavigationBarHidden = false
         challengeInfoView.backgroundColor = UIColor.white.withAlphaComponent(0.7)
         
+        self.challenge = self.popChallenge()
         self.divisor = (view.frame.width / 2) / 0.61
-        
-        let controller = self.navigationController as! ViewChallengeNavigationController
-        
-        self.delegate = controller.viewChallengeDelegate
-        self.challenge = controller.getChallenge()
-        self.navigationItem.title = self.challenge?.title
-        self.navigationItem.hidesBackButton = false
-        
-        if (controller.viewType == "PENDING") {
+
+        if (self.viewType == "PENDING") {
             self.panGestureRecognizer.isEnabled = true
-            let _ = controller.popChallenge()
-            
             
             for taker in (challenge?.takers)! {
-                if (taker.user._id == controller.user?._id && taker.accepted!) {
+                if (taker.user._id == self.user?._id && taker.accepted!) {
                     imageView.layer.borderWidth = 5
                     imageView.layer.borderColor = UIColor.green.cgColor
                     isAccepted = true
                     break
                 }
             }
+        } else if (viewType == "SPONSORED") {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "second"), style: .done, target: self, action: #selector(rightBarBtnTapped))
         }
         
         do {
             var media_name: String?
-            if (controller.viewType == "COMPLETED") {
-                if let taker = challenge?.takers?.first(where: {$0.user._id == controller.user?._id}) {
+            var media_type: String?
+            if (self.viewType == "COMPLETED") {
+                if let taker = challenge?.takers?.first(where: {$0.user._id == self.user?._id}) {
                     media_name = taker.media?.fileName
+                    media_type = taker.media?.type
                 } else {
                     let cError: CustomError = CustomError.init(code: "001", description: "Missing Media Name", severity: .HIGH, location: error_location)
                     throw cError
                 }
             } else {
-                 media_name = challenge!.media!.fileName
+                media_name = challenge!.media!.fileName
+                media_type = challenge!.media!.type
             }
-            
-            let imageData = try Server.fetchMedia(mediaName: media_name!, mediaType: self.challenge!.media!.type)
+
+            let imageData = try Server.fetchMedia(mediaName: media_name!, mediaType: media_type!)
             self.imageView.image = UIImage(data: imageData!, scale: 1.0)
             self.imageView.contentMode = .scaleAspectFit
             
@@ -87,18 +88,17 @@ class ViewChallengeViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let naviController = self.navigationController as! ViewChallengeNavigationController
         if (segue.identifier == "challengeLabelSegue") {
             let controller = segue.destination as! ViewChallengeLabelController
-            controller.user = naviController.user
-            controller.challenge = naviController.getChallenge()
+            controller.user = self.user
+            controller.challenge = self.challengeQueue?.peek()
         }
         
-        if (segue.identifier == "selectTakerSegue" && naviController.viewType == "SPONSORED") {
+        if (segue.identifier == "selectTakerSegue" && self.viewType == "SPONSORED") {
             guard let controller = segue.destination as? TakerNavigationController else {
                 return
             }
-            controller.allFriends = Array(naviController.user!.friends!.values)
+            controller.allFriends = Array(self.user!.friends!.values)
             controller.takerDelegate = self
             
             if ((self.challenge?.takers?.count ?? 0) > 0) {
@@ -116,7 +116,7 @@ class ViewChallengeViewController: UIViewController {
         if (segue.identifier == "cameraSegue") {
             let controller = segue.destination as? CameraController
             controller?.challenge = self.challenge
-            controller?.user = naviController.user
+            controller?.user = self.user
             
             for taker in (challenge?.takers)! {
                 if (taker.user._id == controller?.user?._id) {
@@ -128,13 +128,8 @@ class ViewChallengeViewController: UIViewController {
         
     }
     
-    @IBAction func backBtnTapped(_ sender: Any) {
-        DispatchQueue.main.async{
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshAllViewsOnMe"), object: nil)
-        }
-        
-        self.navigationController?.popViewController(animated: true)
-        self.dismiss(animated: true, completion: nil)
+    @objc func rightBarBtnTapped() {
+        self.performSegue(withIdentifier: "selectTakerSegue", sender: self)
     }
     
     @IBAction func screenTapped(_ sender: UITapGestureRecognizer) {
@@ -201,8 +196,8 @@ class ViewChallengeViewController: UIViewController {
     
     private func rejectChallenge() {
         do {
-            let controller = self.navigationController as! ViewChallengeNavigationController
-            try Server.rejectChallenge(user_id: controller.user!._id!, challenge_id: self.challenge!._id!)
+            //let controller = self.navigationController as! ViewChallengeNavigationController
+            try Server.rejectChallenge(user_id: self.user!._id!, challenge_id: self.challenge!._id!)
         } catch let cError as CustomError {
             //TODO: handler error
             print(cError.description)
@@ -219,8 +214,8 @@ class ViewChallengeViewController: UIViewController {
     
     private func acceptChallenge() {
         do {
-            let controller = self.navigationController as! ViewChallengeNavigationController
-            try Server.acceptChallenge(user_id: controller.user!._id!, challenge_id: self.challenge!._id!)
+            //let controller = self.navigationController as! ViewChallengeNavigationController
+            try Server.acceptChallenge(user_id: self.user!._id!, challenge_id: self.challenge!._id!)
         } catch let cError as CustomError {
             //TODO: handler error
             print(cError.description)
@@ -238,8 +233,8 @@ class ViewChallengeViewController: UIViewController {
     }
     
     private func reloadChallengeDetails() {
-        let controller = self.navigationController as! ViewChallengeNavigationController
-        if (controller.isChallengeListEmpty()) {
+        //let controller = self.navigationController as! ViewChallengeNavigationController
+        if (self.isChallengeListEmpty()) {
             DispatchQueue.main.async{
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshAllViewsOnMe"), object: nil)
             }
@@ -249,7 +244,7 @@ class ViewChallengeViewController: UIViewController {
             return
         }
         
-        self.challenge = controller.popChallenge()
+        self.challenge = self.popChallenge()
         self.navigationItem.title = self.challenge?.title
         
         do {
@@ -257,7 +252,8 @@ class ViewChallengeViewController: UIViewController {
             
             self.imageView.image = UIImage(data: imageData!, scale: 1.0)
             self.imageView.contentMode = .scaleAspectFit
-            
+            self.view.setNeedsLayout()
+            self.view.layoutIfNeeded()
         } catch let error {
             print(error.localizedDescription)
         }
@@ -282,6 +278,18 @@ class ViewChallengeViewController: UIViewController {
         
         self.navigationController?.popViewController(animated: true)
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    private func popChallenge() -> ChallengeDetails {
+        return (self.challengeQueue?.pop())!
+    }
+    
+    private func getChallenge() -> ChallengeDetails {
+        return (self.challengeQueue?.peek())!
+    }
+    
+    private func isChallengeListEmpty() -> Bool {
+        return self.challengeQueue!.isEmpty
     }
     
 }
