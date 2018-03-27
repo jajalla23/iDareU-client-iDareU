@@ -646,7 +646,7 @@
                     <connections>
                         <outlet property="scrollView" destination="z8C-JG-Dpx" id="cpw-gc-G4K"/>
                         <outlet property="tableView" destination="huo-zx-tTX" id="ioW-OX-qr0"/>
-                        <segue destination="Bvo-KR-9yX" kind="presentation" identifier="createdToWatchSegue" id="njK-Bs-Jco"/>
+                        <segue destination="Bvo-KR-9yX" kind="show" identifier="createdToWatchSegue" id="njK-Bs-Jco"/>
                         <segue destination="0dw-8j-Yh1" kind="show" identifier="viewResponseSegue" id="6n0-ct-E77"/>
                     </connections>
                 </viewController>
@@ -730,7 +730,7 @@
                     <connections>
                         <outlet property="scrollView" destination="HA9-Zb-Yev" id="f8e-sU-zwP"/>
                         <outlet property="tableView" destination="mQV-s7-igc" id="zri-5J-TLe"/>
-                        <segue destination="Bvo-KR-9yX" kind="presentation" identifier="completedToWatchSegue" id="sWd-sA-4dS"/>
+                        <segue destination="Bvo-KR-9yX" kind="show" identifier="completedToWatchSegue" id="sWd-sA-4dS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SRt-d1-JT8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -746,6 +746,6 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="njK-Bs-Jco"/>
+        <segue reference="q5A-QS-J6t"/>
     </inferredMetricsTieBreakers>
 </document>
