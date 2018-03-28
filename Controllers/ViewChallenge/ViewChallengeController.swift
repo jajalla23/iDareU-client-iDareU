@@ -156,7 +156,7 @@ class ViewChallengeViewController: UIViewController, UIGestureRecognizerDelegate
                 actionImageView.image = #imageLiteral(resourceName: "accept")
             }
         } else {
-            actionImageView.image = #imageLiteral(resourceName: "reject")
+            actionImageView.image = #imageLiteral(resourceName: "decline")
         }
         
         self.actionImageView.alpha = abs(xFromCenter) / self.view.center.x
@@ -167,7 +167,7 @@ class ViewChallengeViewController: UIViewController, UIGestureRecognizerDelegate
                 UIView.animate(withDuration: 0.3, animations: {
                     container.center = CGPoint(x: container.center.x - 200, y: container.center.y + 75)
                 })
-                rejectChallenge()
+                declineChallenge()
                 self.reloadChallengeDetails()
             }
             
@@ -194,10 +194,9 @@ class ViewChallengeViewController: UIViewController, UIGestureRecognizerDelegate
         
     }
     
-    private func rejectChallenge() {
+    private func declineChallenge() {
         do {
-            //let controller = self.navigationController as! ViewChallengeNavigationController
-            try Server.rejectChallenge(user_id: self.user!._id!, challenge_id: self.challenge!._id!)
+            try Server.declineChallenge(user_id: self.user!._id!, challenge_id: self.challenge!._id!)
         } catch let cError as CustomError {
             //TODO: handler error
             print(cError.description)

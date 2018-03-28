@@ -93,9 +93,9 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
     
     func tableView(_ tableView: UITableView,
                    leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let closeAction = UIContextualAction(style: .normal, title:  "Reject", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+        let closeAction = UIContextualAction(style: .normal, title:  "Decline", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             
-            let result = self.rejectChallenge(challenge: (self.user?.challenges?.pending![indexPath.row])!)
+            let result = self.declineChallenge(challenge: (self.user?.challenges?.pending![indexPath.row])!)
 
             if (result) {
                 self.user?.challenges?.pending!.remove(at: indexPath.row)
@@ -222,9 +222,9 @@ class PendingChallengesViewController: MeGenericViewController, UITableViewDataS
         return true
     }
     
-    private func rejectChallenge(challenge: ChallengeDetails) -> Bool {
+    private func declineChallenge(challenge: ChallengeDetails) -> Bool {
         do {
-            try Server.rejectChallenge(user_id: self.user!._id!, challenge_id: challenge._id!)
+            try Server.declineChallenge(user_id: self.user!._id!, challenge_id: challenge._id!)
         } catch let cError as CustomError {
             //TODO: handler error
             print(cError.description)

@@ -216,6 +216,7 @@
 		76EC14662016864500C73DFC /* ValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
 		76EC1468201686DE00C73DFC /* SignupValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupValidationManager.swift; sourceTree = "<group>"; };
 		76FB05B22016EE49006E3406 /* Tester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tester.swift; sourceTree = "<group>"; };
+		76FBB9B5206B1AEF0006E745 /* AWSAuthCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAuthCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76FC08E8201ECBAB008F9902 /* SponsoredChallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsoredChallViewController.swift; sourceTree = "<group>"; };
 		76FC08EC201ED323008F9902 /* GenericUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericUIViewController.swift; sourceTree = "<group>"; };
 		C39A2A0B395C8C0000E32A78 /* Pods-iDareU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iDareU.release.xcconfig"; path = "Pods/Target Support Files/Pods-iDareU/Pods-iDareU.release.xcconfig"; sourceTree = "<group>"; };
@@ -269,6 +270,7 @@
 		32EFA1063A0D96A6CC41C6D8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				76FBB9B5206B1AEF0006E745 /* AWSAuthCore.framework */,
 				76E73970202FEB7800A2EDBC /* AWSMobileClient.framework */,
 				763E2D8C202FE347003B5E2D /* AWSS3.framework */,
 				76B1F135202E66BF00AF6BE6 /* Bolts.framework */,
@@ -780,7 +782,7 @@
 		};
 		BC6891F2FBA2D3A4BE211FD9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -795,7 +797,7 @@
 		};
 		EACCDD18BDD427D62970657B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (

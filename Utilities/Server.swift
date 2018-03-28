@@ -376,8 +376,8 @@ extension Server {
         }
     }
     
-    static func rejectChallenge(user_id: String, challenge_id: String) throws {
-        guard let respData = try invokeHTTP(action: "challenges/reject/" + challenge_id + "/" + user_id, httpMethod: "POST", data: nil, sync: true)
+    static func declineChallenge(user_id: String, challenge_id: String) throws {
+        guard let respData = try invokeHTTP(action: "challenges/decline/" + challenge_id + "/" + user_id, httpMethod: "POST", data: nil, sync: true)
             else {
                 let cError: CustomError = CustomError.init(code: "002", description: "Unable to call server", severity: Severity.HIGH, location: error_location)
                 throw cError

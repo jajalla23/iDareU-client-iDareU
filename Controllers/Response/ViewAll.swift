@@ -29,7 +29,7 @@ class ViewAllResponsesController: UICollectionViewController {
         //self.collectionView!.register(ViewResponseViewCell.self, forCellWithReuseIdentifier: "viewResponseCell")
 
         // Do any additional setup after loading the view.
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "second"), style: .done, target: self, action: #selector(rightBarBtnTapped))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "first"), style: .done, target: self, action: #selector(rightBarBtnTapped))
 
         cellSize = UIScreen.main.bounds.width/3 - 2
 
