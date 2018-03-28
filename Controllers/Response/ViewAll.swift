@@ -29,6 +29,8 @@ class ViewAllResponsesController: UICollectionViewController {
         //self.collectionView!.register(ViewResponseViewCell.self, forCellWithReuseIdentifier: "viewResponseCell")
 
         // Do any additional setup after loading the view.
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "second"), style: .done, target: self, action: #selector(rightBarBtnTapped))
+
         cellSize = UIScreen.main.bounds.width/3 - 2
 
         let layout = UICollectionViewFlowLayout()
@@ -48,12 +50,19 @@ class ViewAllResponsesController: UICollectionViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let cell: ViewResponseViewCell = sender as! ViewResponseViewCell
         if (segue.identifier == "viewResponseSegue") {
+            let cell: ViewResponseViewCell = sender as! ViewResponseViewCell
             let dest_controller = segue.destination as! ViewResponseController
             dest_controller.user = user
             dest_controller.challenge = challenge
             dest_controller.taker = cell.taker
+        }
+        
+        if (segue.identifier == "viewChallengeSegue") {
+            let dest_controller = segue.destination as! ViewChallengeViewController
+            dest_controller.viewType = "SPONSORED"
+            dest_controller.user = self.user
+            dest_controller.challengeQueue = Queue(elements: [challenge!])
         }
     }
 
@@ -135,5 +144,9 @@ class ViewAllResponsesController: UICollectionViewController {
     
     }
     */
+    
+    @objc func rightBarBtnTapped() {
+        self.performSegue(withIdentifier: "viewChallengeSegue", sender: self)
+    }
 
 }

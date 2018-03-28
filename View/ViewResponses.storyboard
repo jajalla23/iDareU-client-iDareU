@@ -53,11 +53,20 @@
                     <connections>
                         <outlet property="responseCollView" destination="7Ep-ur-Uyb" id="zke-bN-LWJ"/>
                         <segue destination="aat-Xb-ee0" kind="show" identifier="viewResponseSegue" id="FIP-IM-JYM"/>
+                        <segue destination="sIT-iK-CS9" kind="show" identifier="viewChallengeSegue" id="sfq-Jn-gXf"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q3Q-w3-6UP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="511.19999999999999" y="179.55665024630542"/>
+        </scene>
+        <!--ViewChallenge-->
+        <scene sceneID="BOM-pK-eLT">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ViewChallenge" id="sIT-iK-CS9" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I23-bC-l9D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1484" y="-298"/>
         </scene>
         <!--View Response Controller-->
         <scene sceneID="rjt-rg-tbw">

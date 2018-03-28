@@ -85,6 +85,13 @@ class MyCreatedChallengesViewController: MeGenericViewController, UITableViewDat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedChallenge = (self.user?.challenges?.sponsored![indexPath.row])!
+        for taker in (selectedChallenge?.takers)! {
+            if taker.completed! {
+                performSegue(withIdentifier: "viewResponseSegue", sender: selectedChallenge)
+                return
+            }
+        }
+        
         performSegue(withIdentifier: "createdToWatchSegue", sender: self)
     }
     
