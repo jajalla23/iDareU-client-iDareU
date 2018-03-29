@@ -121,12 +121,12 @@ class ViewResponseController: UIViewController {
     }
     
     private func swipeLeft() {
-        rejectResponse()
+        //rejectResponse()
         challengeIndex += 1
     }
     
     private func swipeRight() {
-        acceptResponse()
+        //acceptResponse()
         challengeIndex += 1
     }
     
@@ -164,12 +164,12 @@ class ViewResponseController: UIViewController {
     }
     
     @IBAction func rejectBtnTapped(_ sender: Any) {
-        rejectResponse()
+        //rejectResponse()
         performSegue(withIdentifier: "unwindToViewAllSegue", sender: sender)
     }
     
     @IBAction func acceptBtnTapped(_ sender: Any) {
-        acceptResponse()
+        //acceptResponse()
         performSegue(withIdentifier: "unwindToViewAllSegue", sender: sender)
     }
     

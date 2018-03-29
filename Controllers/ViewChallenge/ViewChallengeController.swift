@@ -50,6 +50,8 @@ class ViewChallengeViewController: UIViewController, UIGestureRecognizerDelegate
             }
         } else if (viewType == "SPONSORED") {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "second"), style: .done, target: self, action: #selector(rightBarBtnTapped))
+        } else if (viewType == "COMPLETED" ) {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "first"), style: .done, target: self, action: #selector(rightBarBtnTapped_Completed))
         }
         
         do {
@@ -126,10 +128,19 @@ class ViewChallengeViewController: UIViewController, UIGestureRecognizerDelegate
             }
         }
         
+        if (segue.identifier == "viewChallengeSegue") {
+            let controller = segue.destination as! ViewChallengeViewController
+            controller.user = self.user
+            controller.challengeQueue = Queue(elements: [self.challenge!])
+        }
     }
     
     @objc func rightBarBtnTapped() {
         self.performSegue(withIdentifier: "selectTakerSegue", sender: self)
+    }
+    
+    @objc func rightBarBtnTapped_Completed() {
+        self.performSegue(withIdentifier: "viewChallengeSegue", sender: self)
     }
     
     @IBAction func screenTapped(_ sender: UITapGestureRecognizer) {

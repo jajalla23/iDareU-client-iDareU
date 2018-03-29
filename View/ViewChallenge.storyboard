@@ -10,6 +10,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--ViewChallenge-->
+        <scene sceneID="Zpu-87-C0Q">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ViewChallenge" id="UOC-fJ-GK3" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xbT-Nv-Pj4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1003" y="474"/>
+        </scene>
         <!--View Challenge View Controller-->
         <scene sceneID="H1b-J3-nhy">
             <objects>
@@ -87,6 +95,7 @@
                         <outlet property="panGestureRecognizer" destination="o6K-Ja-KxX" id="fbb-wU-4Kq"/>
                         <segue destination="pPH-wV-ZPG" kind="show" identifier="cameraSegue" id="hS1-OH-hpD"/>
                         <segue destination="CnN-hT-FfI" kind="show" identifier="selectTakerSegue" id="vfJ-h6-SgP"/>
+                        <segue destination="UOC-fJ-GK3" kind="show" identifier="viewChallengeSegue" id="7JC-b1-sX2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YYE-Xp-aWp" userLabel="First Responder" sceneMemberID="firstResponder"/>
