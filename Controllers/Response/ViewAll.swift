@@ -148,5 +148,8 @@ class ViewAllResponsesController: UICollectionViewController {
     @objc func rightBarBtnTapped() {
         self.performSegue(withIdentifier: "viewChallengeSegue", sender: self)
     }
+    
+    @IBAction func unwindToViewAll(segue: UIStoryboardSegue) {
+    }
 
 }

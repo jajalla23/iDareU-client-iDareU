@@ -23,6 +23,7 @@ class ViewResponseController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var challengeInfoView: UIView!
     @IBOutlet weak var actionImageView: UIImageView!
+    @IBOutlet weak var actionView: UIView!
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     
     override func viewDidLoad() {
@@ -66,7 +67,15 @@ class ViewResponseController: UIViewController {
     }
     
     @IBAction func screenTapped(_ sender: UITapGestureRecognizer) {
-        challengeInfoView.isHidden = !challengeInfoView.isHidden
+        if sender.state == .ended {
+            //let labelController = childViewControllers[0] as! ResponseLabelController
+            let touchLocation = sender.location(in: actionView)
+            
+            if (touchLocation.x < 0 || touchLocation.y < 0 || touchLocation.x > actionView.frame.width || touchLocation.y > actionView.frame.height) {
+                challengeInfoView.isHidden = !challengeInfoView.isHidden
+                actionView.isHidden = !actionView.isHidden
+            }
+        }
     }
     
     @IBAction func panHandler(_ sender: UIPanGestureRecognizer) {
@@ -109,36 +118,15 @@ class ViewResponseController: UIViewController {
                 self.actionImageView.alpha = 0
             })
         }
-        
     }
     
     private func swipeLeft() {
-        do {
-            //reject response
-        } catch let cError as CustomError {
-            //TODO: handler error
-            print(cError.description)
-            return
-        } catch let error {
-            //TODO: error
-            print(error.localizedDescription)
-            return
-        }
-        
+        rejectResponse()
         challengeIndex += 1
     }
     
     private func swipeRight() {
-        do {
-            //accept response
-        } catch let cError as CustomError {
-            //TODO: handler error
-            print(cError.description)
-        } catch let error {
-            //TODO: error
-            print(error.localizedDescription)
-        }
-        
+        acceptResponse()
         challengeIndex += 1
     }
     
@@ -173,6 +161,43 @@ class ViewResponseController: UIViewController {
             challengeInfoView.setNeedsLayout()
             challengeInfoView.layoutIfNeeded()
         }
-        
+    }
+    
+    @IBAction func rejectBtnTapped(_ sender: Any) {
+        rejectResponse()
+        performSegue(withIdentifier: "unwindToViewAllSegue", sender: sender)
+    }
+    
+    @IBAction func acceptBtnTapped(_ sender: Any) {
+        acceptResponse()
+        performSegue(withIdentifier: "unwindToViewAllSegue", sender: sender)
+    }
+    
+    private func rejectResponse() {
+        do {
+            //reject response
+            try Server.rejectResponse(challenge_id: (challenge?._id)!, taker: taker!)
+        } catch let cError as CustomError {
+            //TODO: handler error
+            print(cError.description)
+            return
+        } catch let error {
+            //TODO: error
+            print(error.localizedDescription)
+            return
+        }
+    }
+    
+    private func acceptResponse() {
+        do {
+            //accept response
+            try Server.acceptResponse(challenge_id: (challenge?._id)!, taker: taker!)
+        } catch let cError as CustomError {
+            //TODO: handler error
+            print(cError.description)
+        } catch let error {
+            //TODO: error
+            print(error.localizedDescription)
+        }
     }
 }

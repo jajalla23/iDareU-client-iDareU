@@ -467,4 +467,52 @@ extension Server {
             throw cError
         }
     }
+    
+    static func rejectResponse(challenge_id: String, taker: Taker) throws {
+        let encoder = JSONEncoder()
+        let data = try! encoder.encode(taker)
+        
+        guard let respData = try invokeHTTP(action: "challenges/reject/" + challenge_id + "/" + taker.user._id!, httpMethod: "POST", data: data, sync: true)
+            else {
+                let cError: CustomError = CustomError.init(code: "002", description: "Unable to call server", severity: Severity.HIGH, location: error_location)
+                throw cError
+        }
+        
+        do {
+            let decoder = JSONDecoder()
+            let response: UpdateResponse = try decoder.decode(UpdateResponse.self, from: respData)
+            
+            if (response.error != nil) {
+                throw response.error!
+            }
+            
+        } catch let error {
+            let cError: CustomError = CustomError.init(code: "002", description: error.localizedDescription, severity: Severity.HIGH, location: error_location)
+            throw cError
+        }
+    }
+    
+    static func acceptResponse(challenge_id: String, taker: Taker) throws {
+        let encoder = JSONEncoder()
+        let data = try! encoder.encode(taker)
+        
+        guard let respData = try invokeHTTP(action: "challenges/confirm/" + challenge_id + "/" + taker.user._id!, httpMethod: "POST", data: data, sync: true)
+            else {
+                let cError: CustomError = CustomError.init(code: "002", description: "Unable to call server", severity: Severity.HIGH, location: error_location)
+                throw cError
+        }
+        
+        do {
+            let decoder = JSONDecoder()
+            let response: UpdateResponse = try decoder.decode(UpdateResponse.self, from: respData)
+            
+            if (response.error != nil) {
+                throw response.error!
+            }
+            
+        } catch let error {
+            let cError: CustomError = CustomError.init(code: "002", description: error.localizedDescription, severity: Severity.HIGH, location: error_location)
+            throw cError
+        }
+    }
 }
