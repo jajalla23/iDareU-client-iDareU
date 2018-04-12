@@ -23,6 +23,8 @@ class MeViewController: MeGenericViewController {
     @IBOutlet weak var pendingChallengesHeightConstr: NSLayoutConstraint!
     @IBOutlet weak var pendingChallengesView: UIView!
     @IBOutlet weak var pendingHeaderBtn: UIButton!
+    @IBOutlet weak var pendingCountLbl: UILabel!
+    
 
     public var createdChallengeViewController: MyCreatedChallengesViewController!
     private var isCreatedChallengesExpanded: Bool = false
@@ -57,6 +59,12 @@ class MeViewController: MeGenericViewController {
         //completed challenges minimized
         self.completedChallengesHeightConstr.constant = 80
         self.completedChallengesView.isHidden = true
+        
+        if (user?.challenges?.pending?.count == 0) {
+                pendingCountLbl.isHidden = true
+        }
+        
+        pendingCountLbl.text = user?.challenges?.pending?.count.description
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.refreshAllViews), name: NSNotification.Name(rawValue: "refreshAllViewsOnMe"), object: nil)
     }
